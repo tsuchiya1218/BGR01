@@ -57,3 +57,45 @@ input[name="tab_item"] {
   background-color: #5ab4bd;
   color: #fff;
 }
+
+.product{
+  display: flex;
+  vertical-align: middle;
+}
+
+ .product .image{
+  width:350 ;
+  height:400;
+  margin:0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.product .text{
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+
+.product .right {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+
+.product .title {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+
+  font-size: 28px;
+}
+
+.title {
+  font-size: large;
+}
