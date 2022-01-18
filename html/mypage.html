@@ -12,10 +12,10 @@
 
 <body>
     <header>
-        <div class="top">
-            <h1 class="title">BOOK ON</h1>
-            <p class="subtitle">It's a book but it's not a book!</p>
-            <div class="right">
+        <div id="top">
+            <h1 id="title">BOOK ON</h1>
+            <p id="subtitle">It's a book but it's not a book!</p>
+            <div id="right">
                 <input type="button" value="カートを見る">
                 <input type="button" value="ログイン">
             </div>
@@ -34,54 +34,102 @@
 
     <main>
         <h3>レンタルライブラリ</h3>
-        <table>
+        <table border="2" align="center" style="border-collapse: collapse">
             <tr>
-                <div class="item">
-                    <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto">
-                    <div class="description">
-                        <div class="title">
-                            <p><b>ハリーポッターと賢者の石</b></p>
-                        </div>
-                        <div class="mainInfo">
-                            <p>レンタル期限:~XXXX/XX/XX</p>
-                            <p>レンタル価格:XXXX円</p>
-                            <input type="button" value="読む">
-                        </div>
-                        <div class="subInfo">
-                            <p>著者:J.K.ローリング</p>
-                            <p>出版社名:XXXX社</p>
-                            <p>発行年月:XXXX/XX/XX</p>
-                        </div>
-                        <div class="mottomiru">
-                            <small><a href="">もっと見る</a></small>
+                <td>
+                    <div class="item">
+                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto">
+                        <div class="description">
+                            <div class="btitle">
+                                <p><b>ハリーポッターと賢者の石</b></p>
+                            </div>
+                            <div class="mainInfo">
+                                <p>レンタル期限<br>~XXXX/XX/XX</p>
+                                <p>レンタル価格<br>XXXX円</p>
+                                <input type="button" value="読む">
+                            </div>
+                            <div class="subInfo">
+                                <p>著者<br>J.K.ローリング</p>
+                                <p>出版社名<br>XXXX社</p>
+                                <p>発行年月<br>XXXX/XX/XX</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto">
+                        <div class="description">
+                            <div class="btitle">
+                                <p><b>ハリーポッターと賢者の石</b></p>
+                            </div>
+                            <div class="mainInfo">
+                                <p>レンタル期限<br>~XXXX/XX/XX</p>
+                                <p>レンタル価格<br>XXXX円</p>
+                                <input type="button" value="読む">
+                            </div>
+                            <div class="subInfo">
+                                <p>著者<br>J.K.ローリング</p>
+                                <p>出版社名<br>XXXX社</p>
+                                <p>発行年月<br>XXXX/XX/XX</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </table>
+        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
         <hr>
         <h3>購入履歴</h3>
-        <div class="item">
-            <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto">
-            <div class="description">
-                <div class="title">
-                    <p><b>ハリーポッターと秘密の部屋</b></p>
-                </div>
-                <div class="mainInfo">
-                    <p>購入日:XXXX/XX/XX</p>
-                    <p>購入価格:XXXX円</p>
-                    <input type="button" value="読む">
-                </div>
-                <div class="subInfo">
-                    <p>著者:J.K.ローリング</p>
-                    <p>出版社名:XXXX社</p>
-                    <p>発行年月:XXXX/XX/XX</p>
-                </div>
-                <div class="mottomiru">
-                    <small><a href="">もっと見る</a></small>
-                </div>
-            </div>
-        </div>
+        <table border="2" align="center" style="border-collapse: collapse">
+            <tr>
+                <td>
+                    <div class="item">
+                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto">
+                        <div class="description">
+                            <div class="btitle">
+                                <p><b>ハリーポッターと秘密の部屋</b></p>
+                            </div>
+                            <div class="mainInfo">
+                                <p>購入日<br>XXXX/XX/XX</p>
+                                <p>購入価格<br>XXXX円</p>
+                                <input type="button" value="読む">
+                            </div>
+                            <div class="subInfo">
+                                <p>著者<br>J.K.ローリング</p>
+                                <p>出版社名<br>XXXX社</p>
+                                <p>発行年月<br>XXXX/XX/XX</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="item">
+                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto">
+                        <div class="description">
+                            <div class="btitle">
+                                <p><b>ハリーポッターと秘密の部屋</b></p>
+                            </div>
+                            <div class="mainInfo">
+                                <p>購入日<br>XXXX/XX/XX</p>
+                                <p>購入価格<br>XXXX円</p>
+                                <input type="button" value="読む">
+                            </div>
+                            <div class="subInfo">
+                                <p>著者<br>J.K.ローリング</p>
+                                <p>出版社名<br>XXXX社</p>
+                                <p>発行年月<br>XXXX/XX/XX</p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
     </main>
 </body>
 

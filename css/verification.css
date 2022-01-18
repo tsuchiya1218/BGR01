@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.bp{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+#book_name{
+    font-size: xx-large;
+}
+.price{
+    font-size: xx-large;
+    margin-left: auto;
+}
+
+.img{
+    display: block;
+    margin: auto 100px auto 0px;
+    margin-left: auto;
+}
+

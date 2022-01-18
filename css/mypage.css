@@ -1,43 +1,39 @@
 .item{
-    margin:0px 20%;
     justify-content: center;
     overflow: hidden;
     display: flex;
 }
+td{
+    width: 60%;
+}
+.btitle{
+    text-align: center;
+    margin: auto;
+}
 .mainInfo,.subInfo{
-    margin:auto 0%;
-    justify-content: center;
+    padding: 5% 5%;
+    margin:auto;
     overflow: hidden;
-    display: -webkit-flex;
     display: flex;
     justify-content: space-between;
+    text-align: center;
 }
 .mainInfo p{
     margin:0px 20px;
-}
-.mainInfo input,.mottomiru{
-    margin-left: auto;
 }
 .subInfo p{
     margin:0px 10px;
 }
 b{
-    font-size: 20px;
+    font-size: 25px;
 }
-.dispriction{
-    padding: 20% auto;
-    display: -webkit-flex;
+.description{
+    width: 60%;
     display: flex;
-    -webkit-justify-content: space-around;
     justify-content: space-around;
-    -webkit-align-items: flex-start;
     align-items: flex-start;
-    -webkit-flex-direction: column;
     flex-direction: column;
 }
 .mottomiru{
     text-align: right;
-}
-.mottomiru a{
-    text-decoration: none;
 }
