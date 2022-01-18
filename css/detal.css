@@ -1,15 +1,10 @@
-.wrap{
-    display: flex;
-}
-.li{
-    list-style: none;
-}
+
 .detal{
     display:flex;
     align-items: center;
     margin: 10px;
 }
 
-.flex{
-    display: flex;
+.bookOf div{
+    text-align: center;
 }

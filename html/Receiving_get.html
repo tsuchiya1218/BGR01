@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="jp">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/top.css" type="text/css">
     <title>受取方法選択</title>
 </head>
+
 <body>
     <header>
         <div class="top">
@@ -29,20 +32,38 @@
         <hr>
     </header>
     <h2>店舗選択</h2>
-    <button><p>北海道</p></button>
-    <button><p>東北</p></button>
-    <button><p>関東</p></button>
-    <button><p>関西</p></button>
-    <button><p>中部</p></button>
-    <button><p>四国</p></button>
-    <button><p>中国</p></button>
-    <button><p>九州/沖縄</p></button>
-
+    <form action="">
+        <button>
+            <p>北海道</p>
+        </button>
+        <button>
+            <p>東北</p>
+        </button>
+        <button>
+            <p>関東</p>
+        </button>
+        <button>
+            <p>関西</p>
+        </button>
+        <button>
+            <p>中部</p>
+        </button>
+        <button>
+            <p>四国</p>
+        </button>
+        <button>
+            <p>中国</p>
+        </button>
+        <button>
+            <p>九州/沖縄</p>
+        </button>
+    </form>
     <h2>住所選択</h2>
     <form action="Verification.html" method="POST">
         <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-        <input type="radio" name="memberaddress" >
+        <input type="radio" name="memberaddress">
         <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
     </form>
 </body>
+
 </html>
