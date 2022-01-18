@@ -20,32 +20,31 @@ li{
 
 
 /*header*/
-.top{
+#top{
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
 }
-.right{
+#right{
   margin-left: auto;
 }
-.title{
+#title{
   margin:10px 30px;
 }
-.subtitle{
+#subtitle{
   margin: 0px 40px;
 }
-.cart,.rogin{
+#cart,#rogin{
   margin: 10px;
   float: right;
 }
 
 /*main*/
-.main{
-  width: 60%;
-  margin:0% 20%;
+main{
+  width: 80%;
+  margin:0% 10%;
 }
-
 
 HTML CSSResult Skip Results Iframe
 EDIT ON
@@ -127,6 +126,8 @@ input[name="tab_item"] {
 .checkbox{
   display: flex;
   align-items: center;
+  transform: scale(2.0);
+  margin-right: 2%;
 }
 
 
@@ -162,7 +163,4 @@ li {
   display: flex;
 }
 
-.kosu{
-  padding-left: 100;
-}
 
