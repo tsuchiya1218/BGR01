@@ -1,25 +1,8 @@
 @charset "UTF-8";
 
-body{
+main{
     box-sizing: border-box;
     justify-content: center;
-}
-.wrap{
-    width: 960px;
-    margin: 0px auto;
-    box-sizing: border-box;
-}
-h2{
-    margin: 20px 0px;
-    padding: 5px 5px;
-    box-sizing: border-box;
-} 
-
-#book_name{
-    font-size: xx-large;
-}
-#price{
-    font-size: xx-large;
 }
 .bp{
     display: -webkit-flex;
