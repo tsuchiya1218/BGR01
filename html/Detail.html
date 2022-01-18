@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/top.css" type="text/css">
-    <link rel="stylesheet" href="../css/detal.css" type="text/css">
+    <link href="../css/top.css" rel="stylesheet" type="text/css">
+    <link href="../css/detal.css" rel="stylesheet" type="text/css">
     <title>商品詳細</title>
 </head>
 
 <body>
     <header>
-        <div class="top">
-            <h1 class="title">BOOK ON</h1>
-            <p class="subtitle">It's a book but it's not a book!</p>
-            <div class="right">
+        <div id="top">
+            <h1 id="title">BOOK ON</h1>
+            <p id="subtitle">It's a book but it's not a book!</p>
+            <div id="right">
                 <input type="button" value="カートを見る">
                 <input type="button" value="ログイン">
             </div>
@@ -35,38 +35,22 @@
 
     <img src="../image/chitei.jpg" alt="" align="left">
     <div class="bookOf" style="position: absolute; left: 360px ;">
-        <h2>書籍名</h2>
-        <p>地底旅行</p>
+        <h2>地底旅行</h2>
+        
         <table>
-            <tr>
-                <th>
-                    著者名
-                </th>
-                <th>
-                    出版社名
-                </th>
-                <th>
-                    発行年月
-                </th>
-            </tr>
-            <tr>
-                <td>ジュール・ヴェルヌ</td>
-                <td>******</td>
-                <td>〇〇〇〇/〇〇/〇〇</td>
-            </tr>
-            <tr>
-                <td>
+            <div class="but">
+                <p>著者　ジュール・ヴェルヌ</p>
+                <p>出版社名　XXXX社</p>
+                <p>発行年月　XXXX/XX/XX</p>
+            </div>
 
-                </td>
-                <td>
-                    <div>
-                        <form action="../html/Receiving.html">
-                            <input type="submit" value="購入">
-                            <input type="submit" value="レンタル">
-                        </form>
-                    </div>
-                </td>
-            </tr>
+            <div class="buybutton">
+                <form action="../html/Receiving.html">
+                    <input type="submit" value="購入">
+                    <input type="submit" value="レンタル">
+                </form>
+            </div>
+
         </table>
 
         <h2>あらすじ</h2>
