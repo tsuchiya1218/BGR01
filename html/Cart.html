@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カート内容確認
+    </title>
+</head>
+<body>
+    <link href="../css/cart.css" rel="stylesheet">
+    <header>
+        <ul>
+            <h2>BOOK ON</h2>
+
+        </ul>
+    </header>
+        <div class="tab">
+            <input id="buy" type="radio" name="tab_item" checked>
+                <label class="tab_item" for="buy">購入</label>
+            <input id="reserve" type="radio" name="tab_item" >
+                <label class="tab_item" for="reserve">予約</label>
+            <input id="rental" type="radio" name="tab_item" >
+                <label class="tab_item" for="rental">レンタル</label>
+                
+                
+                <div class="tab_content" id ="buy_content">
+                    <div class="product">
+                        <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行" ></figure>
+                        <div class="right">
+                            <p class="title">
+                                地底旅行
+                            </p>
+                            <p class="text">
+                                <ul>
+                                    <li>著者</li>
+                                    <li>出版社</li>
+                                    <li>発行年月</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" id ="reserve_content">
+                    <div class="product">
+                        <input type="checkbox" name="check">
+                        <figure class="image"><img src="../image/chitei.jpg"  alt="地底旅行" ></figure>
+                        <div class="right">
+                            <p class="title">
+                                地底旅行
+                            </p>
+                            <p class="text">
+                                <ul>
+                                    <li>著者</li>
+                                    <li>出版社</li>
+                                    <li>発行年月</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                    <p class="text">
+                        価格税込み
+
+                    </p>
+                    </div>
+                </div>
+                <div class="tab_content" id ="rental_content">
+                    <div class="product">
+                        <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                        <div class="right">
+                            <p class="title">
+                                地底旅行
+                            </p>
+                            <p class="text">
+                                <ul>
+                                    <li>著者</li>
+                                    <li>出版社</li>
+                                    <li>発行年月</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>    
+        </div>
+        
+
+      
+</body>
+</html>

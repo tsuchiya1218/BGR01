@@ -1,0 +1,18 @@
+/*main*/
+.mottomiru{
+    text-decoration: none;
+}
+.RankAndNew {
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+}
+.Rank,.New{
+    float: left;
+    padding: 20px 60px;
+    text-align: left;
+}
+li{
+    font-size: 35px;
+    
+}
