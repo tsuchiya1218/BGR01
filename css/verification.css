@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+
 .bp{
+    padding: 20% auto;
+    
     display: flex;
 }
