@@ -1,26 +1,26 @@
 /*header*/
-.top{
+#top{
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: flex-start;
     justify-content: flex-start;
 }
-.right{
+#right{
     margin-left: auto;
 }
-.title{
+#title{
     margin:10px 30px;
 }
-.subtitle{
+#subtitle{
     margin: 0px 40px;
 }
-.cart,.rogin{
+#cart,#rogin{
     margin: 10px;
     float: right;
 }
 
 /*main*/
-.main{
+main{
     width: 60%;
     margin:0% 20%;
 }
