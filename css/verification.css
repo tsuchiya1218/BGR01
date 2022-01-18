@@ -2,6 +2,7 @@
 
 body{
     box-sizing: border-box;
+    justify-content: center;
 }
 .wrap{
     width: 960px;
