@@ -8,3 +8,11 @@
 .bookOf div{
     text-align: center;
 }
+
+.but{
+    display:flex;
+    
+}
+.buybutton{
+    text-align: center;
+}
