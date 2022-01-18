@@ -1,5 +1,56 @@
+/*main*/
+.mottomiru{
+  text-decoration: none;
+}
+.RankAndNew {
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+}
+.Rank,.New{
+  float: left;
+  padding: 20px 60px;
+  text-align: left;
+}
+li{
+  font-size: 35px;
+  
+}
+
+
+
+/*header*/
+.top{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.right{
+  margin-left: auto;
+}
+.title{
+  margin:10px 30px;
+}
+.subtitle{
+  margin: 0px 40px;
+}
+.cart,.rogin{
+  margin: 10px;
+  float: right;
+}
+
+/*main*/
+.main{
+  width: 60%;
+  margin:0% 20%;
+}
+
+
 HTML CSSResult Skip Results Iframe
 EDIT ON
+
+
 /*タブ切り替え全体のスタイル*/
 .tab {
   margin-top: 50px;
@@ -58,18 +109,24 @@ input[name="tab_item"] {
   color: #fff;
 }
 
+
 .product{
   display: flex;
   vertical-align: middle;
 }
 
  .product .image{
-  width:350 ;
-  height:400;
+  width:auto;
+  height:auto;
   margin:0;
   padding: 0;
   overflow: hidden;
   position: relative;
+}
+
+.checkbox{
+  display: flex;
+  align-items: center;
 }
 
 
@@ -78,24 +135,34 @@ input[name="tab_item"] {
   padding: 0;
 }
 
-.product .right {
+.product .light {
   margin: 0 0 0 20px;
   padding: 0;
 }
 
-.product .title {
+.product .title1 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
-  font-size: 18px;
+  font-weight:bold;
 }
 
 li {
   list-style: none;
 
-  font-size: 28px;
+  font-size: 40px;
+
+  vertical-align: middle;
 }
 
-.title {
-  font-size: large;
+.title1 {
+  font-size:75px;
 }
+
+.text{
+  display: flex;
+}
+
+.kosu{
+  padding-left: 100;
+}
+
