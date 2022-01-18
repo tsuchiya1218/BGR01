@@ -1,8 +1,32 @@
 @charset "UTF-8";
 
-
-.bp{
-    padding: 20% auto;
-    
-    display: flex;
+body{
+    box-sizing: border-box;
 }
+.wrap{
+    width: 960px;
+    margin: 0px auto;
+    box-sizing: border-box;
+}
+h2{
+    margin: 20px 0px;
+    padding: 5px 5px;
+    box-sizing: border-box;
+} 
+
+#book_name{
+    font-size: xx-large;
+}
+#price{
+    font-size: xx-large;
+}
+.no1_1{
+    display: flex;
+    justify-content: flex-start; 
+}
+.img{
+    display: block;
+    margin: auto 100px auto 0px;
+
+}
+
