@@ -1,23 +1,8 @@
-/*main*/
-.mottomiru{
-  text-decoration: none;
-}
-.RankAndNew {
-  justify-content: center;
-  overflow: hidden;
-  display: flex;
-}
-.Rank,.New{
-  float: left;
-  padding: 20px 60px;
-  text-align: left;
-}
-li{
-  font-size: 35px;
-  
-}
 
 
+td{
+  width: 60%;
+}
 
 /*header*/
 #top{
@@ -144,23 +129,22 @@ input[name="tab_item"] {
 .product .title1 {
   margin: 0;
   padding: 0;
-  font-weight:bold;
+  font-weight:bolder;
 }
 
 li {
   list-style: none;
 
-  font-size: 40px;
-
   vertical-align: middle;
 }
-
-.title1 {
-  font-size:75px;
+.light{
+  position: relative;
 }
 
 .text{
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
 }
 
 

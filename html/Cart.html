@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link href="../css/cart.css" rel="stylesheet" type="text/css">
     <title>カート内容確認</title>
 </head>
+
 <body>
     <header>
         <div id="top">
@@ -32,137 +34,146 @@
     <main>
         <div class="tab">
             <input id="buy" type="radio" name="tab_item" checked>
-                <label class="tab_item" for="buy">購入</label>
-            <input id="reserve" type="radio" name="tab_item" >
-                <label class="tab_item" for="reserve">予約</label>
-            <input id="rental" type="radio" name="tab_item" >
-                <label class="tab_item" for="rental">レンタル</label>
-                
-                
-                <div class="tab_content" id ="buy_content">
-                    <div class="product">
-                        <div class="checkbox" checked="checked">
-                            <input type="checkbox" name="check" >
-                        </div>
-                        <figure class="image"><img src="../image/chitei.jpg"  alt="地底旅行" ></figure>
-                        <div class="light">
-                            <p class="title1" >
-                                地底旅行
-                            </p>
-                            <p class="text">
-                                <ul>
-                                    <li>著者</li>
-                                    <li>出版社</li>
-                                    <li>発行年月</li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div class="light">
-                            <p class="text">
-                                
-                                <ul>
-                                    <li>価格（税込）</li>
-                                    <li>-----\</li>
-                                </ul>
-                                
-                            </p>
-                            <div class="kosu">
-                                <p class="text">
-                                数量<select name="">
-                                        <option value="1" selected>1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <button type="reset" value="delete">削除</button>
-                                </p>
-                            </div>
-                        </div>
-                    </div
-                    </div>
-                </div>
-                <div class="tab_content" id ="reserve_content">
-                    <div class="product">
-                        <div class="checkbox" checked="checked">
-                            <input type="checkbox" name="check" >
-                        </div>
-                        <figure class="image"><img src="../image/chitei.jpg"  alt="地底旅行" ></figure>
-                        <div class="light">
-                            <p class="title1" >
-                                地底旅行
-                            </p>
-                            <p class="text">
-                                <ul>
-                                    <li>著者</li>
-                                    <li>出版社</li>
-                                    <li>発行年月</li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div class="light">
-                            <p class="text">
-                                
-                                <ul>
-                                    <li>価格（税込）</li>
-                                    <li>-----\</li>
-                                </ul>
-                                
-                            </p>
-                            <div class="kosu">
-                                <p class="text">
-                                数量<select name="">
-                                        <option value="1" selected>1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <button type="reset" value="delete">削除</button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            <label class="tab_item" for="buy">購入</label>
+            <input id="reserve" type="radio" name="tab_item">
+            <label class="tab_item" for="reserve">予約</label>
+            <input id="rental" type="radio" name="tab_item">
+            <label class="tab_item" for="rental">レンタル</label>
 
-                </div>
-                <div class="tab_content" id ="rental_content">
-                    <div class="product">
-                        <div class="checkbox" checked="checked">
-                            <input type="checkbox" name="check" >
-                        </div>
-                        <figure class="image"><img src="../image/chitei.jpg"  alt="地底旅行" ></figure>
-                        <div class="light">
-                            <p class="title1" >
-                                地底旅行
-                            </p>
-                            <p class="text">
-                                <ul>
-                                    <li>著者</li>
-                                    <li>出版社</li>
-                                    <li>発行年月</li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div class="light">
-                            <p class="text">
-                                
-                                <ul>
-                                    <li>価格（税込）</li>
-                                    <li>-----\</li>
-                                </ul>
-                                
-                            </p>
-                            <div class="kosu">
-                                <p class="text">
-                                </p>
+
+            <div class="tab_content" id="buy_content">
+                <table border="2" align="center" style="border-collapse: collapse">
+                    <tr>
+                        <td>
+                            <div class="product">
+                                <div class="checkbox" checked="checked">
+                                    <input type="checkbox" name="check">
+                                </div>
+                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                <div class="light">
+                                    <p class="title1">
+                                        地底旅行
+                                    </p>
+                                    <p class="text">
+                                        <p>著者</p>
+                                        <p>出版社</p>
+                                        <p>発行年月</p>
+                                    </p>
+                                </div>
+                                <div class="light">
+                                    <p class="text">
+
+                                        <p>価格（税込）</p>
+                                        <p>-----\</p>
+
+                                    </p>
+                                    <div class="kosu">
+                                        <p>
+                                            数量<select name="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <button type="reset" value="delete">削除</button>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>    
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab_content" id="reserve_content">
+                <table border="2" align="center" style="border-collapse: collapse">
+                    <tr>
+                        <td>
+                            <div class="product">
+                                <div class="checkbox" checked="checked">
+                                    <input type="checkbox" name="check">
+                                </div>
+                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                <div class="light">
+                                    <p class="title1">
+                                        地底旅行
+                                    </p>
+                                    <p class="text">
+                                        <p>著者</p>
+                                        <p>出版社</p>
+                                        <p>発行年月</p>
+                                    </p>
+                                </div>
+                                <div class="light">
+                                    <p class="text">
+
+                                        <p>価格（税込）</p>
+                                        <p>-----\</p>
+
+                                    </p>
+                                    <div class="kosu">
+                                        <p>
+                                            数量<select name="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <button type="reset" value="delete">削除</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab_content" id="rental_content">
+                <table border="2" align="center" style="border-collapse: collapse">
+                    <tr>
+                        <td>
+                            <div class="product">
+                                <div class="checkbox" checked="checked">
+                                    <input type="checkbox" name="check">
+                                </div>
+                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                <div class="light">
+                                    <p class="title1">
+                                        地底旅行
+                                    </p>
+                                    <p class="text">
+                                        <p>著者</p>
+                                        <p>出版社</p>
+                                        <p>発行年月</p>
+                                    </p>
+                                </div>
+                                <div class="light">
+                                    <p class="text">
+
+                                        <p>価格（税込）</p>
+                                        <p>-----\</p>
+
+                                    </p>
+                                    <div class="kosu">
+                                        <p>
+                                            数量<select name="">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                            <button type="reset" value="delete">削除</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
         </div>
-        <hr color="#000000" width="80%" size="9">
     </main>
-    <footer>
-    </footer>
 </body>
+
 </html>
