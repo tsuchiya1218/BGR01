@@ -1,3 +1,13 @@
+.fl{
+  width : 25%px;
+
+}
+
+.flbox{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .btn{
   width: 75px;
   height: 30px;
@@ -6,11 +16,7 @@
   margin: 10px 50px;
   background-color: PaleTurquoise;
   text-decoration: none;
-  display: block;
   color: black;
+  display: block;
   border-bottom: 3px solid CadetBlue;
-}
-.fl{
-  display: flex;
-  flex-flow: nowrap;
 }
