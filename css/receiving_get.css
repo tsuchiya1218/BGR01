@@ -17,5 +17,6 @@
   background-color: PaleTurquoise;
   text-decoration: none;
   color: black;
+  display: block;
   border-bottom: 3px solid CadetBlue;
 }
