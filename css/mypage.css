@@ -25,7 +25,7 @@ td{
     margin:0px 10px;
 }
 b{
-    font-size: 25px;
+    font-weight: bolder;
 }
 .description{
     width: 60%;
@@ -36,4 +36,13 @@ b{
 }
 .mottomiru{
     text-align: right;
+}
+.float{
+    display: flex;
+}
+.float select{
+    height: min-content;
+    text-align: center;
+    width: 40%;
+    margin:auto;
 }
