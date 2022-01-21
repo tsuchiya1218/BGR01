@@ -42,7 +42,8 @@ EDIT ON
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 700px;
-  margin: 0 auto;}
+  margin: 0 auto;
+}
 
 /*タブのスタイル*/
 .tab_item {
@@ -55,7 +56,7 @@ EDIT ON
   text-align: center;
   color: #565656;
   display: block;
-  float: left;
+  float:left;
   text-align: center;
   font-weight: bold;
   transition: all 0.2s ease;
@@ -77,6 +78,7 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
+
 }
 
 
@@ -121,23 +123,18 @@ input[name="tab_item"] {
   padding: 0;
 }
 
-.product .light {
+.product,.mainlight,.sublinght{
   margin: 0 0 0 20px;
   padding: 0;
 }
 
-.product .title1 {
+.product .title1{
   margin: 0;
   padding: 0;
   font-weight:bolder;
+  font-size: 300%;
 }
-
-li {
-  list-style: none;
-
-  vertical-align: middle;
-}
-.light{
+.mainlight{
   position: relative;
 }
 
@@ -146,5 +143,28 @@ li {
   bottom: 0;
   margin: 0;
 }
+
+.info,.info2{
+  height: 400px;
+  padding: 5% 5%;
+  overflow: hidden;
+  display: table-row;
+  justify-content: space-between;
+  text-align: left;
+}
+.info{
+  font-size: 200%;
+}
+.info2{
+  font-size: 100%;
+}
+
+.subtitle1{
+  margin: 0;
+  padding: 0;
+  font-size: 300%;
+
+}
+
 
 
