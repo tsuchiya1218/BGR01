@@ -25,7 +25,7 @@ td{
     margin:0px 10px;
 }
 b{
-    font-size: 25px;
+    font-weight: bolder;
 }
 .description{
     width: 60%;
@@ -41,9 +41,16 @@ b{
     display: flex;
 }
 .float select{
+<<<<<<< HEAD
     margin-left: auto;
     height: min-content;
     width: 40%;
     text-align: center;
     margin: auto;
+=======
+    height: min-content;
+    text-align: center;
+    width: 40%;
+    margin:auto;
+>>>>>>> 3b99b6040032af73ca1897239ce5ce7513f1ad1f
 }

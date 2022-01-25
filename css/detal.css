@@ -6,6 +6,7 @@
 }
 
 .bookOf div{
+    max-width: 810px;
     text-align: center;
 }
 

@@ -1,51 +1,35 @@
-/*main*/
-.mottomiru{
-  text-decoration: none;
-}
-.RankAndNew {
-  justify-content: center;
-  overflow: hidden;
-  display: flex;
-}
-.Rank,.New{
-  float: left;
-  padding: 20px 60px;
-  text-align: left;
-}
-li{
-  font-size: 35px;
-  
-}
 
 
+td{
+  width: 60%;
+}
 
 /*header*/
-.top{
+#top{
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
 }
-.right{
+#right{
   margin-left: auto;
 }
-.title{
+#title{
   margin:10px 30px;
 }
-.subtitle{
+#subtitle{
   margin: 0px 40px;
 }
-.cart,.rogin{
+#cart,#rogin{
   margin: 10px;
   float: right;
 }
 
 /*main*/
-.main{
-  width: 60%;
-  margin:0% 20%;
+main{
+  width: 80%;
+  margin:0% 10%;
 }
-
 
 HTML CSSResult Skip Results Iframe
 EDIT ON
@@ -58,7 +42,8 @@ EDIT ON
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 700px;
-  margin: 0 auto;}
+  margin: 0 auto;
+}
 
 /*タブのスタイル*/
 .tab_item {
@@ -71,7 +56,7 @@ EDIT ON
   text-align: center;
   color: #565656;
   display: block;
-  float: left;
+  float:left;
   text-align: center;
   font-weight: bold;
   transition: all 0.2s ease;
@@ -93,6 +78,7 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
+
 }
 
 
@@ -127,6 +113,8 @@ input[name="tab_item"] {
 .checkbox{
   display: flex;
   align-items: center;
+  transform: scale(2.0);
+  margin-right: 2%;
 }
 
 
@@ -135,34 +123,48 @@ input[name="tab_item"] {
   padding: 0;
 }
 
-.product .light {
+.product,.mainlight,.sublinght{
   margin: 0 0 0 20px;
   padding: 0;
 }
 
-.product .title1 {
+.product .title1{
   margin: 0;
   padding: 0;
-  font-weight:bold;
+  font-weight:bolder;
+  font-size: 300%;
 }
-
-li {
-  list-style: none;
-
-  font-size: 40px;
-
-  vertical-align: middle;
-}
-
-.title1 {
-  font-size:75px;
+.mainlight{
+  position: relative;
 }
 
 .text{
-  display: flex;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
 }
 
-.kosu{
-  padding-left: 100;
+.info,.info2{
+  height: 400px;
+  padding: 5% 5%;
+  overflow: hidden;
+  display: table-row;
+  justify-content: space-between;
+  text-align: left;
 }
+.info{
+  font-size: 200%;
+}
+.info2{
+  font-size: 100%;
+}
+
+.subtitle1{
+  margin: 0;
+  padding: 0;
+  font-size: 300%;
+
+}
+
+
 
