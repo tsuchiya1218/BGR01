@@ -4,27 +4,6 @@ td{
   width: 60%;
 }
 
-/*header*/
-#top{
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-}
-#right{
-  margin-left: auto;
-}
-#title{
-  margin:10px 30px;
-}
-#subtitle{
-  margin: 0px 40px;
-}
-#cart,#rogin{
-  margin: 10px;
-  float: right;
-}
-
 /*main*/
 main{
   width: 80%;
