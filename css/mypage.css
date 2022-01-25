@@ -37,3 +37,13 @@ b{
 .mottomiru{
     text-align: right;
 }
+.float{
+    display: flex;
+}
+.float select{
+    margin-left: auto;
+    height: min-content;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+}
