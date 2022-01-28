@@ -76,86 +76,37 @@ input[name="tab_item"] {
 
 
 .product{
-  display: flex;
-  vertical-align: middle;
-}
-
- .product .image{
-  width:auto;
-  height:auto;
-  margin:0;
-  padding: 0;
+  justify-content: space-around; 
   overflow: hidden;
-  position: relative;
-}
-
-.checkbox{
   display: flex;
-  align-items: center;
-  transform: scale(2.0);
-  margin-right: 2%;
 }
-
-
-.product .text{
-  margin: 0 0 0 20px;
-  padding: 0;
+td{
+  width: 60%;
 }
-
-.product,.mainlight,.sublinght{
-  margin: 0 0 0 20px;
-  padding: 0;
+.btitle{
+  text-align: center;
+  font-weight: bolder;
+  height: 35%;
+  font-size: 3vw;
+  padding: auto;
+  vertical-align: baseline;
 }
-
-.product .title1{
-  margin: 0;
-  padding: 0;
-  font-weight:bolder;
-  font-size: 300%;
+.btitle a{
+  text-decoration: none;
+}
+.btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
+  color: black;
+}
+.checkbox{
+  margin:auto 0;
 }
 .mainlight{
-  position: relative;
+  flex-direction: column;
+  width: 40%;
+  padding:10px 5px;
 }
-
-.text{
-  position: absolute;
-  bottom: 0;
-  margin: 0;
-}
-
-.info,.info2{
-  height: 400px;
-  padding: 5% 5%;
-  overflow: hidden;
-  display: table-row;
+.description{
+  display: flex;
   justify-content: space-between;
-  text-align: left;
+  height: 65%;
 }
-.info{
-  font-size: 200%;
-}
-.info2{
-  font-size: 100%;
-}
-
-.subtitle1{
-  margin: 0;
-  padding: 0;
-  font-size: 300%;
-
-}
-
-.kakaku{
-  position: relative;
-  font-size: 300%;
-}
-
-.gokei{
-  position: relative;
-  font-size: 400%;
-  text-align: right;
-}
-
-
-
-
