@@ -34,151 +34,282 @@
         <hr>
     </header>
     <main>
-        <div class="tab">
-            <input id="buy" type="radio" name="tab_item" checked>
-            <label class="tab_item" for="buy">購入</label>
-            <input id="reserve" type="radio" name="tab_item">
-            <label class="tab_item" for="reserve">予約</label>
-            <input id="rental" type="radio" name="tab_item">
-            <label class="tab_item" for="rental">レンタル</label>
+        <form action="../html/Receiving.html" method="GET">
+            <div class="tab">
+                <input id="buy" type="radio" name="tab_item" checked>
+                <label class="tab_item" for="buy">購入</label>
+                <input id="reserve" type="radio" name="tab_item">
+                <label class="tab_item" for="reserve">予約</label>
+                <input id="rental" type="radio" name="tab_item">
+                <label class="tab_item" for="rental">レンタル</label>
 
 
-            <div class="tab_content" id="buy_content">
-                <table border="2" align="center" style="border-collapse: collapse">
-                    <tr>
-                        <td>
-                            <div class="product">
-                                <div class="checkbox" checked="checked">
-                                    <input type="checkbox" name="check">
-                                </div>
-                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
-                                <div class="mainlight">
-                                    <p class="title1">
-                                        地底旅行
-                                    </p>
-                                    <p class="text">
-                                    <div class="info">
-                                        <p>著者</p>
-                                        <p>出版社</p>
-                                        <p>発行年月</p>
+                <div class="tab_content" id="buy_content">
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
                                     </div>
-                                    </p>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="sublight">
+                                    <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地底旅行　　　　　
+                                        </p>
                                         <p class="text">
-                                        <div class="info2">
-                                            <div class="subtitle1">
-                                                <p>価格（税込）</p>
-                                            </div>
-                                            <p>-----\</p>
+                                        <div class="info">
+                                            <p>ジュール・ヴェルヌ</p>
+                                            <p>東京創元社</p>
+                                            <p>1968年11月29日</p>
                                         </div>
                                         </p>
-                                        <p>
-                                            数量<select name="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                            <button type="reset" value="delete">削除</button>
-                                        </p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">770\</p>
+                                            </div>
+                                            </p>
+                                            <p>
+                                                数量<select name="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <button type="reset" value="delete">削除</button>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="tab_content" id="reserve_content">
-                <table border="2" align="center" style="border-collapse: collapse">
-                    <tr>
-                        <td>
-                            <div class="product">
-                                <div class="checkbox" checked="checked">
-                                    <input type="checkbox" name="check">
-                                </div>
-                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
-                                <div class="light">
-                                    <p class="title1">
-                                        地底旅行
-                                    </p>
-                                    <p class="text">
-                                    <p>著者</p>
-                                    <p>出版社</p>
-                                    <p>発行年月</p>
-                                    </p>
-                                </div>
-                                <div class="light">
-                                    <p class="text">
-
-                                    <p>価格（税込）</p>
-                                    <p>-----\</p>
-
-                                    </p>
-                                    <div class="kosu">
-                                        <p>
-                                            数量<select name="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                            <button type="reset" value="delete">削除</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
+                                    </div>
+                                    <figure class="image"><img src="../image/chikyuu.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地球の歩き方　インド
+                                        </p>
+                                        <p class="text">
+                                        <div class="info">
+                                            <p></p>
+                                            <p>ダイアモンド・ビッグ社</p>
+                                            <p>2020年3月12日</p>
+                                        </div>
                                         </p>
                                     </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="tab_content" id="rental_content">
-                <table border="2" align="center" style="border-collapse: collapse">
-                    <tr>
-                        <td>
-                            <div class="product">
-                                <div class="checkbox" checked="checked">
-                                    <input type="checkbox" name="check">
-                                </div>
-                                <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
-                                <div class="light">
-                                    <p class="title1">
-                                        地底旅行
-                                    </p>
-                                    <p class="text">
-                                    <p>著者</p>
-                                    <p>出版社</p>
-                                    <p>発行年月</p>
-                                    </p>
-                                </div>
-                                <div class="light">
-                                    <p class="text">
-
-                                    <p>価格（税込）</p>
-                                    <p>-----\</p>
-
-                                    </p>
-                                    <div class="kosu">
-                                        <p>
-                                            数量<select name="">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                            <button type="reset" value="delete">削除</button>
-                                        </p>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">2090\</p>
+                                            </div>
+                                            </p>
+                                            <p>
+                                                数量<select name="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <button type="reset" value="delete">削除</button>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab_content" id="reserve_content">
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
+                                    </div>
+                                    <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地底旅行　　　　　
+                                        </p>
+                                        <p class="text">
+                                        <div class="info">
+                                            <p>ジュール・ヴェルヌ</p>
+                                            <p>東京創元社</p>
+                                            <p>1968年11月29日</p>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">770\</p>
+                                            </div>
+                                            </p>
+                                            <p>
+                                                数量<select name="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <button type="reset" value="delete">削除</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
+                                    </div>
+                                    <figure class="image"><img src="../image/chikyuu.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地球の歩き方　インド
+                                        </p>
+                                        <p class="text">
+                                        <div class="info">
+                                            <p></p>
+                                            <p>ダイアモンド・ビッグ社</p>
+                                            <p>2020年3月12日</p>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">2090\</p>
+                                            </div>
+                                            </p>
+                                            <p>
+                                                数量<select name="">
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                                <button type="reset" value="delete">削除</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab_content" id="rental_content">
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
+                                    </div>
+                                    <figure class="image"><img src="../image/chitei.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地底旅行　　　　　
+                                        </p>
+                                        <p class="text">
+                                        <div class="info">
+                                            <p>ジュール・ヴェルヌ</p>
+                                            <p>東京創元社</p>
+                                            <p>1968年11月29日</p>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">770\</p>
+                                            </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table border="2" align="center" style="border-collapse: collapse">
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <div class="checkbox" checked="checked">
+                                        <input type="checkbox" name="check">
+                                    </div>
+                                    <figure class="image"><img src="../image/chikyuu.jpg" alt="地底旅行"></figure>
+                                    <div class="mainlight">
+                                        <p class="title1">
+                                            地球の歩き方　インド
+                                        </p>
+                                        <p class="text">
+                                        <div class="info">
+                                            <p></p>
+                                            <p>ダイアモンド・ビッグ社</p>
+                                            <p>2020年3月12日</p>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div class="sublight">
+                                            <p class="text">
+                                            <div class="info2">
+                                                <div class="subtitle1">
+                                                    <p>価格（税込）</p>
+                                                </div>
+                                                <p class="kakaku">2090\</p>
+                                            </div>
+                                            </p>
+                                            <p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <p class="gokei">合計金額 ----\</p>
+            <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
+        </form>
     </main>
 </body>
 
