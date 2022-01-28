@@ -1,5 +1,11 @@
 @charset "UTF-8";
-
- body{
+body {
     box-sizing: border-box;
- }
+}
+
+.no1 {
+    display: flex;
+    margin: 0px 20px;
+    justify-content: center;
+    align-items: center;
+}
