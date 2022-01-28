@@ -13,6 +13,9 @@ td{
 .btitle a{
     text-decoration: none;
 }
+.btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
+    color: black;
+  }
 .mainInfo,.subInfo{
     padding: 5% 5%;
     margin:auto;
