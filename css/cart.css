@@ -145,5 +145,17 @@ input[name="tab_item"] {
 
 }
 
+.kakaku{
+  position: relative;
+  font-size: 300%;
+}
+
+.gokei{
+  position: relative;
+  font-size: 400%;
+  text-align: right;
+}
+
+
 
 
