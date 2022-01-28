@@ -9,6 +9,8 @@ td{
 .btitle{
     text-align: center;
     margin: auto;
+}
+.btitle a{
     text-decoration: none;
 }
 .mainInfo,.subInfo{
