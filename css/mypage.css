@@ -9,6 +9,7 @@ td{
 .btitle{
     text-align: center;
     margin: auto;
+    text-decoration: none;
 }
 .mainInfo,.subInfo{
     padding: 5% 5%;
