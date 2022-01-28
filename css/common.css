@@ -1,8 +1,6 @@
 /*header*/
 #top{
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: flex-start;
     justify-content: flex-start;
 }
 #right{
