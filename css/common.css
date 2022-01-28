@@ -11,6 +11,12 @@
 #title{
     margin:10px 30px;
 }
+#title a{
+    text-decoration: none;
+}
+#title a:link,#title a:visited,#title a:hover,#title a:active{
+    color: black;
+}
 #subtitle{
     margin: 0px 40px;
 }
