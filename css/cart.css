@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 
 td{
   width: 60%;
@@ -81,13 +81,12 @@ input[name="tab_item"] {
   display: flex;
 }
 td{
-  width: 60%;
+  width: 40%;
 }
 .btitle{
-  text-align: center;
   font-weight: bolder;
-  height: 35%;
-  font-size: 3vw;
+  height: auto;
+  font-size: x-large;
   padding: auto;
   vertical-align: baseline;
 }
@@ -101,6 +100,8 @@ td{
   margin:auto 0;
 }
 .mainlight{
+  position: relative;
+  right: 50px;
   flex-direction: column;
   width: 40%;
   padding:10px 5px;
@@ -108,5 +109,8 @@ td{
 .description{
   display: flex;
   justify-content: space-between;
-  height: 65%;
+ 
+}
+.gokei{
+  text-align: right;
 }

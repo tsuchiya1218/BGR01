@@ -33,7 +33,7 @@
         <hr>
     </header>
     <main>
-        あああああ
+        ここにメイン
     </main>
     <footer>
         &copy;It's a book but it's not a book!
