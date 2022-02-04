@@ -1,71 +1,110 @@
-    @charset "UTF-8";
-    body {
-        box-sizing: border-box;
-    }
-    
-    .result {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 20px;
-    }
-    
-    .other {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin: 0px 20px;
-        bottom: 80px;
-    }
-    
-    .list1 {
-        margin: 0px 50px;
-    }
-    
-    .list2 {
-        /*ボタン入れる用のところ*/
-    }
-    
-    .img {
-        margin: 0px 20px;
-    }
-    
-    .b_name {
-        margin: 0px 20px;
-        position: relative;
-        bottom: 90px;
-    }
-    
-    .title {
-        font-size: x-large;
-        font-weight: bold;
-        text-decoration: none;
-    }
-    
-    .author {
-        margin: 0px 20px 0px 0px;
-    }
-    
-    .pub {
-        margin: 0px 20px;
-    }
-    
-    .date {
-        margin: 0px 20px;
-    }
-    
-    .thum {
-        width: 200px;
-        height: 250px;
-    }
-    
-    .tab {
-        margin: 0px 20px;
-    }
-    
-    .a:link,
-    a:visited,
-    a:active {
-        color: blue;
-    }
+@charset "UTF-8";
+body {
+    box-sizing: border-box;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px;
+}
+
+.list1 {
+    margin: 0px 50px;
+}
+
+
+/*タブの設定*/
+
+.bi {
+    display: flex;
+}
+
+.tab {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    background-color: antiquewhite;
+    border: 1px solid;
+    margin: 0px 20px;
+}
+
+.tab a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-size: large;
+    text-decoration: none;
+    color: black;
+}
+
+.tax {
+    position: relative;
+    text-align: right;
+    font-size: large;
+    margin: 0px;
+}
+
+.price {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.cart {
+    text-align: center;
+    bottom: auto;
+}
+
+.img {
+    margin: 0px 20px;
+}
+
+.b_name {
+    margin: 0px 20px;
+    position: relative;
+    bottom: 20px;
+}
+
+.other {
+    display: flex;
+    position: relative;
+    margin: 0px 20px;
+    bottom: 20px;
+}
+
+.title {
+    font-size: x-large;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.author {
+    margin: 0px 20px 0px 0px;
+}
+
+.pub {
+    margin: 0px 20px;
+}
+
+.date {
+    margin: 0px 20px;
+}
+
+.thum {
+    width: 200px;
+    height: 250px;
+}
+
+.tab {
+    margin: 0px 20px;
+}
+
+.a:link,
+a:visited,
+a:active {
+    color: blue;
+}
