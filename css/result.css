@@ -1,11 +1,71 @@
-@charset "UTF-8";
-body {
-    box-sizing: border-box;
-}
-
-.no1 {
-    display: flex;
-    margin: 0px 20px;
-    justify-content: center;
-    align-items: center;
-}
+    @charset "UTF-8";
+    body {
+        box-sizing: border-box;
+    }
+    
+    .result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 20px;
+    }
+    
+    .other {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 0px 20px;
+        bottom: 80px;
+    }
+    
+    .list1 {
+        margin: 0px 50px;
+    }
+    
+    .list2 {
+        /*ボタン入れる用のところ*/
+    }
+    
+    .img {
+        margin: 0px 20px;
+    }
+    
+    .b_name {
+        margin: 0px 20px;
+        position: relative;
+        bottom: 90px;
+    }
+    
+    .title {
+        font-size: x-large;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    
+    .author {
+        margin: 0px 20px 0px 0px;
+    }
+    
+    .pub {
+        margin: 0px 20px;
+    }
+    
+    .date {
+        margin: 0px 20px;
+    }
+    
+    .thum {
+        width: 200px;
+        height: 250px;
+    }
+    
+    .tab {
+        margin: 0px 20px;
+    }
+    
+    .a:link,
+    a:visited,
+    a:active {
+        color: blue;
+    }

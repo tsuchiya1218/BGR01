@@ -1,49 +1,76 @@
     @charset "UTF-8";
-    .bp {
-        display: flex;
-        margin: 0px 20px;
-        justify-content: center;
-        align-items: center;
-    }
-    
     h3 {
         text-align: center;
     }
     
-    .dp {
+    body {
+        box-sizing: border-box;
+    }
+    
+    .list {
         display: flex;
-        justify-content: flex-start;
-        margin: 0px 20px;
+        margin: 20px 20px;
+        align-items: center;
     }
     
-    .bp1 {
-        margin: 0px 20px;
+    .b_thum {
+        margin: 0px 20px 0px 80px;
     }
     
-    .bp2 {
+    .thum {
+        width: 160px;
+        height: 200px;
+    }
+    
+    .b_name {
         font-size: x-large;
-        margin: 0px 20px;
+        font-weight: bold;
+        margin: 0px 70px;
+        position: relative;
+        bottom: 40px;
     }
     
-    .bp3 {
+    .title {
+        text-decoration: none;
+    }
+    
+    .b_price {
         font-size: x-large;
+        margin: 0px 70px;
     }
     
     .sp {
         display: flex;
         justify-content: center;
+        text-align: center;
+        margin: 0px 20px;
+    }
+    
+    .amount {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0px 20px;
     }
     
     .ap {
-        margin: auto 20px;
-        justify-items: center;
+        font-size: x-large;
+        font-weight: bold;
+        margin: 0px 20px;
+    }
+    
+    .a_price {
+        font-size: x-large;
+        font-weight: bold;
     }
     
     .cp {
-        margin: auto 20px;
+        justify-content: center;
+        text-align: right;
     }
     
-    #price {
-        font-size: xx-large;
+    .a:link,
+    a:visited,
+    a:active {
+        color: blue;
     }
