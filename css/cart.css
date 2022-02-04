@@ -1,5 +1,19 @@
+
+
+td{
+  width: 60%;
+}
+
+/*main*/
+main{
+  width: 80%;
+  margin:0% 10%;
+}
+
 HTML CSSResult Skip Results Iframe
 EDIT ON
+
+
 /*タブ切り替え全体のスタイル*/
 .tab {
   margin-top: 50px;
@@ -7,7 +21,8 @@ EDIT ON
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 700px;
-  margin: 0 auto;}
+  margin: 0 auto;
+}
 
 /*タブのスタイル*/
 .tab_item {
@@ -20,7 +35,7 @@ EDIT ON
   text-align: center;
   color: #565656;
   display: block;
-  float: left;
+  float:left;
   text-align: center;
   font-weight: bold;
   transition: all 0.2s ease;
@@ -42,6 +57,7 @@ input[name="tab_item"] {
   padding: 40px 40px 0;
   clear: both;
   overflow: hidden;
+
 }
 
 
@@ -58,44 +74,39 @@ input[name="tab_item"] {
   color: #fff;
 }
 
+
 .product{
-  display: flex;
-  vertical-align: middle;
-}
-
- .product .image{
-  width:350 ;
-  height:400;
-  margin:0;
-  padding: 0;
+  justify-content: space-around; 
   overflow: hidden;
-  position: relative;
+  display: flex;
 }
-
-
-.product .text{
-  margin: 0 0 0 20px;
-  padding: 0;
+td{
+  width: 60%;
 }
-
-.product .right {
-  margin: 0 0 0 20px;
-  padding: 0;
+.btitle{
+  text-align: center;
+  font-weight: bolder;
+  height: 35%;
+  font-size: 3vw;
+  padding: auto;
+  vertical-align: baseline;
 }
-
-.product .title {
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  font-size: 18px;
+.btitle a{
+  text-decoration: none;
 }
-
-li {
-  list-style: none;
-
-  font-size: 28px;
+.btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
+  color: black;
 }
-
-.title {
-  font-size: large;
+.checkbox{
+  margin:auto 0;
+}
+.mainlight{
+  flex-direction: column;
+  width: 40%;
+  padding:10px 5px;
+}
+.description{
+  display: flex;
+  justify-content: space-between;
+  height: 65%;
 }

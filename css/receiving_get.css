@@ -1,0 +1,22 @@
+.fl{
+  width : 25%px;
+
+}
+
+.flbox{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn{
+  width: 75px;
+  height: 30px;
+  text-align: center;
+  padding: 10px 30px;
+  margin: 10px 50px;
+  background-color: PaleTurquoise;
+  text-decoration: none;
+  color: black;
+  display: block;
+  border-bottom: 3px solid CadetBlue;
+}

@@ -1,15 +1,19 @@
-.wrap{
-    display: flex;
-}
-.li{
-    list-style: none;
-}
+
 .detal{
     display:flex;
     align-items: center;
     margin: 10px;
 }
 
-.flex{
-    display: flex;
+.bookOf div{
+    max-width: 810px;
+    text-align: center;
+}
+
+.but{
+    display:flex;
+    
+}
+.buybutton{
+    text-align: center;
 }

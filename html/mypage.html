@@ -13,35 +13,47 @@
 <body>
     <header>
         <div id="top">
-            <h1 id="title">BOOK ON</h1>
+            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
                 <input type="button" value="ログイン">
             </div>
         </div>
         <hr>
         <div align="center">
-            <select name="" id="">
-                <option value="">書籍</option>
-                <option value="">作者</option>
-            </select>
-            <input type="text" name="" id="">
-            <input type="submit" value="🔍詳細検索">
+            <form action="Result.html" method="post">
+                <select name="" id="">
+                    <option value="">書籍</option>
+                    <option value="">作者</option>
+                </select>
+                <input type="text" name="" id="">
+                <input type="submit" value="🔍詳細検索">
+            </form>
         </div>
         <hr>
     </header>
 
     <main>
-        <h3>レンタルライブラリ</h3>
+        <div class="float">
+            <h3>レンタルライブラリ</h3>
+            <select name="" id="" onchange="location.href=value;">
+                <option value="" selected>フィルタを選択</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
+                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
+                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
+            </select>
+        </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <tr>
                 <td>
                     <div class="item">
-                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto">
+                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
                         <div class="description">
                             <div class="btitle">
-                                <p><b>ハリーポッターと賢者の石</b></p>
+                                <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
                             </div>
                             <div class="mainInfo">
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
@@ -60,10 +72,10 @@
             <tr>
                 <td>
                     <div class="item">
-                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto">
+                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
                         <div class="description">
                             <div class="btitle">
-                                <p><b>ハリーポッターと賢者の石</b></p>
+                                <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
                             </div>
                             <div class="mainInfo">
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
@@ -80,17 +92,27 @@
                 </td>
             </tr>
         </table>
-        <div class=""></div>
+        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
         <hr>
-        <h3>購入履歴</h3>
+        <div class="float">
+            <h3>購入履歴</h3>
+            <select name="" id="" onchange="location.href=value;">
+                <option value="" selected>フィルタを選択</option>
+                <option value="/XXXX_xx_xx.html">XXXX/XX/xx</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+            </select>
+        </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <tr>
                 <td>
                     <div class="item">
-                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto">
+                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
                         <div class="description">
                             <div class="btitle">
-                                <p><b>ハリーポッターと秘密の部屋</b></p>
+                                <p><b><a href="Detail.html">ハリーポッターと秘密の部屋</a></b></p>
                             </div>
                             <div class="mainInfo">
                                 <p>購入日<br>XXXX/XX/XX</p>
@@ -109,10 +131,10 @@
             <tr>
                 <td>
                     <div class="item">
-                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto">
+                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
                         <div class="description">
                             <div class="btitle">
-                                <p><b>ハリーポッターと秘密の部屋</b></p>
+                                <p><b><a href="Detail.html">ハリーポッターと秘密の部屋</a></b></p>
                             </div>
                             <div class="mainInfo">
                                 <p>購入日<br>XXXX/XX/XX</p>
@@ -129,6 +151,7 @@
                 </td>
             </tr>
         </table>
+        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
     </main>
 </body>
 
