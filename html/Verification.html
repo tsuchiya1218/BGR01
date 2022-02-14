@@ -12,10 +12,10 @@
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title">BOOK ON</h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -30,46 +30,58 @@
                 <input type="submit" value="🔍">
                 <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
+
         </div>
         <hr>
     </header>
     <main>
         <h3>購入内容</h3>
-        <div class="bp">
-            <div class="img">
-                <img id="thum" src="../image/chitei.jpg" alt="地底旅行" width="200" height="250">
+        <div class="list">
+            <div class="b_thum">
+                <img class="thum" src="../image/chitei.jpg" alt="地底旅行">
             </div>
-            <div class="price">
-                <a id="price">&yen;770</a>
+            <div class="other">
+                <div class="b_name">
+                    <a href="Detail.html?book_id=1" class="title">地底旅行</a>
+                </div>
+                <div class="b_price">
+                    <a class="price">価格(税込)　&yen;847</a>
+                </div>
             </div>
-            <div class="book">
-                <a href="Detail.html?book_id=1" id="book_name">地底旅行</a>
+        </div>
+        <hr>
+        <div class="list">
+            <div class="b_thum">
+                <img class="thum" src="../image/chikyuu.jpg" alt="地球の歩き方(インド)">
+            </div>
+            <div class="other">
+                <div class="b_name">
+                    <a href="Detail.html?book_id=2" class="title">地球の歩き方(インド)</a>
+                </div>
+                <div class="b_price">
+                    <a class="price">価格(税込)　&yen;1900</a>
+                </div>
             </div>
         </div>
 
         <hr>
 
-        <div class="bp">
-            <div class="img">
-                <img id="thum" src="../image/chikyuu.jpg" alt="地球の歩き方(インド)" width="200" height="250">
-            </div>
-            <div class="price">
-                <div class="price">
-                    <a id="price">&yen;1900</a>
+        <div class="sp">
+            <div class="amount">
+                <div class="ap">
+                    <a>合計金額</a>
+                </div>
+                <div class="a_price">
+                    <a id="price">&yen;1670</a>
                 </div>
             </div>
-            <div class="book">
-                <a href="Detail.html?book_id=2" id="book_name">地球の歩き方(インド)</a>
-            </div>
         </div>
-
-        <p>
-            <hr>
-        </p>
+        <div class="cp">
+            <form method="post" aciton="">
+                <input type="submit" value="支払い">
+            </form>
+        </div>
     </main>
-    <footer>
-
-    </footer>
 </body>
 
 </html>

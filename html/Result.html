@@ -13,10 +13,10 @@
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title">BOOK ON</h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -38,29 +38,86 @@
         <div>
             <h3>''で検索</h3>
         </div>
-        <div class="list">
-            <div class="no1">
-                <div class="no1_1">
-                    <img id="thum" src="" alt="" width="" height="">
-                    <a href="Detail.html?book_id=1" id="book_name">地底旅行</a>
-                    <a id="author">ヴェルヌ</a>
-                    <a id="publisher">東京創元社</a>
-                    <a id="date">2019年1月9日</a>
-                </div>
-                <div class="no1_2">
-                    
+        <div class="result">
+            <div class="list1">
+                <div class="img">
+                    <img class="thum" src="../image/chitei.jpg" alt="地底旅行">
                 </div>
             </div>
-            <div class="no2">
-                <div class="no2_1">
-                    <img id="thum" src="" alt="" width="" height="">
-                    <a href="Detail.html?book_id=2" id="book_name"></a>
-                    <a id="author"></a>
-                    <a id="publisher"></a>
-                    <a id="date"></a>
+            <div class="list2">
+                <div class=" b_name">
+                    <a href="Detail.html?book_id=1" class="title">地底旅行</a>
                 </div>
-                <div class="no2_2">
-                    
+                <div class="other">
+                    <div class="author ">
+                        <a>ヴェルヌ</a>
+                    </div>
+                    <div class="pub ">
+                        <a>東京創元社</a>
+                    </div>
+                    <div class="date ">
+                        <a>2019年1月9日</a>
+                    </div>
+                </div>
+                <div class="bi">
+                    <div class="tab">
+                        <a href="Cart.html?bb_id=1">購入</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;847</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                    </div>
+                    <div class="tab">
+                        <a href="Cart.html?br_id=1">レンタル</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;847</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--レンタル出来ない場合リンクを消す-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="result">
+            <div class="list1">
+                <div class="img ">
+                    <img class="thum " src="../image/chikyuu.jpg " alt="地球の歩き方 ">
+                </div>
+            </div>
+            <div class="list2">
+                <div class="b_name">
+                    <a href="Detail.html?book_id=1" class="title">地球の歩き方</a>
+                </div>
+                <div class="other">
+                    <div class="author ">
+                        <a>株式会社地球</a>
+                    </div>
+                    <div class="pub ">
+                        <a>新潮社</a>
+                    </div>
+                    <div class="date ">
+                        <a>2019年3月1日</a>
+                    </div>
+                </div>
+                <div class="bi">
+                    <div class="tab">
+                        <a href="Cart.html?bb_id=2">購入</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;2090</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--在庫がある場合購入表示-->
+                    </div>
+                    <div class="tab">
+                        <a href="Cart.html?br_id=2">レンタル</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;2090</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--レンタル不可の場合リンクを消す-->
+                    </div>
                 </div>
             </div>
         </div>
