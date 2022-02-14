@@ -27,7 +27,8 @@
                     <option value="">作者</option>
                 </select>
                 <input type="text" name="" id="">
-                <input type="submit" value="🔍詳細検索">
+                <input type="submit" value="🔍">
+                <input type="submit" value="詳細検索">
             </form>
         </div>
         <hr>
