@@ -44,7 +44,7 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
+            <form action="Result.php" method="post">
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
@@ -57,7 +57,7 @@ try {
         <hr>
     </header>
     <main>
-        <form action="../html/Receiving.html" method="GET">
+        <form action="../html/Receiving.html" name="receiving" method="GET">
             <div class="tab">
                 <!--idでbuy,reserve,rental各自に飛べるように-->
                 <input id="buy" type="radio" name="tab_item" checked>
@@ -136,6 +136,7 @@ try {
                                                         <option value="5">5</option>
                                                     </select>
                                                     <input type="reset" value="削除">
+
                                                     <!--購入した商品一つをカートから削除-->
                                                 </p>
                                             </div>
@@ -153,7 +154,7 @@ try {
                                 <div class="product">
                                     
                                     <div class="checkbox">
-                                        <input type="checkbox" name="check">
+                                        <input type="checkbox" id="check" name="check">
                                     </div>
 
                                     <img src="../image/chitei.jpg" alt="地底旅行"  height="250" width="200" onclick="location.href='Detail.html'">
