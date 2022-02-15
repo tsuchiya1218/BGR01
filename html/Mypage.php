@@ -1,22 +1,22 @@
 <?php
-    try{
-        $server_name="10.42.129.3";//サーバー名
-        $db_name="20grb1";//データベース名
-        $user_name="20grb1";
-        $user_pass="20grb1";
+try {
+    $server_name = "10.42.129.3"; //サーバー名
+    $db_name = "20grb1"; //データベース名
+    $user_name = "20grb1";
+    $user_pass = "20grb1";
 
-        //データソース名設定
-        $dsn="sqlsrv:server=$server_name;database=$db_name";
+    //データソース名設定
+    $dsn = "sqlsrv:server=$server_name;database=$db_name";
 
-        //PDOオブジェクトのインスタンス作成
-        $pdo=new PDO($dsn,$user_name,$user_pass);
+    //PDOオブジェクトのインスタンス作成
+    $pdo = new PDO($dsn, $user_name, $user_pass);
 
-        //$PDOオブジェクトの属性の指定
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    }catch(PDOException $e){
-        print "接続エラー!:".$e->getMessage();
-        exit();
-    }
+    //$PDOオブジェクトの属性の指定
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print "接続エラー!:" . $e->getMessage();
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<header>
+    <header>
         <div id="top">
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -69,9 +69,9 @@
             </select>
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
-        <?php
-            $sql = "SELECT b_name,b_purchaseprice,b_rentalprice,";
-        ?>
+            <?php
+            $sql = "SELECT b_name,b_retalprice,rental_date,r_expiry";
+            ?>
             <tr>
                 <td>
                     <div class="item">
@@ -81,6 +81,7 @@
                                 <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
                             </div>
                             <div class="mainInfo">
+                                <p>レンタル購入日<br>xxxx/xx/xx</p>
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
                                 <p>レンタル価格<br>XXXX円</p>
                                 <input type="button" value="読む">
@@ -98,6 +99,7 @@
                                 <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
                             </div>
                             <div class="mainInfo">
+                                <p>レンタル購入日<br>xxxx/xx/xx</p>
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
                                 <p>レンタル価格<br>XXXX円</p>
                                 <input type="button" value="読む">
@@ -108,7 +110,9 @@
             </tr>
         </table>
         <!--同じページ遷移でレンタル履歴だけをすべての分表示？-->
-        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
+        <div class="mottomiru">
+            <p><a href="">もっと見る</a></p>
+        </div>
         <hr>
         <div class="float">
             <h3>購入履歴</h3>
@@ -159,7 +163,9 @@
                 </td>
             </tr>
         </table>
-        <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
+        <div class="mottomiru">
+            <p><a href="">もっと見る</a></p>
+        </div>
     </main>
 </body>
 
