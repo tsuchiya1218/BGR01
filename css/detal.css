@@ -45,14 +45,20 @@
 
 
 .dbox{
-    margin-top: 20px;
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-around;
+    
 }
 
-.image{
-    display: flex;
+.divbox1{
+    margin: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    
 }
+
+
 
 
 .divimage img{
@@ -62,11 +68,15 @@
 }
 
 .divr{
+    flex-wrap: wrap;
     display: flex;
-    margin: 20px;
-    justify-content: space-around
+    justify-content: space-around;
 }
 
 .divinfo{
-    padding: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
 }
+
