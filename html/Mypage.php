@@ -70,7 +70,7 @@
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
         <?php
-            $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_synopsis,";
+            $sql = "SELECT b_name,b_purchaseprice,b_rentalprice,";
         ?>
             <tr>
                 <td>
@@ -132,6 +132,7 @@
                             </div>
                             <div class="mainInfo">
                                 <p>購入日<br>XXXX/XX/XX</p>
+                                <p>受取日<br>XXXX/xX/xx</p>
                                 <p>購入価格<br>XXXX円</p>
                                 <input type="button" value="読む">
                             </div>
@@ -149,6 +150,7 @@
                             </div>
                             <div class="mainInfo">
                                 <p>購入日<br>XXXX/XX/XX</p>
+                                <p>受取日<br>XXXX/xX/xx</p>
                                 <p>購入価格<br>XXXX円</p>
                                 <input type="button" value="読む">
                             </div>
