@@ -279,7 +279,7 @@ try {
                         </tr>
                     </table>
                 </div>
-                <p class="gokei">小計 ----\</p>
+                <p class="gokei" name="total">小計 ----\</p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
                 <footer>
                     &copy;It's a book but it's not a book!
