@@ -76,9 +76,13 @@ input[name="tab_item"] {
 
 
 .product{
+  margin-top: 5%;
+  margin-bottom: 10%;
   justify-content: space-around; 
   overflow: hidden;
   display: flex;
+  border-bottom: 5px solid lightblue;
+  padding-bottom: 20px; /* 内容と線との間隔量 */
 }
 td{
   width: 40%;
