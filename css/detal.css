@@ -1,17 +1,15 @@
 @charset "UTF-8";
 
-.but{
-    display:flex;
-    
-}
-.buybutton{
-    text-align: center;
+.tdate a{
+    font-size: 150%;
 }
 
 .bi {
     display: flex;
 }
-
+.but{
+    display: flex;
+}
 .tab {
     position: relative;
     width: 170px;
@@ -43,4 +41,32 @@
     text-align: center;
     font-size: xx-large;
     font-weight: bold;
+}
+
+
+.dbox{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.image{
+    display: flex;
+}
+
+
+.divimage img{
+    width:150px; 
+    height:200px;
+    padding: 10px;
+}
+
+.divr{
+    display: flex;
+    margin: 20px;
+    justify-content: space-around
+}
+
+.divinfo{
+    padding: 10px;
 }
