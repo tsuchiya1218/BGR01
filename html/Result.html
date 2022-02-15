@@ -13,7 +13,7 @@
 <body>
     <header>
         <div id="top">
-            <h1 id="title">BOOK ON</h1>
+            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る">
@@ -22,12 +22,15 @@
         </div>
         <hr>
         <div align="center">
-            <select name="" id="">
-                <option value="">書籍</option>
-                <option value="">作者</option>
-            </select>
-            <input type="text" name="" id="">
-            <input type="submit" value="🔍詳細検索">
+            <form action="Result.html" method="post">
+                <select name="" id="">
+                    <option value="">書籍</option>
+                    <option value="">作者</option>
+                </select>
+                <input type="text" name="" id="">
+                <input type="submit" value="🔍">
+                <input type="button" value="詳細検索" onclick="location.href=''">
+            </form>
         </div>
         <hr>
     </header>

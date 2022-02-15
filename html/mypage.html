@@ -17,6 +17,7 @@
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <!--ログインしているときはマイページボタンにする-->
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -28,7 +29,8 @@
                     <option value="">作者</option>
                 </select>
                 <input type="text" name="" id="">
-                <input type="submit" value="🔍詳細検索">
+                <input type="submit" value="🔍">
+                <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
         </div>
         <hr>
@@ -39,6 +41,7 @@
             <h3>レンタルライブラリ</h3>
             <select name="" id="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
+                <!--PHPでforeach(購入日付が存在する分だけ)-->
                 <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
                 <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
                 <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
@@ -92,6 +95,7 @@
                 </td>
             </tr>
         </table>
+        <!--同じページ遷移でレンタル履歴だけをすべての分表示？-->
         <div class="mottomiru"><p><a href="">もっと見る</a></p></div>
         <hr>
         <div class="float">
