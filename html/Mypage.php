@@ -99,7 +99,7 @@
         <hr>
         <div class="float">
             <h3>購入履歴</h3>
-            <select name="" id="" onchange="location.href=value;">
+            <select name="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
                 <option value="/XXXX_xx_xx.html">XXXX/XX/xx</option>
                 <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
