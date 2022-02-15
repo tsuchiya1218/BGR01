@@ -1,3 +1,25 @@
+<?php
+//データベースに接続する
+try {
+	$server_name = "10.42.129.3";	// サーバ名
+	$db_name = "20grb1";	// データベース名(自分の学籍番号を入力)
+
+	$user_name = "20grb1";	// ユーザ名(自分の学籍番号を入力)
+	$user_pass = "20grb1";	// パスワード(自分の学籍番号を入力)
+
+	// データソース名設定
+	$dsn = "sqlsrv:server=$server_name;database=$db_name";
+
+	// PDOオブジェクトのインスタンス作成
+	$pdo = new PDO ($dsn, $user_name, $user_pass);
+
+	// PDOオブジェクトの属性の指定
+	$pdo ->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+} catch ( PDOException $e ) {
+	print "接続エラー!: " . $e->getMessage ();
+	exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -22,12 +44,12 @@
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
+            <form action="Result.html" method="GET">
+                <select name="serchCondition">
+                    <option value="b_title" selected>書籍</option>
+                    <option value="autohr">作者</option>
                 </select>
-                <input type="text" name="" id="">
+                <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
                 <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
@@ -37,7 +59,7 @@
     <main>
         <form action="../html/Receiving.html" method="GET">
             <div class="tab">
-                
+                <!--idでbuy,reserve,rental各自に飛べるように-->
                 <input id="buy" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="buy">購入</label>
                 <input id="reserve" type="radio" name="tab_item">
@@ -51,7 +73,8 @@
                         <tr>
                             <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
+                                    
+                                    <!--書籍のDB化-->
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -86,14 +109,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <table border="2" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -135,7 +151,7 @@
                         <tr>
                             <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
+                                    
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -170,14 +186,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <table border="2" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
+                                    
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -219,7 +229,7 @@
                         <tr>
                             <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
+                                    
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -242,14 +252,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <table border="2" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
                                 <div class="product">
-                                    <!--phpでカート内に入れたもののチェック-->
+                                    
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
