@@ -1,3 +1,23 @@
+<?php
+    try{
+        $server_name="10.42.129.3";//サーバー名
+        $db_name="20grb1";//データベース名
+        $user_name="20grb1";
+        $user_pass="20grb1";
+
+        //データソース名設定
+        $dsn="sqlsrv:server=$server_name;database=$db_name";
+
+        //PDOオブジェクトのインスタンス作成
+        $pdo=new PDO($dsn,$user_name,$user_pass);
+
+        //$PDOオブジェクトの属性の指定
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    }catch(PDOException $e){
+        print "接続エラー!:".$e->getMessage();
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -49,6 +69,9 @@
             </select>
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
+        <?php
+            $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_synopsis,";
+        ?>
             <tr>
                 <td>
                     <div class="item">
@@ -61,11 +84,6 @@
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
                                 <p>レンタル価格<br>XXXX円</p>
                                 <input type="button" value="読む">
-                            </div>
-                            <div class="subInfo">
-                                <p>著者<br>J.K.ローリング</p>
-                                <p>出版社名<br>XXXX社</p>
-                                <p>発行年月<br>XXXX/XX/XX</p>
                             </div>
                         </div>
                     </div>
@@ -83,11 +101,6 @@
                                 <p>レンタル期限<br>~XXXX/XX/XX</p>
                                 <p>レンタル価格<br>XXXX円</p>
                                 <input type="button" value="読む">
-                            </div>
-                            <div class="subInfo">
-                                <p>著者<br>J.K.ローリング</p>
-                                <p>出版社名<br>XXXX社</p>
-                                <p>発行年月<br>XXXX/XX/XX</p>
                             </div>
                         </div>
                     </div>
@@ -122,11 +135,6 @@
                                 <p>購入価格<br>XXXX円</p>
                                 <input type="button" value="読む">
                             </div>
-                            <div class="subInfo">
-                                <p>著者<br>J.K.ローリング</p>
-                                <p>出版社名<br>XXXX社</p>
-                                <p>発行年月<br>XXXX/XX/XX</p>
-                            </div>
                         </div>
                     </div>
                 </td>
@@ -143,11 +151,6 @@
                                 <p>購入日<br>XXXX/XX/XX</p>
                                 <p>購入価格<br>XXXX円</p>
                                 <input type="button" value="読む">
-                            </div>
-                            <div class="subInfo">
-                                <p>著者<br>J.K.ローリング</p>
-                                <p>出版社名<br>XXXX社</p>
-                                <p>発行年月<br>XXXX/XX/XX</p>
                             </div>
                         </div>
                     </div>
