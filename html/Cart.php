@@ -60,7 +60,8 @@ try {
         <form action="../html/Receiving.html" name="receiving" method="GET">
             <div class="tab">
                 <!--idでbuy,reserve,rental各自に飛べるように-->
-                <input id="buy" type="radio" name="tab_item" checked>
+
+                <input id="buy" type="radio" name="tab_item">
                 <label class="tab_item" for="buy">購入</label>
                 <input id="reserve" type="radio" name="tab_item">
                 <label class="tab_item" for="reserve">予約</label>
@@ -95,7 +96,7 @@ try {
                                                 <p>&yen;847</p>
                                                 <p align="right">
                                                     数量
-                                                    <select name="">
+                                                    <select name="qty">
                                                         <option value="1" selected>1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
