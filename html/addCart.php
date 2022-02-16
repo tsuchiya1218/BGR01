@@ -63,7 +63,7 @@ if($b == 'buy'){
 
     //rentalcart表からrtc_codeをカウント
     $selectSQLcount = "SELECT COUNT(rtc_code) as rtc_county FROM rentalcart";
-    $stmtcount = $pdo->prepare($selectSQL5);
+    $stmtcount = $pdo->prepare($selectSQLcount);
     //SQL実行   
     $stmtcount -> execute();
     //帰ってきた値を$array4に代入
