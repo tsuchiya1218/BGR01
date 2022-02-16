@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,7 @@
 </head>
 
 <body>
-<header>
+    <header>
         <div id="top">
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -20,12 +21,12 @@
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
+            <form action="Result.html" method="GET">
+                <select name="serchCondition">
+                    <option value="b_title" selected>書籍</option>
+                    <option value="autohr">作者</option>
                 </select>
-                <input type="text" name="" id="">
+                <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
                 <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
@@ -39,4 +40,5 @@
         &copy;It's a book but it's not a book!
     </footer>
 </body>
+
 </html>
