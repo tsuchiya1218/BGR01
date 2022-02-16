@@ -52,17 +52,10 @@ $b_code = $_GET['b_code'];
         </div>
         <hr>
         <div align="center">
-<<<<<<< HEAD
             <form action="Result.php" method="post">
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
-=======
-            <form action="Result.html" method="GET">
-                <select name="serchCondition">
-                    <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
->>>>>>> 81bf52cb19179ae051844b9f44e7db7f4629a456
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
