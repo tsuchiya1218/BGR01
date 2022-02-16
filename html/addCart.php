@@ -92,7 +92,7 @@ if($b == 'buy'){
 
     //reservecartを　INSERT INTO table名() VALUES();
     $insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
-                        VALUES($array6(rc_county),$array5[b_purchaseprice],$b_code,1)";
+                        VALUES($arraycount(rc_county),$arrayprice[b_purchaseprice],$b_code,1)";
      $stmtreserve =$pdo->prepare($insertSQLreserve);
      $stmtreserve ->execute();
 
