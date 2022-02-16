@@ -32,9 +32,6 @@ try {
 
 <body>
     <header>
-<<<<<<< HEAD:html/mypage.html
-
-=======
         <div id="top">
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -56,7 +53,6 @@ try {
             </form>
         </div>
         <hr>
->>>>>>> 81bf52cb19179ae051844b9f44e7db7f4629a456:html/Mypage.php
     </header>
 
     <main>
@@ -128,10 +124,7 @@ try {
             }
             ?>
         </table>
-<<<<<<< HEAD:html/mypage.html
-=======
         <!--同じページ遷移でレンタル履歴だけをすべての分表示？-->
->>>>>>> 81bf52cb19179ae051844b9f44e7db7f4629a456:html/Mypage.php
         <div class="mottomiru">
             <p><a href="Mypage.php?rentalmotto=1">もっと見る</a></p>
         </div>
