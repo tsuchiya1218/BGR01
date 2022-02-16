@@ -3,12 +3,18 @@
 .tdate a{
     font-size: 150%;
 }
-
+.bdate{
+    margin: 0px 20px ;
+}
 .bi {
     display: flex;
 }
 .but{
     display: flex;
+   
+}
+.but p{
+    margin: 10px;
 }
 .tab {
     position: relative;
@@ -45,7 +51,6 @@
 
 
 .dbox{
-    flex-wrap: wrap;
     display: flex;
     justify-content: space-around;
     
@@ -55,7 +60,8 @@
     margin: 10px;
     padding: 20px;
     margin-top: 20px;
-    
+    flex-wrap: wrap;
+    display: flex;
 }
 
 
@@ -68,15 +74,11 @@
 }
 
 .divr{
-    flex-wrap: wrap;
-    display: flex;
     justify-content: space-around;
 }
 
 .divinfo{
     margin: 20px;
-    flex-wrap: wrap;
-    display: flex;
     justify-content: space-around;
 }
 
