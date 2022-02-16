@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
     <title>受取方法選択</title>
 </head>
 
@@ -35,14 +36,29 @@
         <hr>
     </header>
     <main>
-        <div align="center" >
-            <p>受取方法</p>
-            <form action="Receiving_get.html" method="POST">
-                <input type="radio" name="select" value="店舗">店舗
-                <input type="radio" name="select" value="自宅" 　checked>自宅
-                <input type="submit" value="次へ">
-            </form>
+        <?php
+        
+        if () {
+            # code...
+        }
+        <h2>店舗選択</h2>
+        <div class="flbox">
+            <div class="fl"><a href="../html/Verification.html" class="btn">北海道</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">東北</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">関西</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">中部</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">四国</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">中国</a></div>
+            <div class="fl"><a href="../html/Verification.html" class="btn">九州/沖縄</a></div>
         </div>
+        <h2>住所選択</h2>
+        <form action="Verification.html" method="POST">
+            <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
+            <input type="radio" name="memberaddress">
+            <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
+            <input type="submit" value="次へ">
+        </form>
+        ?>
     </main>
 </body>
 

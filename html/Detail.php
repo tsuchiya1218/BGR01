@@ -22,7 +22,7 @@ try {
 ?>
 <?
 //SQL文の実行
-$sql = "SELECT b_category,b_synopsis book Where book.b_name == b_name";
+$sql = "SELECT b_category,b_synopsis FROM book Where book.b_name == b_name";
 $stmt = $pdo->prepare($spl);
 $stmt->execute();
 $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
@@ -36,6 +36,11 @@ $price=$_GET["price"];
 $b_synopsis=$_GET["b_synopsis"];
 $b_category = $_GET["b_category"];
 
+//SQL文の実行
+$sql1 = "SELECT * FROM book Where book.b_category == b_category";
+$stmt = $pdo->prepare($spl1);
+$stmt->execute();
+$array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
