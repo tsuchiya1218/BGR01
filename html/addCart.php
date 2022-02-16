@@ -22,33 +22,61 @@ try {
 
 $b_code = $_GET['b_code'];
 $b = $_GET['b'];
-if($b == 'buy'){
 
+
+if($b == 'buy'){
     //book表から$b_codeと一致した本の値段を取得
     $selectSQL1 = "SELECT b_purchaseprice FROM book WHERE b_code = ?";
-    $stmt1 = $pdo->prepare($selectSQL);
+    $stmt1 = $pdo->prepare($selectSQL1);
     //SQL実行
     $stmt1 ->execute($b_code);
     //帰ってきた値を$array2に代入
     $array1 = $stmt->fetch(PDO::FetchBOTH);
+
+
     //buycart表からbc_codeをカウント
-    $selectSQL2 = "SELECT COUNT(bc_code) as county FROM　buycart";
+    $selectSQL2 = "SELECT COUNT(bc_code) as bc_county FROM　buycart";
     $stmt2 = $pdo->prepare($selectSQL2);
     //SQL実行
     $stmt2 ->execute();
     //帰ってきた値を$array2に代入
     $array2 = $stmt->fetch(PDO::FetchBOTH);
-    //INSERT INTO table名() VALUES();
+
+
+    //buycartを INSERT INTO table名() VALUES();
     $selectSQL3 =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
-        VALUES($array2['county'],1,$array1['b_purchaseprice'],$b_code);"
+        VALUES($array2['county'],1,$array1['b_purchaseprice'],$b_code);";
     $stmt3 = $pdo->prepare($selectSQL3);
     //SQL実行
     $stmt3 ->execute();
+
+
    } else if($b == 'rent'){
+       //book表から$b_codeと一致した本の値段を取得
+    $selectSQL4 = "SELECT b_purchaseprice FROM book b_code = ?";
+    $stmt4 = $pdo->prepare($selectSQL4);
+    //SQL実行
+    $stmt4 ->execute($b_code);
+    //帰ってきた値を$array3に代入
+    $array3 = $stmt->fetch(PDO::FetchBOTH);
+    
+
+    //rentalcart表からrtc_codeをカウント
+    $selectSQL5 = "SELECT COUNT(rtc_code) as rtc_county FROM rentalcart";
+    $stmt5 = $pdo->prepare($selectSQL5);
+    //SQL実行   
+    $stmt5 -> execute();
+    //帰ってきた値を$array4に代入
+    $array4 = $stmt ->fetch(PDO::FetchBOTH);
 
     
-    "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
-     VALUES(rtc_code,rtc_totalamount,b_code);"
+    //rentalcartを INSERT INTO table名() VALUES();
+    $selectSQL6 =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
+     VALUES(rtc_code,$array3['b_purchaseprice'],$b_code);";
+     $stmt6 = $pdo->prepare($selectSQL6);
+     //SQL実行
+     $stmt ->execute();
+
 }
     
 
