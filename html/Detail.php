@@ -20,6 +20,23 @@ try {
 	exit();
 }
 ?>
+<?
+//SQL文の実行
+$sql = "SELECT b_category,b_synopsis book Where book.b_name == b_name";
+$stmt = $pdo->prepare($spl);
+$stmt->execute();
+$array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
+
+//データを取得
+$b_name=$_GET["b_name"];
+$author=$_GET["author"];
+$pub=$_GET["pub"];
+$date=$_GET["date"];
+$price=$_GET["price"];
+$b_synopsis=$_GET["b_synopsis"];
+$b_category = $_GET["b_category"];
+
+?>
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -67,14 +84,15 @@ try {
             <div class="bdate">
 
                 <div class="tdate">
-                    <p><a href="">地底旅行</a></p>
+                    <p><a href="../html/Detail.php"><?=$b_name?></a></p>
                     <!--タイトルをphpでnameを表示-->
                 </div>
                 <table class="tablesize">
                     <div class="but">
-                        <p>著者 ジュール・ヴェルヌ</p>
-                        <p>出版社名 XXXX社</p>
-                        <p>発行年月 XXXX/XX/XX</p>
+                        <p>著者 <?=$author?></p>
+                        <p>出版社名 <?=$pub?></p>
+                        <p>発行年月 <?=$date?></p>
+                        <p>カテゴリー <?=$b_category?></p>
                         <!--著者　出版社名 発行年月-->
                     </div>
                 </table>
@@ -82,7 +100,7 @@ try {
                     <div class="tab">
                         <a href="Cart.html?bb_id=1">購入</a>
                         <p class="tax">税込</p>
-                        <p class="price">&yen;847</p>
+                        <p class="price">&yen;<?=$price?></p>
                         <p class="cart">カートに入れる</p>
                         <!--php出来たら上のリンク変更-->
                         <!--在庫がある場合購入表示、ない場合予約表示-->
@@ -90,7 +108,7 @@ try {
                     <div class="tab">
                         <a href="Cart.html?br_id=1">レンタル</a>
                         <p class="tax">税込</p>
-                        <p class="price">&yen;847</p>
+                        <p class="price">&yen;<?=$price?></p>
                         <p class="cart">カートに入れる</p>
                         <!--php出来たら上のリンク変更-->
                         <!--レンタル出来ない場合リンクを消す-->
@@ -99,7 +117,7 @@ try {
                 <div class="bookd">
                     <h2>あらすじ</h2>
                     <!--あらすじデータを表示-->
-                    <p>****************************************</p>
+                    <p><?=$b_synopsis?></p>
                 </div>
             </div>
         </div>
@@ -109,48 +127,49 @@ try {
                 <div class="divimage">
                     <img src="../image/chikyuu.jpg" alt="">
                 </div>
+ 
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                    <p>カテゴリー:<a href="">旅行</a></p>
+                </div>
 
+            </div>
+            <div class="divr">
                 <div class="divimage">
                     <img src="../image/chikyuu.jpg" alt="">
                 </div>
+ 
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                    <p>カテゴリー:<a href="">旅行</a></p>
+                </div>
 
+            </div>
+            <div class="divr">
                 <div class="divimage">
                     <img src="../image/chikyuu.jpg" alt="">
                 </div>
+ 
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                    <p>カテゴリー:<a href="">旅行</a></p>
+                </div>
 
+            </div>
+            <div class="divr">
                 <div class="divimage">
                     <img src="../image/chikyuu.jpg" alt="">
                 </div>
-
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
+ 
                 <div class="divinfo">
                     <p><a href="">インド</a></p>
                     <p>税込 &yen;847</p>
+                    <p>カテゴリー:<a href="">旅行</a></p>
                 </div>
 
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
             </div>
         </div>
     </main>
