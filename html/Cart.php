@@ -19,6 +19,9 @@ try {
 	print "接続エラー!: " . $e->getMessage ();
 	exit();
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,7 +34,12 @@ try {
     <link href="../css/cart.css" rel="stylesheet" type="text/css">
     <title>カート内容確認</title>
 </head>
+<?php
+//$変数 = $_GET[''];
+$b_code = $_GET['b_code'];
 
+
+?>
 <body>
     <header>
         <div id="top">
