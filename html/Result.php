@@ -165,13 +165,13 @@ try {
                                 <p class="price">&yen;<?php $value['b_purchaseprice']; ?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
-                            <?php }elseif(!isset($value['b_stock'])){ ?>
+                            <?php }elseif($value['b_stock']=null){ ?>
                                 <!--取扱無し-->
                             <div class="tab">
-                                <a class="b_none">取り扱い無し</a>
+                                <a class="b_none">取扱無し</a>
                             </div>
                             <?php }
-                            if($value['b_rental']==1){ ?>
+                            if($value['b_rental']=1){ ?>
                             <!--レンタル可能-->
                             <div class="tab">
                                 <a href="Cart.php?b_code=<?php $value['b_code']; ?>">レンタル</a>
@@ -180,11 +180,10 @@ try {
                                 <p class="price">&yen;<?php $value['b_rentalprice']; ?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
-                            <?php }elseif($value['b_rental']==0){ ?>
+                            <?php }elseif($value['b_rental']=0){ ?>
                             <!--レンタル不可-->
                             <div class="tab">
-                                <a class="b_none">取扱無し</a>
-                                <!--在庫がある場合購入表示、ない場合予約表示-->
+                                <a class="b_none">レンタル取扱無し</a>
                             </div>
                             <?php } ?>
                         </form>
