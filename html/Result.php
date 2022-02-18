@@ -61,11 +61,8 @@ try {
                                 b_stock,b_rental
                                 FROM book WHERE b_title like %?%';
                 try {
-                    // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
-                    // SQL 文を実行
                     $stmt->execute(array($b_title));
-                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
                     $pdo = null;
@@ -81,11 +78,8 @@ try {
                                 b_stock,b_rental
                                 FROM book WHERE b_author like %?%';
                 try {
-                    // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
-                    // SQL 文を実行
                     $stmt->execute(array($b_author));
-                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
                     $pdo = null;
@@ -101,11 +95,8 @@ try {
                             b_stock,b_rantal
                             FROM book ORDER BY b_boughtQty DESC';
             try {
-                // SQL 文を準備
                 $stmt = $pdo->prepare($sql);
-                // SQL 文を実行
                 $stmt->execute();
-                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $stmt = null;
                 $pdo = null;
@@ -120,11 +111,8 @@ try {
                             b_stock,b_rental
                             FROM book ORDER BY b_release DESC';
             try {
-                // SQL 文を準備
                 $stmt = $pdo->prepare($sql);
-                // SQL 文を実行
                 $stmt->execute();
-                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $stmt = null;
                 $pdo = null;
@@ -139,66 +127,66 @@ try {
             <div class="result">
                 <div class="list1">
                     <div class="img">
-                        <img class="thum" src="<?php $value['b_thum'] ?>" alt="<?php $value['b_name'] ?>">
+                        <img class="thum" src="<?php $value['b_thum'] ?>" alt="<?php $value['b_name']; ?>">
                     </div>
                 </div>
                 <div class="list2">
                     <div class=" b_name">
-                        <a href="Detail.php?b_code=<?php $value['b_code'] ?>" class="title"><?php $value['b_name'] ?></a>
+                        <a href="Detail.php?b_code=<?php $value['b_code'] ?>" class="title"><?php $value['b_name']; ?></a>
                     </div>
                     <div class="other">
                         <div class="author ">
-                            <a><?php $value['b_name'] ?></a>
+                            <a><?php $value['b_name']; ?></a>
                         </div>
                         <div class="pub ">
-                            <a><?php $value['b_publisher'] ?></a>
+                            <a><?php $value['b_publisher']; ?></a>
                         </div>
                         <div class="date ">
-                            <a><?php $value['b_release'] ?></a>
+                            <a><?php $value['b_release']; ?></a>
                         </div>
                     </div>
                     <div class="bi">
                         <form method="GET" action="Cart.php">
                             <?php if($value['b_stock']<=1){ ?>
                             <!--購入-->
-                            <div class="buy_tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">購入</a>
+                            <div class="tab">
+                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">購入</a>
                                 <input type="hidden" name="h_cart" value="buy">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                <p class="price">&yen;<?php $value['b_purchaseprice']; ?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
                             <?php }elseif($value['b_stock']=0){ ?>
                             <!--予約-->
-                            <div class="reserve_tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">予約</a>
+                            <div class="tab">
+                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">予約</a>
                                 <input type="hidden" name="h_cart" value="reserve">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                <p class="price">&yen;<?php $value['b_purchaseprice']; ?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
                             <?php }elseif(!isset($value['b_stock'])){ ?>
                                 <!--取扱無し-->
-                            <div class="notbuy_tab">
-                                <a>取扱無し</a>
+                            <div class="tab">
+                                <a class="b_none">取り扱い無し</a>
                             </div>
-                            <?php if($value['b_rental']==1){ ?>
+                            <?php }
+                            if($value['b_rental']==1){ ?>
                             <!--レンタル可能-->
                             <div class="tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
+                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">レンタル</a>
                                 <input type="hidden" name="h_cart" value="buy">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
+                                <p class="price">&yen;<?php $value['b_rentalprice']; ?></p>
                                 <p class="cart">カートに入れる</p>
-                                <!--php出来たら上のリンク変更-->
-                                <!--レンタル出来ない場合リンクを消す-->
                             </div>
                             <?php }elseif($value['b_rental']==0){ ?>
                             <!--レンタル不可-->
-                            <div class="notrental_tab">
-                                <a>取扱無し</a>
+                            <div class="tab">
+                                <a class="b_none">取扱無し</a>
                                 <!--在庫がある場合購入表示、ない場合予約表示-->
                             </div>
+                            <?php } ?>
                         </form>
                     </div>
                 </div>
