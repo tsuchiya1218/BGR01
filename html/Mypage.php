@@ -32,9 +32,6 @@ try {
 
 <body>
     <header>
-<<<<<<< HEAD:html/mypage.html
-
-=======
         <div id="top">
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -56,7 +53,6 @@ try {
             </form>
         </div>
         <hr>
->>>>>>> 81bf52cb19179ae051844b9f44e7db7f4629a456:html/Mypage.php
     </header>
 
     <main>
@@ -64,114 +60,144 @@ try {
             <h3>レンタルライブラリ</h3>
             <select name="" id="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
-                <!--PHPでforeach(購入日付が存在する分だけ)-->
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
+                <?php
+                $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
+                try {
+                    $stmt1 = $pdo->prepare($sql1);
+                    $stmt1->execute(array($c_code));
+                    $array1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt1 = null;
+                } catch (PDOException $e) {
+                    print "SQL実行エラー！:" . $e->getMessage();
+                    exit();
+                }
+                foreach ($array as $value) {
+                    print "<option value=\".$value[rental_date].\"</option>";
+                }
+                ?>
             </select>
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
-            $sql = "SELECT b_name,b_retalprice,rental_date,r_expiry";
+            $rentalLimit;
+            if ($_GET["rentalmotto"] = 1) {
+                $sql2 = "SELECT b_code,b_name,b_thum,b_rentalprice,rental_date,r_expiry
+                            FROM book 
+                            RIGHT JOIN renatlcart ON book.b_code=rentalcart.b_code
+                            RIGHT JOIN rental ON rentalcart.rentalcartcode=rental.rentalcartcode
+                            WHERE c_code=?";
+            } else {
+                $sql2 = "SELECT b_code,b_name,b_thum,b_rentalprice,rental_date,r_expiry
+                            FROM book 
+                            RIGHT JOIN renatlcart ON book.b_code=rentalcart.b_code
+                            RIGHT JOIN rental ON rentalcart.rentalcartcode=rental.rentalcartcode
+                            WHERE c_code=? LIMIT 5";
+            }
+            try {
+                $stmt2 = $pdo->prepare($sql2);
+                $stmt2->execute(array($c_code));
+                $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+                $stmt2 = null;
+            } catch (PDOException $e) {
+                print "SQL実行エラー！:" . $e->getMessage();
+                exit();
+            }
+            foreach ($array as $key => $value) {
+                print "<tr>";
+                print "<td>";
+                print "<div class=\"item\">";
+                print "<img src=\"../image/{$value['d_thum']}.jpg\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">";
+                print "<div class=\"description\">";
+                print "<div class=\"btitle\">";
+                print "<p><b><a href=\"Detail.html\">{$value['b_name']}</a></b></p>";
+                print "</div>";
+                print "<div class=\"mainInfo\">";
+                print "<p>レンタル購入日<br>{$value['rental_date']}</p>";
+                print "<p>レンタル期限<br>~{$value['r_expiry']}</p>";
+                print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>";
+                print "<input type=\"button\" value=\"読む\">";
+                print "</div>";
+                print "</div>";
+                print "</div>";
+                print "</td>";
+                print "</tr>";
+            }
             ?>
-            <tr>
-                <td>
-                    <div class="item">
-                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
-                        <div class="description">
-                            <div class="btitle">
-                                <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
-                            </div>
-                            <div class="mainInfo">
-                                <p>レンタル購入日<br>xxxx/xx/xx</p>
-                                <p>レンタル期限<br>~XXXX/XX/XX</p>
-                                <p>レンタル価格<br>XXXX円</p>
-                                <input type="button" value="読む">
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="item">
-                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
-                        <div class="description">
-                            <div class="btitle">
-                                <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
-                            </div>
-                            <div class="mainInfo">
-                                <p>レンタル購入日<br>xxxx/xx/xx</p>
-                                <p>レンタル期限<br>~XXXX/XX/XX</p>
-                                <p>レンタル価格<br>XXXX円</p>
-                                <input type="button" value="読む">
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
         </table>
-<<<<<<< HEAD:html/mypage.html
-=======
         <!--同じページ遷移でレンタル履歴だけをすべての分表示？-->
->>>>>>> 81bf52cb19179ae051844b9f44e7db7f4629a456:html/Mypage.php
         <div class="mottomiru">
-            <p><a href="">もっと見る</a></p>
+            <p><a href="Mypage.php?rentalmotto=1">もっと見る</a></p>
         </div>
         <hr>
         <div class="float">
             <h3>購入履歴</h3>
             <select name="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
-                <option value="/XXXX_xx_xx.html">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
+                <?php
+                    $sql3 = "SELECT DISTINCT buydate FROM buydetail WHERE c_code=? ORDER BY buydate DESC";
+                    try {
+                        $stmt3 = $pdo->prepare($sql3);
+                        $stmt3->execute(array($c_code));
+                        $array3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+                        $stmt3 = null;
+                    } catch (PDOException $e) {
+                        print "SQL実行エラー！:" . $e->getMessage();
+                        exit();
+                    }
+                    foreach ($array as $value) {
+                        print "<option value=\".$value[buy_date].\"</option>";
+                    }
+                ?>
             </select>
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
-            <tr>
-                <td>
-                    <div class="item">
-                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
-                        <div class="description">
-                            <div class="btitle">
-                                <p><b><a href="Detail.html">ハリーポッターと秘密の部屋</a></b></p>
-                            </div>
-                            <div class="mainInfo">
-                                <p>購入日<br>XXXX/XX/XX</p>
-                                <p>受取日<br>XXXX/xX/xx</p>
-                                <p>購入価格<br>XXXX円</p>
-                                <input type="button" value="読む">
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="item">
-                        <img src="../image/511X2B00B0L.jpg" alt="秘密の部屋" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
-                        <div class="description">
-                            <div class="btitle">
-                                <p><b><a href="Detail.html">ハリーポッターと秘密の部屋</a></b></p>
-                            </div>
-                            <div class="mainInfo">
-                                <p>購入日<br>XXXX/XX/XX</p>
-                                <p>受取日<br>XXXX/xX/xx</p>
-                                <p>購入価格<br>XXXX円</p>
-                                <input type="button" value="読む">
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+            <?php
+                $buyLimit;
+                if ($_GET["buymotto"] = 1) {
+                    $sql2 = "SELECT b_code,b_name,b_thum,b_buyprice,b_buydate,b_getdate
+                            FROM book
+                            RIGHT JOIN buycart ON book.b_code=buycart.b_code
+                            RIGHT JOIN buydetail ON buycart.buycartcode=buydetail.buycartcode
+                            WHERE c_code=?";
+                } else {
+                    $sql2 = "SELECT b_code,b_name,b_thum,b_buyprice,b_buydate,b_getdate
+                            FROM book
+                            RIGHT JOIN buycart ON book.b_code=buycart.b_code
+                            RIGHT JOIN buydetail ON buycart.buycartcode=buydetail.buycartcode
+                            WHERE c_code=? LIMIT 5";
+                }
+                try {
+                    $stmt2 = $pdo->prepare($sql2);
+                    $stmt2->execute(array($c_code));
+                    $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt2 = null;
+                } catch (PDOException $e) {
+                    print "SQL実行エラー！:" . $e->getMessage();
+                    exit();
+                }
+                foreach ($array as $key => $value) {
+                    print "<tr>";
+                    print "<td>";
+                    print "<div class=\"item\">";
+                    print "<img src=\"../image/{$value['d_thum']}.jpg\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">";
+                    print "<div class=\"description\">";
+                    print "<div class=\"btitle\">";
+                    print "<p><b><a href=\"Detail.html\">{$value['b_name']}</a></b></p>";
+                    print "</div>";
+                    print "<div class=\"mainInfo\">";
+                    print "<p>購入日<br>{$value['b_buydate']}</p>";
+                    print "<p>受取日<br>~{$value['b_getdate']}</p>";
+                    print "<p>購入価格<br>{$value['b_purchaseprice']}円</p>";
+                    print "</div>";
+                    print "</div>";
+                    print "</div>";
+                    print "</td>";
+                    print "</tr>";
+                }
+            ?>
         </table>
         <div class="mottomiru">
-            <p><a href="">もっと見る</a></p>
+            <p><a href="Mypage.php?buymotto=1">もっと見る</a></p>
         </div>
     </main>
 </body>
