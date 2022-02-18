@@ -36,29 +36,34 @@
         <hr>
     </header>
     <main>
-        <?php
-        
-        if () {
-            # code...
-        }
-        <h2>店舗選択</h2>
-        <div class="flbox">
-            <div class="fl"><a href="../html/Verification.html" class="btn">北海道</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">東北</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">関西</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">中部</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">四国</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">中国</a></div>
-            <div class="fl"><a href="../html/Verification.html" class="btn">九州/沖縄</a></div>
-        </div>
-        <h2>住所選択</h2>
-        <form action="Verification.html" method="POST">
-            <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-            <input type="radio" name="memberaddress">
-            <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
-            <input type="submit" value="次へ">
+        <form action="Receiving.php" method="get">
+            <?php
+            $select = $_POST['select'];
+            if ($select == 'store') {
+
+                echo "<h2>店舗選択</h2>";
+                echo "<div class=\"flbox\">";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">北海道</a></div>";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">東北</a></div>";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">関西</a></div>";
+                echo  "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">中部</a></div>";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">四国</a></div>";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">中国</a></div>";
+                echo "<div class=\"fl\"><a href=\"../html/Verification.html\" class=\"btn\">九州/沖縄</a></div>";
+                echo "</div>";
+            } else {
+                echo "<h2>住所選択</h2>";
+                echo "<form action=\"Verification.html\" method=\"POST\">";
+                echo "<input type=\"radio\" name=\"memberaddress\" value=\"会員情報の住所の表示\">会員情報の住所を表示";
+                echo "<input type=\"radio\" name=\"memberaddress\">";
+                echo "<input type=\"text\" name=\"memberaddress\" size=\"8\" placeholder=\"住所を入力\"></p>";
+                echo "<input type=\"submit\" value=\"次へ\">";
+                echo "</form>";
+            }
+            ?>
+
         </form>
-        ?>
+
     </main>
 </body>
 

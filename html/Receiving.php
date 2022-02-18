@@ -37,10 +37,10 @@
     <main>
         <div align="center" >
             <p>受取方法</p>
-            <form action="Receiving_get.html" method="POST" value="select_id">
+            <form action="Receiving_get.php" method="POST">
                 <input type="radio" name="select" value="store">店舗
-                <input type="radio" name="select" value="home" 　checked>自宅
-                <input type="submit" value="次へ">
+                <input type="radio" name="select" value="home">自宅
+                <input type="submit"  value="次へ">
             </form>
         </div>
     </main>
