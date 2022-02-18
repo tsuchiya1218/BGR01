@@ -1,0 +1,26 @@
+@charset "UTF-8";
+@charset "UTF-8";
+.top {
+    justify-content: center;
+    text-align: center;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ip_check {
+    position: relative;
+    border: 1px solid black;
+    padding: 30px 10px;
+    border-radius: 3px;
+}
+
+.i_check,
+.p_check,
+.l_check {
+    margin: 5px 0px;
+    text-align: right;
+}
