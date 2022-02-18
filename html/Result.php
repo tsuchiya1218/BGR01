@@ -1,15 +1,18 @@
 <?php
+//DB接続
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
     $password = '20grb1';
-    //PDOオブジェクトの作成
     $dbh = new PDO($dsn, $user, $password);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     print "接続エラー!: " . $e->getMessage() . "<br/>";
     die();
 }
+
+//セッション
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -127,22 +130,22 @@ try {
             <div class="result">
                 <div class="list1">
                     <div class="img">
-                        <img class="thum" src="<?php $value['b_thum'] ?>" alt="<?php $value['b_name']; ?>">
+                        <img class="thum" src="<?=$value['b_thum']; ?>" alt="<?=$value['b_name']; ?>">
                     </div>
                 </div>
                 <div class="list2">
                     <div class=" b_name">
-                        <a href="Detail.php?b_code=<?php $value['b_code'] ?>" class="title"><?php $value['b_name']; ?></a>
+                        <a href="Detail.php?b_code=<?=$value['b_code']; ?>" class="title"><?=$value['b_name']; ?></a>
                     </div>
                     <div class="other">
                         <div class="author ">
-                            <a><?php $value['b_name']; ?></a>
+                            <a><?=$value['b_name']; ?></a>
                         </div>
                         <div class="pub ">
-                            <a><?php $value['b_publisher']; ?></a>
+                            <a><?=$value['b_publisher']; ?></a>
                         </div>
                         <div class="date ">
-                            <a><?php $value['b_release']; ?></a>
+                            <a><?=$value['b_release']; ?></a>
                         </div>
                     </div>
                     <div class="bi">
@@ -150,19 +153,19 @@ try {
                             <?php if($value['b_stock']<=1){ ?>
                             <!--購入-->
                             <div class="tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">購入</a>
+                                <a href="Cart.php?b_code=<?=$value['b_code'];?>">購入</a>
                                 <input type="hidden" name="h_cart" value="buy">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice']; ?></p>
+                                <p class="price">&yen;<?=$value['b_purchaseprice'];?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
                             <?php }elseif($value['b_stock']=0){ ?>
                             <!--予約-->
                             <div class="tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">予約</a>
+                                <a href="Cart.php?b_code=<?=$value['b_code'];?>">予約</a>
                                 <input type="hidden" name="h_cart" value="reserve">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice']; ?></p>
+                                <p class="price">&yen;<?=$value['b_purchaseprice'];?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
                             <?php }elseif($value['b_stock']=null){ ?>
@@ -174,10 +177,10 @@ try {
                             if($value['b_rental']=1){ ?>
                             <!--レンタル可能-->
                             <div class="tab">
-                                <a href="Cart.php?b_code=<?php $value['b_code']; ?>">レンタル</a>
+                                <a href="Cart.php?b_code=<?=$value['b_code'];?>">レンタル</a>
                                 <input type="hidden" name="h_cart" value="buy">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_rentalprice']; ?></p>
+                                <p class="price">&yen;<?=$value['b_rentalprice'];?></p>
                                 <p class="cart">カートに入れる</p>
                             </div>
                             <?php }elseif($value['b_rental']=0){ ?>
