@@ -30,7 +30,7 @@ if($b == 'buy'){
     $stmtprice = $pdo->prepare($selectSQLprice);
     //SQL実行
     $stmtprice ->execute($b_code);
-    //帰ってきた値を$array2に代入
+    //帰ってきた値を$arraypriceに代入
     $arrayprice = $stmt->fetch(PDO::FetchBOTH);
 
 
@@ -39,7 +39,7 @@ if($b == 'buy'){
     $stmtcount = $pdo->prepare($selectSQLcount);
     //SQL実行
     $stmtcount ->execute();
-    //帰ってきた値を$array2に代入
+    //帰ってきた値を$arraycountに代入
     $arraycount = $stmt->fetch(PDO::FetchBOTH);
 
 
@@ -57,7 +57,7 @@ if($b == 'buy'){
     $stmtprice = $pdo->prepare($selectSQLprice);
     //SQL実行
     $stmtprice ->execute($b_code);
-    //帰ってきた値を$array3に代入
+    //帰ってきた値を$arraypriceに代入
     $arrayprice = $stmt->fetch(PDO::FetchBOTH);
     
 
@@ -66,7 +66,7 @@ if($b == 'buy'){
     $stmtcount = $pdo->prepare($selectSQLcount);
     //SQL実行   
     $stmtcount -> execute();
-    //帰ってきた値を$array4に代入
+    //帰ってきた値を$arraycountに代入
     $arraycount = $stmt ->fetch(PDO::FetchBOTH);
 
 
