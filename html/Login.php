@@ -1,17 +1,23 @@
+<?php
+session_start();
+
+
+?>
+
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../css/top.css" rel="stylesheet" type="text/css">
-    <link href="../css/detal.css" rel="stylesheet" type="text/css">
-    <title>商品詳細</title>
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
+    <title>ログイン</title>
 </head>
 
 <body>
+
     <header>
         <div id="top">
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
@@ -34,31 +40,29 @@
         </div>
         <hr>
     </header>
+
     <main>
-        <img src="../image/chitei.jpg" alt="" align="left">
-        <div class="bookOf">
-            <h2>地底旅行</h2>
-
-            <table class="tablesize">
-                <div class="but">
-                    <p>著者　ジュール・ヴェルヌ</p>
-                    <p>出版社名　XXXX社</p>
-                    <p>発行年月　XXXX/XX/XX</p>
-                </div>
-
-                <div class="buybutton">
-                    <form action="../html/Receiving.html">
-                        <input type="submit" value="購入">
-                        <input type="submit" value="レンタル">
-                    </form>
-                </div>
-
-            </table>
-
-            <h2>あらすじ</h2>
-            <p>****************************************</p>
+        <div class="top">
+            <h4>ログイン</h4>
+            <!--ログイン時はcustomersからメールアドレスとパスワードを参照-->
         </div>
-
+        <div class="check">
+            <div class="ip_check">
+                <!--JavaScriptでIDとパスワードの英数字チェック-->
+                <div class="i_check">
+                    <a>ユーザID：</a>
+                    <input type="email" maxlength="200" id="m_address">
+                </div>
+                <div class="p_check">
+                    <a>パスワード：</a>
+                    <input type="password" maxlength="10" id="pass">
+                </div>
+                <div class="l_check">
+                    <input type="button" value="ログイン">
+                    <!--ログイン前のページに戻る時はセッション情報にログイン前のページを保存-->
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 
