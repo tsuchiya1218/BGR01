@@ -41,7 +41,9 @@
         if () {
             # code...
         }
-        <h2>店舗選択</h2>
+       
+        ?>
+         <h2>店舗選択</h2>
         <div class="flbox">
             <div class="fl"><a href="../html/Verification.html" class="btn">北海道</a></div>
             <div class="fl"><a href="../html/Verification.html" class="btn">東北</a></div>
@@ -58,7 +60,6 @@
             <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
             <input type="submit" value="次へ">
         </form>
-        ?>
     </main>
 </body>
 
