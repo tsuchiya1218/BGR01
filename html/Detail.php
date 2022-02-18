@@ -19,28 +19,7 @@ try {
 	print "接続エラー!: " . $e->getMessage ();
 	exit();
 }
-?>
-<?
-//SQL文の実行
-$sql = "SELECT b_category,b_synopsis FROM book Where book.b_name == b_name";
-$stmt = $pdo->prepare($spl);
-$stmt->execute();
-$array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-//データを取得
-$b_name=$_GET["b_name"];
-$author=$_GET["author"];
-$pub=$_GET["pub"];
-$date=$_GET["date"];
-$price=$_GET["price"];
-$b_synopsis=$_GET["b_synopsis"];
-$b_category = $_GET["b_category"];
-
-//SQL文の実行
-$sql1 = "SELECT * FROM book Where book.b_category == b_category";
-$stmt = $pdo->prepare($spl1);
-$stmt->execute();
-$array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +50,7 @@ $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
             <form action="Result.html" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
+                    <option value="author">作者</option>
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
@@ -81,13 +60,29 @@ $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
         <hr>
     </header>
     <main>
+        
+<?php
+    //Result.phpから送られてきたデータを取得
+    $b_code1=$_GET["b_code"];
+    //SQL文の実行
+    $sql = "SELECT  FROM book Where b_code == ?";
+    $stmt = $pdo->prepare($spl);
+    $stmt->execute($b_code1);
+    $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
+    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+    $pdo = null;
+?>
         <h2>書籍情報</h2>
         <div class="dbox">
             <div class="image">
                 <img src="../image/chitei.jpg" alt="" align="left" width="200" height="250">
             </div>
             <div class="bdate">
-
+            <?php
+                foreach ($array as $value) {
+            ?>
                 <div class="tdate">
                     <p><a href="../html/Detail.php"><?=$b_name?></a></p>
                     <!--タイトルをphpでnameを表示-->
@@ -102,22 +97,48 @@ $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
                     </div>
                 </table>
                 <div class="bi">
-                    <div class="tab">
-                        <a href="Cart.html?bb_id=1">購入</a>
-                        <p class="tax">税込</p>
-                        <p class="price">&yen;<?=$price?></p>
-                        <p class="cart">カートに入れる</p>
-                        <!--php出来たら上のリンク変更-->
-                        <!--在庫がある場合購入表示、ない場合予約表示-->
-                    </div>
-                    <div class="tab">
-                        <a href="Cart.html?br_id=1">レンタル</a>
-                        <p class="tax">税込</p>
-                        <p class="price">&yen;<?=$price?></p>
-                        <p class="cart">カートに入れる</p>
-                        <!--php出来たら上のリンク変更-->
-                        <!--レンタル出来ない場合リンクを消す-->
-                    </div>
+                <form method="GET" action="Cart.php">
+                        <?php if($value['b_stock']<=1){ ?>
+                        <!--購入-->
+                        <div class="buy_tab">
+                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">購入</a>
+                            <input type="hidden" name="h_cart" value="buy">
+                            <p class="tax">税込</p>
+                            <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                            <p class="cart">カートに入れる</p>
+                        </div>
+                        <?php }elseif($value['b_stock']=0){ ?>
+                        <!--予約-->
+                        <div class="reserve_tab">
+                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">予約</a>
+                            <input type="hidden" name="h_cart" value="reserve">
+                            <p class="tax">税込</p>
+                            <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                            <p class="cart">カートに入れる</p>
+                        </div>
+                        <?php }elseif(!isset($value['b_stock'])){ ?>
+                            <!--取扱無し-->
+                        <div class="notbuy_tab">
+                            <a>取扱無し</a>
+                        </div>
+                        <?php if($value['b_rental']==1){ ?>
+                        <!--レンタル可能-->
+                        <div class="tab">
+                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
+                            <input type="hidden" name="h_cart" value="buy">
+                            <p class="tax">税込</p>
+                            <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
+                            <p class="cart">カートに入れる</p>
+                            <!--php出来たら上のリンク変更-->
+                            <!--レンタル出来ない場合リンクを消す-->
+                        </div>
+                        <?php }elseif($value['b_rental']==0){ ?>
+                        <!--レンタル不可-->
+                        <div class="notrental_tab">
+                            <a>取扱無し</a>
+                            <!--在庫がある場合購入表示、ない場合予約表示-->
+                        </div>
+                    </form>
                 </div>
                 <div class="bookd">
                     <h2>あらすじ</h2>
@@ -126,58 +147,37 @@ $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
                 </div>
             </div>
         </div>
+
+        <?php
+        }
+        ?>
         <h2>この商品の関係する本</h2>
         <div class="divbox1">
-            <div class="divr">
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
- 
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                    <p>カテゴリー:<a href="">旅行</a></p>
-                </div>
 
-            </div>
-            <div class="divr">
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
- 
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                    <p>カテゴリー:<a href="">旅行</a></p>
-                </div>
+            <?PHP
+                
+                $sql2 = "SELECT * FROM book Where author == book.author order by rand() Limit 5";
+                $stmt = $pdo->prepare($spl2);
+                $stmt->execute(array());
+                $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-            </div>
-            <div class="divr">
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
- 
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                    <p>カテゴリー:<a href="">旅行</a></p>
-                </div>
+                foreach(array() as $value){                
+          echo "<div class=\"divr\">";
+           echo "<div class=\"divimage\">";
+                echo"<img src=\"../image/chikyuu.jpg\" alt=\"\">";
+           echo "</div>";
 
-            </div>
-            <div class="divr">
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
- 
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                    <p>カテゴリー:<a href="">旅行</a></p>
-                </div>
+            echo"<div class=\"divinfo\">";
+               echo "<p><a href=\"\">インド</a></p>";
+               echo "<p>税込 &yen;847</p>";
+               echo "<p>カテゴリー:<a href=\"\">旅行</a></p>";
+            echo"</div>";
 
-            </div>
-        </div>
+       echo "</div>";
+                }
+            ?>
     </main>
 </body>
 
 </html>
+
