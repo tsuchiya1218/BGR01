@@ -161,19 +161,18 @@ try {
                 $stmt->execute(array());
                 $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-                foreach(array() as $value){                
-          echo "<div class=\"divr\">";
-           echo "<div class=\"divimage\">";
-                echo"<img src=\"../image/chikyuu.jpg\" alt=\"\">";
-           echo "</div>";
+                foreach($array as $value){                
+                echo "<div class=\"divr\">";
+                    echo "<div class=\"divimage\">";
+                        echo"<img src=\"../image/chikyuu.jpg\" alt=\"\">";
+                    echo "</div>";
 
-            echo"<div class=\"divinfo\">";
-               echo "<p><a href=\"\">インド</a></p>";
-               echo "<p>税込 &yen;847</p>";
-               echo "<p>カテゴリー:<a href=\"\">旅行</a></p>";
-            echo"</div>";
-
-       echo "</div>";
+                    echo"<div class=\"divinfo\">";
+                        echo "<p><a href=\"\">インド</a></p>";
+                        echo "<p>税込 &yen;847</p>";
+                        echo "<p>カテゴリー:<a href=\"\">旅行</a></p>";
+                    echo"</div>";
+                echo "</div>";
                 }
             ?>
     </main>
