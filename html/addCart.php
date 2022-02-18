@@ -21,6 +21,7 @@ try {
 }
 
 $b_code = $_GET['b_code'];
+$c_code = $_GER['c_code'];
 $b = $_GET['b'];
 
 //購入カート
@@ -42,7 +43,16 @@ if($b == 'buy'){
     //帰ってきた値を$arraycountに代入
     $arraycount = $stmt->fetch(PDO::FetchBOTH);
 
-
+    session_start();
+    $_SESSION['c_code'] = '?';
+    
+    if($_SESSION('b_code')){
+        
+    }else{
+        
+    }
+    return session_status();
+    
     //buycartを INSERT INTO table名() VALUES();
     $insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
                         VALUES($arraycount['bc_county'],1,$arrayprice['b_purchaseprice'],$b_code);";
