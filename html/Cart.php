@@ -65,7 +65,10 @@ $b_code = $_GET['b_code'];
         <hr>
     </header>
     <main>
+
         <form action="../html/Receiving.html" name="receiving" method="GET">
+
+
             <div class="tab">
                 <!--idでbuy,reserve,rental各自に飛べるように-->
 
@@ -101,7 +104,7 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;847</p>
+                                                <p name="price">&yen;847</p>
                                                 <p align="right">
                                                     数量
                                                     <select name="qty">
@@ -134,10 +137,10 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;2090</p>
+                                                <p name="price">&yen;2090</p>
                                                 <p align="right">
                                                     数量
-                                                    <select name="">
+                                                    <select name="qty">
                                                         <option value="1" selected>1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -179,10 +182,10 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;847</p>
+                                                <p name="price">&yen;847</p>
                                                 <p align="right">
                                                     数量
-                                                    <select name="">
+                                                    <select name="qty">
                                                         <option value="1" selected>1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -213,10 +216,10 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;2090</p>
+                                                <p name="price">&yen;2090</p>
                                                 <p align="right">
                                                     数量
-                                                    <select name="">
+                                                    <select name="qty">
                                                         <option value="1" selected>1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -257,7 +260,7 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;847</p>
+                                                <p name="price">&yen;847</p>
                                             </div>
                                         </div>
                                     </div>
@@ -279,7 +282,7 @@ $b_code = $_GET['b_code'];
 
                                             <div class="info2">
                                                 <p>価格（税込）</p>
-                                                <p>&yen;2090</p>
+                                                <p name="price">&yen;2090</p>
                                             </div>
                                         </div>
                                     </div>
