@@ -148,22 +148,26 @@ try {
                         </div>
                     </div>
                     <div class="bi">
-                        <div class="tab">
-                            <a href="Cart.php?b_code=<?php $value['b_code']?>">購入</a>
-                            <p class="tax">税込</p>
-                            <p class="price">&yen;<?php $value['b_purchaseprice']?></p>
-                            <p class="cart">カートに入れる</p>
-                            <!--php出来たら上のリンク変更-->
-                            <!--在庫がある場合購入表示、ない場合予約表示-->
-                        </div>
-                        <div class="tab">
-                            <a href="Cart.php?b_code=<?php $value['b_code']?>">レンタル</a>
-                            <p class="tax">税込</p>
-                            <p class="price">&yen;<?php $value['b_rentalprice']?></p>
-                            <p class="cart">カートに入れる</p>
-                            <!--php出来たら上のリンク変更-->
-                            <!--レンタル出来ない場合リンクを消す-->
-                        </div>
+                        <form method="GET" action="addCart.php">
+                            <div class="tab"><!--b_code=name-->
+                                <a href="Cart.php?b_code=<?php $value['b_code']?>">購入</a>
+                                <input type="hidden" name="b" value="buy">
+                                <p class="tax">税込</p>
+                                <p class="price">&yen;<?php $value['b_purchaseprice']?></p>
+                                <p class="cart">カートに入れる</p>
+                                <!--php出来たら上のリンク変更-->
+                                <!--在庫がある場合購入表示、ない場合予約表示-->
+                            </div>
+                            <div class="tab"><!--b_code=name-->
+                                <a href="Cart.php?b_code=<?php $value['b_code']?>">レンタル</a>
+                                <input type="hidden" name="b" value="rent">
+                                <p class="tax">税込</p>
+                                <p class="price">&yen;<?php $value['b_rentalprice']?></p>
+                                <p class="cart">カートに入れる</p>
+                                <!--php出来たら上のリンク変更-->
+                                <!--レンタル出来ない場合リンクを消す-->
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

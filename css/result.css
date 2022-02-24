@@ -14,18 +14,11 @@ body {
     margin: 0px 50px;
 }
 
-.list2 {
-    margin: 0px 20px;
-    padding: 20px;
-}
-
 
 /*タブの設定*/
 
 .bi {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0px;
 }
 
 .tab {
@@ -46,18 +39,6 @@ body {
     font-size: large;
     text-decoration: none;
     color: black;
-}
-
-
-/*各タブにカーソル乗せたときのアニメーション追加*/
-
-
-/*.tab a:hover {}*/
-
-.tab a.s_none {
-    position: absolute;
-    top: 70px;
-    text-align: center;
 }
 
 .tax {
@@ -84,11 +65,15 @@ body {
 
 .b_name {
     margin: 0px 20px;
+    position: relative;
+    bottom: 20px;
 }
 
 .other {
     display: flex;
+    position: relative;
     margin: 0px 20px;
+    bottom: 20px;
 }
 
 .title {

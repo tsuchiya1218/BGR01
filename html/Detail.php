@@ -19,7 +19,6 @@ try {
 	print "接続エラー!: " . $e->getMessage ();
 	exit();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +49,7 @@ try {
             <form action="Result.html" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
-                    <option value="author">作者</option>
+                    <option value="autohr">作者</option>
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
@@ -60,6 +59,7 @@ try {
         <hr>
     </header>
     <main>
+<<<<<<< HEAD
         
 <?php
     //Result.phpから送られてきたデータを取得
@@ -72,88 +72,97 @@ try {
     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
 
 ?>
+=======
+>>>>>>> ca4867715883b3b54338b89bf8b4f5a6d9d0cef6
         <h2>書籍情報</h2>
         <div class="dbox">
             <div class="image">
                 <img src="../image/chitei.jpg" alt="" align="left" width="200" height="250">
             </div>
             <div class="bdate">
-            <?php
-                foreach ($array as $value) {
-            ?>
+
                 <div class="tdate">
-                    <p><a href="../html/Detail.php"><?=$b_name?></a></p>
+                    <p><a href="">地底旅行</a></p>
                     <!--タイトルをphpでnameを表示-->
                 </div>
                 <table class="tablesize">
                     <div class="but">
-                        <p>著者 <?=$author?></p>
-                        <p>出版社名 <?=$pub?></p>
-                        <p>発行年月 <?=$date?></p>
-                        <p>カテゴリー <?=$b_category?></p>
+                        <p>著者 ジュール・ヴェルヌ</p>
+                        <p>出版社名 XXXX社</p>
+                        <p>発行年月 XXXX/XX/XX</p>
                         <!--著者　出版社名 発行年月-->
                     </div>
                 </table>
                 <div class="bi">
-                <form method="GET" action="Cart.php">
-                        <?php if($value['b_stock']<=1){ ?>
-                        <!--購入-->
-                        <div class="buy_tab">
-                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">購入</a>
-                            <input type="hidden" name="h_cart" value="buy">
-                            <p class="tax">税込</p>
-                            <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                            <p class="cart">カートに入れる</p>
-                        </div>
-                        <?php }elseif($value['b_stock']=0){ ?>
-                        <!--予約-->
-                        <div class="reserve_tab">
-                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">予約</a>
-                            <input type="hidden" name="h_cart" value="reserve">
-                            <p class="tax">税込</p>
-                            <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                            <p class="cart">カートに入れる</p>
-                        </div>
-                        <?php }elseif(!isset($value['b_stock'])){ ?>
-                            <!--取扱無し-->
-                        <div class="notbuy_tab">
-                            <a>取扱無し</a>
-                        </div>
-                        <?php if($value['b_rental']==1){ ?>
-                        <!--レンタル可能-->
-                        <div class="tab">
-                            <a href="Cart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
-                            <input type="hidden" name="h_cart" value="buy">
-                            <p class="tax">税込</p>
-                            <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
-                            <p class="cart">カートに入れる</p>
-                            <!--php出来たら上のリンク変更-->
-                            <!--レンタル出来ない場合リンクを消す-->
-                        </div>
-                        <?php }elseif($value['b_rental']==0){ ?>
-                        <!--レンタル不可-->
-                        <div class="notrental_tab">
-                            <a>取扱無し</a>
-                            <!--在庫がある場合購入表示、ない場合予約表示-->
-                        </div>
-                    </form>
+                    <div class="tab">
+                        <a href="Cart.html?bb_id=1">購入</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;847</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                    </div>
+                    <div class="tab">
+                        <a href="Cart.html?br_id=1">レンタル</a>
+                        <p class="tax">税込</p>
+                        <p class="price">&yen;847</p>
+                        <p class="cart">カートに入れる</p>
+                        <!--php出来たら上のリンク変更-->
+                        <!--レンタル出来ない場合リンクを消す-->
+                    </div>
                 </div>
                 <div class="bookd">
                     <h2>あらすじ</h2>
                     <!--あらすじデータを表示-->
-                    <p><?=$b_synopsis?></p>
+                    <p>****************************************</p>
                 </div>
             </div>
         </div>
-
-        <?php
-        }
-        ?>
         <h2>この商品の関係する本</h2>
         <div class="divbox1">
+            <div class="divr">
+                <div class="divimage">
+                    <img src="../image/chikyuu.jpg" alt="">
+                </div>
 
-            <?PHP
+                <div class="divimage">
+                    <img src="../image/chikyuu.jpg" alt="">
+                </div>
+
+                <div class="divimage">
+                    <img src="../image/chikyuu.jpg" alt="">
+                </div>
+
+                <div class="divimage">
+                    <img src="../image/chikyuu.jpg" alt="">
+                </div>
+
+                <div class="divimage">
+                    <img src="../image/chikyuu.jpg" alt="">
+                </div>
+
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                </div>
+
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                </div>
+
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                </div>
+
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                </div>
+
                 
+<<<<<<< HEAD
                 $sql2 = "SELECT * FROM book Where author == book.author order by rand() Limit 5";
                 $stmt = $pdo->prepare($spl2);
                 $stmt->execute(array());
@@ -173,8 +182,15 @@ try {
                 echo "</div>";
                 }
             ?>
+=======
+                <div class="divinfo">
+                    <p><a href="">インド</a></p>
+                    <p>税込 &yen;847</p>
+                </div>
+            </div>
+        </div>
+>>>>>>> ca4867715883b3b54338b89bf8b4f5a6d9d0cef6
     </main>
 </body>
 
 </html>
-
