@@ -65,14 +65,12 @@ try {
     //Result.phpから送られてきたデータを取得
     $b_code1=$_GET["b_code"];
     //SQL文の実行
-    $sql = "SELECT  FROM book Where b_code == ?";
+    $sql = "SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice,b_rental FROM book Where b_code == ?";
     $stmt = $pdo->prepare($spl);
     $stmt->execute($b_code1);
     $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = null;
-    $pdo = null;
+
 ?>
         <h2>書籍情報</h2>
         <div class="dbox">
