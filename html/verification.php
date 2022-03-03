@@ -56,7 +56,7 @@ if(!empty($how_cart)){
     if($how_cart == 'buy'){
         
     }elseif($how_cart == 'reserve'){
-
+        
     }elseif($how_cart =='rental'){
 
     }
