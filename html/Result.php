@@ -47,8 +47,10 @@ try {
     </header>
     <main>
         <?php
-        $searchCondition = htmlspecialchars($_GET['searchCondition']);
-        $searchWord = htmlspecialchars($_GET['searchWord']);
+
+
+        $searchCondition = 'b_title';
+        $searchWord = 'コ';
         $rank = htmlspecialchars($_GET['rank']); //top.phpでnameが確定次第変更
         $rank = htmlspecialchars($_GET['new']); //top.phpでnameが確定次第変更
         if (isset($searchWord)) {
