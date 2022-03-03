@@ -61,7 +61,21 @@ try {
         <hr>
     </header>
     <main>
-        <h2>店舗受け取り</h2>
+    <?php
+    session_start();
+
+    $how_cart = $_SESSION['cart'];
+    //$how_cartはnullじゃなかったら
+    if (!($how_cart == null)) {
+        // $how_cartがレンタルだったら
+        if($how_cart == 'rental'){
+            // Verification.phpに遷移する
+            header("../html/Verification.php");
+            exit;
+        }?>
+      
+      <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
+      <h2>店舗受け取り</h2>
         <ｐ>地域選択</p>
         <div class="flbox">
             <div class="fl"><a href="../html/Region.html?id=1" class="btn">北海道</a></div>
@@ -81,7 +95,8 @@ try {
             <input type="radio" name="memberaddress">
             <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
             <input type="submit" value="次へ">
-        </form>
+        </form>   
+<?php}?>
     </main>
 </body>
 
