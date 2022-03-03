@@ -41,6 +41,11 @@ body {
     color: black;
 }
 
+#cant_buy{
+    position: absolute;
+    
+}
+
 .tax {
     position: relative;
     text-align: right;
@@ -102,7 +107,6 @@ body {
 .tab {
     margin: 0px 20px;
 }
-
 .a:link,
 a:visited,
 a:active {
