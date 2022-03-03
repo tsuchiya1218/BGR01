@@ -25,7 +25,7 @@
 
 
     $c_code = $_GET['c_code'];
-    $b = $_GET['b'];
+    $c = $_GET['c'];
 
     //購入カート
     if($b == 'buy'){
@@ -47,19 +47,20 @@
         $arraycount = $stmt->fetch(PDO::FetchBOTH);
 
 
-        //Result,Detail.phpにもどす
+        //b_code,c_codeの値がある場合前のページに戻し、updatecartの作業として入る
+        //値がない場合は新しい書籍としての判断、addcart内のINSERTに行く。
         $buys = "SELECT * FROM buycart WHERE c_code = $c_code
                     AND b_code = $b_code";
         if(isset($buys)){
-
-        $HTTP = $_SERVER['HTTP_REFERER'];
-        $URL = parse_url($HTTP);
-        $HOST = $URL['host'];
-        echo $HOST;
+        // $buys = $_POST['buys'];
+        // $HTTP = $_SERVER['HTTP_REFERER'];
+        // $URL = parse_url($HTTP);
+        // $HOST = $URL['host'];
+        
 
         }else{
-
-        //buycartとしてcartに新しくカートに追加
+        
+        //buycartとして新しくカートに追加
         $insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
                             VALUES($arraycount['bc_county'],1,$arrayprice['b_purchaseprice'],$b_code);";
         $stmtbuy = $pdo->prepare($insertSQLbuy);
@@ -84,12 +85,13 @@
         $reserves = "SELECT * FROM reservecart WHERE c_code = $c_code
                     AND b_code = $b_code";
         if(isset($reserves)){
-            $HTTP = $_SERVER['HTTP_REFERER'];
-            $URL = parse_url($HTTP);
-            $HOST = $URL['host'];
-            echo $HOST;
+            // $reserves = $_POST['reserves'];
+            // $HTTP = $_SERVER['HTTP_REFERER'];
+            // $URL = parse_url($HTTP);
+            // $HOST = $URL['host'];
+            // echo $HOST;
         }else{
-            //reservecartとしてcartに新しくカートに追加
+            //reservecartとして新しくカートに追加
             $insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
                                 VALUES($arraycount['rc_county'],$arrayprice['b_purchaseprice'],$b_code,1)";
             $stmtreserve =$pdo->prepare($insertSQLreserve);
@@ -118,12 +120,13 @@
         $rentals = "SELECT * FROM rentalcart WHERE c_code = $c_code
                     AND b_code = $b_code";
         if(isset($rentals)){
-            $HTTP = $_SERVER['HTTP_REFERER'];
-            $URL = parse_url($HTTP);
-            $HOST = $URL['host'];
-            echo $HOST;
+            // $rentals = $_POST['rentals'];
+            // $HTTP = $_SERVER['HTTP_REFERER'];
+            // $URL = parse_url($HTTP);
+            // $HOST = $URL['host'];
+            // echo $HOST;
         }else{
-            //rentalcartとしてcartに新しくカートに追加
+            //rentalcartとして新しくカートに追加
             $insertSQLrental =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
                                 VALUES($arraycount[rtc_county],$arrayprice['b_purchaseprice'],$b_code);";
             $stmtrental = $pdo->prepare($insertSQLrental);

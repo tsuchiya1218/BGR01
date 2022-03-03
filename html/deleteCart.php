@@ -19,5 +19,7 @@
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
-
+    session_start();
+    unset($_SESSION['b_code']);
+    
 ?>
