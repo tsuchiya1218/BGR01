@@ -41,9 +41,11 @@ body {
     color: black;
 }
 
-#cant_buy{
+.tab a.s_none {
     position: absolute;
-    
+    top: 70px;
+    text-align: center;
+    font-size: x-large;
 }
 
 .tax {

@@ -149,59 +149,71 @@ try {
                     </div>
                     <div class="bi">
                         <?php
-                        if($value['b_stock'] != null){
-                            if($value['b_stock'] >= 1){
+                        if ($value['b_stock'] != null) {
+                            if ($value['b_stock'] >= 1) {
                         ?>
-                        <form method="GET" action="./addCart.php">
-                            <div class="tab">
-                                <!--b_code=name-->
-                                <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
-                                <input type="hidden" name="b" value="buy">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
-                                <!--php出来たら上のリンク変更-->
-                                <!--在庫がある場合購入表示、ない場合予約表示-->
-                            </div>
-                        </form>
-                        <?php
-                            }elseif($value['b_stock'] == 0){
-                        ?>
-                        <form method="GET" action="./addCart.php">
-                            <div class="tab">
-                                <!--b_code=name-->
-                                <a href="addCart.php?b_code=<?php $value['b_code'] ?>">予約</a>
-                                <input type="hidden" name="b" value="buy">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
-                                <!--php出来たら上のリンク変更-->
-                                <!--在庫がある場合購入表示、ない場合予約表示-->
-                            </div>
-                        </form>
-                        <?php
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
+                                        <input type="hidden" name="b" value="buy">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
+                            } elseif ($value['b_stock'] == 0) {
+                            ?>
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">予約</a>
+                                        <input type="hidden" name="b" value="buy">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
                             }
-                        }else{
-                        ?>
-                        <div class="tab">
-                            <a id="cant_buy">購入不可</a>
-                        </div>
+                        } else {
+                            ?>
+                            <div class="tab">
+                                <a class="s_none">取扱無し</a>
+                            </div>
                         <?php
                         }
+                        if ($value['b_rental'] == 1) {
                         ?>
-                        
-                        <form method="GET" action="./addCart.php">
+                            <form method="GET" action="./addCart.php">
+                                <div class="tab">
+                                    <!--b_code=name-->
+                                    <a href="addCart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
+                                    <input type="hidden" name="b" value="rent">
+                                    <p class="tax">税込</p>
+                                    <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
+                                    <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
+                                    <!--レンタル出来ない場合リンクを消す-->
+                                </div>
+                            </form>
+                        <?php
+                        } else {
+                        ?>
                             <div class="tab">
                                 <!--b_code=name-->
-                                <a href="addCart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
-                                <input type="hidden" name="b" value="rent">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
+                                <a class="s_none">レンタル不可</a>
                                 <!--php出来たら上のリンク変更-->
                                 <!--レンタル出来ない場合リンクを消す-->
                             </div>
-                        </form>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
