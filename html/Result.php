@@ -53,7 +53,7 @@ try {
         $rank = htmlspecialchars($_GET['new']); //top.phpでnameが確定次第変更
         if (isset($searchWord)) {
             if ($searchCondition == "b_title") {
-                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
+                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                    FROM book WHERE b_title like %?%';
                 try {
                     // SQL 文を準備
@@ -70,7 +70,7 @@ try {
                 }
                 echo "<h3>'" . $searchCondition . "," . $searchWord . "'で検索</h3>";
             } elseif ($searchCondition == "author") {
-                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
+                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                    FROM book WHERE b_author like %?%';
                 try {
                     // SQL 文を準備
@@ -88,7 +88,7 @@ try {
                 echo "<h3>'" . $searchCondition . "," . $searchWord . "'で検索</h3>";
             }
         } elseif (isset($rank)) {
-            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
+            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_boughtQty DESC';
             try {
                 // SQL 文を準備
@@ -105,7 +105,7 @@ try {
             }
             echo "<h3>" . $rank . "<h3>";
         } elseif (isset($new)) {
-            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
+            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_release DESC';
             try {
                 // SQL 文を準備
@@ -148,30 +148,72 @@ try {
                         </div>
                     </div>
                     <div class="bi">
-                        <form method="GET" action="./addCart.php">
+                        <?php
+                        if ($value['b_stock'] != null) {
+                            if ($value['b_stock'] >= 1) {
+                        ?>
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
+                                        <input type="hidden" name="b" value="buy">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
+                            } elseif ($value['b_stock'] == 0) {
+                            ?>
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">予約</a>
+                                        <input type="hidden" name="b" value="buy">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
+                            }
+                        } else {
+                            ?>
                             <div class="tab">
-                                <!--b_code=name-->
-                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">購入</a>
-                                <input type="hidden" name="b" value="buy">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
-                                <!--php出来たら上のリンク変更-->
-                                <!--在庫がある場合購入表示、ない場合予約表示-->
+                                <a class="s_none">取扱無し</a>
                             </div>
-                        </form>
-                        <form method="GET" action="./addCart.php">
+                        <?php
+                        }
+                        if ($value['b_rental'] == 1) {
+                        ?>
+                            <form method="GET" action="./addCart.php">
+                                <div class="tab">
+                                    <!--b_code=name-->
+                                    <a href="addCart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
+                                    <input type="hidden" name="b" value="rent">
+                                    <p class="tax">税込</p>
+                                    <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
+                                    <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
+                                    <!--レンタル出来ない場合リンクを消す-->
+                                </div>
+                            </form>
+                        <?php
+                        } else {
+                        ?>
                             <div class="tab">
                                 <!--b_code=name-->
-                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
-                                <input type="hidden" name="b" value="rent">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
+                                <a class="s_none">レンタル不可</a>
                                 <!--php出来たら上のリンク変更-->
                                 <!--レンタル出来ない場合リンクを消す-->
                             </div>
-                        </form>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

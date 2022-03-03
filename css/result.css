@@ -41,6 +41,13 @@ body {
     color: black;
 }
 
+.tab a.s_none {
+    position: absolute;
+    top: 70px;
+    text-align: center;
+    font-size: x-large;
+}
+
 .tax {
     position: relative;
     text-align: right;
@@ -102,7 +109,6 @@ body {
 .tab {
     margin: 0px 20px;
 }
-
 .a:link,
 a:visited,
 a:active {
