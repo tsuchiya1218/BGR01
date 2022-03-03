@@ -51,12 +51,12 @@
         //Result,Detail.phpにもどす
         $buys = "SELECT * FROM buycart WHERE c_code = $c_code
                     AND b_code = $b_code";
-        if(isset($buys)){
-                
-        }else{
-
+        //if($buys == ){}
+        //header(location href)
+        //$HTTP = $SERVER['HTTP_SERVER'];
+        //$URL = parse_url($http);
+        //$HOST = $URL['host']
         
-
                     
         //buycartを INSERT INTO table名() VALUES();
         $insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
@@ -64,8 +64,7 @@
         $stmtbuy = $pdo->prepare($insertSQLbuy);
         //SQL実行
         $stmtbuy ->execute();
-        }
-    }
+        
     //予約カート
     }else if($b == 'reserve'){
         //book表から$b_codeと一致した本の値段を取得

@@ -68,7 +68,7 @@ try {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
                 }
-                echo "<h3>'".$searchCondition.",".$searchWord."'で検索</h3>";
+                echo "<h3>'" . $searchCondition . "," . $searchWord . "'で検索</h3>";
             } elseif ($searchCondition == "author") {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
                                    FROM book WHERE b_author like %?%';
@@ -85,7 +85,7 @@ try {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
                 }
-                echo "<h3>'".$searchCondition.",".$searchWord."'で検索</h3>";
+                echo "<h3>'" . $searchCondition . "," . $searchWord . "'で検索</h3>";
             }
         } elseif (isset($rank)) {
             $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
@@ -103,7 +103,7 @@ try {
                 print "SQL 実行エラー!: " . $e->getMessage();
                 exit();
             }
-            echo "<h3>".$rank."<h3>";
+            echo "<h3>" . $rank . "<h3>";
         } elseif (isset($new)) {
             $sql = 'SELECT b_code,b_name,b_thum,b_author,b_release,b_purchaseprice,b_rentalprice
                                FROM book ORDER BY b_release DESC';
@@ -120,7 +120,7 @@ try {
                 print "SQL 実行エラー!: " . $e->getMessage();
                 exit();
             }
-            echo "<h3>".$new."<h3>";
+            echo "<h3>" . $new . "<h3>";
         }
         ?>
         <?php
@@ -129,40 +129,44 @@ try {
             <div class="result">
                 <div class="list1">
                     <div class="img">
-                        <img class="thum" src="<?php $value['b_thum']?>" alt="<?php $value['b_name']?>">
+                        <img class="thum" src="<?php $value['b_thum'] ?>" alt="<?php $value['b_name'] ?>">
                     </div>
                 </div>
                 <div class="list2">
                     <div class=" b_name">
-                        <a href="Detail.php?b_code=<?php $value['b_code']?>" class="title"><?php $value['b_name']?></a>
+                        <a href="Detail.php?b_code=<?php $value['b_code'] ?>" class="title"><?php $value['b_name'] ?></a>
                     </div>
                     <div class="other">
                         <div class="author ">
-                            <a><?php $value['b_name']?></a>
+                            <a><?php $value['b_name'] ?></a>
                         </div>
                         <div class="pub ">
-                            <a><?php $value['b_publisher']?></a>
+                            <a><?php $value['b_publisher'] ?></a>
                         </div>
                         <div class="date ">
-                            <a><?php $value['b_release']?></a>
+                            <a><?php $value['b_release'] ?></a>
                         </div>
                     </div>
                     <div class="bi">
-                        <form method="GET" action="addCart.php">
-                            <div class="tab"><!--b_code=name-->
-                                <a href="Cart.php?b_code=<?php $value['b_code']?>">購入</a>
+                        <form method="GET" action="./addCart.php">
+                            <div class="tab">
+                                <!--b_code=name-->
+                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">購入</a>
                                 <input type="hidden" name="b" value="buy">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_purchaseprice']?></p>
+                                <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
                                 <p class="cart">カートに入れる</p>
                                 <!--php出来たら上のリンク変更-->
                                 <!--在庫がある場合購入表示、ない場合予約表示-->
                             </div>
-                            <div class="tab"><!--b_code=name-->
-                                <a href="Cart.php?b_code=<?php $value['b_code']?>">レンタル</a>
+                        </form>
+                        <form method="GET" action="./addCart.php">
+                            <div class="tab">
+                                <!--b_code=name-->
+                                <a href="Cart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
                                 <input type="hidden" name="b" value="rent">
                                 <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $value['b_rentalprice']?></p>
+                                <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
                                 <p class="cart">カートに入れる</p>
                                 <!--php出来たら上のリンク変更-->
                                 <!--レンタル出来ない場合リンクを消す-->
