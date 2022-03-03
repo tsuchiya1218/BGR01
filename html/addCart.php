@@ -51,20 +51,22 @@
         //Result,Detail.phpにもどす
         $buys = "SELECT * FROM buycart WHERE c_code = $c_code
                     AND b_code = $b_code";
-        //if($buys == ){}
-        //header(location href)
-        //$HTTP = $SERVER['HTTP_SERVER'];
-        //$URL = parse_url($http);
-        //$HOST = $URL['host']
-        
-                    
-        //buycartを INSERT INTO table名() VALUES();
+        if(isset($buys)){
+
+        $HTTP = $_SERVER['HTTP_REFERER'];
+        $URL = parse_url($HTTP);
+        $HOST = $URL['host'];
+        echo $HOST;
+
+        }else{
+
+        //buycartとしてcartに新しくカートに追加
         $insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
                             VALUES($arraycount['bc_county'],1,$arrayprice['b_purchaseprice'],$b_code);";
         $stmtbuy = $pdo->prepare($insertSQLbuy);
         //SQL実行
         $stmtbuy ->execute();
-        
+        }
     //予約カート
     }else if($b == 'reserve'){
         //book表から$b_codeと一致した本の値段を取得
@@ -81,13 +83,18 @@
 
         $reserves = "SELECT * FROM reservecart WHERE c_code = $c_code
                     AND b_code = $b_code";
-
-        //reservecartを　INSERT INTO table名() VALUES();
-        $insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
-                            VALUES($arraycount['rc_county'],$arrayprice['b_purchaseprice'],$b_code,1)";
-        $stmtreserve =$pdo->prepare($insertSQLreserve);
-        $stmtreserve ->execute();
-
+        if(isset($reserves)){
+            $HTTP = $_SERVER['HTTP_REFERER'];
+            $URL = parse_url($HTTP);
+            $HOST = $URL['host'];
+            echo $HOST;
+        }else{
+            //reservecartとしてcartに新しくカートに追加
+            $insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
+                                VALUES($arraycount['rc_county'],$arrayprice['b_purchaseprice'],$b_code,1)";
+            $stmtreserve =$pdo->prepare($insertSQLreserve);
+            $stmtreserve ->execute();
+        }
     //レンタルカート
     } else if($b == 'rent'){
         //book表から$b_codeと一致した本の値段を取得
@@ -109,13 +116,18 @@
 
         $rentals = "SELECT * FROM rentalcart WHERE c_code = $c_code
                     AND b_code = $b_code";
-
-
-        //rentalcartを INSERT INTO table名() VALUES();
-        $insertSQLrental =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
-                            VALUES($arraycount[rtc_county],$arrayprice['b_purchaseprice'],$b_code);";
-        $stmtrental = $pdo->prepare($insertSQLrental);
-        //SQL実行
-        $stmtrental ->execute();
+        if(isset($rentals)){
+            $HTTP = $_SERVER['HTTP_REFERER'];
+            $URL = parse_url($HTTP);
+            $HOST = $URL['host'];
+            echo $HOST;
+        }else{
+            //rentalcartとしてcartに新しくカートに追加
+            $insertSQLrental =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
+                                VALUES($arraycount[rtc_county],$arrayprice['b_purchaseprice'],$b_code);";
+            $stmtrental = $pdo->prepare($insertSQLrental);
+            //SQL実行
+            $stmtrental ->execute();
+        }
     }
 ?>
