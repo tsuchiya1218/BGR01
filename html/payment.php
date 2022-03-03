@@ -1,3 +1,28 @@
+<?php
+//データベースに接続する
+try {
+    $server_name = "10.42.129.3";    // サーバ名
+    $db_name = "20grb1";    // データベース名(自分の学籍番号を入力)
+
+    $user_name = "20grb1";    // ユーザ名(自分の学籍番号を入力)
+    $user_pass = "20grb1";    // パスワード(自分の学籍番号を入力)
+
+    // データソース名設定
+    $dsn = "sqlsrv:server=$server_name;database=$db_name";
+
+    // PDOオブジェクトのインスタンス作成
+    $pdo = new PDO($dsn, $user_name, $user_pass);
+
+    // PDOオブジェクトの属性の指定
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print "接続エラー!: " . $e->getMessage();
+    exit();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -8,7 +33,7 @@
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
-    <title>受取方法選択</title>
+    <title>支払選択</title>
 </head>
 
 <body>
@@ -36,24 +61,21 @@
         <hr>
     </header>
     <main>
-        <h2>店舗選択</h2>
-                <div class="flbox">
-                    <div class="fl"><a href="../html/Verification.html" class="btn">北海道</a></div>
-                    <div class="fl"><a href="../html/Verification.html"class="btn" >東北</a></div>
-                    <div class="fl"><a href="../html/Verification.html"  class="btn">関西</a></div>
-                    <div class="fl"><a href="../html/Verification.html"  class="btn">中部</a></div>
-                    <div class="fl"><a href="../html/Verification.html" class="btn">四国</a></div>
-                    <div class="fl"><a href="../html/Verification.html" class="btn">中国</a></div>
-                    <div class="fl"><a href="../html/Verification.html" class="btn">九州/沖縄</a></div>
-                </div>
-                <h2>住所選択</h2>
-                <form action="Verification.html" method="POST">
-                    <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-                    <input type="radio" name="memberaddress">
-                    <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
-                    <input type="submit" value="次へ">
-                </form>
+    <?php
+    session_start();
 
+    $how_cart = $_SESSION['cart'];
+    //$how_cartはnullじゃなかったら
+    if (!($how_cart == null)) {
+    ?>  
+      <h2>支払選択</h2>
+        <ｐ>地域選択</p>
+        <form action="../html/payment_select.php" method="post">
+            <input type="radio" name="select" value="先払い"　checked>先払い
+            <input type="radio" name="select" value="後払い" >後払い
+            <input type="submit" value="次へ">
+        </form>
+<?php}?>
     </main>
 </body>
 

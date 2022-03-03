@@ -125,50 +125,9 @@ try {
             </div>
         </div>
         <h2>この商品の関係する本</h2>
-        <div class="divbox1">
-            <div class="divr">
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
-                <div class="divimage">
-                    <img src="../image/chikyuu.jpg" alt="">
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
-
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
 
                 <?php
-                $sql2 = "SELECT * FROM book Where author == book.author order by rand() Limit 5";
+                $sql2 = "SELECT * FROM book Where author == ? order by rand() Limit 5";
                 $stmt = $pdo->prepare($spl2);
                 $stmt->execute(array());
                 $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
@@ -176,7 +135,7 @@ try {
                 foreach ($array as $value) {
                     echo "<div class=\"divr\">";
                     echo "<div class=\"divimage\">";
-                    echo "<img src=\"../image/chikyuu.jpg\" alt=\"\">";
+                    echo "<img src=\"..\" alt=\"\">";
                     echo "</div>";
 
                     echo "<div class=\"divinfo\">";
