@@ -1,23 +1,23 @@
 <?php
 //データベースに接続する
 try {
-	$server_name = "10.42.129.3";	// サーバ名
-	$db_name = "20grb1";	// データベース名(自分の学籍番号を入力)
+    $server_name = "10.42.129.3";    // サーバ名
+    $db_name = "20grb1";    // データベース名(自分の学籍番号を入力)
 
-	$user_name = "20grb1";	// ユーザ名(自分の学籍番号を入力)
-	$user_pass = "20grb1";	// パスワード(自分の学籍番号を入力)
+    $user_name = "20grb1";    // ユーザ名(自分の学籍番号を入力)
+    $user_pass = "20grb1";    // パスワード(自分の学籍番号を入力)
 
-	// データソース名設定
-	$dsn = "sqlsrv:server=$server_name;database=$db_name";
+    // データソース名設定
+    $dsn = "sqlsrv:server=$server_name;database=$db_name";
 
-	// PDOオブジェクトのインスタンス作成
-	$pdo = new PDO ($dsn, $user_name, $user_pass);
+    // PDOオブジェクトのインスタンス作成
+    $pdo = new PDO($dsn, $user_name, $user_pass);
 
-	// PDOオブジェクトの属性の指定
-	$pdo ->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-} catch ( PDOException $e ) {
-	print "接続エラー!: " . $e->getMessage ();
-	exit();
+    // PDOオブジェクトの属性の指定
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print "接続エラー!: " . $e->getMessage();
+    exit();
 }
 
 
@@ -40,6 +40,7 @@ $b_code = $_GET['b_code'];
 
 
 ?>
+
 <body>
     <header>
         <div id="top">
@@ -85,13 +86,13 @@ $b_code = $_GET['b_code'];
                         <tr>
                             <td>
                                 <div class="product">
-                                    
+
                                     <!--書籍のDB化-->
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行"  height="250" width="200" onclick="location.href='Detail.html'">
+                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
@@ -164,12 +165,12 @@ $b_code = $_GET['b_code'];
                         <tr>
                             <td>
                                 <div class="product">
-                                    
+
                                     <div class="checkbox">
                                         <input type="checkbox" id="check" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行"  height="250" width="200" onclick="location.href='Detail.html'">
+                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
@@ -200,7 +201,7 @@ $b_code = $_GET['b_code'];
                                     </div>
                                 </div>
                                 <div class="product">
-                                    
+
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -242,12 +243,12 @@ $b_code = $_GET['b_code'];
                         <tr>
                             <td>
                                 <div class="product">
-                                    
+
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行"  height="250" width="200" onclick="location.href='Detail.html'">
+                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
@@ -266,7 +267,7 @@ $b_code = $_GET['b_code'];
                                     </div>
                                 </div>
                                 <div class="product">
-                                    
+
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>

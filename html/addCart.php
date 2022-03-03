@@ -28,7 +28,6 @@
     $b = $_GET['b'];
 
     //購入カート
-
     if($b == 'buy'){
         //book表から$b_codeと一致した本の値段を取得
         $selectSQLprice = "SELECT b_purchaseprice FROM book WHERE b_code = ?";
@@ -67,6 +66,7 @@
         //SQL実行
         $stmtbuy ->execute();
         }
+
     //予約カート
     }else if($b == 'reserve'){
         //book表から$b_codeと一致した本の値段を取得
@@ -95,6 +95,7 @@
             $stmtreserve =$pdo->prepare($insertSQLreserve);
             $stmtreserve ->execute();
         }
+
     //レンタルカート
     } else if($b == 'rent'){
         //book表から$b_codeと一致した本の値段を取得
