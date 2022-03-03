@@ -71,8 +71,8 @@ try {
       <h2>支払選択</h2>
         <ｐ>地域選択</p>
         <form action="../html/payment_select.php" method="post">
-            <input type="radio" name="select" value="先払い"　checked>先払い
-            <input type="radio" name="select" value="後払い" >後払い
+            <input type="radio" name="payment" value="コンビニ決済" checked>
+            <input type="redio" name="payment" value="クレジットカード決済">
             <input type="submit" value="次へ">
         </form>
 <?php}?>
