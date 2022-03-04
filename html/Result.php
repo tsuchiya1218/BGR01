@@ -19,6 +19,8 @@ try {
     <title>検索結果</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="../css/common.css" rel="stylesheet" type="text/css">
+    <link href="../css/result.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
@@ -45,10 +47,11 @@ try {
         <hr>
     </header>
     <main>
+        
         <?php
-        if (!empty($_GET['searchWord'])) {
-            $searchCondition = $_GET['searchCondition'];
-            $searchWord = $_GET['searchWord'];
+        $rank = 'rank';
+        /*
+        if (!empty($searchWord)) {
             if ($searchCondition == 'b_title') {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                    FROM book WHERE b_name LIKE ?';
@@ -83,9 +86,8 @@ try {
                     exit();
                 }
                 echo "<h3>作者名 : " . $searchWord . "で検索</h3>";
-            }
-        } else {
-            if (!empty($_GET['new'])) {
+            }*/
+            if (!empty($new)) {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_boughtQty DESC';
                 try {
@@ -102,7 +104,7 @@ try {
                     exit();
                 }
                 echo "<h3>売上順<h3>";
-            } elseif (!empty($_GET['rank'])) {
+            } elseif (!empty($rank)) {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_release DESC';
                 try {
@@ -120,7 +122,6 @@ try {
                 }
                 echo "<h3>新刊本<h3>";
             }
-        }
         foreach ($array as $value) {
         ?>
             <div class="result">
@@ -130,9 +131,11 @@ try {
                     </div>
                 </div>
                 <div class="list2">
-                    <div class=" b_name">
-                        <a href="Detail.php?b_code=<?= $value['b_code'] ?>" class="title"><?= $value['b_name'] ?></a>
-                    </div>
+                    <form method="GET" action="Detail.php">
+                        <div class="b_name">
+                            <a href="Detail.php?b_code=<?= $value['b_code'] ?>" class="title" name="b_code"><?= $value['b_name'] ?></a>
+                        </div>
+                    </form>
                     <div class="other">
                         <div class="author">
                             <a><?= $value['b_author'] ?></a>
