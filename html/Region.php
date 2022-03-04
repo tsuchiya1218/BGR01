@@ -61,7 +61,7 @@ try {
     </header>
     <main>
         <h2>店舗選択</h2>
-        
+        <h2></h2>
     </main>
 </body>
 
