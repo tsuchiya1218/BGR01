@@ -69,13 +69,13 @@ try {
     if (!($how_cart == null)) {
     ?>  
       <h2>支払選択</h2>
-        <ｐ>地域選択</p>
+        <p>地域選択</p>
         <form action="../html/payment_select.php" method="post">
-            <input type="radio" name="select" value="先払い"　checked>先払い
-            <input type="radio" name="select" value="後払い" >後払い
+            <input type="radio" name="select" value="コンビニ支払い"　checked>コンビニ支払い
+            <input type="radio" name="select" value="クレジットカード払い" >クレジットカード払い
             <input type="submit" value="次へ">
         </form>
-<?php}?>
+<?php } ?>
     </main>
 </body>
 

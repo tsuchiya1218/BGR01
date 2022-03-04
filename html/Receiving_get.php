@@ -94,7 +94,7 @@ try {
             <div class="fl"><a href="../html/Region.html?id=8" class="btn">九州/沖縄</a></div>
         </div> # code...
         <?php
-            }else {　
+            }else {
                 // 違う場合
         ?>
             
@@ -116,8 +116,7 @@ try {
 <script>
     function setr() {
         activ = document.myFROM;
-        if (activ['select'].checked) {activ['1'].disabled = false; 
-            else activ['1'].disabled = true;}
+        if (activ['select'].checked) {activ['1'].disabled = false;  activ['1'].disabled = true;}
     }
 </script>
 </html>
