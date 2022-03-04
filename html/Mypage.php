@@ -58,7 +58,7 @@ try {
     <main>
         <div class="float">
             <h3>レンタルライブラリ</h3>
-            <select name="" onchange="location.href=value;">
+            <select name="" onchange="location.href=value">
                 <option value="" selected>フィルタを選択</option>
                 <?php
                 $c_code = 1;
@@ -136,7 +136,7 @@ try {
         <hr>
         <div class="float">
             <h3>購入履歴</h3>
-            <select name="" onchange="location.href=value;">
+            <select name="" onchange="location.href=value">
                 <option value="" selected>フィルタを選択</option>
                 <?php
                 $sql3 = "SELECT DISTINCT bd_buydate FROM buydetail WHERE c_code=? ORDER BY rentaldate DESC";
@@ -212,5 +212,4 @@ try {
         </div>
     </main>
 </body>
-
 </html>
