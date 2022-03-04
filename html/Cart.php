@@ -99,7 +99,6 @@ $b_code = $_GET['b_code'];
                                     </div>
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
-                                    <p><?= $value['b_thum'] ?></p>
 
 
                                     <div class="mainlight">
