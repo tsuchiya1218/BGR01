@@ -181,9 +181,10 @@ try {
                 $sql2 = "SELECT * FROM book Where author == ? order by rand() Limit 5";
                 $stmt = $pdo->prepare($spl2);
                 $stmt->execute(array());
+                $array = array();
                 $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-                foreach ($array as $array) {
+                foreach ($array as $value) {
                     echo "<div class=\"divr\">";
                     echo "<div class=\"divimage\">";
                     echo "<img src=\"..\" alt=\"\">";
@@ -197,10 +198,6 @@ try {
                     echo "</div>";
                 }
                 ?>
-                <div class="divinfo">
-                    <p><a href="">インド</a></p>
-                    <p>税込 &yen;847</p>
-                </div>
             </div>
         </div>
     </main>
