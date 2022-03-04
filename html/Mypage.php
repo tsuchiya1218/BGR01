@@ -42,7 +42,7 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="GET">
+            <form action="Result.php" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
                     <option value="autohr">作者</option>
@@ -61,6 +61,7 @@ try {
             <select name="" id="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
                 <?php
+                $c_code = 1;
                 $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
                 try {
                     $stmt1 = $pdo->prepare($sql1);
