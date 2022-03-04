@@ -61,7 +61,11 @@ try {
     </header>
     <main>
         <h2>店舗選択</h2>
-        <h2></h2>
+        <p>該当店舗</p>
+        <?php
+        
+        ?>
+        
     </main>
 </body>
 
