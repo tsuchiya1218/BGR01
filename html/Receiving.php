@@ -19,7 +19,7 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -59,31 +59,34 @@ try {
         <hr>
     </header>
     <main>
-    <?php
-    session_start();
+        <?php
+        session_start();
 
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-        // $how_cartがレンタルだったら
-        if($how_cart == 'rental'){
-            // Verification.phpに遷移する
-            header("../html/Verification.php");
-            exit;
-        }?>
-      
-      <div align="center" >
-            <p>受取方法</p>
-            <form action="Receiving_get.html" method="POST">
-                <input type="radio" name="select" value="店舗">店舗
-                <input type="radio" name="select" value="郵送" 　checked>郵送
-                <input type="submit" value="次へ">
-            </form>
-        </div>    
-<?php }else{
-       print "接続エラー!: " . $e->getMessage();
-       exit();
-} ?>
+        $how_cart = $_SESSION['cart'];
+        //$how_cartはnullじゃなかったら
+        if (!($how_cart == null)) {
+            // $how_cartがレンタルだったら
+            if ($how_cart == 'rental') {
+                // Verification.phpに遷移する
+                header("../html/Verification.php");
+                exit;
+            }
+        ?>
+
+            <div align="center">
+                <p>受取方法</p>
+                <form action="Receiving_get.html" method="POST">
+                    <input type="radio" name="select" value="店舗">店舗
+                    <input type="radio" name="select" value="郵送" 　checked>郵送
+                    <input type="submit" value="次へ">
+                </form>
+            </div>
+        <?php
+        } else {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
+        ?>
     </main>
 </body>
 
