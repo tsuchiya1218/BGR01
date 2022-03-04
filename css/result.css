@@ -5,13 +5,19 @@ body {
 
 .result {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin: 20px 20px;
+    position: relative;
+    left: 350px;
 }
 
 .list1 {
     margin: 0px 50px;
+}
+
+.list2 {
+    margin-left: 50px;
+    justify-content: center;
 }
 
 
@@ -71,16 +77,12 @@ body {
 }
 
 .b_name {
-    margin: 0px 20px;
-    position: relative;
-    bottom: 20px;
+    margin: 10px 20px;
 }
 
 .other {
     display: flex;
-    position: relative;
-    margin: 0px 20px;
-    bottom: 20px;
+    margin: 10px 20px;
 }
 
 .title {
@@ -109,8 +111,13 @@ body {
 .tab {
     margin: 0px 20px;
 }
+
 .a:link,
-a:visited,
-a:active {
+a:link:active {
+    color: blue;
+}
+
+.tab a:link:hover,
+.tab a:visited:hover {
     color: blue;
 }

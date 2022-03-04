@@ -1,15 +1,16 @@
 @charset "UTF-8";
-
-.tdate a{
+.tdate a {
     font-size: 150%;
 }
 
 .bi {
     display: flex;
 }
-.but{
+
+.but {
     display: flex;
 }
+
 .tab {
     position: relative;
     width: 170px;
@@ -43,30 +44,33 @@
     font-weight: bold;
 }
 
+.cart {
+    text-align: center;
+    bottom: auto;
+}
 
-.dbox{
+.dbox {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
 }
 
-.image{
+.image {
     display: flex;
 }
 
-
-.divimage img{
-    width:150px; 
-    height:200px;
+.divimage img {
+    width: 150px;
+    height: 200px;
     padding: 10px;
 }
 
-.divr{
+.divr {
     display: flex;
     margin: 20px;
     justify-content: space-around
 }
 
-.divinfo{
+.divinfo {
     padding: 10px;
 }
