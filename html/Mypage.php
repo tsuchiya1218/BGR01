@@ -42,7 +42,7 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="GET">
+            <form action="Result.php" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
                     <option value="autohr">作者</option>
@@ -60,12 +60,22 @@ try {
             <h3>レンタルライブラリ</h3>
             <select name="" id="" onchange="location.href=value;">
                 <option value="" selected>フィルタを選択</option>
-                <!--PHPでforeach(購入日付が存在する分だけ)-->
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/XXXX_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
-                <option value="/xxxx_xx_xx">XXXX/XX/xx</option>
+                <?php
+                $c_code = 1;
+                $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
+                try {
+                    $stmt1 = $pdo->prepare($sql1);
+                    $stmt1->execute(array($c_code));
+                    $array1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt1 = null;
+                } catch (PDOException $e) {
+                    print "SQL実行エラー！:" . $e->getMessage();
+                    exit();
+                }
+                foreach ($array as $value) {
+                    print "<option value=\".$value[rental_date].\"</option>";
+                }
+                ?>
             </select>
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
