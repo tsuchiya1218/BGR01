@@ -74,7 +74,11 @@ try {
             <input type="radio" name="payment" value="クレジットカード払い" >クレジットカード払い
             <input type="submit" value="次へ">
         </form>
-<?php } ?>
+<?php }else{          
+            print "接続エラー!:" . $e->getMessage();
+            exit();
+    }
+        ?>
     </main>
 </body>
 
