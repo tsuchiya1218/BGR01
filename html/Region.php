@@ -63,16 +63,13 @@ try {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
-
-        $_POST['s_region'] = '東北';
-
-
         try {
-            $sql = "SELECT * FROM store where s_region = '東北'";
+            $s_region=$_GET['s_region'];
+            $sql = "SELECT s_name,s_region FROM store  where s_region = ?";
             // SQL 文を準備
             $stmt = $dbh->prepare($sql);
             // SQL 文を実行
-            $stmt->execute(array());
+            $stmt->execute(array($s_region));
             $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt = null;
         } catch (PDOException $e) {
@@ -82,13 +79,21 @@ try {
         ?>
         <div class="flbox">
             <?php
-            foreach ($array as $value) {
+            // s_regionのデータが入っていた場合
+            if (isset($_GET['s_region'])) {
+                foreach ($array as $value) {
+
+
             ?>
 
-                <div class="fl"><a href="../html/verification.php"  class="btn"><?= $value['s_name']; ?></a></div>
+                <div class="fl"><a href="../html/verification.php" class="btn"><?= $value['s_name']; ?></a></div>
 
             <?php
+                }
+            } else {
+                echo 's_regionのデータが入っていません';
             }
+
             ?>
         </div>
     </main>
