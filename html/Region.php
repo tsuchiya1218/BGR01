@@ -11,15 +11,15 @@ try {
     $dsn = "sqlsrv:server=$server_name;database=$db_name";
 
     // PDOオブジェクトのインスタンス作成
-    $pdo = new PDO($dsn, $user_name, $user_pass);
+    $dbh = new PDO($dsn, $user_name, $user_pass);
 
     // PDOオブジェクトの属性の指定
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
+    <link rel="stylesheet" href="../css/region.css" type="text/css">
     <title>受取方法選択</title>
 </head>
 
@@ -63,9 +63,34 @@ try {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
-        
+
+        $_POST['s_region'] = '東北';
+
+
+        try {
+            $sql = "SELECT * FROM store where s_region = '東北'";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql);
+            // SQL 文を実行
+            $stmt->execute(array());
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
         ?>
-        
+        <div class="flbox">
+            <?php
+            foreach ($array as $value) {
+            ?>
+
+                <div class="fl"><a href="../html/verification.php"  class="btn"><?= $value['s_name']; ?></a></div>
+
+            <?php
+            }
+            ?>
+        </div>
     </main>
 </body>
 
