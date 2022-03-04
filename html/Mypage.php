@@ -80,26 +80,40 @@ try {
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
-            $sql = "SELECT b_name,b_retalprice,rental_date,r_expiry";
+                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3
+                        FROM book
+                        INNER JOIN rental ON book.c_bode=rental.b_code
+                        WHERE c_code=?" ;
+                try {
+                    $stmt2 = $pdo->prepare($sql2);
+                    $stmt2->execute(array($c_code));
+                    $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt2 = null;
+                } catch (PDOException $e) {
+                    print "SQL実行エラー！:" . $e->getMessage();
+                    exit();
+                }
+                foreach ($array as $value) {
+                    print "<tr>\n";
+                    print "<td>\n";
+                    print "<div class=\"item\">\n";
+                    print "<img src=\"../image/{$value['b_thum']}.jpg\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
+                    print "<div class=\"description\">\n";
+                    print "<div class=\"btitle\">\n";
+                    print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
+                    print "</div>\n";
+                    print "<div class=\"mainInfo\">\n";
+                    print "<p>レンタル購入日<br>xxxx/xx/xx</p>\n";
+                    print "<p>レンタル期限<br>~XXXX/XX/XX</p>\n";
+                    print "<p>レンタル価格<br>XXXX円</p>\n";
+                    print "<input type=\"button\" value=\"読む\">\n";
+                    print "</div>\n";
+                    print "</div>\n";
+                    print "</div>\n";
+                    print "</td>\n";
+                    print "</tr>\n";
+                }
             ?>
-            <tr>
-                <td>
-                    <div class="item">
-                        <img src="../image/ダウンロード.jpg" alt="賢者の石" width="200px" height="300px" class="bookPhoto" onclick="location.href='Detail.html'">
-                        <div class="description">
-                            <div class="btitle">
-                                <p><b><a href="Detail.html">ハリーポッターと賢者の石</a></b></p>
-                            </div>
-                            <div class="mainInfo">
-                                <p>レンタル購入日<br>xxxx/xx/xx</p>
-                                <p>レンタル期限<br>~XXXX/XX/XX</p>
-                                <p>レンタル価格<br>XXXX円</p>
-                                <input type="button" value="読む">
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
             <tr>
                 <td>
                     <div class="item">
@@ -178,5 +192,4 @@ try {
         </div>
     </main>
 </body>
-
 </html>
