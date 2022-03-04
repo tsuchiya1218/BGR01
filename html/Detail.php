@@ -70,7 +70,7 @@ try {
         b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code == ?";
 
 
-        $stmt = $pdo->prepare($spl);
+        $stmt = $pdo->prepare($sql);
         $stmt->execute($b_code1);
         $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
         // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)

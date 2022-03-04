@@ -92,7 +92,7 @@ try {
             <div class="fl"><a href="../html/Region.html?id=6" class="btn">四国</a></div>
             <div class="fl"><a href="../html/Region.html?id=7" class="btn">中国</a></div>
             <div class="fl"><a href="../html/Region.html?id=8" class="btn">九州/沖縄</a></div>
-        </div> # code...
+        </div> 
         <?php
             }else {
                 // 違う場合

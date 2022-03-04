@@ -80,7 +80,7 @@ try {
                 <input type="submit" value="次へ">
             </form>
         </div>    
-<?php}?>
+<?php } ?>
     </main>
 </body>
 
