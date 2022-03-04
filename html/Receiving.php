@@ -70,7 +70,8 @@ try {
                 // Verification.phpに遷移する
                 header("../html/Verification.php");
                 exit;
-            } ?>
+            }
+        ?>
 
             <div align="center">
                 <p>受取方法</p>
@@ -80,7 +81,8 @@ try {
                     <input type="submit" value="次へ">
                 </form>
             </div>
-        <?php } else {
+        <?php
+        } else {
             print "接続エラー!: " . $e->getMessage();
             exit();
         }
