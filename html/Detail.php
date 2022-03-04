@@ -63,18 +63,17 @@ try {
     <main>
         <?php
         //Result.phpから送られてきたデータを取得
-        $b_code1 = $_GET["b_code"];
+        $b_code1 = $_GET['b_code'];
         //SQL文の実行
-        $sql = "SELECT b_code,b_name,b_publisher,b_thum,b_author,
-        b_release,b_purchaseprice,b_rentalprice,b_rental,
-        b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code == ?";
+        $sql = "SELECT * FROM book Where b_code = ?";
 
 
-        $stmt = $pdo->prepare($spl);
-        $stmt->execute($b_code1);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array($b_code1));
         $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
         // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
 
+        foreach($array as $value){
         ?>
         <h2>書籍情報</h2>
         <div class="dbox">
@@ -97,7 +96,7 @@ try {
                 </table>
                 <div class="bi">
                         <?php
-                        if ($value['b_stock'] != null) {
+                        if (!empty($value['b_stock'])) {
                             if ($value['b_stock'] >= 1) {
                         ?>
                                 <form method="GET" action="./addCart.php">
@@ -106,7 +105,7 @@ try {
                                         <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
                                         <input type="hidden" name="b" value="buy">
                                         <p class="tax">税込</p>
-                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
                                         <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
@@ -118,10 +117,10 @@ try {
                                 <form method="GET" action="./addCart.php">
                                     <div class="tab">
                                         <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">予約</a>
+                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
                                         <input type="hidden" name="b" value="buy">
                                         <p class="tax">税込</p>
-                                        <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
+                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
                                         <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
@@ -141,10 +140,10 @@ try {
                             <form method="GET" action="./addCart.php">
                                 <div class="tab">
                                     <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?php $value['b_code'] ?>">レンタル</a>
+                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
                                     <input type="hidden" name="b" value="rent">
                                     <p class="tax">税込</p>
-                                    <p class="price">&yen;<?php $value['b_rentalprice'] ?></p>
+                                    <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
                                     <!--php出来たら上のリンク変更-->
                                     <!--レンタル出来ない場合リンクを消す-->
@@ -174,13 +173,16 @@ try {
                 </div>
             </div>
         </div>
+        <?php
+        }
+        ?>
         <h2>この商品の関係する本</h2>
 
                 <?php
-                $sql2 = "SELECT * FROM book Where author == ? order by rand() Limit 5";
-                $stmt = $pdo->prepare($spl2);
+                $sql2 = "SELECT * FROM book Where author = ? order by newid() Limit 5";
+                $stmt = $pdo->prepare($sql2);
                 $stmt->execute(array());
-                $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
+                $array = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
                 foreach ($array as $value) {
                     echo "<div class=\"divr\">";
