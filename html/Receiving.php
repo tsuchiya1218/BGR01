@@ -76,11 +76,14 @@ try {
             <p>受取方法</p>
             <form action="Receiving_get.html" method="POST">
                 <input type="radio" name="select" value="店舗">店舗
-                <input type="radio" name="select" value="自宅" 　checked>自宅
+                <input type="radio" name="select" value="郵送" 　checked>郵送
                 <input type="submit" value="次へ">
             </form>
         </div>    
-<?php } ?>
+<?php }else{
+       print "接続エラー!: " . $e->getMessage();
+       exit();
+} ?>
     </main>
 </body>
 

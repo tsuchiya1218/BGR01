@@ -67,12 +67,12 @@ try {
         //SQL文の実行
         $sql = "SELECT b_code,b_name,b_publisher,b_thum,b_author,
         b_release,b_purchaseprice,b_rentalprice,b_rental,
-        b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code == ?";
+        b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code = ?";
 
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($b_code1);
-
+        $stmt->execute(array());
+        array($b_code1); 
         $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
         // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
 

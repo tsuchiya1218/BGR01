@@ -108,6 +108,8 @@ try {
         </form>   
         <?php
             }
+            print "接続エラー!:" . $e->getMessage();
+            exit();
         }
         
     }?>
