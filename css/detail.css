@@ -1,76 +1,88 @@
-@charset "UTF-8";
-.tdate a {
-    font-size: 150%;
-}
-
-.bi {
-    display: flex;
-}
-
-.but {
-    display: flex;
-}
-
-.tab {
-    position: relative;
-    width: 170px;
-    height: 170px;
-    background-color: antiquewhite;
-    border: 1px solid;
-    margin: 0px 20px;
-}
-
-.tab a {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    font-size: large;
-    text-decoration: none;
-    color: black;
-}
-
-.tax {
-    position: relative;
-    text-align: right;
-    font-size: large;
-    margin: 0px;
-}
-
-.price {
-    text-align: center;
-    font-size: xx-large;
-    font-weight: bold;
-}
-
-.cart {
-    text-align: center;
-    bottom: auto;
-}
-
-.dbox {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.image {
-    display: flex;
-}
-
-.divimage img {
-    width: 150px;
-    height: 200px;
-    padding: 10px;
-}
-
-.divr {
-    display: flex;
-    margin: 20px;
-    justify-content: space-around
-}
-
-.divinfo {
-    padding: 10px;
-}
+    @charset "UTF-8";
+    .tdata a {
+        padding: 0px;
+        margin: 0px;
+        font-size: xx-large;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .bdata {
+        margin-left: 50px;
+    }
+    
+    .bi {
+        display: flex;
+    }
+    
+    .tab {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: antiquewhite;
+        border: 1px solid;
+        margin: 50px 20px;
+    }
+    
+    .tab a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        font-size: large;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .author {
+        margin: 0px 20px 0px 0px;
+    }
+    
+    .pub {
+        margin: 0px 20px;
+    }
+    
+    .tax {
+        position: relative;
+        text-align: right;
+        font-size: large;
+        margin: 0px;
+    }
+    
+    .price {
+        text-align: center;
+        font-size: xx-large;
+        font-weight: bold;
+    }
+    
+    .cart {
+        text-align: center;
+        bottom: auto;
+    }
+    
+    .dbox {
+        margin-top: 20px;
+        display: flex;
+    }
+    
+    .image {
+        display: flex;
+    }
+    
+    .divimage img {
+        width: 150px;
+        height: 200px;
+        padding: 10px;
+    }
+    
+    .divr {
+        display: flex;
+        margin: 20px;
+        justify-content: space-around
+    }
+    
+    .divinfo {
+        padding: 10px;
+        text-align: center;
+    }

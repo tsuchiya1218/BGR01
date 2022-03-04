@@ -31,8 +31,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
-    <link href="../css/top.css" rel="stylesheet" type="text/css">
-    <link href="../css/detal.css" rel="stylesheet" type="text/css">
+    <link href="../css/detail.css" rel="stylesheet" type="text/css">
     <title>商品詳細</title>
 </head>
 
@@ -66,122 +65,121 @@ try {
         $b_code1 = $_GET['b_code'];
         //SQL文の実行
         $sql = "SELECT * FROM book Where b_code = ?";
+        try {
 
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(array($b_code1));
+            // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+            $sql = null;
+        } catch (PDOException $e) {
+            print "SQL 実行エラー!: " . $e->getMessage();
+            exit();
+        }
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($b_code1));
-        $sql = "SELECT b_code,b_name,b_publisher,b_thum,b_author,
-        b_release,b_purchaseprice,b_rentalprice,b_rental,
-        b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code = ?";
-
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array());
-        array($b_code1); 
-
-        $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
-        // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-
-        foreach($array as $value){
+        foreach ($array as $value) {
+            $author = $value["b_author"];
         ?>
-        <h2>書籍情報</h2>
-        <div class="dbox">
-            <div class="image">
-                <img src="../image/chitei.jpg" alt="" align="left" width="200" height="250">
-            </div>
-            <div class="bdate">
-
-                <div class="tdate">
-                    <p><a href="Detail.php"><?= $array['b_name'] ?></a></p>
-                    <!--タイトルをphpでnameを表示-->
+            <h2>書籍情報</h2>
+            <div class="dbox">
+                <div class="image">
+                    <img src="../image/<?= $value['b_thum'] ?>" alt="" align="left" width="300" height="375">
                 </div>
-                <table class="tablesize">
-                    <div class="but">
-                        <p>著者 <?= $array['b_author'] ?></p>
-                        <p>出版社名 <?= $array['b_publisher'] ?></p>
-                        <p>発行年月 <?= $array['b_release'] ?></p>
-                        <!--著者　出版社名 発行年月-->
+                <div class="bdata">
+                    <div class="tdata">
+                        <p><a href="Detail.php"><?= $value['b_name'] ?></a></p>
+                        <!--タイトルをphpでnameを表示-->
                     </div>
-                </table>
-                <div class="bi">
-                    <?php
-                    if ($value['b_stock'] != null) {
-                        if ($value['b_stock'] >= 1) {
-                    ?>
-                            <form method="GET" action="./addCart.php">
-                                <div class="tab">
-                                    <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
-                                    <input type="hidden" name="b" value="buy">
-                                    <p class="tax">税込</p>
-                                    <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                                    <p class="cart">カートに入れる</p>
-                                    <!--php出来たら上のリンク変更-->
-                                    <!--在庫がある場合購入表示、ない場合予約表示-->
-                                </div>
-                            </form>
+                    <table class="tablesize">
+                        <div class="but">
+                            <a class="author">著者 : <?= $value['b_author'] ?></a>
+                            <a class="publisher">出版社名 : <?= $value['b_publisher'] ?></a>
+                            <!--著者　出版社名 発行年月-->
+                        </div>
+                        <div>
+                            <a class="release">発行年月 : <?= $value['b_release'] ?></a>
+                        </div>
+                    </table>
+                    <div class="bi">
                         <?php
-                        } elseif ($value['b_stock'] == 0) {
+                        if ($value['b_stock'] != null) {
+                            if ($value['b_stock'] >= 1) {
                         ?>
-                            <form method="GET" action="./addCart.php">
-                                <div class="tab">
-                                    <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?php $value['b_code'] ?>">予約</a>
-                                    <input type="hidden" name="b" value="buy">
-                                    <p class="tax">税込</p>
-                                    <p class="price">&yen;<?php $value['b_purchaseprice'] ?></p>
-                                    <p class="cart">カートに入れる</p>
-                                    <!--php出来たら上のリンク変更-->
-                                    <!--在庫がある場合購入表示、ない場合予約表示-->
-                                </div>
-                            </form>
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
+                                        <input type="hidden" name="b" value="buy">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
+                            } elseif ($value['b_stock'] == 0) {
+                            ?>
+                                <form method="GET" action="./addCart.php">
+                                    <div class="tab">
+                                        <!--b_code=name-->
+                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
+                                        <input type="hidden" name="b" value="reserve">
+                                        <p class="tax">税込</p>
+                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
+                                        <!--在庫がある場合購入表示、ない場合予約表示-->
+                                    </div>
+                                </form>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <div class="tab">
+                                <a class="s_none">取扱無し</a>
+                            </div>
                         <?php
                         }
-                    } else {
+                        if ($value['b_rental'] == 1) {
                         ?>
-                        <div class="tab">
-                            <a class="s_none">取扱無し</a>
-                        </div>
-                    <?php
-                    }
-                    if ($array['b_rental'] == 1) {
-                    ?>
-                        <form method="GET" action="./addCart.php">
+                            <form method="GET" action="./addCart.php">
+                                <div class="tab">
+                                    <!--b_code=name-->
+                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
+                                    <input type="hidden" name="b" value="rent">
+                                    <p class="tax">税込</p>
+                                    <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
+                                    <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
+                                    <!--レンタル出来ない場合リンクを消す-->
+                                </div>
+                            </form>
+                        <?php
+                        } else {
+                        ?>
                             <div class="tab">
                                 <!--b_code=name-->
-                                <a href="addCart.php?b_code=<?php $array['b_code'] ?>">レンタル</a>
-                                <input type="hidden" name="b" value="rent">
-                                <p class="tax">税込</p>
-                                <p class="price">&yen;<?php $array['b_rentalprice'] ?></p>
-                                <p class="cart">カートに入れる</p>
+                                <a class="s_none">レンタル不可</a>
                                 <!--php出来たら上のリンク変更-->
                                 <!--レンタル出来ない場合リンクを消す-->
                             </div>
-                        </form>
-                    <?php
-                    } else {
-                    ?>
-                        <div class="tab">
-                            <!--b_code=name-->
-                            <a class="s_none">レンタル不可</a>
-                            <!--php出来たら上のリンク変更-->
-                            <!--レンタル出来ない場合リンクを消す-->
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-                <div class="bookd">
-                    <h2>あらすじ</h2>
-                    <!--あらすじデータを表示-->
-                    <p>
-                        <?= $array['b_synopsis1'] ?>
-                        <?= $array['b_synopsis2'] ?>
-                        <?= $array['b_synopsis3'] ?>
-                    </p>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="bookd">
+                        <h2>あらすじ</h2>
+                        <!--あらすじデータを表示-->
+                        <p>
+                            <?= $value['b_synopsis1'] ?>
+                            <?= $value['b_synopsis2'] ?>
+                            <?= $value['b_synopsis3'] ?>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php
         }
         ?>
@@ -189,27 +187,30 @@ try {
         <div>
             <div>
                 <?php
-                $sql2 = "SELECT * FROM book Where author = ? order by newid() Limit 5";
+
+                $sql2 = "SELECT * FROM book WHERE b_author = ?";
                 $stmt = $pdo->prepare($sql2);
-                $stmt->execute(array());
+                $stmt->execute(array($author));
                 $array2 = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-                foreach ($array as $value) {
-                    echo "<div class=\"divr\">";
-                    echo "<div class=\"divimage\">";
-                    echo "<img src=\"..\" alt=\"\">";
-                    echo "</div>";
-
-                    echo "<div class=\"divinfo\">";
-                    echo "<p><a href=\"\">インド</a></p>";
-                    echo "<p>税込 &yen;847</p>";
-                    echo "<p>カテゴリー:<a href=\"\">旅行</a></p>";
-                    echo "</div>";
-                    echo "</div>";
-                }
                 ?>
+                <div class="divr">
+                    <?php foreach ($array2 as $value2) { ?>
+                        <div>
+                            <div class="divimage">
+                                <img src="../image/<?= $value2['b_thum'] ?>" alt="">
+                            </div>
+                            <div class="divinfo">
+                                <p><a href=""><?= $value2['b_name'] ?></a></p>
+                                <p>税込&yen;<?= $value2['b_purchaseprice'] ?></p>
+                                <p>カテゴリー:<a><?= $value2['b_category'] ?></a></p>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </main>
 </body>
+
 </html>
