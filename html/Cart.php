@@ -18,7 +18,11 @@ try {
 } catch ( PDOException $e ) {
 	print "接続エラー!: " . $e->getMessage ();
 	exit();
+
+ 
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,7 +35,12 @@ try {
     <link href="../css/cart.css" rel="stylesheet" type="text/css">
     <title>カート内容確認</title>
 </head>
+<?php
+//$変数 = $_GET[''];
+$b_code = $_GET['b_code'];
 
+
+?>
 <body>
     <header>
         <div id="top">
@@ -44,10 +53,10 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="GET">
-                <select name="serchCondition">
-                    <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
+            <form action="Result.php" method="post">
+                <select name="" id="">
+                    <option value="">書籍</option>
+                    <option value="">作者</option>
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
@@ -57,10 +66,14 @@ try {
         <hr>
     </header>
     <main>
-        <form action="../html/Receiving.html" name="" method="GET">
+
+        <form action="../html/Receiving.html" name="receiving" method="GET">
+
+
             <div class="tab">
                 <!--idでbuy,reserve,rental各自に飛べるように-->
-                <input id="buy" type="radio" name="tab_item" checked>
+
+                <input id="buy" type="radio" name="tab_item">
                 <label class="tab_item" for="buy">購入</label>
                 <input id="reserve" type="radio" name="tab_item">
                 <label class="tab_item" for="reserve">予約</label>
@@ -102,6 +115,7 @@ try {
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
+                                                    <!--<input type="hidden" name="" value=""--> 
                                                     <input type="reset" value="削除">
                                                     <!--購入した商品一つをカートから削除-->
                                                 </p>
@@ -135,7 +149,9 @@ try {
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
+                                                    <!--<input type="hidden" name="" value=""-->
                                                     <input type="reset" value="削除">
+
                                                     <!--購入した商品一つをカートから削除-->
                                                 </p>
                                             </div>
@@ -153,11 +169,12 @@ try {
                                 <div class="product">
                                     
                                     <div class="checkbox">
-                                        <input type="checkbox" name="check">
+                                        <input type="checkbox" id="check" name="check">
                                     </div>
 
                                     <img src="../image/chitei.jpg" alt="地底旅行"  height="250" width="200" onclick="location.href='Detail.html'">
-
+                                    <!--"SELECT b_name,b_author,b_publisher,b_release
+                                        ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code-->
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
@@ -179,6 +196,7 @@ try {
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
+                                                    <!--<input type="hidden" name="" value=""-->
                                                     <input type="reset" value="削除">
                                                     <!--購入した商品一つをカートから削除-->
                                                 </p>
@@ -213,6 +231,7 @@ try {
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
+                                                    
                                                     <input type="reset" value="削除">
                                                     <!--購入した商品一つをカートから削除-->
                                                 </p>
@@ -278,7 +297,7 @@ try {
                         </tr>
                     </table>
                 </div>
-                <p class="gokei">小計 ----\</p>
+                <p class="gokei" name="total">小計 ----\</p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
                 <footer>
                     &copy;It's a book but it's not a book!
