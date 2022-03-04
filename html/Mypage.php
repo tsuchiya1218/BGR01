@@ -73,7 +73,7 @@ try {
                     exit();
                 }
                 foreach ($array as $value) {
-                    print "<option value=\"Mypage.php?rentaldate={$value['rental_date']}\">{$value['rental_date']}</option>";
+                    print "<option value=\"Mypage.php?rentaldate={$value['renral_date']}\">{$value['renral_date']}</option>";
                 }
                 ?>
             </select>
@@ -81,18 +81,18 @@ try {
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
             if (isset($_POST['mottomiru'])) {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,rental_date,r_expiry
+                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
                         WHERE c_code=?";
             }else if(isset($_POST['rentaldate'])){
-                $rentaldate=$_POST['rentaldate']
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,rental_date,r_expiry
+                $rentaldate=$_POST['rentaldate'];
+                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
                         WHERE c_code=? AND rentaldate={$rentaldate} DESC";
             } else {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,rental_date,r_expiry
+                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
                         WHERE c_code=?
@@ -118,7 +118,7 @@ try {
                 print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
-                print "<p>レンタル購入日<br>{$value['rental_date']}</p>\n";
+                print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
                 print "<p>レンタル期限<br>~{$value['r_expiry']}</p>\n";
                 print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>\n";
                 print "<input type=\"button\" value=\"読む\">\n";
@@ -163,7 +163,7 @@ try {
                         INNER JOIN buydetail ON book.c_bode=buydetail.c_code
                         WHERE c_code=?";
             }else if(isset($_POST['buydate'])){
-                $buydate=$_POST['buydate']
+                $buydate=$_POST['buydate'];
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
@@ -195,7 +195,7 @@ try {
                 print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
-                print "<p>レンタル購入日<br>{$value['rental_date']}</p>\n";
+                print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
                 print "<p>レンタル期限<br>~{$value['r_expiry']}</p>\n";
                 print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>\n";
                 print "<input type=\"button\" value=\"読む\">\n";
