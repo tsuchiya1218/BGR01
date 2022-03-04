@@ -70,6 +70,15 @@ try {
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array($b_code1));
+        $sql = "SELECT b_code,b_name,b_publisher,b_thum,b_author,
+        b_release,b_purchaseprice,b_rentalprice,b_rental,
+        b_synopsis1,b_synopsis2,b_synopsis3 FROM book Where b_code = ?";
+
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array());
+        array($b_code1); 
+
         $array  = $stmt->fetchAll(pdo::FETCH_ASSOC);
         // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
 
@@ -83,44 +92,50 @@ try {
             <div class="bdate">
 
                 <div class="tdate">
-                    <p><a href="Detail.php"><?= $value['b_name'] ?></a></p>
+                    <p><a href="Detail.php"><?= $array['b_name'] ?></a></p>
                     <!--タイトルをphpでnameを表示-->
                 </div>
                 <table class="tablesize">
                     <div class="but">
-                        <p>著者 <?= $value['b_author'] ?></p>
-                        <p>出版社名 <?= $value['b_publisher'] ?></p>
-                        <p>発行年月 <?= $value['b_release'] ?></p>
+                        <p>著者 <?= $array['b_author'] ?></p>
+                        <p>出版社名 <?= $array['b_publisher'] ?></p>
+                        <p>発行年月 <?= $array['b_release'] ?></p>
                         <!--著者　出版社名 発行年月-->
                     </div>
                 </table>
                 <div class="bi">
                         <?php
+
                         if (!empty($value['b_stock'])) {
                             if ($value['b_stock'] >= 1) {
+
+                        if ($array['b_stock'] != null) {
+                            if ($array['b_stock'] >= 1) {
+
                         ?>
                                 <form method="GET" action="./addCart.php">
                                     <div class="tab">
                                         <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?php $value['b_code'] ?>">購入</a>
+                                        <a href="addCart.php?b_code=<?php $array['b_code'] ?>">購入</a>
                                         <input type="hidden" name="b" value="buy">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p class="price">&yen;<?php $array['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
                                         <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
                             <?php
-                            } elseif ($value['b_stock'] == 0) {
+                            } elseif ($array['b_stock'] == 0) {
                             ?>
                                 <form method="GET" action="./addCart.php">
                                     <div class="tab">
                                         <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
+                                        <a href="addCart.php?b_code=<?php $array['b_code'] ?>">予約</a>
                                         <input type="hidden" name="b" value="buy">
                                         <p class="tax">税込</p>
-                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p class="price">&yen;<?php $array['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
                                         <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
@@ -135,15 +150,15 @@ try {
                             </div>
                         <?php
                         }
-                        if ($value['b_rental'] == 1) {
+                        if ($array['b_rental'] == 1) {
                         ?>
                             <form method="GET" action="./addCart.php">
                                 <div class="tab">
                                     <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
+                                    <a href="addCart.php?b_code=<?php $array['b_code'] ?>">レンタル</a>
                                     <input type="hidden" name="b" value="rent">
                                     <p class="tax">税込</p>
-                                    <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
+                                    <p class="price">&yen;<?php $array['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
                                     <!--php出来たら上のリンク変更-->
                                     <!--レンタル出来ない場合リンクを消す-->
@@ -166,9 +181,9 @@ try {
                     <h2>あらすじ</h2>
                     <!--あらすじデータを表示-->
                     <p>
-                        <?= $value['b_synopsis1'] ?>
-                        <?= $value['b_synopsis2'] ?>
-                        <?= $value['b_synopsis3'] ?>
+                        <?= $array['b_synopsis1'] ?>
+                        <?= $array['b_synopsis2'] ?>
+                        <?= $array['b_synopsis3'] ?>
                     </p>
                 </div>
             </div>
@@ -184,7 +199,7 @@ try {
                 $stmt->execute(array());
                 $array = $stmt->fetchAll(pdo::FETCH_ASSOC);
 
-                foreach ($array as $value) {
+                foreach ($array as $array) {
                     echo "<div class=\"divr\">";
                     echo "<div class=\"divimage\">";
                     echo "<img src=\"..\" alt=\"\">";

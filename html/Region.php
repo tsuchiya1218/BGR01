@@ -19,8 +19,7 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +32,7 @@ try {
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
-    <title>支払選択</title>
+    <title>受取方法選択</title>
 </head>
 
 <body>
@@ -61,21 +60,8 @@ try {
         <hr>
     </header>
     <main>
-    <?php
-    session_start();
-
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-    ?>  
-      <h2>支払選択</h2>
-        <ｐ>地域選択</p>
-        <form action="../html/payment_select.php" method="post">
-            <input type="radio" name="payment" value="コンビニ決済" checked>
-            <input type="redio" name="payment" value="クレジットカード決済">
-            <input type="submit" value="次へ">
-        </form>
-<?php}?>
+        <h2>店舗選択</h2>
+        <h2></h2>
     </main>
 </body>
 
