@@ -40,7 +40,7 @@ try {
             <form action="Result.php" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
+                    <option value="author">作者</option>
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
