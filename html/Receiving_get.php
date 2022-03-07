@@ -157,7 +157,7 @@ try {
         ?>
     </main>
 </body>
-<script>
+<script type="text/javascript">
     function changeDisabled() {
         if ( document.Form1["memberaddress"][2].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
         document . Form1["inputtext"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
