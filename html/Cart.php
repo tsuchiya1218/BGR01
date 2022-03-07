@@ -103,6 +103,7 @@ if (!$array) {
                                 <div class="product">
 
                                     <!--書籍のDB化-->
+                                    <!-- checkbox value price -->
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
@@ -111,37 +112,51 @@ if (!$array) {
 
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
+                                        <!-- <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
                                         <div class="description">
-                                            <div class="info">
+                                            <div class="info"> -->
 
-                                                <!--foreachを使うかどうか-->
-                                                <?php
-                                                //foreach($array as $row){  
-                                                //echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
-                                                //echo "<div class='description'>";
-                                                //echo "<div class='info'>";
-                                                //echo "<p>{$row["b_author"]}</p>";
-                                                //echo "<p>{$row["b_publisher"]}</p>";
-                                                //echo "<p>{$row["b_release"]}</p>";
-                                                //echo "</div>";
-                                                //echo "<div class="info2">";
-                                                //echo "<p>価格(税込)</p>";
-                                                //echo "<p name="price">&yen;{$row["b_purchaseprice"]}</p>"
-                                                //echo "<p align="right">"
-                                                //echo 数量
-                                                //
-                                                ?>
-                                                <!--著者-->
-                                                <p><?= $value['b_author'] ?></p>
-                                                <!--出版社-->
-                                                <p><?= $value['b_publisher'] ?></p>
-                                                <!--発行年月-->
-                                                <p><?= $value['b_release'] ?></p>
+                                        <!--foreachを使うかどうか-->
+                                        <?php
+                                        foreach ($array as $row) {
+                                            echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
+                                            echo "<div class='description'>";
+                                            echo "<div class='info'>";
+                                            echo "<p>{$row["b_author"]}</p>";
+                                            echo "<p>{$row["b_publisher"]}</p>";
+                                            echo "<p>{$row["b_release"]}</p>";
+                                            echo "</div>";
+                                            echo "<div class='info2'>";
+                                            echo "<p>価格(税込)</p>";
+                                            echo "<p name='price'>&yen;{$row["b_purchaseprice"]}</p>";
+                                            break;
+                                        }
 
-                                            </div>
 
-                                            <div class="info2">
+                                        echo "<p align='right'>";
+                                        echo "数量";
+                                        //DBから書籍のStockに応じてプルダウンの中身を変える
+
+                                        $countsql = "SELECT b_stock FROM book WHERE $b_code = b_code";
+                                        $countsql = $pdo->prepare($countsql);
+                                        //SQL実行
+                                        $countsql ->execute($b_code);
+                                        //帰ってきた値を$arraypriceに代入
+                                        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        echo "<select name='qty'>";
+                                        foreach ($count as $qty) {
+                                            echo '<option value="', $count, '">', $count, '</option>';
+                                        }
+                                        echo "</select>";
+
+                                        ?>
+                                        <!--著者-->
+
+
+
+                                    </div>
+
+                                    <!-- <div class="info2">
                                                 <p>価格（税込）</p>
                                                 <p name="price">&yen; <?= $value['b_purchaseprice'] ?></p>
                                                 <p align="right">
@@ -149,7 +164,7 @@ if (!$array) {
 
                                                     <?php
                                                     //在庫の個数分セレクトボックスに反映
-                                                    $countsql = "SELECT b_stock FROM book WHERE $b_code = b_code";
+                                                    //$countsql = "SELECT b_stock FROM book WHERE $b_code = b_code";
 
 
                                                     ?>
@@ -162,129 +177,129 @@ if (!$array) {
                                                     </select>
                                                 <form action="../html/deleteCart.php" method="GET">
                                                     <input type="hidden" name="delete" value="">
-                                                    <input type="reset" value="削除">
-                                                    <!--購入した商品一つをカートから削除-->
-                                                </form>
-                                                </p>
-                                            </div>
-                                        </div>
+                                                    <input type="reset" value="削除"> -->
+                                    <!--購入した商品一つをカートから削除-->
+        </form>
+        </p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </td>
+        </tr>
+        </table>
+        </div>
+
+        <!--予約-->
+        <div class="tab_content" id="reserve_content">
+            <table border="2" class="test" align="center" style="border-collapse: collapse">
+                <tr>
+                    <td>
+                        <div class="product">
+
+                            <div class="checkbox">
+                                <input type="checkbox" id="check" name="check">
+                            </div>
+
+                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+
+                            <div class="mainlight">
+                                <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                <div class="description">
+                                    <div class="info">
+                                        <?php
+                                        //foreach($array as $row){  
+                                        //echo "{$row["b_author"]}";
+                                        //echo "{$row["b_publisher"]}";
+                                        //echo "{$row["b_release"]}";
+                                        ?>
+                                        <!--著者-->
+                                        <p><?= $value['b_author'] ?></p>
+                                        <!--出版社-->
+                                        <p><?= $value['b_publisher'] ?></p>
+                                        <!--発行年月-->
+                                        <p><?= $value['b_release'] ?></p>
+                                    </div>
+
+                                    <div class="info2">
+                                        <p>価格（税込）</p>
+                                        <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p align="right">
+                                            数量
+                                            <select name="qty">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        <form action="../html/addCart.php" method="GET">
+                                            <!--<input type="hidden" name="" value=""-->
+                                            <input type="reset" value="削除">
+                                            <!--購入した商品一つをカートから削除-->
+                                        </form>
+                                        </p>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-                <!--予約-->
-                <div class="tab_content" id="reserve_content">
-                    <table border="2" class="test" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
-                                <div class="product">
+        <!--レンタル-->
+        <div class="tab_content" id="rental_content">
+            <table border="2" class="test" align="center" style="border-collapse: collapse">
+                <tr>
+                    <td>
+                        <div class="product">
 
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="check" name="check">
+                            <div class="checkbox">
+                                <input type="checkbox" name="check">
+                            </div>
+
+                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+
+                            <div class="mainlight">
+                                <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                <div class="description">
+                                    <div class="info">
+                                        <?php
+                                        //foreach($array as $row){  
+                                        //echo "{$row["b_author"]}";
+                                        //echo "{$row["b_publisher"]}";
+                                        //echo "{$row["b_release"]}";
+                                        ?>
+                                        <p><?= $value['b_author'] ?></p>
+                                        <!--出版社-->
+                                        <p><?= $value['b_publisher'] ?></p>
+                                        <!--発行年月-->
+                                        <p><?= $value['b_release'] ?></p>
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
-
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
-                                        <div class="description">
-                                            <div class="info">
-                                                <?php
-                                                //foreach($array as $row){  
-                                                //echo "{$row["b_author"]}";
-                                                //echo "{$row["b_publisher"]}";
-                                                //echo "{$row["b_release"]}";
-                                                ?>
-                                                <!--著者-->
-                                                <p><?= $value['b_author'] ?></p>
-                                                <!--出版社-->
-                                                <p><?= $value['b_publisher'] ?></p>
-                                                <!--発行年月-->
-                                                <p><?= $value['b_release'] ?></p>
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                                <p align="right">
-                                                    数量
-                                                    <select name="qty">
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                <form action="../html/addCart.php" method="GET">
-                                                    <!--<input type="hidden" name="" value=""-->
-                                                    <input type="reset" value="削除">
-                                                    <!--購入した商品一つをカートから削除-->
-                                                </form>
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <div class="info2">
+                                        <p>価格（税込）</p>
+                                        <p name="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-                <!--レンタル-->
-                <div class="tab_content" id="rental_content">
-                    <table border="2" class="test" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
-                                <div class="product">
+        <!-- 小計 -->
+        <?php
 
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="check">
-                                    </div>
-
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
-
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
-                                        <div class="description">
-                                            <div class="info">
-                                                <?php
-                                                //foreach($array as $row){  
-                                                //echo "{$row["b_author"]}";
-                                                //echo "{$row["b_publisher"]}";
-                                                //echo "{$row["b_release"]}";
-                                                ?>
-                                                <p><?= $value['b_author'] ?></p>
-                                                <!--出版社-->
-                                                <p><?= $value['b_publisher'] ?></p>
-                                                <!--発行年月-->
-                                                <p><?= $value['b_release'] ?></p>
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen;<?= $value['b_rentalprice'] ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- 小計 -->
-                <?php
-
-                ?>
-                <p class="gokei" name="total">小計 ----\</p>
-                <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
-                <footer>
-                    &copy;It's a book but it's not a book!
-                </footer>
-            </div>
+        ?>
+        <p class="gokei" name="total">小計 ----\</p>
+        <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
+        <footer>
+            &copy;It's a book but it's not a book!
+        </footer>
+        </div>
         </form>
     </main>
 </body>
