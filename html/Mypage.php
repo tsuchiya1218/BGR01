@@ -62,17 +62,18 @@ try {
                 <option value="" selected>フィルタを選択</option>
                 <?php
                 $c_code = 1;
-                $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
+                $sql1 = "SELECT DISTINCT renral_date FROM rental WHERE c_code=? ORDER BY renral_date DESC";
                 try {
                     $stmt1 = $pdo->prepare($sql1);
                     $stmt1->execute(array($c_code));
                     $array1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                     $stmt1 = null;
+
                 } catch (PDOException $e) {
                     print "SQL実行エラー！:" . $e->getMessage();
                     exit();
                 }
-                foreach ($array as $key => $value) {
+                foreach ($array1 as $value) {
                     print "<option value=\"Mypage.php?rentaldate={$value['renral_date']}\">{$value['renral_date']}</option>";
                 }
                 ?>
@@ -80,26 +81,27 @@ try {
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
-            if (isset($_POST['mottomiru'])) {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=?";
-            } else if (isset($_POST['rentaldate'])) {
-                $rentaldate = $_POST['rentaldate'];
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=? AND rentaldate={$rentaldate} DESC";
-            } else {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=?
-                        LIMIT 5";
-            }
-
             try {
+                if (isset($_POST['mottomiru'])) {
+                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
+                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
+                            WHERE rental.c_code=?";
+                } else if (isset($_POST['rentaldate'])) {
+                    $rentaldate = $_POST['rentaldate'];
+                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
+                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
+                            WHERE rental.c_code=? AND rentaldate={$rentaldate} DESC";
+                } else {
+                    $sql2 = "SELECT top 3 book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
+                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
+                            WHERE rental.c_code=?";
+                }
                 $stmt2 = $pdo->prepare($sql2);
                 $stmt2->execute(array($c_code));
                 $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -108,11 +110,11 @@ try {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
             }
-            foreach ($array as $key => $value) {
+            foreach ($array2 as $value) {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}.jpg\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
@@ -139,7 +141,7 @@ try {
             <select name="" onchange="location.href=value">
                 <option value="" selected>フィルタを選択</option>
                 <?php
-                $sql3 = "SELECT DISTINCT bd_buydate FROM buydetail WHERE c_code=? ORDER BY rentaldate DESC";
+                $sql3 = "SELECT DISTINCT bd_buydate FROM buydetail WHERE c_code=? ORDER BY bd_buydate DESC";
                 try {
                     $stmt3 = $pdo->prepare($sql3);
                     $stmt3->execute(array($c_code));
@@ -149,7 +151,7 @@ try {
                     print "SQL実行エラー！:" . $e->getMessage();
                     exit();
                 }
-                foreach ($array as $value) {
+                foreach ($array3 as $value) {
                     print "<option value=\"Mypage.php?buydate={$value['bd_buydate']}\">{$value['bd_buydate']}</option>";
                 }
                 ?>
@@ -158,46 +160,46 @@ try {
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
             if (isset($_POST['mottomirubuy'])) {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN buydetail ON book.c_bode=buydetail.c_code
-                        WHERE c_code=?";
+                        INNER JOIN buydetail ON book.c_code=buydetail.c_code
+                        WHERE buydetail.c_code=?";
             } else if (isset($_POST['buydate'])) {
                 $buydate = $_POST['buydate'];
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=? AND bd_buydate={$buydate} DESC";
+                        INNER JOIN rental ON book.c_code=rental.c_code
+                        WHERE buydetail.c_code=? AND bd_buydate={$buydate} DESC";
             } else {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT TOP 3 book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=?
-                        LIMIT 5";
+                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
+                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
+                        WHERE buydetail.c_code=?";
             }
 
             try {
-                $stmt2 = $pdo->prepare($sql2);
-                $stmt2->execute(array($c_code));
-                $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-                $stmt2 = null;
+                $stmt4 = $pdo->prepare($sql4);
+                $stmt4->execute(array($c_code));
+                $array4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
+                $stmt4 = null;
             } catch (PDOException $e) {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
             }
-            foreach ($array as $key => $value) {
+            foreach ($array4 as $value) {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}.jpg\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
-                print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
-                print "<p>レンタル期限<br>~{$value['r_expiry']}</p>\n";
-                print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>\n";
+                print "<p>購入日<br>{$value['bd_buydate']}</p>\n";
+                print "<p>配送日<br>{$value['bd_deliverydate']}</p>\n";
+                print "<p>購入価格<br>{$value['b_purchaseprice']}円</p>\n";
                 print "<input type=\"button\" value=\"読む\">\n";
                 print "</div>\n";
                 print "</div>\n";
