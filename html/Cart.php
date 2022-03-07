@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -19,9 +20,18 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-// $buys_tab = "SELECT b_name,b_author,b_publisher
-//         ,b_release,b_thum,b_purchaseprice FROM book WHERE $b_code = b_code";
-
+//セッションID取得
+$sid = session_id();
+//"SELECT b_name,b_author,b_publisher,b_release
+//      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+$sql = "SELECT b_name,b_author,b_publisher
+         ,b_release,b_thum,b_purchaseprice FROM book WHERE b_code = b_code";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(array($sid));
+$array = $stmt->fetchAll();
+if (!$array) {
+    echo "カートの中に商品がありません。<br>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,7 +47,7 @@ try {
 <?php
 
 //$変数 = $_GET[''];
-$b_code = $_GET['b_code'];
+//$b_code = $_GET['b_code'];
 
 
 ?>
@@ -86,7 +96,6 @@ $b_code = $_GET['b_code'];
                 <label class="tab_item" for="rental">レンタル</label>
 
                 <!--購入-->
-                <!-- phpで -->
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                         <tr>
@@ -106,12 +115,24 @@ $b_code = $_GET['b_code'];
                                         <div class="description">
                                             <div class="info">
 
-                                                <!--著者-->
+                                                <!--foreachを使うかどうか-->
                                                 <?php
-                                                //print($cart['b_author']);
-                                                //print($cart['b_publisher']);
-                                                //print($cart['b_release']); 
+                                                //foreach($array as $row){  
+                                                //echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
+                                                //echo "<div class='description'>";
+                                                //echo "<div class='info'>";
+                                                //echo "<p>{$row["b_author"]}</p>";
+                                                //echo "<p>{$row["b_publisher"]}</p>";
+                                                //echo "<p>{$row["b_release"]}</p>";
+                                                //echo "</div>";
+                                                //echo "<div class="info2">";
+                                                //echo "<p>価格(税込)</p>";
+                                                //echo "<p name="price">&yen;{$row["b_purchaseprice"]}</p>"
+                                                //echo "<p align="right">"
+                                                //echo 数量
+                                                //
                                                 ?>
+                                                <!--著者-->
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
                                                 <p><?= $value['b_publisher'] ?></p>
@@ -166,12 +187,17 @@ $b_code = $_GET['b_code'];
                                     </div>
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
-                                    <!--"SELECT b_name,b_author,b_publisher,b_release
-                                        ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code-->
+
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "{$row["b_author"]}";
+                                                //echo "{$row["b_publisher"]}";
+                                                //echo "{$row["b_release"]}";
+                                                ?>
                                                 <!--著者-->
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
@@ -224,6 +250,12 @@ $b_code = $_GET['b_code'];
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "{$row["b_author"]}";
+                                                //echo "{$row["b_publisher"]}";
+                                                //echo "{$row["b_release"]}";
+                                                ?>
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
                                                 <p><?= $value['b_publisher'] ?></p>
