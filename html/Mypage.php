@@ -62,17 +62,18 @@ try {
                 <option value="" selected>フィルタを選択</option>
                 <?php
                 $c_code = 1;
-                $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
+                $sql1 = "SELECT DISTINCT renral_date FROM rental WHERE c_code=? ORDER BY renral_date DESC";
                 try {
                     $stmt1 = $pdo->prepare($sql1);
                     $stmt1->execute(array($c_code));
                     $array1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                     $stmt1 = null;
+
                 } catch (PDOException $e) {
                     print "SQL実行エラー！:" . $e->getMessage();
                     exit();
                 }
-                foreach ($array as $key => $value) {
+                foreach ($array1 as $value) {
                     print "<option value=\"Mypage.php?rentaldate={$value['renral_date']}\">{$value['renral_date']}</option>";
                 }
                 ?>
@@ -80,26 +81,25 @@ try {
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
-            if (isset($_POST['mottomiru'])) {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=?";
-            } else if (isset($_POST['rentaldate'])) {
-                $rentaldate = $_POST['rentaldate'];
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=? AND rentaldate={$rentaldate} DESC";
-            } else {
-                $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                        FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
-                        WHERE c_code=?
-                        LIMIT 5";
-            }
-
             try {
+                if (isset($_POST['mottomiru'])) {
+                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            INNER JOIN rental ON book.c_code=rental.c_code
+                            WHERE c_code=?";
+                } else if (isset($_POST['rentaldate'])) {
+                    $rentaldate = $_POST['rentaldate'];
+                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            INNER JOIN rental ON book.c_code=rental.c_code
+                            WHERE c_code=? AND rentaldate={$rentaldate} DESC";
+                } else {
+                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                            FROM book
+                            INNER JOIN rental ON book.c_code=rental.c_code
+                            WHERE c_code=?
+                            LIMIT 5";
+                }
                 $stmt2 = $pdo->prepare($sql2);
                 $stmt2->execute(array($c_code));
                 $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
@@ -160,18 +160,18 @@ try {
             if (isset($_POST['mottomirubuy'])) {
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN buydetail ON book.c_bode=buydetail.c_code
+                        INNER JOIN buydetail ON book.c_code=buydetail.c_code
                         WHERE c_code=?";
             } else if (isset($_POST['buydate'])) {
                 $buydate = $_POST['buydate'];
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
+                        INNER JOIN rental ON book.c_code=rental.c_code
                         WHERE c_code=? AND bd_buydate={$buydate} DESC";
             } else {
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN rental ON book.c_bode=rental.c_code
+                        INNER JOIN rental ON book.c_code=rental.c_code
                         WHERE c_code=?
                         LIMIT 5";
             }
