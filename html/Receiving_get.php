@@ -61,43 +61,114 @@ try {
         <hr>
     </header>
     <main>
-    <?php
-    session_start();
+        <?php
+        /*
+        session_start();
 
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-        // $how_cartがレンタルだったら
-        if($how_cart == 'rental'){
-            // Verification.phpに遷移する
-            header("../html/Verification.php");
-            exit;
-        }?>
-      
-      <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
-      <h2>店舗受け取り</h2>
-        <ｐ>地域選択</p>
-        <div class="flbox">
-            <div class="fl"><a href="../html/Region.html?id=1" class="btn">北海道</a></div>
-            <div class="fl"><a href="../html/Region.html?id=2" class="btn">東北</a></div>
-            <div class="fl"><a href="../html/Region.html?id=3" class="btn">関東</a></div>
-            <div class="fl"><a href="../html/Region.html?id=4" class="btn">関西</a></div>
-            <div class="fl"><a href="../html/Region.html?id=5" class="btn">中部</a></div>
-            <div class="fl"><a href="../html/Region.html?id=6" class="btn">四国</a></div>
-            <div class="fl"><a href="../html/Region.html?id=7" class="btn">中国</a></div>
-            <div class="fl"><a href="../html/Region.html?id=8" class="btn">九州/沖縄</a></div>
-        </div>
+        $how_cart = $_SESSION['cart'];
+        //$how_cartはnullじゃなかったら
+        if (!($how_cart == null)) {
+            // $how_cartがレンタルだったら
+            if ($how_cart == 'rental') {
+                // Verification.phpに遷移する
+                header("../html/Verification.php");
+                exit;
+            } 
+            */
+        ?>
 
-        <h2>自宅受け取り</h2>
-        <p>住所選択</p>
-        <form action="Verification.html" method="POST">
-            <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-            <input type="radio" name="memberaddress">
-            <input type="text" name="memberaddress" size="8" placeholder="住所を入力"></p>
-            <input type="submit" value="次へ">
-        </form>   
-<?php}?>
+        <?php
+
+        
+        // データがある場合
+        if (isset($_GET['select'])) {
+
+            // 中身が店舗だった場合
+            if ($_GET['select'] == '店舗') {
+        ?>
+
+                <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
+                <h2>店舗受け取り</h2>
+                <p>地域選択</p>
+                <form action="../html/Region.php" method="get">
+                    <div class="flbox">
+                        <div class="fl"><a href="../html/Region.php?s_region=北海道" class="btn">北海道</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=東北" class="btn">東北</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=関東" class="btn">関東</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=関西" class="btn">関西</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=中部" class="btn">中部</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=四国" class="btn">四国</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=中国" class="btn">中国</a></div>
+                        <div class="fl"><a href="../html/Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
+                    </div>
+                </form>
+            <?php
+            } else {
+                // 違う場合
+            ?>
+
+                <h2>自宅受け取り</h2>
+                <?php
+                    // c_codeがない場合
+                   if (!($_SESSION['c_code'])==null) {
+                    $sql = 'SELECT c_address1,c_address2
+                                   FROM cstomers where c_coed = ?';
+                    try {
+                        // SQL 文を準備
+                        $stmt = $pdo->prepare($sql);
+                        // SQL 文を実行
+                        $stmt->execute();
+                        // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        $stmt = null;
+                        $pdo = null;
+                    } catch (PDOException $e) {
+                        print "SQL 実行エラー!: " . $e->getMessage();
+                        exit();
+                    } 
+                ?>
+                <p>住所選択</p>
+                <form action="Verification.html" method="POST">
+                    <input type="radio" name="memberaddress" value="会員情報の住所の表示">
+                    <?php
+            // s_regionのデータが入っていた場合
+            if (isset($_GET['c_code'])) {
+                foreach ($array as $value) {
+
+
+            ?>
+                <form action="../html/verification.php" method="get">
+                    <p><?=$value['c_address1']+$value['c_addres2']?></p>
+                </form>
+
+            <?php
+                }
+            } else {
+                echo 'c_codeのデータが入っていません';
+            }
+
+            ?>
+                    <input type="radio" name="memberaddress" onclik=changeDisabled()>
+                    <input type="text" name="inputtext" size="50" placeholder="住所を入力" disabled></p>
+                    <input type="submit" value="次へ">
+                </form>
+        <?php
+            }
+        } else {
+            echo "selectのデータが入っていません";
+        }
+        //} 
+        ?>
     </main>
 </body>
+<script>
+    function changeDisabled() {
+        if ( document.Form1["memberaddress"][2].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
+        document . Form1["inputNumber"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
+    } else { // 「住所を入力」のラジオボタン以外をクリックしたとき
+        document . Form1["inputNumber"] . disabled = true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
+    }
+}
+</script>
 
 </html>

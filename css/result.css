@@ -7,6 +7,8 @@ body {
     display: flex;
     align-items: center;
     margin: 20px 20px;
+    position: relative;
+    left: 350px;
 }
 
 .list1 {
@@ -109,9 +111,14 @@ body {
 .tab {
     margin: 0px 20px;
 }
+
 .a:link,
-a:visited,
-a:active {
+a:link:active {
+    color: blue;
+}
+
+.tab a:link:hover,
+.tab a:visited:hover {
     color: blue;
 }
 .tab a:link:hover{

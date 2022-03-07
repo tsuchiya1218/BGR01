@@ -19,5 +19,9 @@
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
+    session_start();
+    unset($_SESSION['b_thum']['b_name']['b_author']['b_publisher']['b_release']['b_purchaseprice']);
 
+
+    
 ?>
