@@ -68,7 +68,6 @@ try {
                     $stmt1->execute(array($c_code));
                     $array1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
                     $stmt1 = null;
-
                 } catch (PDOException $e) {
                     print "SQL実行エラー！:" . $e->getMessage();
                     exit();
@@ -82,25 +81,28 @@ try {
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
             try {
+
                 if (!empty($_GET['mottomiru'])) {
-                    $sql2 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                            FROM book
-                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
-                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
-                            WHERE rental.c_code=?";
+                    $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                            FROM rental
+                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                            WHERE rental.c_code=?
+                            ";
                 } else if (!empty($_GET['rentaldate'])) {
                     $rentaldate = date('Y-m-d',  strtotime($_GET['rentaldate']));
-                    $sql2 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                            FROM book
-                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
-                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
-                            WHERE rental.c_code=? AND renral_date='".$rentaldate."'";
+                    $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                            FROM rental
+                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                            WHERE rental.c_code=? AND renral_date='" . $rentaldate . "'";
                 } else {
-                    $sql2 = "SELECT top 3 book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
-                            FROM book
-                            RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
-                            RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
-                            WHERE rental.c_code=?";
+                    $sql2 = "SELECT top 3 b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                            FROM rental
+                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                            WHERE rental.c_code=?
+                            ";
                 }
                 $stmt2 = $pdo->prepare($sql2);
                 $stmt2->execute(array($c_code));
@@ -123,7 +125,7 @@ try {
                 print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
                 print "<p>レンタル期限<br>~{$value['r_expiry']}</p>\n";
                 print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>\n";
-                if($value['r_expiry']>date("Y-m-d H:i:s")){
+                if ($value['r_expiry'] > date("Y-m-d H:i:s")) {
                     print "<input type=\"button\" value=\"読む\">\n";
                 }
                 print "</div>\n";
@@ -132,6 +134,7 @@ try {
                 print "</td>\n";
                 print "</tr>\n";
             }
+            $array2 = null;
             ?>
         </table>
         <div class="mottomiru">
@@ -163,23 +166,25 @@ try {
             <?php
             if (!empty($_GET['mottomirubuy'])) {
                 $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
-                        FROM book
-                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
-                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
-                        WHERE buydetail.c_code=?";
+                        FROM buydetail
+                        RIGHT JOIN buycart ON buycart.bc_buyCartCode=buydetail.bc_buycartcode
+                        RIGHT JOIN book ON book.b_code=buycart.b_code
+                        WHERE buydetail.c_code=?
+                        ";
             } else if (!empty($_GET['buydate'])) {
                 $buydate = date('Y-m-d',  strtotime($_GET['buydate']));
                 $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
-                        FROM book
-                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
-                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
-                        WHERE buydetail.c_code=? AND bd_buydate='".$buydate."'";
+                        FROM buydetail
+                        RIGHT JOIN buycart ON buycart.bc_buyCartCode=buydetail.bc_buycartcode
+                        RIGHT JOIN book ON book.b_code=buycart.b_code
+                        WHERE buydetail.c_code=? AND bd_buydate='" . $buydate . "'";
             } else {
                 $sql4 = "SELECT TOP 3 book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
-                        FROM book
-                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
-                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
-                        WHERE buydetail.c_code=?";
+                        FROM buydetail
+                        RIGHT JOIN buycart ON buycart.bc_buyCartCode=buydetail.bc_buycartcode
+                        RIGHT JOIN book ON book.b_code=buycart.b_code
+                        WHERE buydetail.c_code=?
+                        ";
             }
 
             try {
@@ -187,7 +192,7 @@ try {
                 $stmt4->execute(array($c_code));
                 $array4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
                 $stmt4 = null;
-                $pdo=null;
+                $pdo = null;
             } catch (PDOException $e) {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
@@ -212,6 +217,7 @@ try {
                 print "</td>\n";
                 print "</tr>\n";
             }
+            $array4 = null;
             ?>
         </table>
         <div class="mottomiru">
