@@ -1,5 +1,6 @@
 <?php
 //データベースに接続する
+session_start();
 try {
     $server_name = "10.42.129.3";    // サーバ名
     $db_name = "20grb1";    // データベース名(自分の学籍番号を入力)
@@ -19,6 +20,20 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+
+?>
+<?php
+    // cartからbuyまたはreserveまたはrentalを受け取る
+    $how_cart = $_SESSION['cart'];
+    // buyだった場合
+    if($_SESSION['cart'] == 'buy'){}
+    // reserveだった場合 
+    if ($_SESSION['cart'] == 'reserve') {}
+    // rentalだった場合
+    if ($_SESSION['retal'] == 'rental') {}
+
+    // c_codeでお客様情報を受け取る
+    $how_c = $_SESSION['c_code'];
 
 ?>
 

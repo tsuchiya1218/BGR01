@@ -111,8 +111,8 @@ try {
                 <p>住所選択</p>
                 <form action="Verification.html" method="POST">
                     <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-                    <input type="radio" name="memberaddress" 　onClick="setr()">
-                    <input type="text" name="1" size="50" placeholder="住所を入力" disabled></p>
+                    <input type="radio" name="memberaddress" onclik=changeDisabled()>
+                    <input type="text" name="inputtext" size="50" placeholder="住所を入力" disabled></p>
                     <input type="submit" value="次へ">
                 </form>
         <?php
@@ -125,14 +125,13 @@ try {
     </main>
 </body>
 <script>
-    function setr() {
-        activ = document.myFROM;
-        if (activ['select'].checked) {
-            activ['1'].disabled = false;
-        } else {
-            activ['1'].disabled = true;
-        }
+    function changeDisabled() {
+        if ( document.Form1["memberaddress"][2].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
+        document . Form1["inputNumber"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
+    } else { // 「住所を入力」のラジオボタン以外をクリックしたとき
+        document . Form1["inputNumber"] . disabled = true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
     }
+}
 </script>
 
 </html>
