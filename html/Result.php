@@ -50,9 +50,22 @@ try {
         
         <?php
         $rank = 'rank';
+        /* テスト用 
+        52行目の部分を任意のテスト文に変更
+        */
         /*
-        if (!empty($searchWord)) {
-            if ($searchCondition == 'b_title') {
+        Top.phpから新刊本表示 $new = 'new';
+        top.phpから購入数ランキング表示 $rank = 'rank';
+
+        書籍名検索 -> $searchCondition = 'b_title';
+                     $searchWord = '適当なワード'; 
+        著者名 -> $searchCondition = 'author';
+                 $searchWord = '適当なワード'; 
+        64行目のifを(!empty($searchCondition))に変更して
+        */
+        /*
+        if (!empty($_GET['$searchCondition'])) {
+            if ($searchCondition == 'b_title') { 
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                    FROM book WHERE b_name LIKE ?';
                 try {
