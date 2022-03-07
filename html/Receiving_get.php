@@ -33,6 +33,7 @@ try {
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
+    <link href="../js/inputtext.js" type="text/js">
     <title>受取方法選択</title>
 </head>
 
@@ -110,14 +111,14 @@ try {
 
                 <h2>自宅受け取り</h2>
                 <?php
-                
+                $c_code=$_GET['c_code']=1;
                 $sql = 'SELECT c_address1,c_address2
-                                FROM customers where c_code = ?';
+                                 FROM customers where c_code=?';
                 try {
                     // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
                     // SQL 文を実行
-                    $stmt->execute();
+                    $stmt->execute(array($c_code));
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
@@ -129,40 +130,42 @@ try {
                 ?>
 
                 <p>住所選択</p>
-                <form action="Verification.html" method="POST">
-                    <input type="radio" name="memberaddress" value="会員情報の住所の表示">
+                    
                 <?php
                 // s_regionのデータが入っていた場合
-                //if (isset($_GET['c_code'])) {
+                // if (isset($_GET['c_code'])) {
                     foreach ($array as $value) {
                 ?>
                 <form action="../html/verification.php" method="get">
-                    <p><?=$value['c_address1']+$value['c_addres2']?></p>
-                </form>
-
+                    
                 <?php
                     }
                 ?>
-                <input type="radio" name="memberaddress" onclik=changeDisabled()>
-                    <input type="text" name="inputtext" size="50" placeholder="住所を入力" disabled></p>
+                    <input type="radio" name="memberaddress" value="会員情報の住所の表示" onclik="changeDisabled()"><label for="radio-0"></label>
+                    <?=$value['c_address1']?><?=$value['c_address2']?><br>
+                    <p>上記以外の住所は入力してください</p>
+                    <input type="radio" name="memberaddress" onclik="changeDisabled()"><label for="radio-other"></label>
+                    <input type="text" name="inputtext" size="50" placeholder="住所を入力" onclik="changeDisabled()" disabled="disabled"></p>
                     <input type="submit" value="次へ">
-                </form>
+                </form>   
                 <?php
-                //}
+                
+                // }
+
             }
             ?>
-                    
+                     
         <?php
         }
         ?>
     </main>
 </body>
-<script>
+<script type="text/javascript">
     function changeDisabled() {
-        if ( document.Form1["memberaddress"][2].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
-        document . Form1["inputtext"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
+    if ( document.Form1["memberaddress"][1].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
+        document . Form1["inputtext"] . disabled =true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
     } else { // 「住所を入力」のラジオボタン以外をクリックしたとき
-        document . Form1["inputtext"] . disabled = true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
+        document . Form1["inputtext"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
     }
 }
 </script>

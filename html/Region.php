@@ -27,7 +27,15 @@ try {
     // c_codeでお客様情報を受け取る
     $how_c = $_SESSION['c_code'];
     // どのcartか
+<<<<<<< HEAD
+    //$_SESSION['cartinfo'] = array("how_get"=>array('cart'=$_SESSION[''],'c_code'=$_SESSION[''],'howrec'=$_SESSION[''])); 
+=======
+<<<<<<< HEAD
+    $_SESSION['cartinfo'] =  "how_get" => array('cart'=$_SESSION[''],'c_code'=$_SESSION[''],'howrec'=$_SESSION['']); 
+=======
     //$_SESSION['cartinfo'] =  "how_get"=>array('cart'=$_SESSION[''],'c_code'=$_SESSION[''],'howrec'=$_SESSION['']); 
+>>>>>>> 4a94257db551af74d329398afe2a1f5faf0be715
+>>>>>>> 8ce9b0b073fa88cb2a07cf759dffdc62083ab65c
     // cartからbuyまたはreserveまたはrentalを受け取る
     $how_cart = $_SESSION['cart'];
     // buyだった場合
