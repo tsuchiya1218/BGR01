@@ -133,7 +133,7 @@ try {
                     <input type="radio" name="memberaddress" value="会員情報の住所の表示">
                 <?php
                 // s_regionのデータが入っていた場合
-                if (isset($_GET['c_code'])) {
+                //if (isset($_GET['c_code'])) {
                     foreach ($array as $value) {
                 ?>
                 <form action="../html/verification.php" method="get">
@@ -148,7 +148,7 @@ try {
                     <input type="submit" value="次へ">
                 </form>
                 <?php
-                }
+                //}
             }
             ?>
                     
