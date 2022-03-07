@@ -69,10 +69,15 @@ try {
     if (!($how_cart == null)) {
     ?>  
       <h2>支払選択</h2>
-        <form action="../html/verification.php" method="post">
-            <input type="radio" name="pay" value="コンビニ支払い"　checked>コンビニ支払い
+        <form action="../html/Receiving.php" method="get">
+            <input type="radio" name="pay" <?=$_GET['']?> value="コンビニ支払い"　checked>コンビニ支払い
             <input type="radio" name="payment" value="クレジットカード払い" >クレジットカード払い
             <input type="submit" value="次へ">
+            <?php
+            $_SESSION["buy"] = if () {
+                # code...
+            }
+            ?>
         </form>
 <?php }else{          
            echo "カートにデータが入っていません"

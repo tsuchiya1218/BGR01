@@ -23,6 +23,11 @@ try {
 
 ?>
 <?php
+    
+    // c_codeでお客様情報を受け取る
+    $how_c = $_SESSION['c_code'];
+    // どのcartか
+    $_SESSION['cartinfo'] =  "how_get"=>array('cart'=$_SESSION[''],'c_code'=$_SESSION[''],'howrec'=$_SESSION['']); 
     // cartからbuyまたはreserveまたはrentalを受け取る
     $how_cart = $_SESSION['cart'];
     // buyだった場合
@@ -32,8 +37,6 @@ try {
     // rentalだった場合
     if ($_SESSION['retal'] == 'rental') {}
 
-    // c_codeでお客様情報を受け取る
-    $how_c = $_SESSION['c_code'];
 
 ?>
 
@@ -100,7 +103,7 @@ try {
 
 
             ?>
-                
+
                 <div class="fl"><a href="../html/verification.php" class="btn"><?= $value['s_name']; ?></a></div>
 
             <?php
