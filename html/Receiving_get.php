@@ -118,7 +118,7 @@ try {
         <?php
             }
         } else {
-            echo "エラー";
+            echo "selectのデータが入っていません";
         }
         //} 
         ?>

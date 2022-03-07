@@ -85,7 +85,7 @@ try {
 
 
             ?>
-
+                
                 <div class="fl"><a href="../html/verification.php" class="btn"><?= $value['s_name']; ?></a></div>
 
             <?php

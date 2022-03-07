@@ -75,8 +75,7 @@ try {
             <input type="submit" value="次へ">
         </form>
 <?php }else{          
-            print "接続エラー!:" . $e->getMessage();
-            exit();
+           echo "カートにデータが入っていません"
     }
         ?>
     </main>
