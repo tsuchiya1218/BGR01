@@ -60,7 +60,6 @@ try {
             <h3>レンタルライブラリ</h3>
             <select name="" onchange="location.href=value">
                 <option value="" selected>フィルタを選択</option>
-                <p>あああ</p>
                 <?php
                 $c_code = 1;
                 $sql1 = "SELECT DISTINCT rentaldate FROM rental WHERE c_code=? ORDER BY rentaldate DESC";
