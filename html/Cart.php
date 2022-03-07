@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -19,8 +20,18 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
-
+//セッションID取得
+$sid = session_id();
+//"SELECT b_name,b_author,b_publisher,b_release
+//      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+$sql = "SELECT b_name,b_author,b_publisher
+         ,b_release,b_thum,b_purchaseprice FROM book WHERE b_code = b_code";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(array($sid));
+$array = $stmt->fetchAll();
+if (!$array) {
+    echo "カートの中に商品がありません。<br>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,8 +45,9 @@ try {
     <title>カート内容確認</title>
 </head>
 <?php
+
 //$変数 = $_GET[''];
-$b_code = $_GET['b_code'];
+//$b_code = $_GET['b_code'];
 
 
 ?>
@@ -66,11 +78,10 @@ $b_code = $_GET['b_code'];
     </header>
     <main>
 
-        <form action="../html/addCart.php" name="receiving" method="GET">
+        <form action="../html/Receiving.php" name="receiving" method="GET">
 
 
             <div class="tab">
-                <!--idでbuy,reserve,rental各自に飛べるように-->
 
                 <!--購入タブ-->
                 <input id="buy" type="radio" name="tab_item">
@@ -84,7 +95,7 @@ $b_code = $_GET['b_code'];
                 <input id="rental" type="radio" name="tab_item">
                 <label class="tab_item" for="rental">レンタル</label>
 
-
+                <!--購入-->
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                         <tr>
@@ -96,19 +107,31 @@ $b_code = $_GET['b_code'];
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
-                                    <p><?= $value['b_thum'] ?></p>
-                                    <?php $buys_tab = "SELECT b_name,b_author,b_publisher
-                                                ,b_release,b_thum,b_purchaseprice FROM book WHERE $b_code = b_code" 
-                                                
-                                    
-                                    ?>
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+
 
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
                                         <div class="description">
                                             <div class="info">
 
+                                                <!--foreachを使うかどうか-->
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
+                                                //echo "<div class='description'>";
+                                                //echo "<div class='info'>";
+                                                //echo "<p>{$row["b_author"]}</p>";
+                                                //echo "<p>{$row["b_publisher"]}</p>";
+                                                //echo "<p>{$row["b_release"]}</p>";
+                                                //echo "</div>";
+                                                //echo "<div class="info2">";
+                                                //echo "<p>価格(税込)</p>";
+                                                //echo "<p name="price">&yen;{$row["b_purchaseprice"]}</p>"
+                                                //echo "<p align="right">"
+                                                //echo 数量
+                                                //
+                                                ?>
                                                 <!--著者-->
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
@@ -123,6 +146,13 @@ $b_code = $_GET['b_code'];
                                                 <p name="price">&yen; <?= $value['b_purchaseprice'] ?></p>
                                                 <p align="right">
                                                     数量
+
+                                                    <?php
+                                                    //在庫の個数分セレクトボックスに反映
+                                                    $countsql = "SELECT b_stock FROM book WHERE $b_code = b_code";
+
+
+                                                    ?>
                                                     <select name="qty">
                                                         <option value="1" selected>1</option>
                                                         <option value="2">2</option>
@@ -130,54 +160,11 @@ $b_code = $_GET['b_code'];
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
-                                                    <form action="../html/deleteCart.php">
-                                                        <!--<input type="hidden" name="" value=""-->
-                                                        <input type="reset" value="削除">
-                                                        <!--購入した商品一つをカートから削除-->
-                                                    </form>    
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="check">
-                                    </div>
-                                    <img src="../image/chikyuu.jpg" alt="地球の歩き方　インド" height="250" width="200" onclick="location.href='Detail.html'">
-                                    <?= $value['b_thum'] ?>
-
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">
-                                                <p><?= $value['b_name'] ?>
-                                            </a></p>
-                                        <div class="description">
-                                            <div class="info"> 
-                                                <!--著者-->
-                                                <p><?= $value['b_author'] ?></p>
-                                                <!--出版社-->
-                                                <p><?= $value['b_publisher'] ?></p>
-                                                <!--発行年月-->
-                                                <p><?= $value['b_release'] ?></p>
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                                <p align="right">
-                                                    数量
-                                                    <select name="qty">
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                    <!--<input type="hidden" name="" value=""-->
+                                                <form action="../html/deleteCart.php" method="GET">
+                                                    <input type="hidden" name="delete" value="">
                                                     <input type="reset" value="削除">
-                                                    <a href="../html/deleteCart.php"></a>
-
                                                     <!--購入した商品一つをカートから削除-->
+                                                </form>
                                                 </p>
                                             </div>
                                         </div>
@@ -187,6 +174,8 @@ $b_code = $_GET['b_code'];
                         </tr>
                     </table>
                 </div>
+
+                <!--予約-->
                 <div class="tab_content" id="reserve_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                         <tr>
@@ -197,13 +186,18 @@ $b_code = $_GET['b_code'];
                                         <input type="checkbox" id="check" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
-                                    <!--"SELECT b_name,b_author,b_publisher,b_release
-                                        ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code-->
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "{$row["b_author"]}";
+                                                //echo "{$row["b_publisher"]}";
+                                                //echo "{$row["b_release"]}";
+                                                ?>
                                                 <!--著者-->
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
@@ -224,45 +218,11 @@ $b_code = $_GET['b_code'];
                                                         <option value="4">4</option>
                                                         <option value="5">5</option>
                                                     </select>
-                                                    <!--<input type="hidden" name="" value=""-->
-                                                    <input type="reset" value="削除">
-                                                    
-                                                    <!--購入した商品一つをカートから削除-->
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product">
-
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="check">
-                                    </div>
-                                    <img src="../image/chikyuu.jpg" alt="地球の歩き方　インド" height="250" width="200" onclick="location.href='Detail.html'">
-
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地球の歩き方 インド</a></p>
-                                        <div class="description">
-                                            <div class="info">
-                                                <p>ダイアモンド・ビッグ社</p>
-                                                <p>2020年3月12日</p>
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen;b_purchaseprice</p>
-                                                <p align="right">
-                                                    数量
-                                                    <select name="qty">
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
+                                                <form action="../html/addCart.php" method="GET">
                                                     <!--<input type="hidden" name="" value=""-->
                                                     <input type="reset" value="削除">
                                                     <!--購入した商品一つをカートから削除-->
+                                                </form>
                                                 </p>
                                             </div>
                                         </div>
@@ -272,6 +232,8 @@ $b_code = $_GET['b_code'];
                         </tr>
                     </table>
                 </div>
+
+                <!--レンタル-->
                 <div class="tab_content" id="rental_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                         <tr>
@@ -282,15 +244,23 @@ $b_code = $_GET['b_code'];
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img src="../image/chitei.jpg" alt="地底旅行" height="250" width="200" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
                                         <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
-                                                <p>ジュール・ヴェルヌ</p>
-                                                <p>東京創元社</p>
-                                                <p>1968年11月29日</p>
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "{$row["b_author"]}";
+                                                //echo "{$row["b_publisher"]}";
+                                                //echo "{$row["b_release"]}";
+                                                ?>
+                                                <p><?= $value['b_author'] ?></p>
+                                                <!--出版社-->
+                                                <p><?= $value['b_publisher'] ?></p>
+                                                <!--発行年月-->
+                                                <p><?= $value['b_release'] ?></p>
                                             </div>
 
                                             <div class="info2">
@@ -300,32 +270,15 @@ $b_code = $_GET['b_code'];
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product">
-
-                                    <div class="checkbox">
-                                        <input type="checkbox" name="check">
-                                    </div>
-                                    <img src="../image/chikyuu.jpg" alt="地球の歩き方　インド" height="250" width="200" onclick="location.href='Detail.html'">
-
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地球の歩き方 インド</a></p>
-                                        <div class="description">
-                                            <div class="info">
-                                                <p>ダイアモンド・ビッグ社</p>
-                                                <p>2020年3月12日</p>
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen;<?= $value['b_rentalprice'] ?></< /p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     </table>
                 </div>
+
+                <!-- 小計 -->
+                <?php
+
+                ?>
                 <p class="gokei" name="total">小計 ----\</p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
                 <footer>
