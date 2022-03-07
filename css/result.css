@@ -5,10 +5,7 @@ body {
 
 .result {
     display: flex;
-    align-items: center;
     margin: 20px 20px;
-    position: relative;
-    left: 350px;
 }
 
 .list1 {
