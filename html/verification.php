@@ -31,7 +31,7 @@ try {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -71,7 +71,7 @@ if(!empty($how_cart)){
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=1" class="title">地底旅行</a>
+                    <a href="Detail.php?book_id=1" class="title">地底旅行</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;847</a>
@@ -85,7 +85,7 @@ if(!empty($how_cart)){
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=2" class="title">地球の歩き方(インド)</a>
+                    <a href="Detail.php?book_id=2" class="title">地球の歩き方(インド)</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;1900</a>

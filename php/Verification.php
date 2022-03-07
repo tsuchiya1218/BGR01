@@ -56,7 +56,7 @@ try {
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=1" class="title">地底旅行</a>
+                    <a href="Detail.php?book_id=1" class="title">地底旅行</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;847</a>
@@ -70,7 +70,7 @@ try {
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=2" class="title">地球の歩き方(インド)</a>
+                    <a href="Detail.php?book_id=2" class="title">地球の歩き方(インド)</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;1900</a>

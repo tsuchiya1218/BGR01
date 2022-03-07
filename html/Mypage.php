@@ -36,7 +36,7 @@ try {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -116,10 +116,10 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
-                print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
+                print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
                 print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
@@ -201,10 +201,10 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.html?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
-                print "<p><b><a href=\"Detail.html?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
+                print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
                 print "<p>購入日<br>{$value['bd_buydate']}</p>\n";

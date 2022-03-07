@@ -73,7 +73,7 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
+            <form action="Result.php" method="post">
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>

@@ -58,7 +58,7 @@ if (!$array) {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -107,11 +107,11 @@ if (!$array) {
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
+                                        <p class="btitle"><a href="Detail.php"><?= $value['b_name'] ?></a></p>
                                         <div class="description">
                                             <div class="info">
 
@@ -186,10 +186,10 @@ if (!$array) {
                                         <input type="checkbox" id="check" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
@@ -244,10 +244,10 @@ if (!$array) {
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
