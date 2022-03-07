@@ -144,7 +144,7 @@ try {
         <div class="float">
             <h3>購入履歴</h3>
             <select name="" onchange="location.href=value">
-                <option value="Mypage.php?null=1">フィルタを選択</option>
+                <option value="" selected>フィルタを選択</option>
                 <?php
                 $sql3 = "SELECT DISTINCT bd_buydate FROM buydetail WHERE c_code=? ORDER BY bd_buydate DESC";
                 try {
