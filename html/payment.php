@@ -75,7 +75,7 @@ try {
             <input type="submit" value="次へ">
         </form>
 <?php }else{          
-           echo "カートにデータが入っていません"
+           echo "カートにデータが入っていません";
     }
         ?>
     </main>
