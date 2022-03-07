@@ -85,8 +85,8 @@ try {
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
                         WHERE c_code=?";
-            }else if(isset($_POST['rentaldate'])){
-                $rentaldate=$_POST['rentaldate'];
+            } else if (isset($_POST['rentaldate'])) {
+                $rentaldate = $_POST['rentaldate'];
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
@@ -162,8 +162,8 @@ try {
                         FROM book
                         INNER JOIN buydetail ON book.c_bode=buydetail.c_code
                         WHERE c_code=?";
-            }else if(isset($_POST['buydate'])){
-                $buydate=$_POST['buydate'];
+            } else if (isset($_POST['buydate'])) {
+                $buydate = $_POST['buydate'];
                 $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_code,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
                         INNER JOIN rental ON book.c_bode=rental.c_code
@@ -212,4 +212,5 @@ try {
         </div>
     </main>
 </body>
+
 </html>
