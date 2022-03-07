@@ -196,7 +196,7 @@ try {
                 ?>
                 <div class="divr">
                     <?php foreach ($array2 as $value2) { ?>
-                        <div>
+                        <div class="sublist">
                             <div class="divimage">
                                 <img src="../image/<?= $value2['b_thum'] ?>" alt="">
                             </div>
