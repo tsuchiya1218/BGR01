@@ -1,4 +1,20 @@
 <html lang="ja">
+<?php
+
+session_start();
+try {
+    $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
+    $user = '20grb1';
+    $password = '20grb1';
+    //PDOオブジェクトの作成
+    $dbh = new PDO($dsn, $user, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print "接続エラー!: " . $e->getMessage() . "<br/>";
+    die();
+}
+?>
+
 
 <head>
     <title></title>
@@ -15,26 +31,39 @@
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
                 <input type="button" value="ログイン">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
+            <form action="Result.php" method="GET">
+                <select name="serchCondition">
+                    <option value="b_title" selected>書籍</option>
+                    <option value="autohr">作者</option>
                 </select>
-                <input type="text" name="" id="">
+                <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
                 <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
-
         </div>
         <hr>
     </header>
     <main>
+<?php
+$how_cart = $_SESSION['cart'];
+if(!empty($how_cart)){
+    if($how_cart == 'buy'){
+        
+    }elseif($how_cart == 'reserve'){
+        
+    }elseif($how_cart =='rental'){
+
+    }
+}else{
+    
+}
+?>
         <h3>購入内容</h3>
         <div class="list">
             <div class="b_thum">
