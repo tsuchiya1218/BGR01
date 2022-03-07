@@ -80,7 +80,7 @@ try {
 
         <?php
 
-        
+
         // データがある場合
         if (isset($_GET['select'])) {
 
@@ -104,14 +104,14 @@ try {
                     </div>
                 </form>
             <?php
-            
+
             } else {
-            // 違う場合
+                // 違う場合
             ?>
 
                 <h2>自宅受け取り</h2>
                 <?php
-                $c_code=$_GET['c_code']=1;
+                $c_code = $_GET['c_code'] = 1;
                 $sql = 'SELECT c_address1,c_address2
                                  FROM customers where c_code=?';
                 try {
@@ -130,44 +130,54 @@ try {
                 ?>
 
                 <p>住所選択</p>
-                    
+
                 <?php
                 // s_regionのデータが入っていた場合
                 // if (isset($_GET['c_code'])) {
-                    foreach ($array as $value) {
+                foreach ($array as $value) {
                 ?>
-                <form action="../html/verification.php" method="get">
-                    
-                <?php
-                    }
-                ?>
-                    <input type="radio" name="memberaddress" value="会員情報の住所の表示" onclik="changeDisabled()"><label for="radio-0"></label>
-                    <?=$value['c_address1']?><?=$value['c_address2']?><br>
-                    <p>上記以外の住所は入力してください</p>
-                    <input type="radio" name="memberaddress" onclik="changeDisabled()"><label for="radio-other"></label>
-                    <input type="text" name="inputtext" size="50" placeholder="住所を入力" onclik="changeDisabled()" disabled="disabled"></p>
+                    <form action="../html/verification.php" method="get">
+
+                    <?php
+                }
+                    ?>
+                    <input type="radio" name="address" id="add1" onclick="changeDisabled()" checked="checked">
+                    <?= $value['c_address1'] ?><?= $value['c_address2'] ?><br>
+                    <p>上記以外の住所を入力してください</p>
+                    <input type="radio" name="address" id="add2" onclick="changeDisabled()">
+                    <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
                     <input type="submit" value="次へ">
-                </form>   
+                    </form>
                 <?php
-                
+
                 // }
 
             }
-            ?>
-                     
-        <?php
+                ?>
+
+            <?php
         }
-        ?>
+            ?>
     </main>
 </body>
 <script type="text/javascript">
-    function changeDisabled() {
-    if ( document.Form1["memberaddress"][1].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
-        document . Form1["inputtext"] . disabled =true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
-    } else { // 「住所を入力」のラジオボタン以外をクリックしたとき
-        document . Form1["inputtext"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
-    }
-}
+
+    var text = document.getElementById("inputtext");
+    text.disabled = true;
+    
+    var add1 = document.getElementById("add1");
+    add1.addEventListener("click" , function(){
+        if(add1.checked){
+            text.disabled = true;
+        }
+    })
+    var add2 = document.getElementById("add2");
+    add2.addEventListener("click" , function(){
+        if(add2.checked){
+            text.disabled = false;
+        }
+
+    })
 </script>
 
 </html>
