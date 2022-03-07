@@ -61,64 +61,69 @@ try {
         <hr>
     </header>
     <main>
-    <?php
-    session_start();
+        <?php
+        session_start();
 
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-        // $how_cartがレンタルだったら
-        if($how_cart == 'rental'){
-            // Verification.phpに遷移する
-            header("../html/Verification.php");
-            exit;
-        }?>
-      <?php
-        // データがある場合
-        if(isset($_POST['select'])){
-            // 中身が店舗だった場合
-            if ($_POST['select']=='店舗') {
+        $how_cart = $_SESSION['cart'];
+        //$how_cartはnullじゃなかったら
+        if (!($how_cart == null)) {
+            // $how_cartがレンタルだったら
+            if ($how_cart == 'rental') {
+                // Verification.phpに遷移する
+                header("../html/Verification.php");
+                exit;
+            } ?>
+            <?php
+            // データがある場合
+            if (isset($_POST['select'])) {
+                // 中身が店舗だった場合
+                if ($_POST['select'] == '店舗') {
+            ?>
+
+                    <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
+                    <h2>店舗受け取り</h2>
+                    <p>地域選択</p>
+                    <form action="../html/Region.php" method="get">
+                        <div class="flbox">
+                            <div class="fl"><a href="../html/Region.html?s_region=北海道" class="btn">北海道</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=東北" class="btn">東北</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=関東" class="btn">関東</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=関西" class="btn">関西</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=中部" class="btn">中部</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=四国" class="btn">四国</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=中国" class="btn">中国</a></div>
+                            <div class="fl"><a href="../html/Region.html?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
+                        </div>
+                    </form>
+                <?php
+                } else {
+                    // 違う場合
                 ?>
-               
-      <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
-      <h2>店舗受け取り</h2>
-        <ｐ>地域選択</p>
-        <div class="flbox">
-            <div class="fl"><a href="../html/Region.html?id=1" class="btn">北海道</a></div>
-            <div class="fl"><a href="../html/Region.html?id=2" class="btn">東北</a></div>
-            <div class="fl"><a href="../html/Region.html?id=3" class="btn">関東</a></div>
-            <div class="fl"><a href="../html/Region.html?id=4" class="btn">関西</a></div>
-            <div class="fl"><a href="../html/Region.html?id=5" class="btn">中部</a></div>
-            <div class="fl"><a href="../html/Region.html?id=6" class="btn">四国</a></div>
-            <div class="fl"><a href="../html/Region.html?id=7" class="btn">中国</a></div>
-            <div class="fl"><a href="../html/Region.html?id=8" class="btn">九州/沖縄</a></div>
-        </div> 
+
+                    <h2>自宅受け取り</h2>
+                    <p>住所選択</p>
+                    <form action="Verification.html" method="POST">
+                        <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
+                        <input type="radio" name="memberaddress" 　onClick="setr()">
+                        <input type="text" name="1" size="50" placeholder="住所を入力" disabled></p>
+                        <input type="submit" value="次へ">
+                    </form>
         <?php
-            }else {
-                // 違う場合
-        ?>
-            
-        <h2>自宅受け取り</h2>
-        <p>住所選択</p>
-        <form action="Verification.html" method="POST">
-            <input type="radio" name="memberaddress" value="会員情報の住所の表示">会員情報の住所を表示
-            <input type="radio" name="memberaddress"　onClick="setr()">
-            <input type="text" name="1" size="50" placeholder="住所を入力"  disabled></p>
-            <input type="submit" value="次へ">
-        </form>   
-        <?php
+                }
+                print "接続エラー!:" . $e->getMessage();
+                exit();
             }
-            print "接続エラー!:" . $e->getMessage();
-            exit();
-        }
-        
-    }?>
+        } ?>
     </main>
 </body>
 <script>
     function setr() {
         activ = document.myFROM;
-        if (activ['select'].checked) {activ['1'].disabled = false;  activ['1'].disabled = true;}
+        if (activ['select'].checked) {
+            activ['1'].disabled = false;
+            activ['1'].disabled = true;
+        }
     }
 </script>
+
 </html>
