@@ -24,53 +24,62 @@ try {
 ?>
 <?php
     
-    // // c_codeでお客様情報を受け取る
-    // $how_c = $_SESSION['c_code'];
+    // c_codeでお客様情報を受け取る
+    $how_c = $_SESSION['c_code'];
  
 
 
 
-    // // cartからbuyまたはreserveまたはrentalを受け取る
-    // $how_cart = $_SESSION['cart'];
-    // // buyだった場合
-    // if($_SESSION['cart'] == 'buy'){
-    //     try {
-    //         $s_region=$_GET[''];
-    //         $sql = "SELECT bc_buyCartCode,c_code FROM store  where bc_buyCartCode = c_code and c_code=?";
-    //         // SQL 文を準備
-    //         $stmt = $dbh->prepare($sql);
-    //         // SQL 文を実行
-    //         $stmt->execute(array($s_region));
-    //         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         $stmt = null;
-    //     } catch (PDOException $e) {
-    //         print "接続エラー!: " . $e->getMessage();
-    //         exit();
-    //     }
-    // }
-    // // reserveだった場合 
-    // if ($_SESSION['cart'] == 'reserve') {
-    //     try {
-    //         $s_region=$_GET[''];
-    //         $sql = "SELECT rc_reserveCartCode,c_code FROM store  where rc_reserveCartCode = c_code and c_code=?";
-    //         // SQL 文を準備
-    //         $stmt = $dbh->prepare($sql);
-    //         // SQL 文を実行
-    //         $stmt->execute(array($s_region));
-    //         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         $stmt = null;
-    //     } catch (PDOException $e) {
-    //         print "接続エラー!: " . $e->getMessage();
-    //         exit();
-    //     }
-    // }
-    // // rentalだった場合
-    // if ($_SESSION['retal'] == 'rental') {
+    // cartからbuyまたはreserveまたはrentalを受け取る
+    $how_cart = $_SESSION['cart'];
+    // buyだった場合
+    if($_SESSION['cart'] == 'buy'){
+        try {
+            $sql = "SELECT bc_buyCartCode,c_code FROM store  where bc_buyCartCode = c_code and c_code=?";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql);
+            // SQL 文を実行
+            $stmt->execute(array($s_region));
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
+    }
+    // reserveだった場合 
+    if ($_SESSION['cart'] == 'reserve') {
+        try {
+            $sql1 = "SELECT rc_reserveCartCode,c_code FROM store  where rc_reserveCartCode = c_code and c_code=?";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql);
+            // SQL 文を実行
+            $stmt->execute(array($s_region));
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
+    }
+    // rentalだった場合
+    if ($_SESSION['retal'] == 'rental') {
+        try {
+            $sql2 = "SELECT rental_code,c_code FROM store  where rental_code = c_code and c_code=?";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql);
+            // SQL 文を実行
+            $stmt->execute(array($s_region));
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
+    }
 
-    // }
-
-    // // どのcartか
-    // $_SESSION['cartinfo'] = array("how_get"=>array('cart'=$_SESSION['cart'],'c_code'=$_SESSION['c_code'],'howrec'=$_SESSION['howrec']));
+    // どのcartか
+    $_SESSION['cartinfo'] => array("how_get"=>array('cart'=$_SESSION['cart'],'c_code'=$_SESSION['c_code'],'howrec'=$_SESSION['howrec']));
 ?>
 
 <!DOCTYPE html>
@@ -117,9 +126,9 @@ try {
         <?php
         try {
             $s_region=$_GET['s_region'];
-            $sql = "SELECT s_name,s_region FROM store  where s_region = ?";
+            $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
             // SQL 文を準備
-            $stmt = $dbh->prepare($sql);
+            $stmt = $dbh->prepare($sql3);
             // SQL 文を実行
             $stmt->execute(array($s_region));
             $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
