@@ -107,8 +107,12 @@ try {
         </div>
         <hr>
         <div align="center">
+<<<<<<< HEAD:html/Region.php
 
             <form action="Result.html" method="post">
+=======
+            <form action="Result.php" method="post">
+>>>>>>> 432758e1d48b5cefa8e77668743aa77254aa9b29:php/Region.php
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>

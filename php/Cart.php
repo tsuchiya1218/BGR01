@@ -20,18 +20,6 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-//セッションID取得
-$sid = session_id();
-//"SELECT b_name,b_author,b_publisher,b_release
-//      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
-$sql = "SELECT b_name,b_author,b_publisher
-         ,b_release,b_thum,b_purchaseprice FROM book WHERE b_code = b_code";
-$stmt = $pdo->prepare($sql);
-$stmt->execute(array($sid));
-$array = $stmt->fetchAll();
-if (!$array) {
-    echo "カートの中に商品がありません。<br>";
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -48,7 +36,7 @@ if (!$array) {
 
 //$変数 = $_GET[''];
 //$b_code = $_GET['b_code'];
-
+$c_code = 1;
 
 ?>
 
@@ -58,7 +46,7 @@ if (!$array) {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -101,17 +89,31 @@ if (!$array) {
                         <tr>
                             <td>
                                 <div class="product">
-
+                                    <?php
+                                    //"SELECT b_name,b_author,b_publisher,b_release
+                                    //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                                                FROM book 
+                                                RIGHT JOIN buycart
+                                                ON book.b_code = buycart.b_code
+                                                WHERE c_code=$c_code";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute();
+                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    if (empty($array)) {
+                                        echo "カートの中に商品がありません。<br>";
+                                    }
+                                    ?>
                                     <!--書籍のDB化-->
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
+                                        <p class="btitle"><a href="Detail.php"><?= $value['b_name'] ?></a></p>
                                         <div class="description">
                                             <div class="info">
 
@@ -181,15 +183,27 @@ if (!$array) {
                         <tr>
                             <td>
                                 <div class="product">
-
+                                    <?php
+                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                                        FROM book 
+                                        RIGHT JOIN reservecart
+                                        ON book.b_code = reservecart.b_code
+                                        WHERE c_code=$c_code";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute();
+                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    if (empty($array)) {
+                                        echo "カートの中に商品がありません。<br>";
+                                    }
+                                    ?>
                                     <div class="checkbox">
                                         <input type="checkbox" id="check" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
@@ -239,15 +253,27 @@ if (!$array) {
                         <tr>
                             <td>
                                 <div class="product">
-
+                                    <?php
+                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                                            FROM book 
+                                            RIGHT JOIN rentalcart
+                                            ON book.b_code = rentalcart.b_code
+                                            WHERE c_code=$c_code";
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute();
+                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    if (empty($array)) {
+                                        echo "カートの中に商品がありません。<br>";
+                                    }
+                                    ?>
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
