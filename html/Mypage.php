@@ -123,7 +123,9 @@ try {
                 print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
                 print "<p>レンタル期限<br>~{$value['r_expiry']}</p>\n";
                 print "<p>レンタル価格<br>{$value['b_rentalprice']}円</p>\n";
-                print "<input type=\"button\" value=\"読む\">\n";
+                if($value['r_expiry']>date("Y-m-d H:i:s")){
+                    print "<input type=\"button\" value=\"読む\">\n";
+                }
                 print "</div>\n";
                 print "</div>\n";
                 print "</div>\n";
@@ -160,20 +162,20 @@ try {
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
             if (!empty($_GET['mottomirubuy'])) {
-                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
                         FROM book
                         RIGHT JOIN buycart ON book.b_code=buycart.b_code
                         RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
                         WHERE buydetail.c_code=?";
             } else if (!empty($_GET['buydate'])) {
                 $buydate = date('Y-m-d',  strtotime($_GET['buydate']));
-                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
                         FROM book
                         RIGHT JOIN buycart ON book.b_code=buycart.b_code
                         RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
                         WHERE buydetail.c_code=? AND bd_buydate='".$buydate."'";
             } else {
-                $sql4 = "SELECT TOP 3 book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+                $sql4 = "SELECT TOP 3 book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date,bc_totalamount
                         FROM book
                         RIGHT JOIN buycart ON book.b_code=buycart.b_code
                         RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
@@ -185,6 +187,7 @@ try {
                 $stmt4->execute(array($c_code));
                 $array4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
                 $stmt4 = null;
+                $pdo=null;
             } catch (PDOException $e) {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
@@ -201,8 +204,8 @@ try {
                 print "<div class=\"mainInfo\">\n";
                 print "<p>購入日<br>{$value['bd_buydate']}</p>\n";
                 print "<p>配送日<br>{$value['bd_deliverydate']}</p>\n";
-                print "<p>購入価格<br>{$value['b_purchaseprice']}円</p>\n";
-                print "<input type=\"button\" value=\"読む\">\n";
+                print "<p>受取日<br>{$value['get_date']}</p>\n";
+                print "<p>購入価格<br>{$value['bc_totalamount']}円</p>\n";
                 print "</div>\n";
                 print "</div>\n";
                 print "</div>\n";
