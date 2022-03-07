@@ -59,7 +59,7 @@ try {
         <div class="float">
             <h3>レンタルライブラリ</h3>
             <select name="" onchange="location.href=value">
-                <option value="" selected>フィルタを選択</option>
+                <option value="Mypage.php?null=1">フィルタを選択</option>
                 <?php
                 $c_code = 1;
                 $sql1 = "SELECT DISTINCT renral_date FROM rental WHERE c_code=? ORDER BY renral_date DESC";
@@ -82,19 +82,19 @@ try {
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
             try {
-                if (isset($_POST['mottomiru'])) {
-                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                if (!empty($_GET['mottomiru'])) {
+                    $sql2 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                             FROM book
                             RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
                             RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
                             WHERE rental.c_code=?";
-                } else if (isset($_POST['rentaldate'])) {
-                    $rentaldate = $_POST['rentaldate'];
-                    $sql2 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
+                } else if (!empty($_GET['rentaldate'])) {
+                    $rentaldate = date('Y-m-d',  strtotime($_GET['rentaldate']));
+                    $sql2 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                             FROM book
                             RIGHT JOIN rentalcart ON book.b_code=rentalcart.b_code
                             RIGHT JOIN rental ON rentalcart.c_code=rental.c_code
-                            WHERE rental.c_code=? AND rentaldate={$rentaldate} DESC";
+                            WHERE rental.c_code=? AND renral_date='".$rentaldate."'";
                 } else {
                     $sql2 = "SELECT top 3 book.b_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,renral_date,r_expiry
                             FROM book
@@ -139,7 +139,7 @@ try {
         <div class="float">
             <h3>購入履歴</h3>
             <select name="" onchange="location.href=value">
-                <option value="" selected>フィルタを選択</option>
+                <option value="Mypage.php?null=1">フィルタを選択</option>
                 <?php
                 $sql3 = "SELECT DISTINCT bd_buydate FROM buydetail WHERE c_code=? ORDER BY bd_buydate DESC";
                 try {
@@ -159,17 +159,19 @@ try {
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
-            if (isset($_POST['mottomirubuy'])) {
-                $sql4 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+            if (!empty($_GET['mottomirubuy'])) {
+                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN buydetail ON book.c_code=buydetail.c_code
+                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
+                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
                         WHERE buydetail.c_code=?";
-            } else if (isset($_POST['buydate'])) {
-                $buydate = $_POST['buydate'];
-                $sql4 = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
+            } else if (!empty($_GET['buydate'])) {
+                $buydate = date('Y-m-d',  strtotime($_GET['buydate']));
+                $sql4 = "SELECT DISTINCT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
-                        INNER JOIN rental ON book.c_code=rental.c_code
-                        WHERE buydetail.c_code=? AND bd_buydate={$buydate} DESC";
+                        RIGHT JOIN buycart ON book.b_code=buycart.b_code
+                        RIGHT JOIN buydetail ON buycart.c_code=buydetail.c_code
+                        WHERE buydetail.c_code=? AND bd_buydate='".$buydate."'";
             } else {
                 $sql4 = "SELECT TOP 3 book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum,b_synopsis1,b_synopsis2,b_synopsis3,bd_buydate,bd_deliverydate,get_method,get_date
                         FROM book
