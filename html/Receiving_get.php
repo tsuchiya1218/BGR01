@@ -103,70 +103,66 @@ try {
                     </div>
                 </form>
             <?php
+            
             } else {
-                // 違う場合
+            // 違う場合
             ?>
 
                 <h2>自宅受け取り</h2>
                 <?php
-                    // c_codeがない場合
-                   if (!($_SESSION['c_code'])==null) {
-                    $sql = 'SELECT c_address1,c_address2
-                                   FROM cstomers where c_coed = ?';
-                    try {
-                        // SQL 文を準備
-                        $stmt = $pdo->prepare($sql);
-                        // SQL 文を実行
-                        $stmt->execute();
-                        // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                        $stmt = null;
-                        $pdo = null;
-                    } catch (PDOException $e) {
-                        print "SQL 実行エラー!: " . $e->getMessage();
-                        exit();
-                    } 
+                
+                $sql = 'SELECT c_address1,c_address2
+                                FROM customers where c_code = ?';
+                try {
+                    // SQL 文を準備
+                    $stmt = $pdo->prepare($sql);
+                    // SQL 文を実行
+                    $stmt->execute();
+                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt = null;
+                    $pdo = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
                 ?>
+
                 <p>住所選択</p>
                 <form action="Verification.html" method="POST">
                     <input type="radio" name="memberaddress" value="会員情報の住所の表示">
-                    <?php
-            // s_regionのデータが入っていた場合
-            if (isset($_GET['c_code'])) {
-                foreach ($array as $value) {
-
-
-            ?>
+                <?php
+                // s_regionのデータが入っていた場合
+                if (isset($_GET['c_code'])) {
+                    foreach ($array as $value) {
+                ?>
                 <form action="../html/verification.php" method="get">
                     <p><?=$value['c_address1']+$value['c_addres2']?></p>
                 </form>
 
-            <?php
-                }
-            } else {
-                echo 'c_codeのデータが入っていません';
-            }
-
-            ?>
-                    <input type="radio" name="memberaddress" onclik=changeDisabled()>
+                <?php
+                    }
+                ?>
+                <input type="radio" name="memberaddress" onclik=changeDisabled()>
                     <input type="text" name="inputtext" size="50" placeholder="住所を入力" disabled></p>
                     <input type="submit" value="次へ">
                 </form>
-        <?php
+                <?php
+                }
             }
-        } else {
-            echo "selectのデータが入っていません";
+            ?>
+                    
+        <?php
         }
-        //} 
         ?>
     </main>
 </body>
 <script>
     function changeDisabled() {
         if ( document.Form1["memberaddress"][2].checked ) { // 「住所を入力」のラジオボタンをクリックしたとき
-        document . Form1["inputNumber"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
+        document . Form1["inputtext"] . disabled = false; // 「住所を入力」のラジオボタンの横のテキスト入力欄を有効化
     } else { // 「住所を入力」のラジオボタン以外をクリックしたとき
-        document . Form1["inputNumber"] . disabled = true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
+        document . Form1["inputtext"] . disabled = true; // 「住所を入力」のラジオボタンの横のテキスト入力欄を無効化
     }
 }
 </script>
