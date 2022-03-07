@@ -72,7 +72,7 @@ try {
                     print "SQL実行エラー！:" . $e->getMessage();
                     exit();
                 }
-                foreach ($array as $value) {
+                foreach ($array as $key => $value) {
                     print "<option value=\"Mypage.php?rentaldate={$value['renral_date']}\">{$value['renral_date']}</option>";
                 }
                 ?>
@@ -108,7 +108,7 @@ try {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
             }
-            foreach ($array as $value) {
+            foreach ($array as $key => $value) {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
@@ -185,7 +185,7 @@ try {
                 print "SQL実行エラー！:" . $e->getMessage();
                 exit();
             }
-            foreach ($array as $value) {
+            foreach ($array as $key => $value) {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
