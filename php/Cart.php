@@ -161,7 +161,7 @@ $c_code = 1;
                                                         <p align="right">
                                                             数量
                                                             <input type="button" value="-" onclick="subOne(0)">
-                                                            <input type="number" class="counter" onchange="updateCart(1,$value['b_code'],$c_code)" id="$value['b_code']">
+                                                            <input type="number" class="counter" onchange="updateCart(1,<?= $value['b_code'] ?>,<?= $c_code ?>)" id="<?= $value['b_code'] ?>">
                                                             <input type="button" value="+" onclick="addOne(0)">
                                                         <form action="../html/addCart.php" method="GET">
                                                             <!--<input type="hidden" name="" value=""-->
@@ -318,19 +318,13 @@ $c_code = 1;
                                         </div>
                                     </td>
                                 </tr>
-                        <?php
-                            }
-                        }
-                        ?>
+                            <?=}?>
+                        <!-- 小計 -->
+                        <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
+                        <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
+                        <?=}?>
                     </table>
                 </div>
-
-                <!-- 小計 -->
-                <?php
-
-                ?>
-                <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
-                <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
             </div>
         </form>
 
