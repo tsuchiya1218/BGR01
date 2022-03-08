@@ -81,8 +81,6 @@ input[name="tab_item"] {
   justify-content: space-around; 
   overflow: hidden;
   display: flex;
-  border-bottom: 5px solid lightblue;
-  padding-bottom: 30px; /* 内容と線との間隔量 */
 }
 td{
   width: 40%;
@@ -91,7 +89,6 @@ td{
   font-weight: bolder;
   height: auto;
   font-size: x-large;
-  padding: auto;
   vertical-align: baseline;
 }
 .btitle a{
@@ -111,10 +108,13 @@ td{
   padding:10px 5px;
 }
 .description{
-  display: flex;
   justify-content: space-between;
- 
 }
 .gokei{
   text-align: right;
+}
+
+.info,.info2{
+  display: flex;
+  
 }
