@@ -1,5 +1,4 @@
 <?php
-session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -101,9 +100,9 @@ $c_code = 1;
                                                 FROM book 
                                                 RIGHT JOIN buycart
                                                 ON book.b_code = buycart.b_code
-                                                WHERE c_code=$c_code";
+                                                WHERE c_code = ?";
                                     $stmt = $pdo->prepare($sql);
-                                    $stmt->execute();
+                                    $stmt->execute(array($c_code));
                                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     if (empty($array)) {
                                         echo "カートの中に商品がありません。<br>";
@@ -111,7 +110,7 @@ $c_code = 1;
                                     ?>
                                     <!--書籍のDB化-->
                                     <div class="checkbox">
-                                        <input type="checkbox" name="check">
+                                        <input type="checkbox" id="check" value="500" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
                                     </div>
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
@@ -189,16 +188,16 @@ $c_code = 1;
                                         FROM book 
                                         RIGHT JOIN reservecart
                                         ON book.b_code = reservecart.b_code
-                                        WHERE c_code=$c_code";
+                                        WHERE c_code = ? ";
                                     $stmt = $pdo->prepare($sql);
-                                    $stmt->execute();
+                                    $stmt->execute(array($c_code));
                                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     if (empty($array)) {
                                         echo "カートの中に商品がありません。<br>";
                                     }
                                     ?>
                                     <div class="checkbox">
-                                        <input type="checkbox" id="check" name="check">
+                                        <input type="checkbox" id="check" value="300" onclick="calcTotal()"> <!--$value['b_purchaseprice']-->
                                     </div>
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
@@ -255,20 +254,20 @@ $c_code = 1;
                             <td>
                                 <div class="product">
                                     <?php
-                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum
                                             FROM book 
                                             RIGHT JOIN rentalcart
                                             ON book.b_code = rentalcart.b_code
-                                            WHERE c_code=$c_code";
+                                            WHERE c_code= ?";
                                     $stmt = $pdo->prepare($sql);
-                                    $stmt->execute();
+                                    $stmt->execute(array($c_code));
                                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     if (empty($array)) {
                                         echo "カートの中に商品がありません。<br>";
                                     }
                                     ?>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="check">
+                                        <input type="checkbox" id="check" value="800" onclick="calcTotal()"> <!--$value['b_rentalprice']-->
                                     </div>
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
@@ -306,7 +305,7 @@ $c_code = 1;
                 <?php
 
                 ?>
-                <p class="gokei" name="total">小計&yen;<input type="text" placeholder="---" id="amount"></p>
+                <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
                 <footer>
                     &copy;It's a book but it's not a book!
