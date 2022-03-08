@@ -122,25 +122,47 @@ $c_code = 1;
                             </div>
 
                             <div class="mainlight">
+                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                        <div class="description">
+                                            <div class="info">
+                                                <?php
+                                                //foreach($array as $row){  
+                                                //echo "{$row["b_author"]}";
+                                                //echo "{$row["b_publisher"]}";
+                                                //echo "{$row["b_release"]}";
+                                                ?>
+                                                <!--著者-->
+                                                <p><?= $value['b_author'] ?></p>
+                                                <!--出版社-->
+                                                <p><?= $value['b_publisher'] ?></p>
+                                                <!--発行年月-->
+                                                <p><?= $value['b_release'] ?></p>
+                                            </div>
 
-
-
-                                            ?>
-                                            <input type="button" value="-" onclick="subOne(0)">
-                                            <input type="number" value="0" class="counter">
-                                            <input type="button" value="+" onclick="addOne(0)">
-                                        <form action="../html/deleteCart.php" method="GET">
-                                            <input type="hidden" name="delete" value="">
-                                            <input type="reset" value="削除">
-                                            <!--購入した商品一つをカートから削除-->
-                                        </form>
-                                        </p>
+                                            <div class="info2">
+                                                <p>価格（税込）</p>
+                                                <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                                <p align="right">
+                                                    数量
+                                                    <select name="qty">
+                                                        <option value="1" selected>1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                <form action="../html/addCart.php" method="GET">
+                                                    <!--<input type="hidden" name="" value=""-->
+                                                    <input type="reset" value="削除">
+                                                    <!--購入した商品一つをカートから削除-->
+                                                </form>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
                                 <!--foreachでカートに追加したものを表示-->
-                                <?php
-                                foreach ($array as $row) {
+                                
+                                <!--foreach ($array as $row) {
                                     echo "<tr>";
                                     echo "<td>";
                                     echo "<img class='thum' src='../image/<?= $value['b_thum'] ?>' onclick=location.href='Detail.html'>";
@@ -171,9 +193,7 @@ $c_code = 1;
                                 foreach ($count as $qty) {
                                     echo '<option value="', $qty, '">', $qty, '</option>';
                                 }
-                                echo "</select>";
-
-                                ?>
+                                echo "</select>";-->              
 
                             </div>
                         </div>
@@ -322,3 +342,7 @@ $c_code = 1;
 </body>
 
 </html>
+
+<input type="button" value="-" onclick="subOne(0)">
+                                    <input type="number" value="0" class="counter">
+                                    <input type="button" value="+" onclick="addOne(0)">
