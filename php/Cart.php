@@ -294,26 +294,21 @@ function subOne(cnt){
                                             <!--発行年月-->
                                             <p><?= $value['b_release'] ?></p>
                                         </div>
-
                                         <div class="info2">
-                                            <p>価格（税込）</p>
-                                            <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                            <p align="right">
-                                                数量
-                                                <select name="qty">
-                                                    <option value="1" selected>1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            <form action="../html/addCart.php" method="GET">
-                                                <!--<input type="hidden" name="" value=""-->
-                                                <input type="reset" value="削除">
-                                                <!--購入した商品一つをカートから削除-->
-                                            </form>
-                                            </p>
-                                        </div>
+                                                <p>価格（税込）</p>
+                                                <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                                <p align="right">
+                                                    数量
+                                                    <input type="button" value="-" onclick="subOne(0)">
+                                                    <input type="number" value="0" class="counter">
+                                                    <input type="button" value="+" onclick="addOne(0)">
+                                                    <form action="../html/addCart.php" method="GET">
+                                                        <!--<input type="hidden" name="" value=""-->
+                                                        <input type="reset" value="削除">
+                                                        <!--購入した商品一つをカートから削除-->
+                                                    </form>
+                                                </p>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
