@@ -19,6 +19,13 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+
+$sql = "SELECT b_name,b_author,b_publisher
+         ,b_release,b_thum,b_purchaseprice FROM book  ";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$array = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -87,93 +94,89 @@ $c_code = 1;
                 <input id="rental" type="radio" name="tab_item">
                 <label class="tab_item" for="rental">レンタル</label>
 
-                <!--購入-->
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
-                        <tr>
-                            <td>
-                                <div class="product">
-                                    <?php
-                                    //"SELECT b_name,b_author,b_publisher,b_release
-                                    //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
-                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
-                                                FROM book 
-                                                RIGHT JOIN buycart
-                                                ON book.b_code = buycart.b_code
-                                                WHERE c_code = ?";
-                                    $stmt = $pdo->prepare($sql);
-                                    $stmt->execute(array($c_code));
-                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    if (empty($array)) {
-                                        echo "カートの中に商品がありません。<br>";
-                                    }
-                                    ?>
-                                    <!--書籍のDB化-->
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="check" value="500" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
-                                    </div>
+                        <div class="product">
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
+                            <?php
+                            //"SELECT b_name,b_author,b_publisher,b_release
+                            //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+                            $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                                        FROM book 
+                                        RIGHT JOIN buycart
+                                        ON book.b_code = buycart.b_code
+                                        WHERE c_code = ?";
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute(array($c_code));
+                            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            if (empty($array)) {
+                                echo "カートの中に商品がありません。<br>";
+                            }
+                            ?>
 
+                            <!--書籍のDB化-->
+                            <!-- checkbox value price -->
+                            
+                            <div class="checkbox">
+                                <input type="checkbox" id="check" value="500" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
+                            </div>
 
-                                    <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.php"><?= $value['b_name'] ?></a></p>
-                                        <div class="description">
-                                            <div class="info">
-
-                                                <!--foreachを使うかどうか-->
-                                                <?php
-                                                //foreach($array as $row){  
-                                                //echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
-                                                //echo "<div class='description'>";
-                                                //echo "<div class='info'>";
-                                                //echo "<p>{$row["b_author"]}</p>";
-                                                //echo "<p>{$row["b_publisher"]}</p>";
-                                                //echo "<p>{$row["b_release"]}</p>";
-                                                //echo "</div>";
-                                                //echo "<div class="info2">";
-                                                //echo "<p>価格(税込)</p>";
-                                                //echo "<p name="price">&yen;{$row["b_purchaseprice"]}</p>"
-                                                //echo "<p align="right">"
-                                                //echo 数量
-                                                //
-                                                ?>
-                                                <!--著者-->
-                                                <p><?= $value['b_author'] ?></p>
-                                                <!--出版社-->
-                                                <p><?= $value['b_publisher'] ?></p>
-                                                <!--発行年月-->
-                                                <p><?= $value['b_release'] ?></p>
-
-                                            </div>
-
-                                            <div class="info2">
-                                                <p>価格（税込）</p>
-                                                <p name="price">&yen; <?= $value['b_purchaseprice'] ?></p>
-                                                <p align="right">
-                                                    数量
-
-                                                    <?php
-                                                    //在庫の個数分セレクトボックスに反映
-                                                    $countsql = "SELECT b_stock FROM book WHERE $b_code = b_code";
+                            <div class="mainlight">
 
 
-                                                    ?>
-                                                    <input type="button" value="-" onclick="subOne(0)">
-                                                    <input type="number" value="0" class="counter">
-                                                    <input type="button" value="+" onclick="addOne(0)">
-                                                <form action="../html/deleteCart.php" method="GET">
-                                                    <input type="hidden" name="delete" value="">
-                                                    <input type="reset" value="削除">
-                                                    <!--購入した商品一つをカートから削除-->
-                                                </form>
-                                                </p>
-                                            </div>
-                                        </div>
+
+                                            ?>
+                                            <input type="button" value="-" onclick="subOne(0)">
+                                            <input type="number" value="0" class="counter">
+                                            <input type="button" value="+" onclick="addOne(0)">
+                                        <form action="../html/deleteCart.php" method="GET">
+                                            <input type="hidden" name="delete" value="">
+                                            <input type="reset" value="削除">
+                                            <!--購入した商品一つをカートから削除-->
+                                        </form>
+                                        </p>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
+
+                                <!--foreachでカートに追加したものを表示-->
+                                <?php
+                                foreach ($array as $row) {
+                                    echo "<tr>";
+                                    echo "<td>";
+                                    echo "<img class='thum' src='../image/<?= $value['b_thum'] ?>' onclick=location.href='Detail.html'>";
+                                    echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
+                                    echo "<div class='description'>";
+                                    echo "<div class='info'>";
+                                    echo "<p>{$row["b_author"]}</p>";
+                                    echo "<p>{$row["b_publisher"]}</p>";
+                                    echo "<p>{$row["b_release"]}</p>";
+                                    echo "</div>";
+                                    echo "<div class='info2'>";
+                                    echo "<p>価格(税込)</p>";
+                                    echo "<p name='price'>&yen;{$row["b_purchaseprice"]}</p>";
+                                    echo "</tr>";
+                                    echo "</td>";
+                                    // break;
+                                }
+
+
+                                echo "<p align='right'>";
+                                echo "数量";
+                                //DBから書籍のStockに応じてプルダウンの中身を変える
+
+                                $countsql = "SELECT b_stock FROM book";
+                                $countsql = $pdo->prepare($countsql);
+                                $countsql->execute();
+                                echo "<select name='qty'>";
+                                foreach ($count as $qty) {
+                                    echo '<option value="', $qty, '">', $qty, '</option>';
+                                }
+                                echo "</select>";
+
+                                ?>
+
+                            </div>
+                        </div>
                     </table>
                 </div>
 
@@ -183,6 +186,7 @@ $c_code = 1;
                         <tr>
                             <td>
                                 <div class="product">
+
                                     <?php
                                     $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                                         FROM book 
@@ -196,14 +200,15 @@ $c_code = 1;
                                         echo "カートの中に商品がありません。<br>";
                                     }
                                     ?>
+
                                     <div class="checkbox">
                                         <input type="checkbox" id="check" value="300" onclick="calcTotal()"> <!--$value['b_purchaseprice']-->
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
@@ -247,6 +252,7 @@ $c_code = 1;
                     </table>
                 </div>
 
+
                 <!--レンタル-->
                 <div class="tab_content" id="rental_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
@@ -270,10 +276,10 @@ $c_code = 1;
                                         <input type="checkbox" id="check" value="800" onclick="calcTotal()"> <!--$value['b_rentalprice']-->
                                     </div>
 
-                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.php'">
+                                    <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
 
                                     <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.php">地底旅行</a></p>
+                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
                                         <div class="description">
                                             <div class="info">
                                                 <?php
