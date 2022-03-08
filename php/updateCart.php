@@ -20,26 +20,22 @@
     }
 
     //商品IDと数とカートの種類と顧客コードの値を受け取ってUPDATE文で更新
-
-    /*
-
-    $cart = $_GET[''];
-    $qty = $_GET[''];
-    $b_code = $_GET[''];
-    $c_code = $_GET[''];
+    $cart = $_GET['cart'];
+    $qty = $_GET['qty'];
+    $b_code = $_GET['b_code'];
+    $c_code = $_GET['c_code'];
     
-    if(購入カート){
+    if($cart==1){
         $sql = "UPDATE buycart
                 SET    bc_qty = $qty
                 WHERE　b_code = $b_code
                 AND c_code = $c_code";
-    }else if(予約カート){
+    }else if($cart==2){
         $sql = "UPDATE reservecart
                 SET    rc_qty = $qty 
                 WHERE　b_code = $b_code
                 AND c_code = $c_code";
     }
-    */
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -48,4 +44,5 @@
         print "SQL実行エラー！:" . $e->getMessage();
         exit();
     }
+    header('Location:Cart.php');
 ?>

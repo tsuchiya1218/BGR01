@@ -223,7 +223,7 @@ function subOne(cnt){
                                                 <p align="right">
                                                     数量
                                                     <input type="button" value="-" onclick="subOne(0)">
-                                                    <input type="number" value="0" class="counter">
+                                                    <input type="number" class="counter" onchange="updateCart(1,$value['b_code'],$c_code)" id="$value['b_code']">
                                                     <input type="button" value="+" onclick="addOne(0)">
                                                     <form action="../html/addCart.php" method="GET">
                                                         <!--<input type="hidden" name="" value=""-->
@@ -300,7 +300,7 @@ function subOne(cnt){
                                                 <p align="right">
                                                     数量
                                                     <input type="button" value="-" onclick="subOne(0)">
-                                                    <input type="number" value="0" class="counter">
+                                                    <input type="number" value="0" class="counter" onchange="updateCart(2,$value['b_code'],$c_code)" id="$value['b_code']">
                                                     <input type="button" value="+" onclick="addOne(0)">
                                                     <form action="../html/addCart.php" method="GET">
                                                         <!--<input type="hidden" name="" value=""-->
@@ -387,6 +387,7 @@ function subOne(cnt){
             </div>
         </form>
     </main>
+    <script src="../JavaScript/cart.js"></script>
 </body>
 
 </html>
