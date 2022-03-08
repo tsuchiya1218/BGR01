@@ -161,7 +161,7 @@ $c_code = 1;
                                                         <p align="right">
                                                             数量
                                                             <input type="button" value="-" onclick="subOne(0)">
-                                                            <input type="number" class="counter" onchange="updateCart(1,<?= $value['b_code'] ?>,<?= $c_code ?>)" id="<?= $value['b_code'] ?>">
+                                                            <input type="number" class="counter" onchange="updateCart(1,<?=$value['b_code']?>,<?=$c_code?>)" id="<?=$value['b_code']?>">
                                                             <input type="button" value="+" onclick="addOne(0)">
                                                         <form action="../html/addCart.php" method="GET">
                                                             <!--<input type="hidden" name="" value=""-->
@@ -239,7 +239,7 @@ $c_code = 1;
                                                         <p align="right">
                                                             数量
                                                             <input type="button" value="-" onclick="subOne(0)">
-                                                            <input type="number" value="0" class="counter" onchange="updateCart(2,$value['b_code'],$c_code)" id="$value['b_code']">
+                                                            <input type="number" value="0" class="counter" onchange="updateCart(2,<?=$value['b_code']?>,<?=$c_code?>)" id="<?=$value['b_code']?>">
                                                             <input type="button" value="+" onclick="addOne(0)">
                                                         <form action="../html/addCart.php" method="GET">
                                                             <!--<input type="hidden" name="" value=""-->
@@ -331,11 +331,11 @@ $c_code = 1;
 
 
     </main>
-    <script src="../JavaScript/cart.js"></script>
+        <script src="../JavaScript/cart.js"></script>
     <footer>
         &copy;It's a book but it's not a book!
     </footer>
-    
+
 </body>
 
 </html>
