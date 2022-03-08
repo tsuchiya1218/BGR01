@@ -112,7 +112,7 @@ $c_code = 1;
                         $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
                             RIGHT JOIN buycart
-                            ON book.b_code = buyecart.b_code
+                            ON book.b_code = buycart.b_code
                             WHERE c_code = ? ";
                         try {
                             $stmt = $pdo->prepare($sql);
