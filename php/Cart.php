@@ -214,7 +214,7 @@ $c_code = 1;
                                                 <!--$value['b_purchaseprice']-->
                                             </div>
 
-                                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" height="250" width="200" onclick="location.href='Detail.html'">
 
                                             <div class="mainlight">
                                                 <p class="btitle"><a href="Detail.html">地底旅行</a></p>
@@ -291,10 +291,10 @@ $c_code = 1;
                                                 <!--$value['b_rentalprice']-->
                                             </div>
 
-                                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
+                                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" height="250" width="200" onclick="location.href='Detail.html'">
 
                                             <div class="mainlight">
-                                                <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                                <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
                                                 <div class="description">
                                                     <div class="info">
                                                         <?php
