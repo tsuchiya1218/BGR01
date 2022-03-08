@@ -49,8 +49,11 @@ if (!$array) {
 //$変数 = $_GET[''];
 //$b_code = $_GET['b_code'];
 
-
 ?>
+<script src="../JavaScript/update.js"></script>
+<script type="text/javascript">
+
+</script>
 
 <body>
     <header>
@@ -77,7 +80,7 @@ if (!$array) {
         <hr>
     </header>
     <main>
-
+        <!--受け取り方法選択-->
         <form action="../html/Receiving.php" name="receiving" method="GET">
 
 
@@ -153,13 +156,9 @@ if (!$array) {
 
 
                                                     ?>
-                                                    <select name="qty">
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
+                                                    <input type="button" value="-" onclick="subOne(0)">
+                                                    <input type="number" value="0" class="counter">
+                                                    <input type="button" value="+" onclick="addOne(0)">
                                                 <form action="../html/deleteCart.php" method="GET">
                                                     <input type="hidden" name="delete" value="">
                                                     <input type="reset" value="削除">
@@ -279,7 +278,7 @@ if (!$array) {
                 <?php
 
                 ?>
-                <p class="gokei" name="total">小計 ----\</p>
+                <p class="gokei" name="total">小計&yen;<input type="text" placeholder="---" id="amount"></p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
                 <footer>
                     &copy;It's a book but it's not a book!
