@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //データベースに接続する
     try {
         $server_name = "10.42.129.3";	// サーバ名
@@ -19,9 +20,36 @@
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
-    session_start();
-    unset($_SESSION['b_thum']['b_name']['b_author']['b_publisher']['b_release']['b_purchaseprice']);
-
-
+    
+    $b_code = $_GET['b_code'];
+    $b_code = $_GET['c_code'];
+    //buycart
+    if(){
+    try{
+        $deletebuy = "DELETE FROM buycart WHERE $b_code = b_code";
+        $stmtdeb = $pdo->prepare($deletebuy);
+        $stmtdeb ->execute($b_code);
+        $arraydeb = $stmt ->fetch(PDO::FetchBOTH);
+    } catch ( PDOException $e ) {
+    print "接続エラー!: " . $e->getMessage ();
+    exit();
+    }
+    //reservecart
+}elseif(){
+    try{
+        $d = "DELETE FROM reservecart WHERE $b_code = b_code";
+    } catch ( PDOException $e ) {
+        print "接続エラー!: " . $e->getMessage ();
+        exit();
+    }
+    //rentalcart
+}elseif(){
+    try{
+        $d = "DELETE FROM rentalcart WHERE $b_code = b_code";
+    } catch ( PDOException $e ) {
+        print "接続エラー!: " . $e->getMessage ();
+        exit();
+    }
+}
     
 ?>
