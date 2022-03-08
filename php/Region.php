@@ -25,6 +25,19 @@ try {
 <?php
 //cartが購入だった場合
 if ($_SESSION['cart'] == 'buy') {
+    try {
+        $s_region = $_GET['s_region'];
+        $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
+        // SQL 文を準備
+        $stmt = $dbh->prepare($sql3);
+        // SQL 文を実行
+        $stmt->execute(array($s_region));
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = null;
+    } catch (PDOException $e) {
+        print "接続エラー!: " . $e->getMessage();
+        exit();
+    }
 }
 //cartがレンタルだった場合
 if ($_SESSION['cart'] == 'retal') {
