@@ -31,13 +31,13 @@ try {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="post">
+            <form action="Result.php" method="post">
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
