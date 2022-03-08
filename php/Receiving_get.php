@@ -23,6 +23,7 @@ try {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -91,7 +92,7 @@ try {
                 <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
                 <h2>店舗受け取り</h2>
                 <p>地域選択</p>
-                <form action="../html/Region.php" method="get">
+                <form action="Region.php" name="Acceptance" method="get" value="店舗">
                     <div class="flbox">
                         <div class="fl"><a href="../html/Region.php?s_region=北海道" class="btn">北海道</a></div>
                         <div class="fl"><a href="../html/Region.php?s_region=東北" class="btn">東北</a></div>
@@ -111,9 +112,11 @@ try {
 
                 <h2>自宅受け取り</h2>
                 <?php
+                // テスト
                 $c_code = $_GET['c_code'] = 1;
+
                 $sql = 'SELECT c_address1,c_address2
-                                 FROM customers where c_code=?';
+                        FROM customers where c_code=?';
                 try {
                     // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
@@ -136,7 +139,7 @@ try {
                 // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
-                    <form action="../html/verification.php" method="get">
+                    <form action="Region.php" name="Acceptance" method="get" value="郵送">
 
                     <?php
                 }
@@ -161,19 +164,18 @@ try {
     </main>
 </body>
 <script type="text/javascript">
-
     var text = document.getElementById("inputtext");
     text.disabled = true;
-    
+
     var add1 = document.getElementById("add1");
-    add1.addEventListener("click" , function(){
-        if(add1.checked){
+    add1.addEventListener("click", function() {
+        if (add1.checked) {
             text.disabled = true;
         }
     })
     var add2 = document.getElementById("add2");
-    add2.addEventListener("click" , function(){
-        if(add2.checked){
+    add2.addEventListener("click", function() {
+        if (add2.checked) {
             text.disabled = false;
         }
 

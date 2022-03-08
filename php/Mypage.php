@@ -116,7 +116,7 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/".$value['b_thum']."\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
@@ -201,7 +201,7 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/{$value['b_thum']}\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/".$value['b_thum']."\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"300px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
