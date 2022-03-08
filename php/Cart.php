@@ -331,10 +331,11 @@ $c_code = 1;
 
 
     </main>
+    <script src="../JavaScript/cart.js"></script>
     <footer>
         &copy;It's a book but it's not a book!
     </footer>
-    <script src="../JavaScript/cart.js"></script>
+    
 </body>
 
 </html>
