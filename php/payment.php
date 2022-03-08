@@ -68,7 +68,24 @@ try {
         <form action="Verification.php" method="get">
             <?php
             //$how_cartはnullじゃなかったら
-            $how_cart = array($_SESSION['buy'], $_SESSION['retal'], $_SESSION['reserve']);
+
+            try {
+                $_GET['c_address'];
+                $buy = $_SESSION['buy'];
+                $retal = $_SESSION['retal'];
+                $reserve = $_SESSION['reserve'];
+                // SQL 文を準備
+                //$stmt = $pdo->prepare();
+                // SQL 文を実行
+                $stmt->execute(array($buy,$retal,$reserve));
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = null;
+                $pdo = null;
+            } catch (PDOException $e) {
+                print "接続エラー!: " . $e->getMessage();
+                exit();
+            }
             ?>
             <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
             <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い

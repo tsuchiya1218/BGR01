@@ -139,7 +139,7 @@ try {
                 // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
-                    <form action="Region.php" name="Acceptance" method="get" value="郵送">
+                    <form action="Region.php" name="Acceptance" method="get">
 
                     <?php
                 }
@@ -149,6 +149,7 @@ try {
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
+                    <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
                 <?php
