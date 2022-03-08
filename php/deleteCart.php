@@ -22,30 +22,37 @@
     }
     
     $b_code = $_GET['b_code'];
-    $b_code = $_GET['c_code'];
+    $b = $_GET['b'];
+    $c_code = $_GET['c_code'];
     //buycart
-    if(){
+    if($b == 'buycart'){
     try{
-        $deletebuy = "DELETE FROM buycart WHERE $b_code = b_code";
+        $deletebuy = "DELETE FROM buycart WHERE $b_code = b_code AND $c_code = c_code";
         $stmtdeb = $pdo->prepare($deletebuy);
-        $stmtdeb ->execute($b_code);
-        $arraydeb = $stmt ->fetch(PDO::FetchBOTH);
+        $stmtdeb ->execute();
+        $arraydeb = $stmt ->fetch(PDO::FETCH_BOTH);
     } catch ( PDOException $e ) {
     print "接続エラー!: " . $e->getMessage ();
     exit();
     }
     //reservecart
-}elseif(){
+}elseif($b == 'reservecart'){
     try{
-        $d = "DELETE FROM reservecart WHERE $b_code = b_code";
+        $deletereserve = "DELETE FROM reservecart WHERE $b_code = b_code AND $c_code = c_code";
+        $stmtder = $pdo->prepare($deletereserve);
+        $stmtder ->execute();
+        $arrayder = $stmt ->fetch(PDO::FETCH_BOTH);
     } catch ( PDOException $e ) {
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
     //rentalcart
-}elseif(){
+}elseif($b == 'rentalcart'){
     try{
-        $d = "DELETE FROM rentalcart WHERE $b_code = b_code";
+        $deleterental = "DELETE FROM rentalcart WHERE $b_code = b_code AND $c_code = c_code";
+        $stmtdel = $pdo->prepare($deleterental);
+        $stmtdel ->execute();
+        $arraydel = $stmt ->fetch(PDO::FETCH_BOTH);
     } catch ( PDOException $e ) {
         print "接続エラー!: " . $e->getMessage ();
         exit();
