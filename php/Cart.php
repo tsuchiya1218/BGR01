@@ -19,11 +19,13 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+<<<<<<< HEAD:html/Cart.php
 $sql = "SELECT b_name,b_author,b_publisher
          ,b_release,b_thum,b_purchaseprice FROM book  ";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $array = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -40,7 +42,7 @@ $array = $stmt->fetchAll();
 
 //$変数 = $_GET[''];
 //$b_code = $_GET['b_code'];
-
+$c_code = 1;
 
 ?>
 
@@ -50,7 +52,7 @@ $array = $stmt->fetchAll();
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
@@ -87,19 +89,16 @@ $array = $stmt->fetchAll();
                 <input id="rental" type="radio" name="tab_item">
                 <label class="tab_item" for="rental">レンタル</label>
 
-                <!--購入-->
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                                 <div class="product">
 
                                     <!--書籍のDB化-->
                                     <!-- checkbox value price -->
+                                    
                                     <div class="checkbox">
                                         <input type="checkbox" name="check">
                                     </div>
-
-                                    
-
 
                                     <div class="mainlight">
 

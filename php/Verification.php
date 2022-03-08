@@ -1,4 +1,7 @@
+<html lang="ja">
 <?php
+
+session_start();
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
@@ -12,8 +15,6 @@ try {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="ja">
 
 <head>
     <title></title>
@@ -27,28 +28,42 @@ try {
 <body>
     <header>
         <div id="top">
-            <h1 id="title">BOOK ON</h1>
+            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form action="Result.php" method="GET">
+                <select name="serchCondition">
+                    <option value="b_title" selected>書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="serchWord">
+                <input type="submit" value="🔍">
+                <input type="button" value="詳細検索" onclick="location.href=''">
+            </form>
         </div>
         <hr>
     </header>
-    <?php
-        
-    ?>
     <main>
+<?php
+$how_cart = $_SESSION['cart'];
+if(!empty($how_cart)){
+    if($how_cart == 'buy'){
+        
+    }elseif($how_cart == 'reserve'){
+        
+    }elseif($how_cart =='rental'){
+
+    }
+}else{
+    
+}
+?>
         <h3>購入内容</h3>
         <div class="list">
             <div class="b_thum">
@@ -56,7 +71,7 @@ try {
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=1" class="title">地底旅行</a>
+                    <a href="Detail.php?book_id=1" class="title">地底旅行</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;847</a>
@@ -70,7 +85,7 @@ try {
             </div>
             <div class="other">
                 <div class="b_name">
-                    <a href="Detail.html?book_id=2" class="title">地球の歩き方(インド)</a>
+                    <a href="Detail.php?book_id=2" class="title">地球の歩き方(インド)</a>
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;1900</a>
@@ -86,7 +101,7 @@ try {
                     <a>合計金額</a>
                 </div>
                 <div class="a_price">
-                    <a id="price">&yen;1670</a>
+                    <a id="price">&yen;2747</a>
                 </div>
             </div>
         </div>
