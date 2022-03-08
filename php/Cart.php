@@ -46,8 +46,29 @@ $array = $stmt->fetchAll();
 $c_code = 1;
 
 ?>
-<script src="../JavaScript/update.js"></script>
+
 <script type="text/javascript">
+var price = document.getElementById('check');
+    var amount = document.getElementById('amount');
+    price.addEventListener('click',function(){
+        amount.value += price ;
+    })
+
+let counter = document.getElementsByClassName("counter");
+
+//加算
+function addOne(cnt){
+	let counter = document.getElementsByClassName("counter").item(cnt);
+    counter.value = Number(counter.value) + 1;
+}
+
+//減算
+function subOne(cnt){
+	let counter = document.getElementsByClassName("counter").item(cnt);
+    if(counter.value>0){
+        counter.value = Number(counter.value) - 1;
+    }
+}
 
 </script>
 
@@ -83,54 +104,111 @@ $c_code = 1;
             <div class="tab">
 
                 <!--購入タブ-->
-                <input id="buy" type="radio" name="tab_item">
+                <input id="buy" type="radio" name="tab_item" checked>
                 <label class="tab_item" for="buy">購入</label>
+
+                <?php
+                //"SELECT b_name,b_author,b_publisher,b_release
+                //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+                
+                $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                            FROM book 
+                            RIGHT JOIN buycart
+                            ON book.b_code = buycart.b_code
+                            WHERE c_code = ?";
+                try{
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(array($c_code));
+                $array1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $sql = null;
+                $stmt = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+                if (empty($array)) {
+                    echo "カートの中に商品がありません。<br>";
+                }
+                ?>
+
 
                 <!--予約タブ-->
                 <input id="reserve" type="radio" name="tab_item">
                 <label class="tab_item" for="reserve">予約</label>
+                
+                <?php
+                //"SELECT b_name,b_author,b_publisher,b_release
+                //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+                
+                $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                            FROM book 
+                            RIGHT JOIN buycart
+                            ON book.b_code = buycart.b_code
+                            WHERE c_code = ?";
+                try{
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(array($c_code));
+                $array2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $sql = null;
+                $stmt = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+                if (empty($array)) {
+                    echo "カートの中に商品がありません。<br>";
+                }
+                ?>
 
                 <!--レンタルタブ-->
                 <input id="rental" type="radio" name="tab_item">
                 <label class="tab_item" for="rental">レンタル</label>
 
+                <?php
+                //"SELECT b_name,b_author,b_publisher,b_release
+                //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
+                
+                $sql = "SELECT b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum
+                            FROM book 
+                            RIGHT JOIN buycart
+                            ON book.b_code = buycart.b_code
+                            WHERE c_code = ?";
+                try{
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(array($c_code));
+                $array3 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $sql = null;
+                $stmt = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+                if (empty($array)) {
+                    echo "カートの中に商品がありません。<br>";
+                }
+                ?>
+
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
-                        <div class="product">
+                    <?php
+                    foreach($array1 as $value){
+                    ?>
+                        <tr>
+                            <td>
+                                <div class="product">
+                                    <!--書籍のDB化-->
+                                    <!-- checkbox value price -->
+                                    
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="check" value="<?= $value['b_purchaseprice']?>" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
+                                    </div>                                                                                              <!--value="500"-->
+                                    
+                                    <a href="../php/Detail.php?b_code=<?= $value['b_code']?>"><img src="../image/<?= $value['b_thum']?>" alt="地底旅行" height="250" width="200"></a>
 
-                            <?php
-                            //"SELECT b_name,b_author,b_publisher,b_release
-                            //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
-                            $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
-                                        FROM book 
-                                        RIGHT JOIN buycart
-                                        ON book.b_code = buycart.b_code
-                                        WHERE c_code = ?";
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute(array($c_code));
-                            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            if (empty($array)) {
-                                echo "カートの中に商品がありません。<br>";
-                            }
-                            ?>
-
-                            <!--書籍のDB化-->
-                            <!-- checkbox value price -->
-                            
-                            <div class="checkbox">
-                                <input type="checkbox" id="check" value="500" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
-                            </div>
-
-                            <div class="mainlight">
-                                        <p class="btitle"><a href="Detail.html">地底旅行</a></p>
+                                    <div class="mainlight">
+                                        <p class="btitle"><a href="Detail.php?<?=$value['b_code']?>"><?=$value['b_name']?></a></p>
                                         <div class="description">
                                             <div class="info">
-                                                <?php
-                                                //foreach($array as $row){  
-                                                //echo "{$row["b_author"]}";
-                                                //echo "{$row["b_publisher"]}";
-                                                //echo "{$row["b_release"]}";
-                                                ?>
                                                 <!--著者-->
                                                 <p><?= $value['b_author'] ?></p>
                                                 <!--出版社-->
@@ -144,59 +222,24 @@ $c_code = 1;
                                                 <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                                 <p align="right">
                                                     数量
-                                                    <select name="qty">
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                <form action="../html/addCart.php" method="GET">
-                                                    <!--<input type="hidden" name="" value=""-->
-                                                    <input type="reset" value="削除">
-                                                    <!--購入した商品一つをカートから削除-->
-                                                </form>
+                                                    <input type="button" value="-" onclick="subOne(0)">
+                                                    <input type="number" value="0" class="counter">
+                                                    <input type="button" value="+" onclick="addOne(0)">
+                                                    <form action="../html/addCart.php" method="GET">
+                                                        <!--<input type="hidden" name="" value=""-->
+                                                        <input type="reset" value="削除">
+                                                        <!--購入した商品一つをカートから削除-->
+                                                    </form>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                <!--foreachでカートに追加したものを表示-->
-                                
-                                <!--foreach ($array as $row) {
-                                    echo "<tr>";
-                                    echo "<td>";
-                                    echo "<img class='thum' src='../image/<?= $value['b_thum'] ?>' onclick=location.href='Detail.html'>";
-                                    echo "<p class='btitle'><a href='Detail.html'>{$row["b_name"]}</a></p>";
-                                    echo "<div class='description'>";
-                                    echo "<div class='info'>";
-                                    echo "<p>{$row["b_author"]}</p>";
-                                    echo "<p>{$row["b_publisher"]}</p>";
-                                    echo "<p>{$row["b_release"]}</p>";
-                                    echo "</div>";
-                                    echo "<div class='info2'>";
-                                    echo "<p>価格(税込)</p>";
-                                    echo "<p name='price'>&yen;{$row["b_purchaseprice"]}</p>";
-                                    echo "</tr>";
-                                    echo "</td>";
-                                    // break;
-                                }
-
-
-                                echo "<p align='right'>";
-                                echo "数量";
-                                //DBから書籍のStockに応じてプルダウンの中身を変える
-
-                                $countsql = "SELECT b_stock FROM book";
-                                $countsql = $pdo->prepare($countsql);
-                                $countsql->execute();
-                                echo "<select name='qty'>";
-                                foreach ($count as $qty) {
-                                    echo '<option value="', $qty, '">', $qty, '</option>';
-                                }
-                                echo "</select>";-->              
-
-                            </div>
-                        </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                        ?>
                     </table>
                 </div>
 
@@ -206,24 +249,9 @@ $c_code = 1;
                         <tr>
                             <td>
                                 <div class="product">
-
-                                    <?php
-                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
-                                        FROM book 
-                                        RIGHT JOIN reservecart
-                                        ON book.b_code = reservecart.b_code
-                                        WHERE c_code = ? ";
-                                    $stmt = $pdo->prepare($sql);
-                                    $stmt->execute(array($c_code));
-                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    if (empty($array)) {
-                                        echo "カートの中に商品がありません。<br>";
-                                    }
-                                    ?>
-
                                     <div class="checkbox">
-                                        <input type="checkbox" id="check" value="300" onclick="calcTotal()"> <!--$value['b_purchaseprice']-->
-                                    </div>
+                                        <input type="checkbox" id="check" value="<?= $value['b_purchaseprice']?>" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
+                                    </div>                                                                  <!--value="500"-->
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
 
@@ -279,22 +307,9 @@ $c_code = 1;
                         <tr>
                             <td>
                                 <div class="product">
-                                    <?php
-                                    $sql = "SELECT b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum
-                                            FROM book 
-                                            RIGHT JOIN rentalcart
-                                            ON book.b_code = rentalcart.b_code
-                                            WHERE c_code= ?";
-                                    $stmt = $pdo->prepare($sql);
-                                    $stmt->execute(array($c_code));
-                                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                                    if (empty($array)) {
-                                        echo "カートの中に商品がありません。<br>";
-                                    }
-                                    ?>
                                     <div class="checkbox">
-                                        <input type="checkbox" id="check" value="800" onclick="calcTotal()"> <!--$value['b_rentalprice']-->
-                                    </div>
+                                        <input type="checkbox" id="check" value="<?= $value['b_rentalprice']?>" onclick="calcTotal()"><!--$value['b_rentalprice']-->
+                                    </div>                                                                  <!--value="500"-->
 
                                     <img class="thum" src="../image/<?= $value['b_thum'] ?>" onclick="location.href='Detail.html'">
 
@@ -343,6 +358,3 @@ $c_code = 1;
 
 </html>
 
-<input type="button" value="-" onclick="subOne(0)">
-                                    <input type="number" value="0" class="counter">
-                                    <input type="button" value="+" onclick="addOne(0)">
