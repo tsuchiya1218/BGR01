@@ -26,7 +26,7 @@ try {
 //cartが購入だった場合
 if ($_SESSION['cart'] == 'buy') {
     try {
-        $c_code = $_GET['c_code'];
+        $c_code = $_SESSION['c_code'];
         $buy_code = $_SESSION['buy_code'];
         $sql = "SELECT bc_qty,bc_totalamount FROM buycart  WHERE c_code = ? AND buy_code = ?";
         // SQL 文を準備
@@ -43,7 +43,7 @@ if ($_SESSION['cart'] == 'buy') {
 //cartがレンタルだった場合
 if ($_SESSION['cart'] == 'retal') {
     try {
-        $c_code = $_GET['c_code'];
+        $c_code = $_SESSION['c_code'];
 
         $rental = $_SESSION['rental'];
         $sql = "SELECT rtc_code,rtc_totalamount FROM rentalcart  WHERE c_code = ? AND rtc_code = ?";
@@ -58,10 +58,10 @@ if ($_SESSION['cart'] == 'retal') {
         exit();
     }
 }
-//cartがレンタルだった場合
+//cartが予約だった場合
 if ($_SESSION['cart'] == 'reserve') {
     try {
-        $c_code = $_GET['c_code'];
+        $c_code = $_SESSION['c_code'];
 
         $reserve = $_SESSION['reserve'];
         $sql = "SELECT rc_reserveCartCode,rc_totalamount FROM reservecart WHERE c_code = ? AND rc_reserveCartCode = ?";

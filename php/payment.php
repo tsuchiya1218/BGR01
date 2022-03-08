@@ -61,23 +61,20 @@ try {
         <hr>
     </header>
     <main>
-    <?php
-    session_start();
-
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-    ?>  
-      <h2>支払選択</h2>
-        <form action="../html/Receiving.php" method="get">
-            <input type="radio" name="pay"  value="コンビニ支払い"　checked>コンビニ支払い
-            <input type="radio" name="payment" value="クレジットカード払い" >クレジットカード払い
+        <?php
+        session_start();
+        ?>
+        <h2>支払選択</h2>
+        <form action="Verification.php" method="get">
+            <?php
+            //$how_cartはnullじゃなかったら
+            $how_cart = array($_SESSION['buy'], $_SESSION['retal'], $_SESSION['reserve']);
+            ?>
+            <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
+            <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
             <input type="submit" value="次へ">
         </form>
-<?php }else{          
-           echo "カートにデータが入っていません";
-    }
-        ?>
+
     </main>
 </body>
 

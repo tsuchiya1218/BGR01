@@ -94,14 +94,14 @@ try {
                 <p>地域選択</p>
                 <form action="Region.php" name="Acceptance" method="get" value="店舗">
                     <div class="flbox">
-                        <div class="fl"><a href="../html/Region.php?s_region=北海道" class="btn">北海道</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=東北" class="btn">東北</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関東" class="btn">関東</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関西" class="btn">関西</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中部" class="btn">中部</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=四国" class="btn">四国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中国" class="btn">中国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
+                        <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
+                        <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
+                        <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
+                        <div class="fl"><a href="Region.php?s_region=関西" class="btn">関西</a></div>
+                        <div class="fl"><a href="Region.php?s_region=中部" class="btn">中部</a></div>
+                        <div class="fl"><a href="Region.php?s_region=四国" class="btn">四国</a></div>
+                        <div class="fl"><a href="Region.php?s_region=中国" class="btn">中国</a></div>
+                        <div class="fl"><a href="Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
                     </div>
                 </form>
             <?php
