@@ -26,6 +26,23 @@ try {
 <?php
 // 購入
 $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
+// お客様情報
+try {
+    // Samnple
+    $c_code = $_GET['c_code'] = 1;
+    // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
+    // Sample
+    $sql = "SELECT * FROM store where c_code WHERE c_code = 1";
+    // SQL 文を準備
+    $stmt = $dbh->prepare($sql);
+    // SQL 文を実行
+    $stmt->execute(array($c_code));
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+} catch (PDOException $e) {
+    print "接続エラー!: " . $e->getMessage();
+    exit();
+}
 
 ?>
 
@@ -69,10 +86,8 @@ $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
                 <input type="hidden" value="<?=$_SESSION['Cart'] = $Cart?>">
-
-
                 <input type="radio" name="select" value="店舗">店舗
-                <input type="radio" name="select" value="郵送" 　checked>郵送
+                <input type="radio" name="select" value="郵送" checked>郵送
                 <input type="submit" value="次へ">
             </form>
         </div>
