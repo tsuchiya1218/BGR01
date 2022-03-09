@@ -1,5 +1,8 @@
 <?php
 session_start();
+$c_code = $_SESSION['c_code'];//顧客コード
+$cart = $_SESSION['cart'];//カート種別
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -24,25 +27,22 @@ try {
 ?>
 
 <?php
-// 購入
-$Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
-// お客様情報
-try {
-    // Samnple
-    $c_code = $_GET['c_code'] = 1;
+    // お客様情報
+    // 購入
+    $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
+    //サンプル $c_code = '1';
     // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
-    // Sample
-    $sql = "SELECT * FROM store where c_code WHERE c_code = 1";
-    // SQL 文を準備
-    $stmt = $dbh->prepare($sql);
-    // SQL 文を実行
-    $stmt->execute(array($c_code));
-    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = null;
-} catch (PDOException $e) {
-    print "接続エラー!: " . $e->getMessage();
-    exit();
-}
+
+    $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
+    try {
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute(array($c_code));
+        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = null;
+    } catch (PDOException $e) {
+        print "接続エラー!: " . $e->getMessage();
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -84,8 +84,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="hidden" value="<?=$_SESSION['Cart'] = $Cart?>">
-                <input type="hidden" value="<?=$_GET['c_code']?>">
+                <input type="hidden" value="<?= $cart?>">
+                <input type="hidden" value="<?= $c_code?>">
                 <input type="radio" name="select" value="店舗">店舗
                 <input type="radio" name="select" value="郵送" checked>郵送
                 <input type="submit" value="次へ">

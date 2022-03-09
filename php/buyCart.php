@@ -1,11 +1,15 @@
 <?php
 
 session_start();
-
 if (!empty($_SESSION['cart'])) {
     $_SESSION['cart'] = null;
 }
-$_SESSION['cart'] = 'buycart';
+if (!empty($_SESSION['url'])) {
+    $_SESSION['url'] = null;
+}
+$_SESSION['cart'] = 'rentalcart';
+$_SESSION['url'] = 'rental.php';
+$c_code = $_SESSION['c_code'];
 
 //データベースに接続する
 try {
@@ -28,12 +32,6 @@ try {
     exit();
 }
 
-$sql = "SELECT b_name,b_author,b_publisher
-         ,b_release,b_thum,b_purchaseprice FROM book  ";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$array = $stmt->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,35 +49,39 @@ $array = $stmt->fetchAll();
 //$変数 = $_GET[''];
 //$b_code = $_GET['b_code'];
 
-$c_code = 1;
-
 ?>
 
 <body>
     <header>
         <div id="top">
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
-                <input type="button" value="ログイン">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
-                </select>
-                <input type="text" name="serchWord">
-                <input type="submit" value="🔍">
-
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
     <main>
+        <ul id="tab">
+            <li><a href="./buyCart.php">購入</a>
+            </li>
+            <li><a href="./reserveCart.php">予約</a>
+            </li>
+            <li><a href="./rentalCart.php">レンタル</a>
+            </li>
+        </ul>
         <?php
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
@@ -92,7 +94,7 @@ $c_code = 1;
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
-            $array1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
@@ -108,31 +110,33 @@ $c_code = 1;
                     <?php
                     foreach ($array as $value) {
                     ?>
-                        <td class="img">
-                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<?$value['b_name']?>" height="250" width="200"></a>
-                        </td>
-                        <td class="main">
-                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
-                            <!--著者-->
-                            <div class="description">
-                                <a><?= $value['b_author'] ?></a>
-                                <!--出版社-->
-                                <a><?= $value['b_publisher'] ?></a>
-                                <!--発行年月-->
-                                <a><?= $value['b_release'] ?></a>
-                            </div>
-                            <div class="price">
-                                <a>価格（税込）</a>
-                                <a>&yen;<?= $value['b_purchaseprice'] ?></a>
-                            </div>
-                            <div class="qty">
-                                <a>数量<input type="number" id="qty" value="1" class="counter"></a>
-                            </div>
-                        </td>
-                        <td class="delete">
-                            <button type="button"><a href="deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>">削除</a></button>
-                        </td>
-                        <hr>
+                        <tr>
+                            <td class="img">
+                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                            </td>
+                            <td class="main">
+                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
+                                <!--著者-->
+                                <div class="description">
+                                    <a><?= $value['b_author'] ?></a>
+                                    <!--出版社-->
+                                    <a><?= $value['b_publisher'] ?></a>
+                                    <!--発行年月-->
+                                    <a><?= $value['b_release'] ?></a>
+                                </div>
+                                <div class="price">
+                                    <a>価格（税込）</a>
+                                    <a>&yen;<?= $value['b_purchaseprice'] ?></a>
+                                </div>
+                                <div class="qty">
+                                    <a>数量<input type="number" id="qty" value="1" class="counter"></a>
+                                </div>
+                            </td>
+                            <td class="delete">
+                                <button type="button"><a href="deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>">削除</a></button>
+                            </td>
+                            <hr>
+                        </tr>
                     <?php
                     }
                     ?>
