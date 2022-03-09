@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -20,7 +20,8 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
+// $cart = $_SESSION['cart'];
+// $c_code = $_SESSION['c_code'];
 $b_code = $_GET['b_code'];
 $b = $_GET['b'];
 $c_code = $_GET['c_code'];
@@ -58,6 +59,8 @@ if ($b == 'buy') {
     } else {
 
         //buycartとして新しくカートに追加
+        // $insertSQLbuy =  'INSERT INTO buycart(c_code,bc_buyCartCode,b_code,bc_qty,bc_totalamount)
+        // VALUES($c_code,$arraycount["bc_county"],$b_code,bc_qty,$arrayprice["b_purchaseprice"])';
         $insertSQLbuy =  'INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
         VALUES($arraycount["bc_county"],1,$arrayprice["b_purchaseprice"],$b_code)';
         $stmtbuy = $pdo->prepare($insertSQLbuy);
@@ -88,9 +91,12 @@ if ($b == 'buy') {
         $URL = parse_url($HTTP);
         $HOST = $URL['host'];
         echo $HOST;
+
     } else {
         //reservecartとして新しくカートに追加
-        $insertSQLreserve = 'INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
+                        // $insertSQLbuy =  'INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
+        // VALUES(c_code,rc_reserveCartCode,b_code,rc_qty,,$arrayprice["b_purchaseprice"])';
+        $insertSQLreserve = 'INSERT INTO reservecart$arraycount["rc_county"],rc_totalamount,b_code,b_qty)
             VALUES($arraycount["rc_county"],$arrayprice["b_purchaseprice"],$b_code,1)';
         $stmtreserve = $pdo->prepare($insertSQLreserve);
         $stmtreserve->execute();
@@ -126,6 +132,8 @@ if ($b == 'buy') {
         echo $HOST;
     } else {
         //rentalcartとして新しくカートに追加
+                // $insertSQLbuy =  'INSERT INTO rentalcart(rtc_code,c_code,b_code,rtc_totalamount)
+        // VALUES($arraycount["rtc_county"],$c_code,$b_code,$arrayprice["b_purchaseprice"])';
         $insertSQLrental =  'INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
             VALUES($arraycount["rtc_county"],$arrayprice["b_purchaseprice"],$b_code)';
         $stmtrental = $pdo->prepare($insertSQLrental);
