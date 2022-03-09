@@ -105,6 +105,10 @@ if ($_SESSION['cart'] == 'reserve') {
         <hr>
         <div align="center">
             <form action="Result.php" method="post">
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd44267324f466374257fb2eb1383c12cc140856
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
@@ -120,47 +124,8 @@ if ($_SESSION['cart'] == 'reserve') {
     <main>
         <h2>店舗選択</h2>
         <p>該当店舗</p>
-        <?php
+      
 
-        if ($_GET['Acceptance'] == '郵送') {
-
-            try {
-                $s_region = $_GET['s_region'];
-                $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
-                // SQL 文を準備
-                $stmt = $dbh->prepare($sql3);
-                // SQL 文を実行
-                $stmt->execute(array($s_region));
-                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $stmt = null;
-            } catch (PDOException $e) {
-                print "接続エラー!: " . $e->getMessage();
-                exit();
-            }
-        ?>
-            <div class="flbox">
-                <?php
-                // s_regionのデータが入っていた場合
-                if (isset($_GET['s_region'])) {
-                    foreach ($array as $value) {
-
-
-                ?>
-
-                        <div class="fl"><a href="../verification.php" class="btn"><?= $value['s_name']; ?></a></div>
-
-                <?php
-                    }
-                } else {
-                    print 's_regionのデータが入っていません';
-                }
-            } else {
-                ?>
-            <?php
-                header('Location:payment.php');
-            }
-            ?>
-            </div>
         <?php
 
         try {
@@ -196,6 +161,7 @@ if ($_SESSION['cart'] == 'reserve') {
 
             ?>
         </div>
+
     </main>
 </body>
 
