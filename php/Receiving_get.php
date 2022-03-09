@@ -145,7 +145,7 @@ $c_code = $_GET['c_code'];
                     <?php
                 }
                     ?>
-                    <input type="hidden" value="<?=$value['c_code']?>">
+                    <input type="hidden" value="<?= $value['c_code'] ?>">
                     <input type="radio" name="address" id="add1" onclick="changeDisabled()" checked="checked">
                     <?= $value['c_address1'] ?><?= $value['c_address2'] ?><br>
                     <p>上記以外の住所を入力してください</p>
