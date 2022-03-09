@@ -78,6 +78,10 @@ td {
     text-align: center;
 }
 
+.delete {
+    align-items: center;
+}
+
 
 /*
 .firstinfo=.description
