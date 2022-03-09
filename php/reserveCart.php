@@ -87,7 +87,7 @@ try {
         $sql = "SELECT book.b_code,rc_reserveCartCode,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
                             inner join reservecart
-                            ON book.b_code = reserve.b_code
+                            ON book.b_code = reservecart.b_code
                             WHERE c_code = ?";
 
         try {

@@ -85,10 +85,10 @@ try {
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
-        $sql = "SELECT book.b_code,rtc_code,b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum
+        $sql = "SELECT book.b_code,bc_buyCartCode,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
-                            inner join rentalcart
-                            ON book.b_code = rentalcart.b_code
+                            inner join buycart
+                            ON book.b_code = buycart.b_code
                             WHERE c_code = ?";
 
         try {
@@ -131,14 +131,14 @@ try {
                     </div>
                     <div class="price">
                         <a>価格（税込）</a>
-                        <a>&yen;<?= $value['b_rentalprice'] ?></a>
+                        <a>&yen;<?= $value['b_purchaseprice'] ?></a>
                     </div>
                     <div class="qty">
                         <a>数量<input type="number" id="qty" value="1" class="counter"></a>
                     </div>
                 </div>
                 <div class="delete">
-                    <button type="button"><a href="deleteCart.php?rtc_code=<?= $value['rtc_code'] ?>">削除</a></button>
+                    <button type="button"><a href="deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>">削除</a></button>
                 </div>
             </div>
             <hr>
