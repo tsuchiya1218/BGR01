@@ -41,13 +41,13 @@ try {
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="ログイン">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.html" method="GET">
+            <form action="Result.php" method="GET">
                 <select name="serchCondition">
                     <option value="b_title" selected>書籍</option>
                     <option value="autohr">作者</option>
@@ -114,6 +114,7 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -128,6 +129,7 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -150,6 +152,7 @@ try {
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
                                     <!--レンタル出来ない場合リンクを消す-->
                                 </div>
                             </form>

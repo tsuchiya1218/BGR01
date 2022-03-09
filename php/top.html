@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/common.css" rel="stylesheet" type="text/css">
+    <link href="../css/top.css" rel="stylesheet" type="text/css">
+    <title>トップページ</title>
+</head>
+
+<body>
+    <header>
+        <div id="top">
+            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <p id="subtitle">It's a book but it's not a book!</p>
+            <div id="right">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+            </div>
+        </div>
+        <hr>
+        <div align="center">
+            <form action="Result.php" method="GET">
+                <select name="serchCondition">
+                    <option value="b_title" selected>書籍</option>
+                    <option value="autohr">作者</option>
+                </select>
+                <input type="text" name="searchWord" id="">
+                <input type="submit" value="🔍">
+            </form>
+        </div>
+        <hr>
+    </header>
+
+    <main>
+        <div class="RankAndNew">
+            <div class="Rank ">
+                <h2>ランキング</h2>
+                <ol class="ranking ">
+                    <li>aaaaa</li>
+                    <li>bbbbb</li>
+                    <li>cc</li>
+                    <li>dddddddddd</li>
+                    <li>eeeee</li>
+                    <!--購入数ランキング50位までの本を検索結果として表示する画面に遷移-->
+                    <small><a href="Result.php?" name="rank" class="mottomiru">もっと見る</a></small>
+                </ol>
+            </div>
+            <div class="New">
+                <h2>新刊本</h2>
+                <ul>
+                    <li>1111</li>
+                    <li>22222222</li>
+                    <li>33</li>
+                    <li>44</li>
+                    <li>55555</li>
+                    <!--発行から2週間以内の本を検索結果として表示する画面に遷移-->
+                    <small><a href="Result.php?" name="new" class="mottomiru">もっと見る</a></small>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
