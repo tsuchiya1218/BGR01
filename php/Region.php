@@ -22,6 +22,7 @@ try {
 }
 
 ?>
+
 <!-- <?php
         // //cartが購入だった場合
         // if ($_SESSION['cart'] == 'buy') {
@@ -78,6 +79,7 @@ try {
         // }
         ?> -->
 
+
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -104,7 +106,6 @@ try {
         <hr>
         <div align="center">
             <form action="Result.php" method="post">
-
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
@@ -147,13 +148,13 @@ try {
 
                     <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
 
-                <?php
+            <?php
+
                 }
             } else {
-                ?>
-            <?php
                 header('Location:payment.php');
             }
+
             ?>
         </div>
 

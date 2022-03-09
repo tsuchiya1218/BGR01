@@ -20,6 +20,12 @@ try {
     exit();
 }
 
+$sql = "SELECT b_name,b_author,b_publisher
+         ,b_release,b_thum,b_purchaseprice FROM book  ";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$array = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -36,6 +42,8 @@ try {
 
 //$変数 = $_GET[''];
 //$b_code = $_GET['b_code'];
+
+$c_code = 1;
 
 ?>
 
@@ -58,41 +66,25 @@ try {
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-
             </form>
         </div>
         <hr>
     </header>
     <main>
-        <ul id="tab">
-            <li>
-                <a href="./buyCart.php">購入</a>
-            </li>
-            <li>
-                <a href="./reserveCart.php">予約</a>
-            </li>
-            <li>
-                <a href="./rentalCart.php">レンタル</a>
-            </li>
-        </ul>
-        <hr>
         <?php
-        //サンプルデータ
-        $c_code = 1;
-
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
         $sql = "SELECT book.b_code,rtc_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
-                            inner join rentalcart
-                            ON book.b_code = rentalcart.b_code
+                            RIGHT JOIN buycart
+                            ON book.b_code = buycart.b_code
                             WHERE c_code = ?";
 
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
-            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $array2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
