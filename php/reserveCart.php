@@ -4,8 +4,11 @@ session_start();
 if (!empty($_SESSION['cart'])) {
     $_SESSION['cart'] = null;
 }
+if(!empty($_SESSION['url'])){
+    $_SESSION['url'] = null;
+}
 $_SESSION['cart'] = 'reservecart';
-
+$_SESSION['url'] = 'reservecart.php';
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -92,16 +95,16 @@ $c_code = 1;
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
-        $sql = "SELECT book.b_name,rc_reserveCartCode,b_author,b_publisher,b_release,b_rentalprice,b_thum
-                            FROM reservecart 
-                            INNER JOIN book
-                            ON book.b_code = reservecart.b_code
+        $sql = "SELECT book.b_code,b_name,rc_reserveCartCode,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+                            FROM book 
+                            INNER JOIN reservecart
+                            ON book.b_code = reservecart.b_code 
                             WHERE c_code = ?";
 
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
-            $array3 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
@@ -109,8 +112,12 @@ $c_code = 1;
             exit();
         }
         if (empty($array)) {
-            echo "カートの中に商品がありません。<br>";
-        } else { ?>
+            echo "カートの中に商品がありません。";
+        } else {
+            if(!empty($_SESSION['emsg'])){
+                echo $_SERVER['emsg'];
+            }
+            ?>
             <form method="get" action="Receiving.php">
                 <table class="product">
                     <?php
@@ -120,10 +127,10 @@ $c_code = 1;
                             <!--書籍のDB化-->
                             <!--value="500"-->
                             <td class="img">
-                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                                <a href="Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
                             </td>
                             <td class="main">
-                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
+                                <a href="Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
                                 <!--著者-->
                                 <div class="description">
                                     <a><?= $value['b_author'] ?></a>
@@ -138,7 +145,7 @@ $c_code = 1;
                                 </div>
                                 <div class="qty">
                                     <a>数量<input type="number" id="qty" value="1" name="<?= $value['rc_reserveCartCode'] ?>"></a>
-                                    <button type="button"><a href="./updateCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">変更</a></button>
+                                    <button type="button"><a href="updateCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">変更</a></button>
                                 </div>
                             </td>
                             <td class="delete">
