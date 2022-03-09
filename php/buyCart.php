@@ -66,7 +66,7 @@ $c_code = 1;
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
+                
             </form>
         </div>
         <hr>
