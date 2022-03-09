@@ -3,6 +3,13 @@ session_start();
 $c_code = $_SESSION['c_code'];//顧客コード
 $cart = $_SESSION['cart'];//カート種別
 
+if ($cart == 'rentalcart') {
+    // payment.phpに遷移する
+    header("payment.php");
+    exit;
+}
+
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -24,9 +31,6 @@ try {
     exit();
 }
 
-?>
-
-<?php
     // お客様情報
     // 購入
     $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
@@ -86,8 +90,8 @@ try {
             <form action="Receiving_get.php" method="GET">
                 <input type="hidden" value="<?= $cart?>">
                 <input type="hidden" value="<?= $c_code?>">
-                <input type="radio" name="select" value="店舗">店舗
-                <input type="radio" name="select" value="郵送" checked>郵送
+                <input type="radio" name="select" value="store">店舗
+                <input type="radio" name="select" value="delivery" checked>郵送
                 <input type="submit" value="次へ">
             </form>
         </div>

@@ -1,6 +1,7 @@
 <?php
 //データベースに接続する
 session_start();
+
 try {
     $server_name = "10.42.129.3";    // サーバ名
     $db_name = "20grb1";    // データベース名(自分の学籍番号を入力)
@@ -40,25 +41,22 @@ try {
 <body>
     <header>
         <div id="top">
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.html'">
-                <input type="button" value="ログイン">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
-                </select>
-                <input type="text" name="" id="">
-                <input type="submit" value="🔍">
-
-
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
@@ -66,28 +64,29 @@ try {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
-
+        $s_region = $_GET['s_region'];
+        $sql = "SELECT s_name,s_region FROM store where s_region = ?";
+        // SQL 文を準備
         try {
-            $s_region = $_GET['s_region'];
-            $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
-            // SQL 文を準備
-            $stmt = $dbh->prepare($sql3);
+            $stmt = $dbh->prepare($sql);
             // SQL 文を実行
             $stmt->execute(array($s_region));
             $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
             print "接続エラー!: " . $e->getMessage();
             exit();
         }
         ?>
+
         <div class="flbox">
             <?php
             // s_regionのデータが入っていた場合
-            if (isset($_GET['s_region'])) {
+            if (isset($s_region)) {
                 foreach ($array as $value) {
             ?>
-                <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
+                    <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
             <?php
                 }
             } else {

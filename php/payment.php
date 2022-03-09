@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+$cart = $_SESSION['cart'];
+$c_code = $_SESSION['c_code'];
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -64,22 +68,10 @@ try {
 
         <h2>支払選択</h2>
         <form action="Verification.php" method="get">
-            <?php
-            try {
-                // カートの種類
-                $how_cart = $_SESSION['cart'];
-                // お客様情報
-                $c_code = $_GET['c_code'];
-                
-            } catch (PDOException $e) {
-                print "接続エラー!: " . $e->getMessage();
-                exit();
-            }
-            ?>
             <div>
                 <!-- 情報送信 -->
-                <input type="hidden"value="<?=$how_cart?>">
-                <input type="hidden"value="<?=$c_code?>">
+                <input type="hidden" name="cart" value="<?= $cart?>">
+                <input type="hidden" name="c_code" value="<?= $c_code?>">
                 <!-- 購入方法 -->
                 <input type="radio" name="payment" value="コンビニ支払い" checked>コンビニ支払い
                 <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い

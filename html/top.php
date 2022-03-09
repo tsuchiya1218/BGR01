@@ -37,8 +37,9 @@ try {
 </head>
 
 <body>
-    <header>
+<header>
         <div id="top">
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
@@ -48,18 +49,15 @@ try {
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="GET">
-                <select name="serchCondition">
-                    <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
-                </select>
-                <input type="text" name="searchWord" id="">
-                <input type="submit" value="🔍">
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
-
     <main>
         <div class="RankAndNew">
             <div class="Rank ">

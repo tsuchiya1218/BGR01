@@ -70,13 +70,7 @@ $cart = $_SESSION['cart'];
     </header>
     <main>
         <?php
-        // $how_cartがレンタルだったら
-        if ($cart == 'rentalcart') {
-            // rentalcart.phpに遷移する
-            header("rentalcart.php");
-            exit;
-        }
-
+        // cartがレンタルだったら
         // データがある場合
         if (isset($_GET['select'])) {
             // 中身が店舗だった場合
@@ -138,7 +132,6 @@ $cart = $_SESSION['cart'];
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
-
                     <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
@@ -167,7 +160,6 @@ $cart = $_SESSION['cart'];
         if (add2.checked) {
             text.disabled = false;
         }
-
     })
 </script>
 

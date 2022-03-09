@@ -9,6 +9,8 @@ if(!empty($_SESSION['url'])){
 }
 $_SESSION['cart'] = 'reservecart';
 $_SESSION['url'] = 'reservecart.php';
+$c_code = $_SESSION['c_code'];
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
