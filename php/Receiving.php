@@ -86,6 +86,7 @@ try {
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
                 <input type="hidden" value="<?=$_SESSION['Cart'] = $Cart?>">
+                <input type="hidden" value="<?=$_GET['c_code']?>">
                 <input type="radio" name="select" value="店舗">店舗
                 <input type="radio" name="select" value="郵送" checked>郵送
                 <input type="submit" value="次へ">
