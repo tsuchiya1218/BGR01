@@ -155,14 +155,8 @@ $c_code = $_GET['c_code'];
                     <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
-                <?php
-
-                // }
-
-            }
-                ?>
-
             <?php
+            }
         }
             ?>
     </main>
