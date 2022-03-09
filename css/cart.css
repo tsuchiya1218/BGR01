@@ -97,10 +97,6 @@ td{
 .btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
   color: black;
 }
-
-.btitle a:link:hover{
-  color: blue;
-}
 .checkbox{
   margin:auto 0;
 }

@@ -21,6 +21,15 @@ try {
 }
 
 ?>
+<?php
+if (!($_GET['rtc_code'] == null && $_GET['b_code'] == null)) {
+}
+
+if ($_GET['']) {
+    # code...
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -53,7 +62,7 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
+
             </form>
         </div>
         <hr>
@@ -75,16 +84,16 @@ try {
             */
         ?>
 
-            <div align="center">
-                <p>受取方法</p>
-                <form action="Receiving_get.php" method="GET">
-                    <input type="radio" name="select" value="店舗">店舗
-                    <input type="radio" name="select" value="郵送" 　checked>郵送
-                    <input type="submit" value="次へ">
-                </form>
-            </div>
+        <div align="center">
+            <p>受取方法</p>
+            <form action="Receiving_get.php" method="GET">
+                <input type="radio" name="select" value="店舗">店舗
+                <input type="radio" name="select" value="郵送" 　checked>郵送
+                <input type="submit" value="次へ">
+            </form>
+        </div>
         <?php
-      
+
         ?>
     </main>
 </body>

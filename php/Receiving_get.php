@@ -57,7 +57,7 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
+                
             </form>
         </div>
         <hr>
@@ -94,14 +94,14 @@ try {
                 <p>地域選択</p>
                 <form action="Region.php" name="Acceptance" method="get" value="店舗">
                     <div class="flbox">
-                        <div class="fl"><a href="../html/Region.php?s_region=北海道" class="btn">北海道</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=東北" class="btn">東北</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関東" class="btn">関東</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関西" class="btn">関西</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中部" class="btn">中部</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=四国" class="btn">四国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中国" class="btn">中国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
+                        <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
+                        <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
+                        <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
+                        <div class="fl"><a href="Region.php?s_region=関西" class="btn">関西</a></div>
+                        <div class="fl"><a href="Region.php?s_region=中部" class="btn">中部</a></div>
+                        <div class="fl"><a href="Region.php?s_region=四国" class="btn">四国</a></div>
+                        <div class="fl"><a href="Region.php?s_region=中国" class="btn">中国</a></div>
+                        <div class="fl"><a href="Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
                     </div>
                 </form>
             <?php
@@ -139,7 +139,7 @@ try {
                 // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
-                    <form action="Region.php" name="Acceptance" method="get" value="郵送">
+                    <form action="Region.php" name="Acceptance" method="get">
 
                     <?php
                 }
@@ -149,6 +149,7 @@ try {
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
+                    <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
                 <?php
