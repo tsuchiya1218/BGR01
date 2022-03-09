@@ -58,10 +58,14 @@ try {
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
 =======
                 
 >>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+>>>>>>> f79b39ae6f36a8ab6063cf1bead6995e4fae4b40
             </form>
         </div>
         <hr>

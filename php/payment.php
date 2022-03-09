@@ -93,18 +93,17 @@ try {
             //$how_cartはnullじゃなかったら
 
             try {
-                $_GET['c_address'];
-                $buy = $_SESSION['buy'];
-                $retal = $_SESSION['retal'];
-                $reserve = $_SESSION['reserve'];
+                
+                $Cart = $_SESSION['b'] = 1;
+
                 // SQL 文を準備
-                //$stmt = $pdo->prepare();
+               // $stmt = $pdo->prepare();
                 // SQL 文を実行
-                $stmt->execute(array($buy, $retal, $reserve));
+                //$stmt->execute(array());
                 // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $stmt = null;
-                $pdo = null;
+                // $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // $stmt = null;
+                // $pdo = null;
             } catch (PDOException $e) {
                 print "接続エラー!: " . $e->getMessage();
                 exit();
