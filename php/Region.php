@@ -145,7 +145,7 @@ try {
 
             ?>
 
-                    <div class="fl"><a href="../verification.php" class="btn"><?= $value['s_name']; ?></a></div>
+                    <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
 
                 <?php
                 }
