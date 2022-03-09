@@ -1,4 +1,3 @@
-
 #tab {
     list-style: none;
     display: flex;
@@ -18,25 +17,48 @@
     text-decoration: none;
     margin: 0 5px;
 }
+
+
 /***************一番外の大枠のdiv***************/
 
 .product {
     display: flex;
-    /*ここ変更したい*/
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    /*　↑後で消すかも？　*/
+    overflow: hidden;
 }
+
+
 /***********本の情報の大枠************/
 
-.main a,
+.main {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+td {
+    width: 60%;
+}
+
+.btitle {
+    text-align: center;
+    margin: auto;
+    font-weight: bolder;
+}
+
+.btitle a,
 .delete a {
     text-decoration: none;
 }
 
-.main a:link,
-.main a:visited,
-.main a:hover,
-.main a:active,
+.btitle a:link,
+.btitle a:visited,
+.btitle a:hover,
+.btitle a:active,
 .delete a:link,
 .delete a:visited,
 .delete a:hover,
@@ -44,10 +66,21 @@
     color: black;
 }
 
-.description {
+.main,
+.description,
+.price,
+.qty {
+    padding: 5% 5%;
+    margin: auto;
+    overflow: hidden;
     display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
-.price {
-    display: flex;
-}
+
+/*
+.firstinfo=.description
+.secondinfo=.price
+.thirdinfo=.qty
+*/
