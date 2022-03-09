@@ -48,12 +48,26 @@ $c_code = 1;
 ?>
 
 <script type="text/javascript">
-var price = document.getElementById('check');
-    var amount = document.getElementById('amount');
-    price.addEventListener('click',function(){
-        amount.value += price ;
-    })
 
+for(var i = 0; i < document.receiving.check.length; i++){
+    if(check[i].checked){
+
+    }
+}
+
+function calcTotal(price){
+    var check = document.getElementById('check');
+    let amount = Number(0);
+    if(check.checked){
+        //チェック時のみ処理
+            amount = price + Number(document.getElementById('amount').value);
+            document.getElementById('amount').value = amount;
+    }else{
+        //チェック外した場合のみ処理
+        document.getElementById('amount').value -= price;
+    }
+        
+}
 let counter = document.getElementsByClassName("counter");
 
 //加算
@@ -187,7 +201,6 @@ function subOne(cnt){
                     echo "カートの中に商品がありません。<br>";
                 }
                 ?>
-
                 <div class="tab_content" id="buy_content">
                     <table border="2" class="test" align="center" style="border-collapse: collapse">
                     <?php
@@ -200,7 +213,7 @@ function subOne(cnt){
                                     <!-- checkbox value price -->
                                     
                                     <div class="checkbox">
-                                        <input type="checkbox" id="check" value="<?= $value['b_purchaseprice']?>" onclick="calcTotal()"><!--$value['b_purchaseprice']-->
+                                        <input type="checkbox" id="check" value="" onclick="calcTotal(<?= $value['b_purchaseprice']?>)"><!--$value['b_purchaseprice']-->
                                     </div>                                                                                              <!--value="500"-->
                                     
                                     <a href="../php/Detail.php?b_code=<?= $value['b_code']?>"><img src="../image/<?= $value['b_thum']?>" alt="地底旅行" height="250" width="200"></a>
@@ -222,9 +235,9 @@ function subOne(cnt){
                                                 <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                                 <p align="right">
                                                     数量
-                                                    <input type="button" value="-" onclick="subOne(0)">
-                                                    <input type="number" value="0" class="counter">
-                                                    <input type="button" value="+" onclick="addOne(0)">
+                                                    
+                                                    <input type="number" id="qty" value="1" class="counter">
+                                                    
                                                     <form action="../html/addCart.php" method="GET">
                                                         <!--<input type="hidden" name="" value=""-->
                                                         <input type="reset" value="削除">
@@ -343,17 +356,14 @@ function subOne(cnt){
                 </div>
 
                 <!-- 小計 -->
-                <?php
-
-                ?>
-                <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
+                <p class="gokei">小計&yen;<input type="text" id="amount" value="0"></p>
                 <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
-                <footer>
-                    &copy;It's a book but it's not a book!
-                </footer>
             </div>
         </form>
     </main>
+    <footer>
+        &copy;It's a book but it's not a book!
+    </footer>
 </body>
 
 </html>

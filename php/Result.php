@@ -28,11 +28,11 @@ try {
 <body>
     <header>
         <div id="top">
-            <h1 id="title">BOOK ON</h1>
+            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る">
-                <input type="button" value="ログイン">
+                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
@@ -47,9 +47,8 @@ try {
         <hr>
     </header>
     <main>
-        
+
         <?php
-        $rank = 'rank';
         /* テスト用 
         52行目の部分を任意のテスト文に変更
         */
@@ -63,9 +62,10 @@ try {
                  $searchWord = '適当なワード'; 
         64行目のifを(!empty($searchCondition))に変更して
         */
-        /*
-        if (!empty($_GET['$searchCondition'])) {
-            if ($searchCondition == 'b_title') { 
+        if (!empty($_GET['searchCondition'])) {
+            $searchCondition = $_GET['searchCondition'];
+            $searchWord = $_GET['searchWord'];
+            if ($searchCondition == 'b_title') {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                    FROM book WHERE b_name LIKE ?';
                 try {
@@ -76,7 +76,6 @@ try {
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
-                    $dbh = null;
                 } catch (PDOException $e) {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
@@ -93,48 +92,47 @@ try {
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
-                    $dbh = null;
                 } catch (PDOException $e) {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
                 }
                 echo "<h3>作者名 : " . $searchWord . "で検索</h3>";
-            }*/
-            if (!empty($new)) {
-                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
-                               FROM book ORDER BY b_boughtQty DESC';
-                try {
-                    // SQL 文を準備
-                    $stmt = $dbh->prepare($sql);
-                    // SQL 文を実行
-                    $stmt->execute();
-                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    $stmt = null;
-                    $dbh = null;
-                } catch (PDOException $e) {
-                    print "SQL 実行エラー!: " . $e->getMessage();
-                    exit();
-                }
-                echo "<h3>売上順<h3>";
-            } elseif (!empty($rank)) {
-                $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
-                               FROM book ORDER BY b_release DESC';
-                try {
-                    // SQL 文を準備
-                    $stmt = $dbh->prepare($sql);
-                    // SQL 文を実行
-                    $stmt->execute();
-                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    $stmt = null;
-                    $dbh = null;
-                } catch (PDOException $e) {
-                    print "SQL 実行エラー!: " . $e->getMessage();
-                    exit();
-                }
-                echo "<h3>新刊本<h3>";
             }
+        } else if (!empty($_GET['rank'])) {
+            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
+                               FROM book ORDER BY b_boughtQty DESC';
+            try {
+                // SQL 文を準備
+                $stmt = $dbh->prepare($sql);
+                // SQL 文を実行
+                $stmt->execute();
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = null;
+            } catch (PDOException $e) {
+                print "SQL 実行エラー!: " . $e->getMessage();
+                exit();
+            }
+            echo "<h3>売上順<h3>";
+        } elseif (!empty($_GET['new'])) {
+            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
+                               FROM book ORDER BY b_release DESC';
+            try {
+                // SQL 文を準備
+                $stmt = $dbh->prepare($sql);
+                // SQL 文を実行
+                $stmt->execute();
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = null;
+            } catch (PDOException $e) {
+                print "SQL 実行エラー!: " . $e->getMessage();
+                exit();
+            }
+            echo "<h3>新刊本<h3>";
+        } else {
+            echo "<h3>検索結果を表示できません</h3>";
+        }
         foreach ($array as $value) {
         ?>
             <div class="result">
@@ -232,6 +230,7 @@ try {
             </div>
             <hr>
         <?php
+
         }
         ?>
     </main>
