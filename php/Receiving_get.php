@@ -157,6 +157,8 @@ $c_code = $_GET['c_code'];
                     </form>
             <?php
             }
+        }else {
+            print'selectの中身がありません';
         }
             ?>
     </main>

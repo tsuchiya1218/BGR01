@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -61,18 +62,14 @@ try {
     </header>
     <main>
 
-        <?php
-        session_start();
-        ?>
         <h2>支払選択</h2>
         <form action="Verification.php" method="get">
             <?php
-            //$how_cartはnullじゃなかったら
-
             try {
-
-                $Cart = $_SESSION['b'] = 1;
-
+                // カートの種類
+                $how_cart = $_SESSION['cart'];
+                // お客様情報
+                $c_code = $_GET['c_code'];
                 // SQL 文を準備
                 // $stmt = $pdo->prepare();
                 // SQL 文を実行
@@ -87,7 +84,9 @@ try {
             }
             ?>
             <div>
-                <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
+                <input type="hidden"value="<?=$how_cart?>">
+                <input type="hidden"value="<?=$c_code?>">
+                <input type="radio" name="payment" value="コンビニ支払い" checked>コンビニ支払い
                 <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
                 <input type="submit" value="次へ">
             </div>
