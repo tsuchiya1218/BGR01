@@ -24,7 +24,7 @@ try {
 ?>
 
 <?php
-
+// サンプル
 $Cart = $_SESSION['b'] = 1;
 $c_code = $_GET['c_code'] = 00001;
 var_dump($Cart);

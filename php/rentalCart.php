@@ -85,7 +85,6 @@ try {
                             inner join rentalcart
                             ON book.b_code = rentalcart.b_code
                             WHERE c_code = ?";
-
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
