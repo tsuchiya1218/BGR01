@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
@@ -168,7 +172,7 @@ try {
                                     <div class="tab">
                                         <!--b_code=name-->
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
-                                        <input type="hidden" name="b" value="buy">
+                                        <input type="hidden" name="cart" value="buycart">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
@@ -183,7 +187,7 @@ try {
                                     <div class="tab">
                                         <!--b_code=name-->
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                        <input type="hidden" name="b" value="buy">
+                                        <input type="hidden" name="cart" value="reservecart">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
@@ -206,7 +210,7 @@ try {
                                 <div class="tab">
                                     <!--b_code=name-->
                                     <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
-                                    <input type="hidden" name="b" value="rent">
+                                    <input type="hidden" name="cart" value="rentalcart">
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>

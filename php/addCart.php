@@ -22,20 +22,22 @@ try {
 }
 // $cart = $_SESSION['cart'];
 // $c_code = $_SESSION['c_code'];
+
+$c_code = $_SESSION['c_code'];
 $b_code = $_GET['b_code'];
-$b = $_GET['b'];
-$c_code = $_GET['c_code'];
+$cart = $_GET['cart'];
 
 
 //購入カート
-if ($b == 'buy') {
+if ($cart == 'buycart') {
+    
     //book表から$b_codeと一致した本の値段を取得
     $selectSQLprice = "SELECT b_purchaseprice FROM book WHERE b_code = ?";
     $stmtprice = $pdo->prepare($selectSQLprice);
     //SQL実行
     $stmtprice->execute($b_code);
     //帰ってきた値を$arraypriceに代入
-    $arrayprice = $stmt->fetch(PDO::FETCH_BOTH);
+    $arrayprice = $stmt->fetch(PDO::FETCH_BOTH);    
 
 
     //buycart表からbc_codeをカウント
@@ -57,10 +59,12 @@ if ($b == 'buy') {
         $URL = parse_url($HTTP);
         $HOST = $URL['host'];
     } else {
-
         //buycartとして新しくカートに追加
         // $insertSQLbuy =  'INSERT INTO buycart(c_code,bc_buyCartCode,b_code,bc_qty,bc_totalamount)
         // VALUES($c_code,$arraycount["bc_county"],$b_code,bc_qty,$arrayprice["b_purchaseprice"])';
+        $sql = "INSERT INTO buycart(c_code,bc_buyCartCode,b_code,bc_qty,bc_totalamount)
+                            VALUES()";
+
         $insertSQLbuy =  'INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
         VALUES($arraycount["bc_county"],1,$arrayprice["b_purchaseprice"],$b_code)';
         $stmtbuy = $pdo->prepare($insertSQLbuy);
@@ -70,7 +74,7 @@ if ($b == 'buy') {
 
 
     //予約カート
-} else if ($b == 'reserve') {
+} else if ($cart == 'reservecart') {
     //book表から$b_codeと一致した本の値段を取得
     $selectSQLprice = "SELECT b_purchaseprice FROM book b_code =?";
     $stmtprice = $pdo->prepare($selectSQLprice);
@@ -105,7 +109,7 @@ if ($b == 'buy') {
 
 
     //レンタルカート
-} else if ($b == 'rent') {
+} else if ($cart == 'rentcart') {
     //book表から$b_codeと一致した本の値段を取得
     $selectSQLprice = "SELECT b_purchaseprice FROM book b_code = ?";
     $stmtprice = $pdo->prepare($selectSQLprice);
