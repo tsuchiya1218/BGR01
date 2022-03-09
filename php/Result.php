@@ -173,6 +173,7 @@ try {
                                         <!--b_code=name-->
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
                                         <input type="hidden" name="cart" value="buycart">
+                                        <input type="hidden" name="price" value="<?= $value['b_purchaseprice']?>">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
@@ -188,6 +189,7 @@ try {
                                         <!--b_code=name-->
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
                                         <input type="hidden" name="cart" value="reservecart">
+                                        <input type="hidden" name="price" value="<?= $value['b_purchaseprice']?>">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
@@ -211,6 +213,7 @@ try {
                                     <!--b_code=name-->
                                     <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
                                     <input type="hidden" name="cart" value="rentalcart">
+                                    <input type="hidden" name="price" $value="<?= $value['b_rentalprice']?>">
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
