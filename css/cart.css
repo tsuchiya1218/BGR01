@@ -27,8 +27,6 @@
     }
     /***********本の情報の大枠************/
     
-    .main {}
-    
     .main a,
     .delete a {
         text-decoration: none;
@@ -44,24 +42,11 @@
     .delete a:active {
         color: black;
     }
-    /*著者、出版社、発行年月*/
     
     .description {
         display: flex;
     }
-    /*価格*/
     
     .price {
         display: flex;
     }
-    /*数量*/
-    
-    .qty {}
-    /**********************************/
-    /*削除ボタン*/
-    
-    .delete {}
-    /*********************************************/
-    /*購入ボタン*/
-    
-    .receive {}
