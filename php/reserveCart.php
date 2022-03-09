@@ -81,6 +81,7 @@ $c_code = 1;
                             RIGHT JOIN reservecart
                             ON book.b_code = reservecart.b_code
                             WHERE c_code = ?";
+
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
@@ -93,64 +94,47 @@ $c_code = 1;
         }
         if (empty($array)) {
             echo "カートの中に商品がありません。<br>";
-        }
-        ?>
-        <div class="tab_content" id="buy_content">
-            <table border="2" class="test" align="center" style="border-collapse: collapse">
-                <?php
-                foreach ($array1 as $value) {
-                ?>
-                    <tr>
-                        <td>
-                            <div class="product">
-                                <!--書籍のDB化-->
-                                <!-- checkbox value price -->
-
-                                <div class="checkbox">
-                                    <input type="checkbox" id="check" value="" onclick="calcTotal(<?= $value['b_purchaseprice'] ?>)">
-                                    <!--$value['b_purchaseprice']-->
-                                </div>
-                                <!--value="500"-->
-
-                                <a href="../php/Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="地底旅行" height="250" width="200"></a>
-
-                                <div class="mainlight">
-                                    <p class="btitle"><a href="Detail.php?<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></p>
-                                    <div class="description">
-                                        <div class="info">
-                                            <!--著者-->
-                                            <p><?= $value['b_author'] ?></p>
-                                            <!--出版社-->
-                                            <p><?= $value['b_publisher'] ?></p>
-                                            <!--発行年月-->
-                                            <p><?= $value['b_release'] ?></p>
-                                        </div>
-
-                                        <div class="info2">
-                                            <p>価格（税込）</p>
-                                            <p name="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                            <p align="right">
-                                                数量
-
-                                                <input type="number" id="qty" value="1" class="counter">
-
-                                            <form action="../html/addCart.php" method="GET">
-                                                <!--<input type="hidden" name="" value=""-->
-                                                <input type="reset" value="削除">
-                                                <!--購入した商品一つをカートから削除-->
-                                            </form>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </table>
-        </div>
+        } ?>
+        <form method="get" action="Receiving.php">
+            <?php
+            foreach ($array as $value) {
+            ?>
+                <div class="product">
+                    <!--書籍のDB化-->
+                    <!--value="500"-->
+                    <form method="get" action="./Detail.php">
+                        <div class="img">
+                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="地底旅行" height="250" width="200"></a>
+                        </div>
+                    </form>
+                    <div class="main">
+                        <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
+                        <!--著者-->
+                        <div class="description">
+                            <a><?= $value['b_author'] ?></a>
+                            <!--出版社-->
+                            <a><?= $value['b_publisher'] ?></a>
+                            <!--発行年月-->
+                            <a><?= $value['b_release'] ?></a>
+                        </div>
+                        <div class="price">
+                            <a>価格（税込）</a>
+                            <a>&yen;<?= $value['b_purchaseprice'] ?></a>
+                        </div>
+                        <div class="qty">
+                            <a>数量<input type="number" id="qty" value="1" class="counter"></a>
+                        </div>
+                    </div>
+                    <div class="delete">
+                        <button type="button"><a href="deleteCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">削除</a></button>
+                    </div>
+                </div>
+                <hr>
+            <?php
+            }
+            ?>
+            <input type="submit" value="購入">
+        </form>
     </main>
     <footer>
 

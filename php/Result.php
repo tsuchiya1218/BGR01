@@ -28,6 +28,7 @@ try {
 <body>
     <header>
         <div id="top">
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">

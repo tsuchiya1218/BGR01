@@ -1,52 +1,68 @@
-.item{
+.item {
     justify-content: center;
     overflow: hidden;
     display: flex;
 }
-td{
+
+td {
     width: 60%;
 }
-.btitle{
+
+.btitle {
     text-align: center;
     margin: auto;
 }
-.btitle a{
+
+.btitle a {
     text-decoration: none;
 }
-.btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
+
+.btitle a:link,
+.btitle a:visited,
+.btitle a:hover,
+.btitle a:active {
     color: black;
-  }
-.mainInfo,.subInfo{
+}
+
+.mainInfo,
+.subInfo {
     padding: 5% 5%;
-    margin:auto;
+    margin: auto;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     text-align: center;
 }
-.mainInfo p{
-    margin:0px 20px;
+
+.mainInfo p {
+    margin: 0px 20px;
 }
-.subInfo p{
-    margin:0px 10px;
+
+.subInfo p {
+    margin: 0px 10px;
 }
-b{
+
+b {
     font-weight: bolder;
 }
-.description{
+
+.description {
     width: 60%;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     flex-direction: column;
 }
-.mottomiru{
+
+.mottomiru {
     text-align: right;
 }
-.float{
+
+.float {
     display: flex;
 }
-.float select{
+
+.float select {
     margin-left: auto;
     height: min-content;
     width: 40%;
