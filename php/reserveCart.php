@@ -113,18 +113,16 @@ $c_code = 1;
         <hr>
 
         <form method="get" action="Receiving.php">
-            <?php
-            foreach ($array as $value) {
-            ?>
-                <div class="product">
+            <table class="product">
+                <?php
+                foreach ($array as $value) {
+                ?>
                     <!--書籍のDB化-->
                     <!--value="500"-->
-                    <form method="get" action="./Detail.php">
-                        <div class="img">
-                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
-                        </div>
-                    </form>
-                    <div class="main">
+                    <td class="img">
+                        <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                    </td>
+                    <td class="main">
                         <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
                         <!--著者-->
                         <div class="description">
@@ -139,18 +137,19 @@ $c_code = 1;
                             <a>&yen;<?= $value['b_purchaseprice'] ?></a>
                         </div>
                         <div class="qty">
-                            <a>数量<input type="number" id="qty" value="1" name="<?= $value['rc_reserveCartCode']?>"></a>
+                            <a>数量<input type="number" id="qty" value="1" name="<?= $value['rc_reserveCartCode'] ?>"></a>
                             <button type="button"><a href="./updateCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">変更</a></button>
                         </div>
-                    </div>
-                    <div class="delete">
+                    </td>
+                    <td class="delete">
                         <button type="button"><a href="deleteCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">削除</a></button>
-                    </div>
-                </div>
-                <hr>
-            <?php
-            }
-            ?>
+                    </td>
+                    <hr>
+                <?php
+                }
+                ?>
+            </table>
+            <hr>
             <input type="submit" value="支払い手続きへ">
         </form>
     </main>
