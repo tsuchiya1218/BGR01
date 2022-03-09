@@ -23,6 +23,25 @@ try {
 
 ?>
 <?php
+<<<<<<< HEAD
+
+// c_codeでお客様情報を受け取る
+$how_c = $_SESSION['c_code'];
+$_GET[''];
+
+
+
+// cartからbuyまたはreserveまたはrentalを受け取る
+
+// buyだった場合
+if ($_SESSION['cart'] == 'buy') {
+    try {
+        $sql = "SELECT bc_buyCartCode,c_code FROM store  where bc_buyCartCode = c_code and c_code=?";
+        // SQL 文を準備
+        $stmt = $dbh->prepare($sql);
+        // SQL 文を実行
+        $stmt->execute(array($s_region));
+=======
     //テストデータ
      try {
         //$buy_code = $_SESSION['buy_code'];
@@ -31,12 +50,24 @@ try {
         $stmt = $dbh->prepare($sql4);
         // SQL 文を実行
         $stmt->execute();
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = null;
     } catch (PDOException $e) {
         print "接続エラー!: " . $e->getMessage();
         exit();
     }
+<<<<<<< HEAD
+}
+// reserveだった場合 
+if ($_SESSION['cart'] == 'reserve') {
+    try {
+        $sql1 = "SELECT rc_reserveCartCode,c_code FROM store  where rc_reserveCartCode = c_code and c_code=?";
+        // SQL 文を準備
+        $stmt = $dbh->prepare($sql);
+        // SQL 文を実行
+        $stmt->execute(array($s_region));
+=======
 
 ?>
 <?php
@@ -52,6 +83,7 @@ if ($_GET['cart'] == 'buy') {
         $stmt = $dbh->prepare($sql);
         // SQL 文を実行
         $stmt->execute(array($c_code, $buy_code));
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = null;
     } catch (PDOException $e) {
@@ -59,6 +91,16 @@ if ($_GET['cart'] == 'buy') {
         exit();
     }
 }
+<<<<<<< HEAD
+// rentalだった場合
+if ($_SESSION['retal'] == 'rental') {
+    try {
+        $sql2 = "SELECT rental_code,c_code FROM store  where rental_code = c_code and c_code=?";
+        // SQL 文を準備
+        $stmt = $dbh->prepare($sql);
+        // SQL 文を実行
+        $stmt->execute(array($s_region));
+=======
 //cartがレンタルだった場合
 if ($_GET['cart'] == 'retal') {
     try {
@@ -69,6 +111,7 @@ if ($_GET['cart'] == 'retal') {
         $stmt = $dbh->prepare($sql);
         // SQL 文を実行
         $stmt->execute(array($c_code, $rental));
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = null;
     } catch (PDOException $e) {
@@ -76,6 +119,11 @@ if ($_GET['cart'] == 'retal') {
         exit();
     }
 }
+<<<<<<< HEAD
+
+// どのcartか
+// $_SESSION['cartinfo'] = array("how_get"=>array();
+=======
 //cartが予約だった場合
 if ($_GET['cart'] == 'reserve') {
     try {
@@ -94,6 +142,7 @@ if ($_GET['cart'] == 'reserve') {
         exit();
     }
 }
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +171,17 @@ if ($_GET['cart'] == 'reserve') {
         <hr>
         <div align="center">
             <form action="Result.php" method="post">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
+                
             </form>
         </div>
         <hr>
@@ -137,6 +190,20 @@ if ($_GET['cart'] == 'reserve') {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
+<<<<<<< HEAD
+        try {
+            $s_region = $_GET['s_region'];
+            $sql3 = "SELECT s_name,s_code FROM store  where s_region = ?";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql3);
+            // SQL 文を実行
+            $stmt->execute(array($s_region));
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+=======
 
         if (!(isset($_GET['Acceptance']) == '郵送')) {
             # code...
@@ -154,6 +221,7 @@ if ($_GET['cart'] == 'reserve') {
                 print "接続エラー!: " . $e->getMessage();
                 exit();
             }
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
         }
         ?>
         <div class="flbox">
@@ -165,7 +233,11 @@ if ($_GET['cart'] == 'reserve') {
 
             ?>
 
+<<<<<<< HEAD
+            <div class="fl"><a href="../html/verification.php?<?= $_GET['s_code'] ?>" class="btn"><?= $value['s_name']; ?></a></div>
+=======
                     <div class="fl"><a href="../verification.php" class="btn"><?= $value['s_name']; ?></a></div>
+>>>>>>> 6570496bd759689d5d1468f96099581c5d608872
 
             <?php
                 }

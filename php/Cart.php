@@ -81,7 +81,7 @@ $c_code = 1;
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
+                
             </form>
         </div>
         <hr>
@@ -161,7 +161,7 @@ $c_code = 1;
                                                         <p align="right">
                                                             数量
                                                             <input type="button" value="-" onclick="subOne(0)">
-                                                            <input type="number" class="counter" onchange="updateCart(1,$value['b_code'],$c_code)" id="$value['b_code']">
+                                                            <input type="number" class="counter" onchange="updateCart(1,<?=$value['b_code']?>,<?=$c_code?>)" id="<?=$value['b_code']?>">
                                                             <input type="button" value="+" onclick="addOne(0)">
                                                         <form action="../html/addCart.php" method="GET">
                                                             <!--<input type="hidden" name="" value=""-->
@@ -239,7 +239,7 @@ $c_code = 1;
                                                         <p align="right">
                                                             数量
                                                             <input type="button" value="-" onclick="subOne(0)">
-                                                            <input type="number" value="0" class="counter" onchange="updateCart(2,$value['b_code'],$c_code)" id="$value['b_code']">
+                                                            <input type="number" value="0" class="counter" onchange="updateCart(2,<?=$value['b_code']?>,<?=$c_code?>)" id="<?=$value['b_code']?>">
                                                             <input type="button" value="+" onclick="addOne(0)">
                                                         <form action="../html/addCart.php" method="GET">
                                                             <!--<input type="hidden" name="" value=""-->
@@ -283,63 +283,59 @@ $c_code = 1;
                         } else {
                             foreach ($array as $value) {
                         ?>
-                                <tr>
-                                    <td>
-                                        <div class="product">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="check" value="800" onclick="calcTotal()">
-                                                <!--$value['b_rentalprice']-->
-                                            </div>
+                            <tr>
+                                <td>
+                                    <div class="product">
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="check" value="800" onclick="calcTotal()">
+                                            <!--$value['b_rentalprice']-->
+                                        </div>
 
-                                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" height="250" width="200" onclick="location.href='Detail.html'">
+                                        <img class="thum" src="../image/<?= $value['b_thum'] ?>" height="250" width="200" onclick="location.href='Detail.html'">
 
-                                            <div class="mainlight">
-                                                <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
-                                                <div class="description">
-                                                    <div class="info">
-                                                        <?php
-                                                        //foreach($array as $row){  
-                                                        //echo "{$row["b_author"]}";
-                                                        //echo "{$row["b_publisher"]}";
-                                                        //echo "{$row["b_release"]}";
-                                                        ?>
-                                                        <p><?= $value['b_author'] ?></p>
-                                                        <!--出版社-->
-                                                        <p><?= $value['b_publisher'] ?></p>
-                                                        <!--発行年月-->
-                                                        <p><?= $value['b_release'] ?></p>
-                                                    </div>
-                                                    <div class="info2">
-                                                        <p>価格（税込）</p>
-                                                        <p name="price">&yen;<?= $value['b_rentalprice'] ?></p>
-                                                    </div>
+                                        <div class="mainlight">
+                                            <p class="btitle"><a href="Detail.html"><?= $value['b_name'] ?></a></p>
+                                            <div class="description">
+                                                <div class="info">
+                                                    <?php
+                                                    //foreach($array as $row){  
+                                                    //echo "{$row["b_author"]}";
+                                                    //echo "{$row["b_publisher"]}";
+                                                    //echo "{$row["b_release"]}";
+                                                    ?>
+                                                    <p><?= $value['b_author'] ?></p>
+                                                    <!--出版社-->
+                                                    <p><?= $value['b_publisher'] ?></p>
+                                                    <!--発行年月-->
+                                                    <p><?= $value['b_release'] ?></p>
+                                                </div>
+                                                <div class="info2">
+                                                    <p>価格（税込）</p>
+                                                    <p name="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                        <?php
-                            }
-                        }
-                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?=}?>
+
+                        <!-- 小計 -->
+                        <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
+                        <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
+                        <?=}?>
                     </table>
                 </div>
-
-                <!-- 小計 -->
-                <?php
-
-                ?>
-                <p class="gokei" name="total">小計&yen;<input type="text" value="0" id="amount"></p>
-                <p class="gokei"><input type="submit" name="" value="確認へ進む"></p>
             </div>
         </form>
 
 
     </main>
+        <script src="../JavaScript/cart.js"></script>
     <footer>
         &copy;It's a book but it's not a book!
     </footer>
-    <script src="../JavaScript/cart.js"></script>
+
 </body>
 
 </html>
