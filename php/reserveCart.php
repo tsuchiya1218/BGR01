@@ -139,7 +139,7 @@ $c_code = 1;
                             <a>&yen;<?= $value['b_purchaseprice'] ?></a>
                         </div>
                         <div class="qty">
-                            <a>数量<input type="number" id="qty" value="1" class="counter"></a>
+                            <a>数量<input type="number" id="qty" value="1" name="<?= $value['rc_reserveCartCode']?>"></a>
                             <button type="button"><a href="./updateCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">変更</a></button>
                         </div>
                     </div>

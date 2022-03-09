@@ -24,33 +24,43 @@
     
 
     $cart = $_SESSION['cart'];
-    $c_code = $_SESSION['c_code'];
+    $cuscode = $_SESSION['c_code'];
+    $qty = $_GET[$c_code];
     
+
     if($cart=='buycart'){
+        $cartcode = $_GET['bc_buyCartCode'];
+        $qty = $_GET[$c_code];
+
         $sql = "UPDATE buycart
-                SET    bc_qty = $qty
+                SET    bc_qty = ?
                 WHERE　bc_buyCartCode = ?
                 AND c_code = ?";
+
         try {
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(array($cart,$c_code));
+            $stmt->execute(array($qty,$cartcode,$cuscode));
         } catch (PDOException $e) {
             print "SQL実行エラー！:" . $e->getMessage();
             exit();
         }
         header('Location:Cart.php');
     }else if($cart=='reservecart'){
+        $cartcode = $_GET['rc_reserveCartCode'];
+        $qty = $_GET[$c_code];
+
         $sql = "UPDATE reservecart
-                SET    rc_qty = $qty 
+                SET    rc_qty = ? 
                 WHERE　rc_reserveCartCode = ?
                 AND c_code = ?";
+
         try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($cart));
+        $stmt->execute(array($qty,$cartcode,$cuscode));
         } catch (PDOException $e) {
             print "SQL実行エラー！:" . $e->getMessage();
             exit();
         }
         header('Location:Cart.php');
     }
-    ?>
+?>
