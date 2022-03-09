@@ -43,7 +43,11 @@ try {
                     <option value="">作者</option>
                 </select>
                 <input type="text" name="" id="">
+<<<<<<< HEAD
+                <input type="submit" value="🔍詳細検索">
+=======
                 <input type="submit" value="🔍">
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>

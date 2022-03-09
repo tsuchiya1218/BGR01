@@ -19,6 +19,12 @@
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
+<<<<<<< HEAD
+    session_start();
+    unset($_SESSION['b_thum']['b_name']['b_author']['b_publisher']['b_release']['b_purchaseprice']);
+
+
+=======
     
     $b_code = $_GET['b_code'];
     $b = $_GET['b'];
@@ -57,5 +63,6 @@
         exit();
     }
 }
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     
 ?>

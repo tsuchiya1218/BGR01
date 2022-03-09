@@ -22,6 +22,8 @@ try {
 }
 
 ?>
+<<<<<<< HEAD
+=======
 <?php
 
 $Cart = $_SESSION['b'] = 1;
@@ -45,6 +47,7 @@ try {
     exit();
 }
 ?>
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -77,13 +80,29 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
+<<<<<<< HEAD
+                <input type="button" value="詳細検索" onclick="location.href=''">
+=======
 
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
     </header>
     <main>
 
+<<<<<<< HEAD
+            <div align="center">
+                <p>受取方法</p>
+                <form action="Receiving_get.php" method="GET">
+                    <input type="radio" name="select" value="店舗">店舗
+                    <input type="radio" name="select" value="郵送" 　checked>郵送
+                    <input type="submit" value="次へ">
+                </form>
+            </div>
+        <?php
+      
+=======
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
@@ -95,6 +114,7 @@ try {
         </div>
         <?php
 
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
         ?>
     </main>
 </body>
