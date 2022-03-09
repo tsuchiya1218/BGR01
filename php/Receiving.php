@@ -27,7 +27,7 @@ try {
 
 // サンプル
 // $b=$_SESSION['b_code'];
-$Cart = array($_SESSION['bc_buyCartCode'], $_SESSION['rental_code'], $_SESSION['rc_reserveCartCode']);
+// $Cart = array($_SESSION['bc_buyCartCode'], $_SESSION['rental_code'], $_SESSION['rc_reserveCartCode']);
 $c_code = $_GET['c_code'] = 00001;
 // お客様情報
 $sql = 'SELECT c_code FROM customers where c_code=?';
@@ -36,8 +36,8 @@ $sql = 'SELECT c_code FROM customers where c_code=?';
 try {
     // SQL 文を準備
     $stmt = $pdo->prepare($sql);
-    // SQL 文を実行
-    $stmt->execute(array($c_code, $Cart));
+    // SQL 文を実行, $Cart
+    $stmt->execute(array($c_code));
     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt = null;
