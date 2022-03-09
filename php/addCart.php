@@ -35,7 +35,7 @@
         //SQL実行
         $stmtprice ->execute($b_code);
         //帰ってきた値を$arraypriceに代入
-        $arrayprice = $stmt->fetch(PDO::FetchBOTH);
+        $arrayprice = $stmt->fetch(PDO::FETCH_BOTH);
 
 
         //buycart表からbc_codeをカウント
@@ -44,7 +44,7 @@
         //SQL実行
         $stmtcount ->execute();
         //帰ってきた値を$arraycountに代入
-        $arraycount = $stmt->fetch(PDO::FetchBOTH);
+        $arraycount = $stmt->fetch(PDO::FETCH_BOTH);
 
 
         //b_code,c_codeの値がある場合前のページに戻し、updatecartの作業として入る
@@ -61,8 +61,7 @@
         }else{
         
         //buycartとして新しくカートに追加
-        $insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)
-                            VALUES($arraycount['bc_county'],1,$arrayprice['b_purchaseprice'],$b_code);";
+        //$insertSQLbuy =  "INSERT INTO buycart(bc_code,bc_qty,bc_totalamount,b_code)VALUES($arraycount['bc_county'],1,$arrayprice['b_purchaseprice'],$b_code);";
         $stmtbuy = $pdo->prepare($insertSQLbuy);
         //SQL実行
         $stmtbuy ->execute();
@@ -74,13 +73,13 @@
         $selectSQLprice = "SELECT b_purchaseprice FROM book b_code =?";
         $stmtprice = $pdo->prepare($selectSQLprice);
         $stmtprice ->execute($b_code);
-        $arrayprice = $stmt ->fetch(PDO::FetchBOTH);
+        $arrayprice = $stmt ->fetch(PDO::FETCH_BOTH);
 
         //rentalcart表からrtc_codeをカウント
         $selectSQLcount = "SELECT COUNT(rc_code) as rc_county FROM reservecart";
         $stmtcount = $pdo->prepare($selectSQLcount);
         $stmtcount ->execute();
-        $arraycount = $stmt ->fetch(PDO::FetchBOTH);
+        $arraycount = $stmt ->fetch(PDO::FETCH_BOTH);
 
         $reserves = "SELECT * FROM reservecart WHERE c_code = $c_code
                     AND b_code = $b_code";
@@ -92,8 +91,7 @@
             // echo $HOST;
         }else{
             //reservecartとして新しくカートに追加
-            $insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)
-                                VALUES($arraycount['rc_county'],$arrayprice['b_purchaseprice'],$b_code,1)";
+            //$insertSQLreserve = "INSERT INTO reservecart(rc_code,rc_totalamount,b_code,b_qty)VALUES($arraycount['rc_county'],$arrayprice['b_purchaseprice'],$b_code,1)";
             $stmtreserve =$pdo->prepare($insertSQLreserve);
             $stmtreserve ->execute();
         }
@@ -106,7 +104,7 @@
         //SQL実行
         $stmtprice ->execute($b_code);
         //帰ってきた値を$arraypriceに代入
-        $arrayprice = $stmt->fetch(PDO::FetchBOTH);
+        $arrayprice = $stmt->fetch(PDO::FETCH_BOTH);
         
 
         //rentalcart表からrtc_codeをカウント
@@ -115,7 +113,7 @@
         //SQL実行   
         $stmtcount -> execute();
         //帰ってきた値を$arraycountに代入
-        $arraycount = $stmt ->fetch(PDO::FetchBOTH);
+        $arraycount = $stmt ->fetch(PDO::FETCH_BOTH);
 
         $rentals = "SELECT * FROM rentalcart WHERE c_code = $c_code
                     AND b_code = $b_code";
@@ -127,8 +125,7 @@
             // echo $HOST;
         }else{
             //rentalcartとして新しくカートに追加
-            $insertSQLrental =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
-                                VALUES($arraycount[rtc_county],$arrayprice['b_purchaseprice'],$b_code);";
+            //$insertSQLrental =  "INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)VALUES($arraycount[rtc_county],$arrayprice['b_purchaseprice'],$b_code);";
             $stmtrental = $pdo->prepare($insertSQLrental);
             //SQL実行
             $stmtrental ->execute();
