@@ -70,22 +70,17 @@ try {
                 $how_cart = $_SESSION['cart'];
                 // お客様情報
                 $c_code = $_GET['c_code'];
-                // SQL 文を準備
-                // $stmt = $pdo->prepare();
-                // SQL 文を実行
-                //$stmt->execute(array());
-                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                // $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                // $stmt = null;
-                // $pdo = null;
+                
             } catch (PDOException $e) {
                 print "接続エラー!: " . $e->getMessage();
                 exit();
             }
             ?>
             <div>
+                <!-- 情報送信 -->
                 <input type="hidden"value="<?=$how_cart?>">
                 <input type="hidden"value="<?=$c_code?>">
+                <!-- 購入方法 -->
                 <input type="radio" name="payment" value="コンビニ支払い" checked>コンビニ支払い
                 <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
                 <input type="submit" value="次へ">
