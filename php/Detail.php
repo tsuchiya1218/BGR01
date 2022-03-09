@@ -113,10 +113,6 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
-                                        <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -131,10 +127,6 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
-                                        <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -157,10 +149,6 @@ try {
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
-                                    <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                     <!--レンタル出来ない場合リンクを消す-->
                                 </div>
                             </form>
