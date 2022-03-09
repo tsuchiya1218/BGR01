@@ -28,25 +28,13 @@ try {
 <body>
     <header>
         <div id="top">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <h1 id="title">BOOK ON</h1>
-            <p id="subtitle">It's a book but it's not a book!</p>
-            <div id="right">
-                <input type="button" value="カートを見る">
-                <input type="button" value="ログイン">
-=======
-=======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
-<<<<<<< HEAD
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
-=======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
+
             </div>
         </div>
         <hr>
