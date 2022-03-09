@@ -1,5 +1,4 @@
 <?php
-    session_start();
     //データベースに接続する
     try {
         $server_name = "10.42.129.3";	// サーバ名
