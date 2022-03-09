@@ -32,7 +32,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/payment.css" type="text/css">
+    <link rel="stylesheet" href="../css/receiving_get.css" type="text/css">
     <title>支払選択</title>
 </head>
 
@@ -60,38 +60,37 @@ try {
         <hr>
     </header>
     <main>
+
         <?php
         session_start();
         ?>
-        <div class="paytab">
-            <h2>支払選択</h2>
+        <h2>支払選択</h2>
+        <form action="Verification.php" method="get">
+            <?php
+            //$how_cartはnullじゃなかったら
 
-            <form action="Verification.php" method="get">
-                <?php
-                //$how_cartはnullじゃなかったら
+            try {
 
-                try {
+                $Cart = $_SESSION['b'] = 1;
 
-                    $Cart = $_SESSION['b'] = 1;
-
-                    // SQL 文を準備
-                    // $stmt = $pdo->prepare();
-                    // SQL 文を実行
-                    //$stmt->execute(array());
-                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                    // $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    // $stmt = null;
-                    // $pdo = null;
-                } catch (PDOException $e) {
-                    print "接続エラー!: " . $e->getMessage();
-                    exit();
-                }
-                ?>
-
+                // SQL 文を準備
+                // $stmt = $pdo->prepare();
+                // SQL 文を実行
+                //$stmt->execute(array());
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                // $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // $stmt = null;
+                // $pdo = null;
+            } catch (PDOException $e) {
+                print "接続エラー!: " . $e->getMessage();
+                exit();
+            }
+            ?>
+            <div>
                 <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
                 <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
                 <input type="submit" value="次へ">
-        </div>
+            </div>
         </form>
     </main>
 </body>

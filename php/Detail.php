@@ -19,6 +19,8 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -58,12 +60,14 @@ try {
     </header>
     <main>
         <?php
-        $b_code = $_GET['b_code'];
+        //Result.phpから送られてきたデータを取得
+        $b_code1 = $_GET['b_code'];
         //SQL文の実行
         $sql = "SELECT * FROM book Where b_code = ?";
         try {
+
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(array($b_code));
+            $stmt->execute(array($b_code1));
             // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
             $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt = null;
@@ -109,6 +113,10 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
+<<<<<<< HEAD
+                                        <!--php出来たら上のリンク変更-->
+=======
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -125,9 +133,8 @@ try {
                                         <p class="cart">カートに入れる</p>
 <<<<<<< HEAD
                                         <!--php出来たら上のリンク変更-->
-
 =======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -153,7 +160,7 @@ try {
 <<<<<<< HEAD
                                     <!--php出来たら上のリンク変更-->
 =======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                     <!--レンタル出来ない場合リンクを消す-->
                                 </div>
                             </form>

@@ -1,57 +1,53 @@
-    #tab {
-        list-style: none;
-        display: flex;
-        margin: 0;
-    }
-    
-    #tab li {
-        width: 100%;
-        text-align: center;
-        background-color: aquamarine;
-        height: 50px;
-        line-height: 50px;
-        margin-right: 20px;
-    }
-    
-    #tab li a {
-        text-decoration: none;
-        margin: 0 5px;
-    }
-    /***************一番外の大枠のdiv***************/
-    
-    .product {
-        display: flex;
-        /*ここ変更したい*/
-        justify-content: space-around;
-        align-items: center;
-    }
-    /*チェックボックス*/
-    
-    .checkbox {}
-    /*サムネイル
-    .img {}
 
-    /***********本の情報の大枠************/
-    
-    .main {}
-    /*著者、出版社、発行年月*/
-    
-    .description {
-        display: flex;
-    }
-    /*価格*/
-    
-    .price {
-        display: flex;
-    }
-    /*数量*/
-    
-    .qty {}
-    /**********************************/
-    /*削除ボタン*/
-    
-    .delete {}
-    /*********************************************/
-    /*購入ボタン*/
-    
-    .receive {}
+#tab {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+#tab li {
+    width: 100%;
+    text-align: center;
+    background-color: aquamarine;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 20px;
+}
+
+#tab li a {
+    text-decoration: none;
+    margin: 0 5px;
+}
+/***************一番外の大枠のdiv***************/
+
+.product {
+    display: flex;
+    /*ここ変更したい*/
+    justify-content: space-around;
+    align-items: center;
+}
+/***********本の情報の大枠************/
+
+.main a,
+.delete a {
+    text-decoration: none;
+}
+
+.main a:link,
+.main a:visited,
+.main a:hover,
+.main a:active,
+.delete a:link,
+.delete a:visited,
+.delete a:hover,
+.delete a:active {
+    color: black;
+}
+
+.description {
+    display: flex;
+}
+
+.price {
+    display: flex;
+}

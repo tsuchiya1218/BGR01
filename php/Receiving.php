@@ -24,10 +24,9 @@ try {
 ?>
 
 <?php
-// サンプル
+
 $Cart = $_SESSION['b'] = 1;
 $c_code = $_GET['c_code'] = 00001;
-var_dump($Cart);
 // お客様情報
 $sql = 'SELECT c_code FROM customers where c_code=?';
 
@@ -46,7 +45,6 @@ try {
     exit();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -79,24 +77,20 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                <input type="button" value="詳細検索" onclick="location.href=''">
             </form>
         </div>
         <hr>
     </header>
     <main>
-
-            <div align="center">
-                <p>受取方法</p>
-                <form action="Receiving_get.php" method="GET">
-                    <input type="radio" name="select" value="店舗">店舗
-                    <input type="radio" name="select" value="郵送" 　checked>郵送
-                    <input type="submit" value="次へ">
-                </form>
-            </div>
-        <?php
-      
-        ?>
+        <div align="center">
+            <p>受取方法</p>
+            <form action="Receiving_get.php" method="GET">
+                <input type="hidden" name="c_code" value="<?= $value['c_code'] ?>">
+                <input type="radio" name="select" value="店舗">店舗
+                <input type="radio" name="select" value="郵送" 　checked>郵送
+                <input type="submit" value="次へ">
+            </form>
+        </div>
     </main>
 </body>
 

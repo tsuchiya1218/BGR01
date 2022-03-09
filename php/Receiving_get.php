@@ -20,7 +20,6 @@ try {
     exit();
 }
 
-
 ?>
 
 
@@ -57,25 +56,25 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
+
             </form>
         </div>
         <hr>
     </header>
     <main>
         <?php
-        /*
+
         session_start();
 
-        $how_cart = $_SESSION['cart'];
-        //$how_cartはnullじゃなかったら
-        if (!($how_cart == null)) {
-            // $how_cartがレンタルだったら
-            if ($how_cart == 'rental') {
-                // Verification.phpに遷移する
-                header("../html/Verification.php");
-                exit;
-            } 
-            */
+        $how_cart = $_SESSION['b'] = 1;
+        // $how_cartがレンタルだったら
+        if ($how_cart == '3') {
+            // Verification.phpに遷移する
+            header("Verification.php");
+            exit;
+        }
+
+
         ?>
 
         <?php
@@ -93,7 +92,6 @@ try {
                 <p>地域選択</p>
                 <form action="Region.php" name="Acceptance" method="get" value="店舗">
                     <div class="flbox">
-
                         <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
                         <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
                         <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
@@ -139,7 +137,11 @@ try {
                 // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
-                    <form action="Region.php" name="Acceptance" method="get">
+
+                    <form action="Region.php" name="Acceptance" method="get" value="郵送">
+
+
+
                     <?php
                 }
                     ?>
@@ -148,6 +150,7 @@ try {
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
+
                     <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
