@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
     //データベースに接続する
     try {
         $server_name = "10.42.129.3";    // サーバ名
@@ -19,42 +22,52 @@
         exit();
     }
 
-$b_code = $_GET['b_code'];
-$c_code = $_GET['c_code'];
-$b = $_GET['b'];
+$cart = $_SESSION['cart'];
+$c_code = $_SESSION['c_code'];
 
     //buycart
-    if($b == 'buycart'){
-        try{
-            $deletebuy = "DELETE FROM buycart WHERE b_code = $b_code AND c_code = $c_code";
+    if($cart == 'buycart'){
 
-            $stmtdeb = $pdo->prepare($deletebuy);
-            $stmtdeb->execute();
-            $arraydeb = $stmt->fetch(PDO::FETCH_BOTH);
+	$cart_code = $_GET['bc_buyCartCode'];
+	$sql = "DELETE FROM buycart WHERE bc_buyCartCode = ? AND c_code = ?";	
+
+        try{
+
+            $stmt = $pdo->prepare($sql);
+            $stmt -> execute(array($cart_code,$c_code));
+
         } catch (PDOException $e) {
             print "接続エラー!: " . $e->getMessage();
             exit();
         }
+
         //reservecart
-    } elseif ($b == 'reservecart') {
+    } elseif ($cart == 'reservecart') {
+
+	$cart_code = $_GET['rc_reserveCartCode'];
+	$sql = "DELETE FROM reservecart  WHERE rc_reserveCartCode = ? AND c_code = ?";
+
         try {
-            $deletereserve = "DELETE FROM reservecart 
-                            WHERE b_code = $b_code AND c_code = $c_code";
-            $stmtder = $pdo->prepare($deletereserve);
-            $stmtder->execute();
-            $arrayder = $stmt->fetch(PDO::FETCH_BOTH);
+
+            $stmt = $pdo->prepare($sql);
+            $stmt -> execute(array($cart_code,$c_code));
+
         } catch (PDOException $e) {
             print "接続エラー!: " . $e->getMessage();
             exit();
         }
+
         //rentalcart
-    } elseif ($b == 'rentalcart') {
+    } elseif ($cart == 'rentalcart') {
+
+	$cart_code = $_GET['rtc_code'];
+	$sql = "DELETE FROM rentalcart WHERE rtc_code = ? AND c_code = ?";
+
         try {
-            $deleterental = "DELETE FROM rentalcart 
-                            WHERE b_code = $b_code AND c_code = $c_code";
-            $stmtdel = $pdo->prepare($deleterental);
-            $stmtdel->execute();
-            $arraydel = $stmt->fetch(PDO::FETCH_BOTH);
+
+            $stmt = $pdo->prepare($sql);
+            $stmt -> execute(array($cart_code,$c_code));
+
         } catch (PDOException $e) {
             print "接続エラー!: " . $e->getMessage();
             exit();
