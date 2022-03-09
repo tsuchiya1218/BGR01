@@ -19,12 +19,9 @@
         print "接続エラー!: " . $e->getMessage ();
         exit();
     }
-<<<<<<< HEAD
-    session_start();
-    unset($_SESSION['b_thum']['b_name']['b_author']['b_publisher']['b_release']['b_purchaseprice']);
 
 
-=======
+
     
     $b_code = $_GET['b_code'];
     $b = $_GET['b'];
@@ -32,7 +29,8 @@
     //buycart
     if($b == 'buycart'){
     try{
-        $deletebuy = "DELETE FROM buycart WHERE $b_code = b_code AND $c_code = c_code";
+        $deletebuy = "DELETE FROM buycart 
+                      WHERE $b_code = b_code AND $c_code = c_code";
         $stmtdeb = $pdo->prepare($deletebuy);
         $stmtdeb ->execute();
         $arraydeb = $stmt ->fetch(PDO::FETCH_BOTH);
@@ -43,7 +41,8 @@
     //reservecart
 }elseif($b == 'reservecart'){
     try{
-        $deletereserve = "DELETE FROM reservecart WHERE $b_code = b_code AND $c_code = c_code";
+        $deletereserve = "DELETE FROM reservecart 
+                          WHERE $b_code = b_code AND $c_code = c_code";
         $stmtder = $pdo->prepare($deletereserve);
         $stmtder ->execute();
         $arrayder = $stmt ->fetch(PDO::FETCH_BOTH);
@@ -54,7 +53,8 @@
     //rentalcart
 }elseif($b == 'rentalcart'){
     try{
-        $deleterental = "DELETE FROM rentalcart WHERE $b_code = b_code AND $c_code = c_code";
+        $deleterental = "DELETE FROM rentalcart 
+                         WHERE $b_code = b_code AND $c_code = c_code";
         $stmtdel = $pdo->prepare($deleterental);
         $stmtdel ->execute();
         $arraydel = $stmt ->fetch(PDO::FETCH_BOTH);
@@ -63,6 +63,6 @@
         exit();
     }
 }
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+header('Location:Cart.php');
     
 ?>
