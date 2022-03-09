@@ -51,7 +51,6 @@ try {
         <hr>
     </header>
     <main>
-<<<<<<< HEAD
 <?php
 $how_cart = $_SESSION['cart'];
 if(!empty($how_cart)){
@@ -219,6 +218,7 @@ if(!empty($how_cart)){
             }
         } else {
         }
+    }
         ?>
 
 

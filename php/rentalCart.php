@@ -64,15 +64,26 @@ try {
         <hr>
     </header>
     <main>
+        <ul id="tab">
+            <li>
+                <a href="./buyCart.php">購入</a>
+            </li>
+            <li>
+                <a href="./reserveCart.php">予約</a>
+            </li>
+            <li>
+                <a href="./rentalCart.php">レンタル</a>
+            </li>
+        </ul>
+        <hr>
         <?php
-
         //サンプルデータ
         $c_code = 1;
 
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
-        $sql = "SELECT book.b_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+        $sql = "SELECT book.b_code,rtc_code,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
                             inner join buycart
                             ON book.b_code = buycart.b_code
@@ -123,11 +134,7 @@ try {
                     </div>
                 </div>
                 <div class="delete">
-                    <form action="deleteCart.php" method="GET">
-                        <!--<input type="hidden" name="" value=""-->
-                        <input type="reset" value="削除">
-                        <!--購入した商品一つをカートから削除-->
-                    </form>
+                    <button type="button"><a href="deleteCart.php?rtc_code=<?= $value['rtc_code'] ?>">削除</a></button>
                 </div>
             </div>
             <hr>
