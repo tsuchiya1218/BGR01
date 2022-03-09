@@ -49,11 +49,6 @@ try {
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
-                <input type="button" value="詳細検索" onclick="location.href=''">
-=======
-                
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
