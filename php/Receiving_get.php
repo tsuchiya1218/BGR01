@@ -1,5 +1,8 @@
 <?php
+
 session_start();
+$c_code = $_SESSION['c_code'];//顧客コード
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -20,10 +23,9 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+
 // カートの種類
-$how_cart = $_SESSION['cart'];
-// お客様情報
-$c_code = $_GET['c_code'];
+$cart = $_SESSION['cart'];
 
 ?>
 
@@ -68,29 +70,12 @@ $c_code = $_GET['c_code'];
     </header>
     <main>
         <?php
-
-
-
-        // $how_cartがレンタルだったら
-        if ($how_cart == '2') {
-            // Verification.phpに遷移する
-            header("Verification.php");
-            exit;
-        }
-
-
-        ?>
-
-        <?php
-
-
+        // cartがレンタルだったら
         // データがある場合
         if (isset($_GET['select'])) {
-
             // 中身が店舗だった場合
             if ($_GET['select'] == '店舗') {
         ?>
-
                 <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
                 <h2>店舗受け取り</h2>
                 <p>地域選択</p>
@@ -116,7 +101,7 @@ $c_code = $_GET['c_code'];
                 <?php
                 // $sql = "SELECT * FROM customers WHERE c_code = ?";
                 // Sample
-                $sql = "SELECT * FROM customers WHERE c_code = 1";
+                $sql = "SELECT * FROM customers WHERE c_code = ?";
                 try {
                     // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
@@ -124,8 +109,8 @@ $c_code = $_GET['c_code'];
                     $stmt->execute(array($c_code));
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $sql = null;
                     $stmt = null;
-                    $pdo = null;
                 } catch (PDOException $e) {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
@@ -137,11 +122,7 @@ $c_code = $_GET['c_code'];
                 <?php
                 foreach ($array as $value) {
                 ?>
-
                     <form action="Region.php" name="Acceptance" method="get" value="郵送">
-
-
-
                     <?php
                 }
                     ?>
@@ -151,13 +132,15 @@ $c_code = $_GET['c_code'];
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
-
                     <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
             <?php
             }
         } else {
+            ?>
+            <a>エラーが発生しました。最初からやり直してください。</a>
+            <?php
         }
             ?>
     </main>
@@ -177,7 +160,6 @@ $c_code = $_GET['c_code'];
         if (add2.checked) {
             text.disabled = false;
         }
-
     })
 </script>
 

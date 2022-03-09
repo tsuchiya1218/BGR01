@@ -9,6 +9,8 @@ if(!empty($_SESSION['url'])){
 }
 $_SESSION['cart'] = 'reservecart';
 $_SESSION['url'] = 'reservecart.php';
+$c_code = $_SESSION['c_code'];
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -58,26 +60,24 @@ $c_code = 1;
 ?>
 
 <body>
-    <header>
+<header>
         <div id="top">
+
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
-                <input type="button" value="ログイン">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
-                </select>
-                <input type="text" name="serchWord">
-                <input type="submit" value="🔍">
-
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
@@ -100,7 +100,6 @@ $c_code = 1;
                             INNER JOIN reservecart
                             ON book.b_code = reservecart.b_code 
                             WHERE c_code = ?";
-
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(array($c_code));
@@ -115,7 +114,10 @@ $c_code = 1;
             echo "カートの中に商品がありません。";
         } else {
             if(!empty($_SESSION['emsg'])){
-                echo $_SERVER['emsg'];
+                //deleteCart.phpに接続できない場合
+                //addCart.phpに接続できない場合
+                //updateCart.phpに接続できない場合
+                echo $_SESSION['emsg'];
             }
             ?>
             <form method="get" action="Receiving.php">
@@ -157,7 +159,6 @@ $c_code = 1;
                     }
                     ?>
                 </table>
-                <hr>
                 <input type="submit" value="支払い手続きへ">
             </form>
         <?php

@@ -1,6 +1,7 @@
 <?php
-//データベースに接続する
+
 session_start();
+$_SESSION['c_code'] = 1;
 
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -13,20 +14,18 @@ try {
     $dsn = "sqlsrv:server=$server_name;database=$db_name";
 
     // PDOオブジェクトのインスタンス作成
-    $dbh = new PDO($dsn, $user_name, $user_pass);
+    $pdo = new PDO($dsn, $user_name, $user_pass);
 
     // PDOオブジェクトの属性の指定
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
 ?>
 
-
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -34,12 +33,11 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/common.css" rel="stylesheet" type="text/css">
     <link href="../css/top.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/region.css" type="text/css">
-    <title>受取方法選択</title>
+    <title>トップページ</title>
 </head>
 
 <body>
-    <header>
+<header>
         <div id="top">
 
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
@@ -61,40 +59,32 @@ try {
         <hr>
     </header>
     <main>
-        <h2>店舗選択</h2>
-        <p>該当店舗</p>
-        <?php
-        $s_region = $_GET['s_region'];
-        $sql = "SELECT s_name,s_region FROM store where s_region = ?";
-        // SQL 文を準備
-        try {
-            $stmt = $dbh->prepare($sql);
-            // SQL 文を実行
-            $stmt->execute(array($s_region));
-            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $sql = null;
-            $stmt = null;
-        } catch (PDOException $e) {
-            print "接続エラー!: " . $e->getMessage();
-            exit();
-        }
-        ?>
-
-        <div class="flbox">
-            <?php
-            // s_regionのデータが入っていた場合
-            if (isset($s_region)) {
-                foreach ($array as $value) {
-            ?>
-                    <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
-            <?php
-                }
-            } else {
-                header('Location:payment.php');
-            }
-            ?>
+        <div class="RankAndNew">
+            <div class="Rank ">
+                <h2>ランキング</h2>
+                <ol class="ranking ">
+                    <li>aaaaa</li>
+                    <li>bbbbb</li>
+                    <li>cc</li>
+                    <li>dddddddddd</li>
+                    <li>eeeee</li>
+                    <!--購入数ランキング50位までの本を検索結果として表示する画面に遷移-->
+                    <small><a href="Result.php?" name="rank" class="mottomiru">もっと見る</a></small>
+                </ol>
+            </div>
+            <div class="New">
+                <h2>新刊本</h2>
+                <ul>
+                    <li>1111</li>
+                    <li>22222222</li>
+                    <li>33</li>
+                    <li>44</li>
+                    <li>55555</li>
+                    <!--発行から2週間以内の本を検索結果として表示する画面に遷移-->
+                    <small><a href="Result.php?" name="new" class="mottomiru">もっと見る</a></small>
+                </ul>
+            </div>
         </div>
-
     </main>
 </body>
 
