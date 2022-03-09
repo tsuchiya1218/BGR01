@@ -1,124 +1,57 @@
-@charset "UTF-8";
+/***************一番外の大枠のdiv***************/
 
-td{
-  width: 60%;
-}
-
-/*main*/
-main{
-  width: 80%;
-  margin:0% 10%;
-}
-
-HTML CSSResult Skip Results Iframe
-EDIT ON
-
-
-/*タブ切り替え全体のスタイル*/
-.tab {
-  margin-top: 50px;
-  padding-bottom: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 700px;
-  margin: 0 auto;
-}
-
-/*タブのスタイル*/
-.tab_item {
-  width: calc(100%/3);
-  height: 50px;
-  border-bottom: 3px solid #5ab4bd;
-  background-color: #d9d9d9;
-  line-height: 50px;
-  font-size: 16px;
-  text-align: center;
-  color: #565656;
-  display: block;
-  float:left;
-  text-align: center;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-.tab_item:hover {
-  opacity: 0.75;
+.product {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 
+/*チェックボックス*/
 
-/*ラジオボタンを全て消す*/
-input[name="tab_item"] {
-  display: none;
-}
-
-/*タブ切り替えの中身のスタイル*/
-.tab_content {
-  display: none;
-  padding: 40px 40px 0;
-  clear: both;
-  overflow: hidden;
-
-}
+.checkbox {}
 
 
-/*選択されているタブのコンテンツのみを表示*/
-#buy:checked ~ #buy_content,
-#reserve:checked ~ #reserve_content,
-#rental:checked ~ #rental_content {
-  display: block;
-}
+/*サムネイル*/
 
-/*選択されているタブのスタイルを変える*/
-.tab input:checked + .tab_item {
-  background-color: #5ab4bd;
-  color: #fff;
+.img {}
+
+
+/***********本の情報の大枠************/
+
+.main {}
+
+
+/*著者、出版社、発行年月*/
+
+.description {
+    display: flex;
 }
 
 
-.product{
-  margin-top: 5%;
-  margin-bottom: 5%;
-  justify-content: space-around; 
-  overflow: hidden;
-  display: flex;
-}
-td{
-  width: 40%;
-}
-.btitle{
-  font-weight: bolder;
-  height: auto;
-  font-size: x-large;
-  vertical-align: baseline;
-}
-.btitle a{
-  text-decoration: none;
-}
-.btitle a:link,.btitle a:visited,.btitle a:hover,.btitle a:active {
-  color: black;
+/*価格*/
+
+.price {
+    display: flex;
 }
 
-.btitle a:link:hover{
-  color: blue;
-}
-.checkbox{
-  margin:auto 0;
-}
-.mainlight{
-  position: relative;
-  right: 50px;
-  flex-direction: column;
-  width: 40%;
-  padding:10px 5px;
-}
-.description{
-  justify-content: space-between;
-}
-.gokei{
-  text-align: right;
-}
 
-.info,.info2{
-  display: flex;
-  
-}
+/*数量*/
+
+.qty {}
+
+
+/**********************************/
+
+
+/*削除ボタン*/
+
+.delete {}
+
+
+/*********************************************/
+
+
+/*購入ボタン*/
+
+.receive {}

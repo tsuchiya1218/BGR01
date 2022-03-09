@@ -19,8 +19,6 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -54,25 +52,19 @@ try {
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
-=======
-                
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
     </header>
     <main>
         <?php
-        //Result.phpから送られてきたデータを取得
-        $b_code1 = $_GET['b_code'];
+        $b_code = $_GET['b_code'];
         //SQL文の実行
         $sql = "SELECT * FROM book Where b_code = ?";
         try {
-
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(array($b_code1));
+            $stmt->execute(array($b_code));
             // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
             $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $stmt = null;
@@ -118,10 +110,7 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
                                         <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -136,10 +125,7 @@ try {
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
                                         <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -162,10 +148,7 @@ try {
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
-<<<<<<< HEAD
                                     <!--php出来たら上のリンク変更-->
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                                     <!--レンタル出来ない場合リンクを消す-->
                                 </div>
                             </form>
