@@ -55,12 +55,17 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
+<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
+=======
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
     </header>
     <main>
+<<<<<<< HEAD
     <?php
     session_start();
 
@@ -78,6 +83,39 @@ try {
            echo "カートにデータが入っていません";
     }
         ?>
+=======
+        <?php
+        session_start();
+        ?>
+        <h2>支払選択</h2>
+        <form action="Verification.php" method="get">
+            <?php
+            //$how_cartはnullじゃなかったら
+
+            try {
+                $_GET['c_address'];
+                $buy = $_SESSION['buy'];
+                $retal = $_SESSION['retal'];
+                $reserve = $_SESSION['reserve'];
+                // SQL 文を準備
+                //$stmt = $pdo->prepare();
+                // SQL 文を実行
+                $stmt->execute(array($buy, $retal, $reserve));
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = null;
+                $pdo = null;
+            } catch (PDOException $e) {
+                print "接続エラー!: " . $e->getMessage();
+                exit();
+            }
+            ?>
+            <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
+            <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
+            <input type="submit" value="次へ">
+        </form>
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     </main>
 </body>
 

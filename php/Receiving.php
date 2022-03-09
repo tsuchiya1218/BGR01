@@ -21,6 +21,18 @@ try {
 }
 
 ?>
+<<<<<<< HEAD
+=======
+<?php
+if (!($_GET['rtc_code'] == null && $_GET['b_code'] == null)) {
+}
+
+if ($_GET['']) {
+    # code...
+}
+
+?>
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -53,7 +65,11 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
+<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
+=======
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
@@ -75,6 +91,7 @@ try {
             */
         ?>
 
+<<<<<<< HEAD
             <div align="center">
                 <p>受取方法</p>
                 <form action="Receiving_get.php" method="GET">
@@ -85,6 +102,18 @@ try {
             </div>
         <?php
       
+=======
+        <div align="center">
+            <p>受取方法</p>
+            <form action="Receiving_get.php" method="GET">
+                <input type="radio" name="select" value="店舗">店舗
+                <input type="radio" name="select" value="郵送" 　checked>郵送
+                <input type="submit" value="次へ">
+            </form>
+        </div>
+        <?php
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
         ?>
     </main>
 </body>

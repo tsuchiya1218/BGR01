@@ -2,6 +2,10 @@
 <?php
 
 session_start();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
@@ -44,12 +48,17 @@ try {
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
+<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
+=======
+                
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
     </header>
     <main>
+<<<<<<< HEAD
 <?php
 $how_cart = $_SESSION['cart'];
 if(!empty($how_cart)){
@@ -59,6 +68,11 @@ if(!empty($how_cart)){
         
     }elseif($how_cart =='rental'){
 
+=======
+        <?php
+
+<<<<<<<< HEAD:php/Verification.php
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     }
 }else{
     
@@ -72,10 +86,106 @@ if(!empty($how_cart)){
             <div class="other">
                 <div class="b_name">
                     <a href="Detail.php?book_id=1" class="title">地底旅行</a>
+<<<<<<< HEAD
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;847</a>
                 </div>
+=======
+========
+        $how_cart = $_SESSION['cart'];
+        $c_code = $_SESSION['c_code'];
+
+        if (!empty($how_cart)) {
+            if ($how_cart == 'buy') {
+
+                $sql = "SELECT * FROM buycart INNER JOIN customers ON buycart.b_name = customers.b_name 
+                WHERE buycart.c_code = ?";
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array($c_code));
+                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt = null;
+                    $sql = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+            } elseif ($how_cart == 'reserve') {
+                $sql = "SELECT * FROM reservecart INNER JOIN customers ON reservecart.b_name = customers.b_name
+                WHERE reservecart.c_code = ?";
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array($c_code));
+                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt = null;
+                    $sql = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+            } elseif ($how_cart == 'rental') {
+                $sql = "SELECT * FROM rentalcart INNER JOIN customers ON rentalcart.c_code = customers.c_code 
+                WHERE rentalcart.c_code = ?";
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array($c_code));
+                    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt = null;
+                    $sql = null;
+                } catch (PDOException $e) {
+                    print "SQL 実行エラー!: " . $e->getMessage();
+                    exit();
+                }
+            }
+            $sql = "SELECT b_thum FROM book WHERE b_code = ?";
+            try {
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute(array($b_code));
+                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $stmt = null;
+                $sql = null;
+            } catch (PDOException $e) {
+                print "SQL 実行エラー!: " . $e->getMessage();
+                exit();
+            }
+
+            foreach ($array as $value) {
+        ?>
+                <h3>購入内容</h3>
+                <div class="list">
+                    <div class="b_thum">
+                        <img class="thum" src="../image/<?= $value['']?>" alt="<?= $value['b_name']?>">
+                    </div>
+                    <div class="other">
+                        <div class="b_name">
+                            <a class="title"><?= $value['b_name']?></a>
+                        </div>
+                        <div class="b_price">
+                            <a class="price">価格(税込)&yen;<?= $value['c_qty']?></a><!--変更予定-->
+                        </div>
+                    </div>
+>>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e:html/verification.php
+                </div>
+                <hr>
+
+                <div class="sp">
+                    <div class="amount">
+                        <div class="ap">
+                            <a>合計金額</a>
+                        </div>
+                        <div class="a_price">
+                            <a id="price">&yen;<?= $value['']?></a><!--変更予定-->
+                            <!--処理方法がわからん-->
+                        </div>
+                    </div>
+                </div>
+<<<<<<<< HEAD:php/Verification.php
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </div>
         </div>
         <hr>
@@ -86,6 +196,7 @@ if(!empty($how_cart)){
             <div class="other">
                 <div class="b_name">
                     <a href="Detail.php?book_id=2" class="title">地球の歩き方(インド)</a>
+<<<<<<< HEAD
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;1900</a>
@@ -110,6 +221,28 @@ if(!empty($how_cart)){
                 <input type="submit" value="支払い">
             </form>
         </div>
+=======
+========
+                <div>
+                    <!--記述内容-->
+                    <!--受け取り方法-->
+                    <!--予約だったら1週間後位の日にち-->
+                    <!--レンタルだったら1か月後くらいの日にち-->
+                  
+>>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e:html/verification.php
+                </div>
+                <div class="cp">
+                    <form method="post" aciton="Order_completion.php">
+                        <input type="submit" value="購入">
+                    </form>
+                </div>
+        <?
+            }
+        } else {
+        }
+        ?>
+
+>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     </main>
 </body>
 
