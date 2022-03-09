@@ -55,35 +55,14 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
-=======
 
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
     </header>
     <main>
-<<<<<<< HEAD
-    <?php
-    session_start();
 
-    $how_cart = $_SESSION['cart'];
-    //$how_cartはnullじゃなかったら
-    if (!($how_cart == null)) {
-    ?>  
-      <h2>支払選択</h2>
-        <form action="../html/Receiving.php" method="get">
-            <input type="radio" name="pay"  value="コンビニ支払い"　checked>コンビニ支払い
-            <input type="radio" name="payment" value="クレジットカード払い" >クレジットカード払い
-            <input type="submit" value="次へ">
-        </form>
-<?php }else{          
-           echo "カートにデータが入っていません";
-    }
-        ?>
-=======
         <?php
         session_start();
         ?>
@@ -93,11 +72,11 @@ try {
             //$how_cartはnullじゃなかったら
 
             try {
-                
+
                 $Cart = $_SESSION['b'] = 1;
 
                 // SQL 文を準備
-               // $stmt = $pdo->prepare();
+                // $stmt = $pdo->prepare();
                 // SQL 文を実行
                 //$stmt->execute(array());
                 // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
@@ -109,12 +88,12 @@ try {
                 exit();
             }
             ?>
-            <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
-            <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
-            <input type="submit" value="次へ">
+            <div>
+                <input type="radio" name="payment" value="コンビニ支払い" 　checked>コンビニ支払い
+                <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
+                <input type="submit" value="次へ">
+            </div>
         </form>
-
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     </main>
 </body>
 

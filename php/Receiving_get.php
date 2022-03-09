@@ -20,7 +20,6 @@ try {
     exit();
 }
 
-
 ?>
 
 
@@ -57,34 +56,26 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
-=======
-                
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
->>>>>>> f79b39ae6f36a8ab6063cf1bead6995e4fae4b40
+
             </form>
         </div>
         <hr>
     </header>
     <main>
         <?php
-        /*
+
         session_start();
 
-        $how_cart = $_SESSION['cart'];
-        //$how_cartはnullじゃなかったら
-        if (!($how_cart == null)) {
-            // $how_cartがレンタルだったら
-            if ($how_cart == 'rental') {
-                // Verification.phpに遷移する
-                header("../html/Verification.php");
-                exit;
-            } 
-            */
+        $how_cart = $_SESSION['b'] = 1;
+        // $how_cartがレンタルだったら
+        if ($how_cart == '3') {
+            // Verification.phpに遷移する
+            header("Verification.php");
+            exit;
+        }
+
+
         ?>
 
         <?php
@@ -102,16 +93,6 @@ try {
                 <p>地域選択</p>
                 <form action="Region.php" name="Acceptance" method="get" value="店舗">
                     <div class="flbox">
-<<<<<<< HEAD
-                        <div class="fl"><a href="../html/Region.php?s_region=北海道" class="btn">北海道</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=東北" class="btn">東北</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関東" class="btn">関東</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=関西" class="btn">関西</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中部" class="btn">中部</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=四国" class="btn">四国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=中国" class="btn">中国</a></div>
-                        <div class="fl"><a href="../html/Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
-=======
                         <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
                         <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
                         <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
@@ -120,7 +101,6 @@ try {
                         <div class="fl"><a href="Region.php?s_region=四国" class="btn">四国</a></div>
                         <div class="fl"><a href="Region.php?s_region=中国" class="btn">中国</a></div>
                         <div class="fl"><a href="Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                     </div>
                 </form>
             <?php
@@ -158,11 +138,10 @@ try {
                 // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
-<<<<<<< HEAD
+
                     <form action="Region.php" name="Acceptance" method="get" value="郵送">
-=======
-                    <form action="Region.php" name="Acceptance" method="get">
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+
+
 
                     <?php
                 }
@@ -172,10 +151,8 @@ try {
                     <p>上記以外の住所を入力してください</p>
                     <input type="radio" name="address" id="add2" onclick="changeDisabled()">
                     <input type="text" id="inputtext" size="50" placeholder="住所を入力"></p>
-<<<<<<< HEAD
-=======
+
                     <input type="hidden" name="Acceptance" value="郵送">
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                     <input type="submit" value="次へ">
                     </form>
                 <?php

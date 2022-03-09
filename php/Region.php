@@ -23,7 +23,6 @@ try {
 
 ?>
 <?php
-<<<<<<< HEAD
 //cartが購入だった場合
 if ($_SESSION['cart'] == 'buy') {
     try {
@@ -77,9 +76,7 @@ if ($_SESSION['cart'] == 'reserve') {
         exit();
     }
 }
-=======
 
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
 ?>
 
 <!DOCTYPE html>
@@ -108,21 +105,14 @@ if ($_SESSION['cart'] == 'reserve') {
         <hr>
         <div align="center">
             <form action="Result.php" method="post">
-<<<<<<< HEAD
-=======
-
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
-=======
 
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
@@ -131,7 +121,7 @@ if ($_SESSION['cart'] == 'reserve') {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
-<<<<<<< HEAD
+
         if ($_GET['Acceptance'] == '郵送') {
 
             try {
@@ -171,7 +161,8 @@ if ($_SESSION['cart'] == 'reserve') {
             }
             ?>
             </div>
-=======
+        <?php
+
         try {
             $s_region = $_GET['s_region'];
             $sql3 = "SELECT s_name,s_code FROM store  where s_region = ?";
@@ -205,7 +196,6 @@ if ($_SESSION['cart'] == 'reserve') {
 
             ?>
         </div>
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     </main>
 </body>
 
