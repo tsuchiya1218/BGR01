@@ -76,7 +76,7 @@ $c_code = 1;
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
-        $sql = "SELECT b_name,b_author,b_publisher,b_release,b_rentalprice,b_thum
+        $sql = "SELECT book.b_name,rc_reserveCartCode,b_author,b_publisher,b_release,b_rentalprice,b_thum
                             FROM book 
                             RIGHT JOIN reservecart
                             ON book.b_code = reservecart.b_code
@@ -104,7 +104,7 @@ $c_code = 1;
                     <!--value="500"-->
                     <form method="get" action="./Detail.php">
                         <div class="img">
-                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="地底旅行" height="250" width="200"></a>
+                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<?$value['b_name']?>" height="250" width="200"></a>
                         </div>
                     </form>
                     <div class="main">
