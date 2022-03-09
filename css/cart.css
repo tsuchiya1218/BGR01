@@ -25,10 +25,6 @@
         justify-content: space-around;
         align-items: center;
     }
-    /*チェックボックス*/
-    .checkbox {}
-    /*サムネイル
-    .img {}
     /***********本の情報の大枠************/
     .main {}
     /*著者、出版社、発行年月*/

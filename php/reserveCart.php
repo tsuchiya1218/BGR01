@@ -109,11 +109,6 @@ try {
             ?>
                 <div class="product">
                     <!--書籍のDB化-->
-                    <!-- checkbox value price -->
-                    <div class="checkbox">
-                        <input type="checkbox" id="check" onclick="calcTotal(<?= $value['b_purchaseprice'] ?>)">
-                        <!--$value['b_purchaseprice']-->
-                    </div>
                     <!--value="500"-->
                     <form method="get" action="./Detail.php">
                         <div class="img">

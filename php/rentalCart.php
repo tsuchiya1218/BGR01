@@ -106,11 +106,6 @@ try {
         ?>
                 <div class="product">
                     <!--書籍のDB化-->
-                    <!-- checkbox value price -->
-                    <div class="checkbox">
-                        <input type="checkbox" id="check" onclick="calcTotal(<?= $value['b_purchaseprice'] ?>)">
-                        <!--$value['b_purchaseprice']-->
-                    </div>
                     <!--value="500"-->
                     <div class="img">
                         <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="地底旅行" height="250" width="200"></a>
