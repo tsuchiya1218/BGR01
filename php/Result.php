@@ -34,7 +34,6 @@ try {
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
-
             </div>
         </div>
         <hr>
@@ -100,7 +99,8 @@ try {
                     exit();
                 }
                 echo "<h3>作者名 : " . $searchWord . "で検索</h3>";
-            }if (!empty($_GET['new'])) {
+            }
+            if (!empty($_GET['new'])) {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_boughtQty DESC';
                 try {
@@ -232,7 +232,7 @@ try {
                 </div>
                 <hr>
         <?php
-            }   
+            }
         }
         ?>
     </main>

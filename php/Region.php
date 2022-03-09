@@ -23,60 +23,60 @@ try {
 
 ?>
 <!-- <?php
-// //cartが購入だった場合
-// if ($_SESSION['cart'] == 'buy') {
-//     try {
-//         $c_code = $_GET['c_code'];
-//         $buy_code = $_SESSION['buy_code'];
-//         $sql = "SELECT bc_qty,bc_totalamount FROM buycart  WHERE c_code = ? AND buy_code = ?";
-//         // SQL 文を準備
-//         $stmt = $dbh->prepare($sql);
-//         // SQL 文を実行
-//         $stmt->execute(array($c_code, $buy_code));
-//         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//         $stmt = null;
-//     } catch (PDOException $e) {
-//         print "接続エラー!: " . $e->getMessage();
-//         exit();
-//     }
-// }
-// //cartがレンタルだった場合
-// if ($_SESSION['cart'] == 'retal') {
-//     try {
-//         $c_code = $_GET['c_code'];
+        // //cartが購入だった場合
+        // if ($_SESSION['cart'] == 'buy') {
+        //     try {
+        //         $c_code = $_GET['c_code'];
+        //         $buy_code = $_SESSION['buy_code'];
+        //         $sql = "SELECT bc_qty,bc_totalamount FROM buycart  WHERE c_code = ? AND buy_code = ?";
+        //         // SQL 文を準備
+        //         $stmt = $dbh->prepare($sql);
+        //         // SQL 文を実行
+        //         $stmt->execute(array($c_code, $buy_code));
+        //         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //         $stmt = null;
+        //     } catch (PDOException $e) {
+        //         print "接続エラー!: " . $e->getMessage();
+        //         exit();
+        //     }
+        // }
+        // //cartがレンタルだった場合
+        // if ($_SESSION['cart'] == 'retal') {
+        //     try {
+        //         $c_code = $_GET['c_code'];
 
-//         $rental = $_SESSION['rental'];
-//         $sql = "SELECT rtc_code,rtc_totalamount FROM rentalcart  WHERE c_code = ? AND rtc_code = ?";
-//         // SQL 文を準備
-//         $stmt = $dbh->prepare($sql);
-//         // SQL 文を実行
-//         $stmt->execute(array($c_code, $rental));
-//         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//         $stmt = null;
-//     } catch (PDOException $e) {
-//         print "接続エラー!: " . $e->getMessage();
-//         exit();
-//     }
-// }
-// //cartがレンタルだった場合
-// if ($_SESSION['cart'] == 'reserve') {
-//     try {
-//         $c_code = $_GET['c_code'];
+        //         $rental = $_SESSION['rental'];
+        //         $sql = "SELECT rtc_code,rtc_totalamount FROM rentalcart  WHERE c_code = ? AND rtc_code = ?";
+        //         // SQL 文を準備
+        //         $stmt = $dbh->prepare($sql);
+        //         // SQL 文を実行
+        //         $stmt->execute(array($c_code, $rental));
+        //         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //         $stmt = null;
+        //     } catch (PDOException $e) {
+        //         print "接続エラー!: " . $e->getMessage();
+        //         exit();
+        //     }
+        // }
+        // //cartがレンタルだった場合
+        // if ($_SESSION['cart'] == 'reserve') {
+        //     try {
+        //         $c_code = $_GET['c_code'];
 
-//         $reserve = $_SESSION['reserve'];
-//         $sql = "SELECT rc_reserveCartCode,rc_totalamount FROM reservecart WHERE c_code = ? AND rc_reserveCartCode = ?";
-//         // SQL 文を準備
-//         $stmt = $dbh->prepare($sql);
-//         // SQL 文を実行
-//         $stmt->execute(array($c_code, $reserve));
-//         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//         $stmt = null;
-//     } catch (PDOException $e) {
-//         print "接続エラー!: " . $e->getMessage();
-//         exit();
-//     }
-// }
-?> -->
+        //         $reserve = $_SESSION['reserve'];
+        //         $sql = "SELECT rc_reserveCartCode,rc_totalamount FROM reservecart WHERE c_code = ? AND rc_reserveCartCode = ?";
+        //         // SQL 文を準備
+        //         $stmt = $dbh->prepare($sql);
+        //         // SQL 文を実行
+        //         $stmt->execute(array($c_code, $reserve));
+        //         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //         $stmt = null;
+        //     } catch (PDOException $e) {
+        //         print "接続エラー!: " . $e->getMessage();
+        //         exit();
+        //     }
+        // }
+        ?> -->
 
 <!DOCTYPE html>
 <html lang="jp">
@@ -111,7 +111,7 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                
+
 
             </form>
         </div>
@@ -121,37 +121,33 @@ try {
         <h2>店舗選択</h2>
         <p>該当店舗</p>
         <?php
-        if ($_GET['Acceptance'] == '郵送') {
 
-            try {
-                $s_region = $_GET['s_region'];
-                $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
-                // SQL 文を準備
-                $stmt = $dbh->prepare($sql3);
-                // SQL 文を実行
-                $stmt->execute(array($s_region));
-                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $stmt = null;
-            } catch (PDOException $e) {
-                print "接続エラー!: " . $e->getMessage();
-                exit();
-            }
+        try {
+            $s_region = $_GET['s_region'];
+            $sql3 = "SELECT s_name,s_region FROM store  where s_region = ?";
+            // SQL 文を準備
+            $stmt = $dbh->prepare($sql3);
+            // SQL 文を実行
+            $stmt->execute(array($s_region));
+            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = null;
+        } catch (PDOException $e) {
+            print "接続エラー!: " . $e->getMessage();
+            exit();
+        }
         ?>
-            <div class="flbox">
+        <div class="flbox">
+            <?php
+            // s_regionのデータが入っていた場合
+            if (isset($_GET['s_region'])) {
+                foreach ($array as $value) {
+
+
+            ?>
+
+                    <div class="fl"><a href="../verification.php" class="btn"><?= $value['s_name']; ?></a></div>
+
                 <?php
-                // s_regionのデータが入っていた場合
-                if (isset($_GET['s_region'])) {
-                    foreach ($array as $value) {
-
-
-                ?>
-
-                        <div class="fl"><a href="../verification.php" class="btn"><?= $value['s_name']; ?></a></div>
-
-                <?php
-                    }
-                } else {
-                    print 's_regionのデータが入っていません';
                 }
             } else {
                 ?>
@@ -159,7 +155,7 @@ try {
                 header('Location:payment.php');
             }
             ?>
-            </div>
+        </div>
 
     </main>
 </body>
