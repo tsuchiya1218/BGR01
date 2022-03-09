@@ -2,10 +2,7 @@
 <?php
 
 session_start();
-<<<<<<< HEAD
-=======
 
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
@@ -48,11 +45,7 @@ try {
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-<<<<<<< HEAD
                 <input type="button" value="詳細検索" onclick="location.href=''">
-=======
-                
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </form>
         </div>
         <hr>
@@ -68,15 +61,9 @@ if(!empty($how_cart)){
         
     }elseif($how_cart =='rental'){
 
-=======
-        <?php
+    }else{
 
-<<<<<<<< HEAD:php/Verification.php
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
     }
-}else{
-    
-}
 ?>
         <h3>購入内容</h3>
         <div class="list">
@@ -86,13 +73,12 @@ if(!empty($how_cart)){
             <div class="other">
                 <div class="b_name">
                     <a href="Detail.php?book_id=1" class="title">地底旅行</a>
-<<<<<<< HEAD
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;847</a>
                 </div>
-=======
-========
+
+<?php
         $how_cart = $_SESSION['cart'];
         $c_code = $_SESSION['c_code'];
 
@@ -169,7 +155,6 @@ if(!empty($how_cart)){
                             <a class="price">価格(税込)&yen;<?= $value['c_qty']?></a><!--変更予定-->
                         </div>
                     </div>
->>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e:html/verification.php
                 </div>
                 <hr>
 
@@ -184,8 +169,6 @@ if(!empty($how_cart)){
                         </div>
                     </div>
                 </div>
-<<<<<<<< HEAD:php/Verification.php
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             </div>
         </div>
         <hr>
@@ -196,7 +179,6 @@ if(!empty($how_cart)){
             <div class="other">
                 <div class="b_name">
                     <a href="Detail.php?book_id=2" class="title">地球の歩き方(インド)</a>
-<<<<<<< HEAD
                 </div>
                 <div class="b_price">
                     <a class="price">価格(税込)　&yen;1900</a>
@@ -221,28 +203,25 @@ if(!empty($how_cart)){
                 <input type="submit" value="支払い">
             </form>
         </div>
-=======
-========
-                <div>
-                    <!--記述内容-->
-                    <!--受け取り方法-->
-                    <!--予約だったら1週間後位の日にち-->
-                    <!--レンタルだったら1か月後くらいの日にち-->
-                  
->>>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e:html/verification.php
-                </div>
-                <div class="cp">
-                    <form method="post" aciton="Order_completion.php">
-                        <input type="submit" value="購入">
-                    </form>
-                </div>
+        <div>
+            <!--記述内容-->
+            <!--受け取り方法-->
+            <!--予約だったら1週間後位の日にち-->
+            <!--レンタルだったら1か月後くらいの日にち-->
+            
+        </div>
+        <div class="cp">
+            <form method="post" aciton="Order_completion.php">
+                <input type="submit" value="購入">
+            </form>
+        </div>
         <?
             }
         } else {
         }
         ?>
 
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+
     </main>
 </body>
 
