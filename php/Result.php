@@ -28,25 +28,11 @@ try {
 <body>
     <header>
         <div id="top">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <h1 id="title">BOOK ON</h1>
-            <p id="subtitle">It's a book but it's not a book!</p>
-            <div id="right">
-                <input type="button" value="カートを見る">
-                <input type="button" value="ログイン">
-=======
-=======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
-<<<<<<< HEAD
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
-=======
->>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
             </div>
         </div>
         <hr>
@@ -112,7 +98,8 @@ try {
                     exit();
                 }
                 echo "<h3>作者名 : " . $searchWord . "で検索</h3>";
-            }if (!empty($_GET['new'])) {
+            }
+            if (!empty($_GET['new'])) {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_boughtQty DESC';
                 try {
@@ -244,7 +231,7 @@ try {
                 </div>
                 <hr>
         <?php
-            }   
+            }
         }
         ?>
     </main>
