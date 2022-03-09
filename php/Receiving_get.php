@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -19,6 +20,8 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
+
+$how_cart = $_SESSION['cart'];
 
 ?>
 
@@ -66,7 +69,7 @@ try {
 
         session_start();
 
-        $how_cart = $_SESSION['b'] = 1;
+        
         // $how_cartがレンタルだったら
         if ($how_cart == '3') {
             // Verification.phpに遷移する

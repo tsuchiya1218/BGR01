@@ -24,6 +24,7 @@ session_start();
 
 $cart = $_SESSION['cart'];
 $c_code = $_SESSION['c_code'];
+$url  = $_SESSION['url'];
 
     //buycart
     if($cart == 'buycart'){
@@ -72,7 +73,9 @@ $c_code = $_SESSION['c_code'];
             print "接続エラー!: " . $e->getMessage();
             exit();
         }
+    } else{
+        $_SESSION['emsg'] = '削除できませんでした';
     }
 
-header('Location:Cart.php');
+header("Location:$url");
 ?>
