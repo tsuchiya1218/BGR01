@@ -20,8 +20,10 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
+// カートの種類
 $how_cart = $_SESSION['cart'];
+// お客様情報
+$c_code = $_GET['c_code'];
 
 ?>
 
@@ -112,11 +114,7 @@ $how_cart = $_SESSION['cart'];
 
                 <h2>自宅受け取り</h2>
                 <?php
-                // テスト
-                $c_code = $_GET['c_code'] = 1;
-
-                $sql = 'SELECT c_address1,c_address2
-                        FROM customers where c_code=?';
+                $sql = "SELECT * FROM ";
                 try {
                     // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
