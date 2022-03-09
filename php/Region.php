@@ -22,7 +22,7 @@ try {
 }
 
 ?>
-<?php
+<!-- <?php
 // //cartが購入だった場合
 // if ($_SESSION['cart'] == 'buy') {
 //     try {
@@ -76,8 +76,7 @@ try {
 //         exit();
 //     }
 // }
-
-?>
+?> -->
 
 <!DOCTYPE html>
 <html lang="jp">
