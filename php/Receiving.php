@@ -24,28 +24,9 @@ try {
 ?>
 
 <?php
+// 購入
+$Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
 
-// サンプル
-// $b=$_SESSION['b_code'];
-// $Cart = array($_SESSION['bc_buyCartCode'], $_SESSION['rental_code'], $_SESSION['rc_reserveCartCode']);
-$c_code = $_GET['c_code'] = 00001;
-// お客様情報
-$sql = 'SELECT c_code FROM customers where c_code=?';
-
-
-try {
-    // SQL 文を準備
-    $stmt = $pdo->prepare($sql);
-    // SQL 文を実行, $Cart
-    $stmt->execute(array($c_code));
-    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt = null;
-    $pdo = null;
-} catch (PDOException $e) {
-    print "SQL 実行エラー!: " . $e->getMessage();
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -87,8 +68,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="hidden" value="<?= $Cart ?>">
-                <input type="hidden" value="<?= $value['$c_code'] ?>">
+                <input type="hidden" value="<?=$_SESSION['Cart'] = $Cart?>">
+
 
                 <input type="radio" name="select" value="店舗">店舗
                 <input type="radio" name="select" value="郵送" 　checked>郵送
