@@ -67,11 +67,10 @@ $how_cart = $_SESSION['cart'];
     <main>
         <?php
 
-        session_start();
 
         
         // $how_cartがレンタルだったら
-        if ($how_cart == '3') {
+        if ($how_cart == '2') {
             // Verification.phpに遷移する
             header("Verification.php");
             exit;
