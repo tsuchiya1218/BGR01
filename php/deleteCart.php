@@ -20,6 +20,7 @@ try {
     exit();
 }
 
+<<<<<<< HEAD
 
 
 
@@ -31,6 +32,22 @@ if ($b == 'buycart') {
     try {
         $deletebuy = "DELETE FROM buycart 
                       WHERE $b_code = b_code AND $c_code = c_code";
+=======
+        // PDOオブジェクトの属性の指定
+        $pdo ->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    } catch ( PDOException $e ) {
+        print "接続エラー!: " . $e->getMessage ();
+        exit();
+    }
+    
+    $b_code = $_GET['b_code'];
+    $b = $_GET['b'];
+    $c_code = $_GET['c_code'];
+    //buycart
+    if($b == 'buycart'){
+    try{
+        $deletebuy = "DELETE FROM buycart WHERE $b_code = b_code AND $c_code = c_code";
+>>>>>>> 87217b72fcc2f76e54c70806d3410e31bb18fe85
         $stmtdeb = $pdo->prepare($deletebuy);
         $stmtdeb->execute();
         $arraydeb = $stmt->fetch(PDO::FETCH_BOTH);
@@ -63,5 +80,8 @@ if ($b == 'buycart') {
         exit();
     }
 }
+<<<<<<< HEAD
 header('Location:Cart.php');
+=======
+>>>>>>> 87217b72fcc2f76e54c70806d3410e31bb18fe85
 ?>
