@@ -57,7 +57,7 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                
+
             </form>
         </div>
         <hr>

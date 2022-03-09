@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -22,13 +23,27 @@ try {
 
 ?>
 <?php
-if (!($_GET['rtc_code'] == null && $_GET['b_code'] == null)) {
-}
 
-if ($_GET['']) {
-    # code...
-}
+$Cart = $_SESSION['b'] = 1;
+$c_code = $_GET['c_code'] = 00001;
+var_dump($Cart);
+// お客様情報
+$sql = 'SELECT c_code FROM customers where c_code=?';
 
+
+try {
+    // SQL 文を準備
+    $stmt = $pdo->prepare($sql);
+    // SQL 文を実行
+    $stmt->execute(array($c_code));
+    // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+    $pdo = null;
+} catch (PDOException $e) {
+    print "SQL 実行エラー!: " . $e->getMessage();
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,25 +83,11 @@ if ($_GET['']) {
         <hr>
     </header>
     <main>
-        <?php
-        /*
-        session_start();
-
-        $how_cart = $_SESSION['cart'];
-        //$how_cartはnullじゃなかったら
-        if (!($how_cart == null)) {
-            // $how_cartがレンタルだったら
-            if ($how_cart == 'rental') {
-                // Verification.phpに遷移する
-                header("../html/Verification.php");
-                exit;
-            }
-            */
-        ?>
 
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
+                <input type="hidden" name="c_code" value="<?= $value['c_code'] ?>">
                 <input type="radio" name="select" value="店舗">店舗
                 <input type="radio" name="select" value="郵送" 　checked>郵送
                 <input type="submit" value="次へ">
