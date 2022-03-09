@@ -114,7 +114,9 @@ $c_code = $_GET['c_code'];
 
                 <h2>自宅受け取り</h2>
                 <?php
-                $sql = "SELECT * FROM ";
+                // $sql = "SELECT * FROM customers WHERE c_code = ?";
+                // Sample
+                $sql = "SELECT * FROM customers WHERE c_code = 1";
                 try {
                     // SQL 文を準備
                     $stmt = $pdo->prepare($sql);
@@ -133,8 +135,6 @@ $c_code = $_GET['c_code'];
                 <p>住所選択</p>
 
                 <?php
-                // s_regionのデータが入っていた場合
-                // if (isset($_GET['c_code'])) {
                 foreach ($array as $value) {
                 ?>
 
@@ -145,6 +145,7 @@ $c_code = $_GET['c_code'];
                     <?php
                 }
                     ?>
+                    <input type="hidden" value="<?=$value['c_code']?>">
                     <input type="radio" name="address" id="add1" onclick="changeDisabled()" checked="checked">
                     <?= $value['c_address1'] ?><?= $value['c_address2'] ?><br>
                     <p>上記以外の住所を入力してください</p>
