@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+if (!empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = null;
+}
+$_SESSION['cart'] = 'reservecart';
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -66,7 +73,7 @@ $c_code = 1;
                 </select>
                 <input type="text" name="serchWord">
                 <input type="submit" value="🔍">
-                
+
             </form>
         </div>
         <hr>
@@ -95,6 +102,16 @@ $c_code = 1;
         if (empty($array)) {
             echo "カートの中に商品がありません。<br>";
         } ?>
+        <ul id="tab">
+            <li><a href="./buyCart.php">購入</a>
+            </li>
+            <li><a href="./reserveCart.php">予約</a>
+            </li>
+            <li><a href="./rentalCart.php">レンタル</a>
+            </li>
+        </ul>
+        <hr>
+
         <form method="get" action="Receiving.php">
             <?php
             foreach ($array as $value) {
@@ -104,7 +121,7 @@ $c_code = 1;
                     <!--value="500"-->
                     <form method="get" action="./Detail.php">
                         <div class="img">
-                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<?$value['b_name']?>" height="250" width="200"></a>
+                            <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
                         </div>
                     </form>
                     <div class="main">
@@ -123,6 +140,7 @@ $c_code = 1;
                         </div>
                         <div class="qty">
                             <a>数量<input type="number" id="qty" value="1" class="counter"></a>
+                            <button type="button"><a href="./updateCart.php?rc_reserveCartCode=<?= $value['rc_reserveCartCode'] ?>">変更</a></button>
                         </div>
                     </div>
                     <div class="delete">
@@ -133,7 +151,7 @@ $c_code = 1;
             <?php
             }
             ?>
-            <input type="submit" value="購入">
+            <input type="submit" value="支払い手続きへ">
         </form>
     </main>
     <footer>

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     //データベースに接続する
     try {
         $server_name = "10.42.129.3";    // サーバ名
@@ -19,29 +21,36 @@
     }
 
     //商品IDと数とカートの種類と顧客コードの値を受け取ってUPDATE文で更新
-    $cart = $_GET['cart'];
-    $qty = $_GET['qty'];
-    $b_code = $_GET['b_code'];
-    $c_code = $_GET['c_code'];
     
-    if($cart==1){
+
+    $cart = $_SESSION['cart'];
+    $c_code = $_SESSION['c_code'];
+    
+    if($cart=='buycart'){
         $sql = "UPDATE buycart
                 SET    bc_qty = $qty
-                WHERE　b_code = $b_code
-                AND c_code = $c_code";
-    }else if($cart==2){
+                WHERE　bc_buyCartCode = ?
+                AND c_code = ?";
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(array($cart,$c_code));
+        } catch (PDOException $e) {
+            print "SQL実行エラー！:" . $e->getMessage();
+            exit();
+        }
+        header('Location:Cart.php');
+    }else if($cart=='reservecart'){
         $sql = "UPDATE reservecart
                 SET    rc_qty = $qty 
-                WHERE　b_code = $b_code
-                AND c_code = $c_code";
-    }
-    try {
+                WHERE　rc_reserveCartCode = ?
+                AND c_code = ?";
+        try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        print "SQL実行エラー！:" . $e->getMessage();
-        exit();
+        $stmt->execute(array($cart));
+        } catch (PDOException $e) {
+            print "SQL実行エラー！:" . $e->getMessage();
+            exit();
+        }
+        header('Location:Cart.php');
     }
-    header('Location:Cart.php');
-?>
+    ?>
