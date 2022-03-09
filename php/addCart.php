@@ -86,15 +86,16 @@ if ($b == 'buy') {
     $reserves = "SELECT * FROM reservecart WHERE c_code = $c_code
                     AND b_code = $b_code";
     if (isset($reserves)) {
-        $reserves = $_POST['reserves'];
-        $HTTP = $_SERVER['HTTP_REFERER'];
-        $URL = parse_url($HTTP);
-        $HOST = $URL['host'];
-        echo $HOST;
+        // $reserves = $_POST['reserves'];
+        // $HTTP = $_SERVER['HTTP_REFERER'];
+        // $URL = parse_url($HTTP);
+        // $HOST = $URL['host'];
+        // echo $HOST;
+        //header();
 
     } else {
         //reservecartとして新しくカートに追加
-                        // $insertSQLbuy =  'INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
+        // $insertSQLbuy =  'INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
         // VALUES(c_code,rc_reserveCartCode,b_code,rc_qty,,$arrayprice["b_purchaseprice"])';
         $insertSQLreserve = 'INSERT INTO reservecart$arraycount["rc_county"],rc_totalamount,b_code,b_qty)
             VALUES($arraycount["rc_county"],$arrayprice["b_purchaseprice"],$b_code,1)';
@@ -132,7 +133,7 @@ if ($b == 'buy') {
         echo $HOST;
     } else {
         //rentalcartとして新しくカートに追加
-                // $insertSQLbuy =  'INSERT INTO rentalcart(rtc_code,c_code,b_code,rtc_totalamount)
+        // $insertSQLbuy =  'INSERT INTO rentalcart(rtc_code,c_code,b_code,rtc_totalamount)
         // VALUES($arraycount["rtc_county"],$c_code,$b_code,$arrayprice["b_purchaseprice"])';
         $insertSQLrental =  'INSERT INTO rentalcart(rtc_code,rtc_totalamount,b_code)
             VALUES($arraycount["rtc_county"],$arrayprice["b_purchaseprice"],$b_code)';
