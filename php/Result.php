@@ -29,18 +29,24 @@ try {
     <header>
         <div id="top">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <h1 id="title">BOOK ON</h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る">
                 <input type="button" value="ログイン">
 =======
+=======
+>>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
             <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
                 <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+<<<<<<< HEAD
 >>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+=======
+>>>>>>> e30af1f445eb24e67f6a104d57467cf0d1d27bf1
             </div>
         </div>
         <hr>
@@ -70,11 +76,8 @@ try {
                  $searchWord = '適当なワード'; 
         64行目のifを(!empty($searchCondition))に変更して
         */
-<<<<<<< HEAD
-        if (!empty($_GET['$searchCondition'])) {
-=======
+
         if (!empty($_GET['searchCondition'])) {
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
             $searchCondition = $_GET['searchCondition'];
             $searchWord = $_GET['searchWord'];
             if ($searchCondition == 'b_title') {
@@ -88,10 +91,6 @@ try {
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
-<<<<<<< HEAD
-                    $dbh = null;
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                 } catch (PDOException $e) {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
@@ -108,18 +107,12 @@ try {
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $stmt = null;
-<<<<<<< HEAD
-                    $dbh = null;
-=======
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                 } catch (PDOException $e) {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
                 }
                 echo "<h3>作者名 : " . $searchWord . "で検索</h3>";
-            }
-<<<<<<< HEAD
-            if (!empty($_GET['new'])) {
+            }if (!empty($_GET['new'])) {
                 $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
                                FROM book ORDER BY b_boughtQty DESC';
                 try {
@@ -221,92 +214,10 @@ try {
                             <?php
                             }
                             if ($value['b_rental'] == 1) {
-=======
-        } else if (!empty($_GET['rank'])) {
-            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
-                               FROM book ORDER BY b_boughtQty DESC';
-            try {
-                // SQL 文を準備
-                $stmt = $dbh->prepare($sql);
-                // SQL 文を実行
-                $stmt->execute();
-                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $stmt = null;
-            } catch (PDOException $e) {
-                print "SQL 実行エラー!: " . $e->getMessage();
-                exit();
-            }
-            echo "<h3>売上順<h3>";
-        } elseif (!empty($_GET['new'])) {
-            $sql = 'SELECT b_code,b_name,b_thum,b_author,b_publisher,b_release,b_purchaseprice,b_rentalprice,b_stock,b_rental
-                               FROM book ORDER BY b_release DESC';
-            try {
-                // SQL 文を準備
-                $stmt = $dbh->prepare($sql);
-                // SQL 文を実行
-                $stmt->execute();
-                // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
-                $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                $stmt = null;
-            } catch (PDOException $e) {
-                print "SQL 実行エラー!: " . $e->getMessage();
-                exit();
-            }
-            echo "<h3>新刊本<h3>";
-        } else {
-            echo "<h3>検索結果を表示できません</h3>";
-        }
-        foreach ($array as $value) {
-        ?>
-            <div class="result">
-                <div class="list1">
-                    <div class="img">
-                        <img class="thum" src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name'] ?>">
-                    </div>
-                </div>
-                <div class="list2">
-                    <form method="GET" action="Detail.php">
-                        <div class="b_name">
-                            <a href="Detail.php?b_code=<?= $value['b_code'] ?>" class="title" name="b_code"><?= $value['b_name'] ?></a>
-                        </div>
-                    </form>
-                    <div class="other">
-                        <div class="author">
-                            <a><?= $value['b_author'] ?></a>
-                        </div>
-                        <div class="pub">
-                            <a><?= $value['b_publisher'] ?></a>
-                        </div>
-                        <div class="date">
-                            <a><?= $value['b_release'] ?></a>
-                        </div>
-                    </div>
-                    <div class="bi">
-                        <?php
-                        if ($value['b_stock'] != null) {
-                            if ($value['b_stock'] >= 1) {
-                        ?>
-                                <form method="GET" action="./addCart.php">
-                                    <div class="tab">
-                                        <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
-                                        <input type="hidden" name="b" value="buy">
-                                        <p class="tax">税込</p>
-                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="cart">カートに入れる</p>
-                                        <!--php出来たら上のリンク変更-->
-                                        <!--在庫がある場合購入表示、ない場合予約表示-->
-                                    </div>
-                                </form>
-                            <?php
-                            } elseif ($value['b_stock'] == 0) {
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
                             ?>
                                 <form method="GET" action="./addCart.php">
                                     <div class="tab">
                                         <!--b_code=name-->
-<<<<<<< HEAD
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
                                         <input type="hidden" name="b" value="rent">
                                         <p class="tax">税込</p>
@@ -333,59 +244,7 @@ try {
                 </div>
                 <hr>
         <?php
-            }
-=======
-                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                        <input type="hidden" name="b" value="buy">
-                                        <p class="tax">税込</p>
-                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="cart">カートに入れる</p>
-                                        <!--php出来たら上のリンク変更-->
-                                        <!--在庫がある場合購入表示、ない場合予約表示-->
-                                    </div>
-                                </form>
-                            <?php
-                            }
-                        } else {
-                            ?>
-                            <div class="tab">
-                                <a class="s_none">取扱無し</a>
-                            </div>
-                        <?php
-                        }
-                        if ($value['b_rental'] == 1) {
-                        ?>
-                            <form method="GET" action="./addCart.php">
-                                <div class="tab">
-                                    <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
-                                    <input type="hidden" name="b" value="rent">
-                                    <p class="tax">税込</p>
-                                    <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
-                                    <p class="cart">カートに入れる</p>
-                                    <!--php出来たら上のリンク変更-->
-                                    <!--レンタル出来ない場合リンクを消す-->
-                                </div>
-                            </form>
-                        <?php
-                        } else {
-                        ?>
-                            <div class="tab">
-                                <!--b_code=name-->
-                                <a class="s_none">レンタル不可</a>
-                                <!--php出来たら上のリンク変更-->
-                                <!--レンタル出来ない場合リンクを消す-->
-                            </div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        <?php
-
->>>>>>> 84cc037a5fe1d59c1c11fb83ad290e52d1d2bd0e
+            }   
         }
         ?>
     </main>
