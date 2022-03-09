@@ -55,7 +55,7 @@ try {
                 </select>
                 <input type="text" name="" id="">
                 <input type="submit" value="🔍">
-                
+
             </form>
         </div>
         <hr>
@@ -77,7 +77,7 @@ try {
                 // SQL 文を準備
                 //$stmt = $pdo->prepare();
                 // SQL 文を実行
-                $stmt->execute(array($buy,$retal,$reserve));
+                $stmt->execute(array($buy, $retal, $reserve));
                 // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                 $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $stmt = null;
