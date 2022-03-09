@@ -105,10 +105,6 @@ if ($_SESSION['cart'] == 'reserve') {
         <hr>
         <div align="center">
             <form action="Result.php" method="post">
-<<<<<<< HEAD
-=======
-
->>>>>>> fd44267324f466374257fb2eb1383c12cc140856
                 <select name="" id="">
                     <option value="">書籍</option>
                     <option value="">作者</option>
@@ -124,8 +120,6 @@ if ($_SESSION['cart'] == 'reserve') {
     <main>
         <h2>店舗選択</h2>
         <p>該当店舗</p>
-      
-
         <?php
 
         try {
@@ -151,7 +145,7 @@ if ($_SESSION['cart'] == 'reserve') {
 
             ?>
 
-                    <div class="fl"><a href="Verification.php?<?=$value['s_code']?>" class="btn"><?= $value['s_name']; ?></a></div>
+                    <div class="fl"><a href="payment.php" class="btn"><?= $value['s_name']; ?></a></div>
 
             <?php
                 }
