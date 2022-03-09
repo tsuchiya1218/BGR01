@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if(!empty($_SESSION['cart'])){
+    $_SESSION['cart'] = null;    
+}
+$_SESSION['cart'] = 'buycart';
+
 //データベースに接続する
 try {
     $server_name = "10.42.129.3";    // サーバ名
