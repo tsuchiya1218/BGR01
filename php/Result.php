@@ -1,7 +1,10 @@
 <?php
 
 session_start();
-
+if($_SESSION['url']!=null){
+    $_SESSION['url']=null;
+}
+$_SESSION['url'] = "Result.php";
 
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
@@ -170,10 +173,9 @@ try {
                             if ($value['b_stock'] != null) {
                                 if ($value['b_stock'] >= 1) {
                             ?>
-                                    <form method="GET" action="./addCart.php">
                                         <div class="tab">
                                             <!--b_code=name-->
-                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
+                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>&price=<?= $value['b_purchaseprice']?>&cart=buycart">購入</a>
                                             <input type="hidden" name="cart" value="buycart">
                                             <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
                                             <p class="tax">税込</p>
@@ -182,7 +184,6 @@ try {
                                             <!--php出来たら上のリンク変更-->
                                             <!--在庫がある場合購入表示、ない場合予約表示-->
                                         </div>
-                                    </form>
                                 <?php
                                 } elseif ($value['b_stock'] == 0) {
                                 ?>
