@@ -26,7 +26,6 @@ try {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-    // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
 
 ?>
 
