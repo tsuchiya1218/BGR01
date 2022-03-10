@@ -110,55 +110,52 @@ try {
             }*/
         ?>
             <h3>購入内容</h3>
-            <table border="2" align="center" style="border-collapse: collapse">
-                <?php
-                foreach ($array as $value) {
-                ?>
-                    <tr>
-                        <td class="list">
-                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name'] ?>">
-                            <div class="other">
-                                <div class="b_name">
-                                    <p class="title"><?= $value['b_name'] ?></p>
+            <form method="post" aciton="insert_detail.php">
+                <table border="2" align="center" style="border-collapse: collapse">
+                    <?php foreach ($array as $value) { ?>
+                        <tr>
+                            <td class="list">
+                                <img class="thum" src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name'] ?>">
+                                <div class="other">
+                                    <div class="b_name">
+                                        <p class="title"><?= $value['b_name'] ?></p>
+                                    </div>
+                                    <div class="b_price">
+                                        <?php if ($cart == 'buycart') { ?>
+                                            <p class="qty">購入個数：<?= $value['bc_qty'] ?></p>
+                                            <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></p>
+                                            <p class="amountprice">合計金額：&yen;<?= $value['bc_totalamount'] ?></p>
+                                        <?php } else if ($cart == 'reservecart') { ?>
+                                            <p class="qty">購入個数:<?= $value['rc_qty'] ?></a>
+                                            <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></a>
+                                            <p class="amountprice">価格(税込)&yen;<?= $value['rc_totalamount'] ?></p>
+                                        <?php } else { ?>
+                                            <p class="price">レンタル金額：<?= $value['b_rentalprice'] ?></p>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                                <div class="b_price">
-                                    <?php if ($cart == 'buycart') { ?>
-                                        <p class="qty">購入個数：<?= $value['bc_qty'] ?></p>
-                                        <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="amountprice">合計金額：&yen;<?= $value['bc_totalamount'] ?></p>
-                                    <?php } else if ($cart == 'reservecart') { ?>
-                                        <p class="qty">購入個数:<?= $value['rc_qty'] ?></a>
-                                        <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></a>
-                                        <p class="amountprice">価格(税込)&yen;<?= $value['rc_totalamount'] ?></p>
-                                    <?php } else { ?>
-                                        <p class="price">レンタル金額：<?= $value['b_rentalprice'] ?></p>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </table>
-        <?php
-        }
-        ?>
-        <div class="sp">
-            <div class="amount">
-                <div class="ap">
-                    <a>合計金額</a>
-                </div>
-                <div class="a_price">
-                    <a id="price">&yen;<input type="text" name="totalprice"></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            <?php } ?>
+            <div class="sp">
+                <div class="amount">
+                    <div>
+                        受取方法：
+                    </div>
+                    <div class="ap">
+                        合計金額
+                    </div>
+                    <div class="a_price">
+                        <a id="price">&yen;<input type="text" name="totalprice"></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="cp">
-            <form method="post" aciton="insert_detail.php">
+            <div class="cp">
                 <input type="submit" value="購入">
+            </div>
             </form>
-        </div>
     </main>
 </body>
 

@@ -70,8 +70,10 @@ $cart = $_SESSION['cart'];
         // cartがレンタルだったら
         // データがある場合
         if (isset($_GET['select'])) {
+            $select = $_GET['select'];
+            $_SESSION['select'] = $select;
             // 中身が店舗だった場合
-            if ($_GET['select'] == '店舗') {
+            if ($select == '店舗') {
         ?>
                 <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
                 <h2>店舗受け取り</h2>
