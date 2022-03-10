@@ -63,4 +63,3 @@
         }
         header('Location:Cart.php');
     }
-?>

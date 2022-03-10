@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$c_code = $_SESSION['c_code'];//顧客コード
+$c_code = $_SESSION['c_code']; //顧客コード
 
 //データベースに接続する
 try {
@@ -47,24 +47,21 @@ $cart = $_SESSION['cart'];
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
-                <input type="button" value="ログイン">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="post">
-                <select name="" id="">
-                    <option value="">書籍</option>
-                    <option value="">作者</option>
-                </select>
-                <input type="text" name="" id="">
-                <input type="submit" value="🔍">
-
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
@@ -134,11 +131,11 @@ $cart = $_SESSION['cart'];
                     <input type="hidden" name="Acceptance" value="郵送">
                     <input type="submit" value="次へ">
                     </form>
-            <?php
+                <?php
             }
         } else {
-            ?>
-            <a>エラーが発生しました。最初からやり直してください。</a>
+                ?>
+                <a>エラーが発生しました。最初からやり直してください。</a>
             <?php
         }
             ?>

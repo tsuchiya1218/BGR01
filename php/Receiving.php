@@ -1,7 +1,7 @@
 <?php
 session_start();
-$c_code = $_SESSION['c_code'];//顧客コード
-$cart = $_SESSION['cart'];//カート種別
+$c_code = $_SESSION['c_code']; //顧客コード
+$cart = $_SESSION['cart']; //カート種別
 
 if ($cart == 'rentalcart') {
     // payment.phpに遷移する
@@ -68,8 +68,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="hidden" value="<?= $cart?>">
-                <input type="hidden" value="<?= $c_code?>">
+                <input type="hidden" value="<?= $cart ?>">
+                <input type="hidden" value="<?= $c_code ?>">
                 <input type="radio" name="select" value="store">店舗
                 <input type="radio" name="select" value="delivery" checked>郵送
                 <input type="submit" value="次へ">

@@ -33,27 +33,24 @@ try {
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
-                <input type="button" value="ログイン">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="GET">
-                <select name="serchCondition">
-                    <option value="b_title" selected>書籍</option>
-                    <option value="autohr">作者</option>
-                </select>
-                <input type="text" name="serchWord">
-                <input type="submit" value="🔍">
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
-
     <main>
         <div class="float">
             <h3>レンタルライブラリ</h3>
@@ -115,7 +112,7 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/".$value['b_thum']."\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
@@ -200,7 +197,7 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/".$value['b_thum']."\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";

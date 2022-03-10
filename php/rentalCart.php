@@ -52,7 +52,7 @@ try {
 ?>
 
 <body>
-<header>
+    <header>
         <div id="top">
 
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>

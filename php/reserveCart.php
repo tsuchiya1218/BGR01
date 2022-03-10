@@ -4,7 +4,7 @@ session_start();
 if (!empty($_SESSION['cart'])) {
     $_SESSION['cart'] = null;
 }
-if(!empty($_SESSION['url'])){
+if (!empty($_SESSION['url'])) {
     $_SESSION['url'] = null;
 }
 $_SESSION['cart'] = 'reservecart';
@@ -60,7 +60,7 @@ $c_code = 1;
 ?>
 
 <body>
-<header>
+    <header>
         <div id="top">
 
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
@@ -113,13 +113,13 @@ $c_code = 1;
         if (empty($array)) {
             echo "カートの中に商品がありません。";
         } else {
-            if(!empty($_SESSION['emsg'])){
+            if (!empty($_SESSION['emsg'])) {
                 //deleteCart.phpに接続できない場合
                 //addCart.phpに接続できない場合
                 //updateCart.phpに接続できない場合
                 echo $_SESSION['emsg'];
             }
-            ?>
+        ?>
             <form method="get" action="Receiving.php">
                 <table class="product">
                     <?php
