@@ -1,14 +1,11 @@
 <?php
 session_start();
-$c_code = $_SESSION['c_code']; //顧客コード
-$cart = $_SESSION['cart']; //カート種別
 
 if ($cart == 'rentalcart') {
     // payment.phpに遷移する
     header("payment.php");
     exit;
 }
-
 
 //データベースに接続する
 try {
@@ -42,7 +39,7 @@ try {
 </head>
 
 <body>
-<header>
+    <header>
         <div id="top">
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -53,12 +50,14 @@ try {
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./Result.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
@@ -66,10 +65,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="hidden" value="<?= $cart ?>">
-                <input type="hidden" value="<?= $c_code ?>">
-                <input type="radio" name="select" value="store">店舗
-                <input type="radio" name="select" value="delivery" checked>郵送
+                <input type="radio" name="select" value="store"><!--店舗-->
+                <input type="radio" name="select" value="delivery" checked><!--郵送-->
                 <input type="submit" value="次へ">
             </form>
         </div>
