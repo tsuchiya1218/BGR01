@@ -54,8 +54,6 @@ if($cart == 'buycart'){
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array($c_code,$array[0],$buy_date,$deliverydate,$get_method,$cartcode));
-        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt = null;
     } catch (PDOException $e) {
         print "SQL実行エラー！:" . $e->getMessage();
         exit();
@@ -69,7 +67,10 @@ if($cart == 'buycart'){
         print "接続エラー!: " . $e->getMessage();
         exit();
     }
+    $sql = null;
+    $stmt = null;
 
+    header('location:../html/Order_completion.html');
 
 }else if($cart == 'reservecart'){
     $cartcode = 'rc_reserveCartCode';
