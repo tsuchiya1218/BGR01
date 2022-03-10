@@ -24,8 +24,7 @@ td {
     color: black;
 }
 
-.mainInfo,
-.subInfo {
+.mainInfo {
     padding: 5% 5%;
     margin: auto;
     overflow: hidden;
@@ -37,11 +36,6 @@ td {
 .mainInfo p {
     margin: 0px 20px;
 }
-
-.subInfo p {
-    margin: 0px 10px;
-}
-
 b {
     font-weight: bolder;
 }
