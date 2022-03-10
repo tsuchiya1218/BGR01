@@ -59,27 +59,55 @@ try {
     </header>
     <main>
         <div class="RankAndNew">
-            <div class="Rank ">
+            <div class="Rank">
                 <h2>ランキング</h2>
-                <ol class="ranking ">
-                    <li>aaaaa</li>
-                    <li>bbbbb</li>
-                    <li>cc</li>
-                    <li>dddddddddd</li>
-                    <li>eeeee</li>
-                    <!--購入数ランキング50位までの本を検索結果として表示する画面に遷移-->
+                <ol>
+                <?php
+                $sql1 = "SELECT b_code,b_name FROM book ORDER BY b_boughtQty DESC";
+                try {
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $sql=null;
+                    $stmt = null;
+                } catch (PDOException $e) {
+                    print "SQL実行エラー！:" . $e->getMessage();
+                    exit();
+                }
+                foreach ($array as $value) {
+                    print "<li>";
+                    print "<a href=insert_detail.php?b_code=\"{$value['b_code']}\">";
+                    print $value['b_name'];
+                    print "</a>";
+                    print "</li>";
+                }
+                ?>
                     <small><a href="Result.php?rank=rank" name="rank" class="mottomiru">もっと見る</a></small>
                 </ol>
             </div>
             <div class="New">
                 <h2>新刊本</h2>
                 <ul>
-                    <li>1111</li>
-                    <li>22222222</li>
-                    <li>33</li>
-                    <li>44</li>
-                    <li>55555</li>
-                    <!--発行から2週間以内の本を検索結果として表示する画面に遷移-->
+                    <?php
+                        $sql1 = "SELECT b_code,b_name FROM book ORDER BY b_release DESC";
+                        try {
+                            $stmt = $pdo->prepare($sql);
+                            $stmt->execute();
+                            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $sql=null;
+                            $stmt = null;
+                        } catch (PDOException $e) {
+                            print "SQL実行エラー！:" . $e->getMessage();
+                            exit();
+                        }
+                        foreach ($array as $value) {
+                            print "<li>";
+                            print "<a href=insert_detail.php?b_code=\"{$value['b_code']}\">";
+                            print $value['b_name'];
+                            print "</a>";
+                            print "</li>";
+                        }
+                    ?>
                     <small><a href="Result.php?new=new" name="new" class="mottomiru">もっと見る</a></small>
                 </ul>
             </div>
