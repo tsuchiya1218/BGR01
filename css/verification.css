@@ -7,10 +7,14 @@
         box-sizing: border-box;
     }
     
+    table {
+        width: 100%;
+    }
+    
     .list {
         display: flex;
-        margin: 20px 20px;
         align-items: center;
+        justify-content: center;
     }
     
     .b_thum {
@@ -26,8 +30,6 @@
         font-size: x-large;
         font-weight: bold;
         margin: 0px 70px;
-        position: relative;
-        bottom: 40px;
     }
     
     .title {
@@ -67,10 +69,4 @@
     .cp {
         justify-content: center;
         text-align: right;
-    }
-    
-    .a:link,
-    a:visited,
-    a:active {
-        color: blue;
     }

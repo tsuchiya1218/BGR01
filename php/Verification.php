@@ -31,37 +31,32 @@ try {
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
-                <input type="button" value="ログイン">
+                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form action="Result.php" method="GET">
-                <select name="serchCondition">
-                    <option value="b_title" selected>書籍</option>
-                    <option value="author">作者</option>
-                </select>
-                <input type="text" name="serchWord">
-                <input type="submit" value="🔍">
-
-            </form>
+            <select name="searchCondition">
+                <option value="b_title">書籍</option>
+                <option value="author">作者</option>
+            </select>
+            <input type="text" name="searchWord">
+            <input type="submit" value="🔍">
         </div>
         <hr>
     </header>
     <main>
         <?php
-        $cart = $_SESSION['cart'];
         if (!empty($cart)) {
-            if ($cart == 'buy') {
-
-                $sql = "SELECT * FROM buycart INNER JOIN customers ON buycart.b_name = customers.b_name 
-                            WHERE buycart.c_code = ?";
+            if ($cart == 'buycart') {
+                $sql = "SELECT * FROM buycart INNER JOIN book  ON buycart.b_code = book.b_code
+                        WHERE buycart.c_code = ?";
                 try {
-                    $stmt = $pdo->prepare($sql);
+                    $stmt = $dbh->prepare($sql);
                     $stmt->execute(array($c_code));
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -71,11 +66,11 @@ try {
                     print "SQL 実行エラー!: " . $e->getMessage();
                     exit();
                 }
-            } elseif ($cart == 'reserve') {
-                $sql = "SELECT * FROM reservecart INNER JOIN customers ON reservecart.b_name = customers.b_name
+            } elseif ($cart == 'reservecart') {
+                $sql = "SELECT * FROM reservecart INNER JOIN book ON reservecart.b_code = book.b_code
                             WHERE reservecart.c_code = ?";
                 try {
-                    $stmt = $pdo->prepare($sql);
+                    $stmt = $dbh->prepare($sql);
                     $stmt->execute(array($c_code));
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,10 +81,10 @@ try {
                     exit();
                 }
             } elseif ($cart == 'rental') {
-                $sql = "SELECT * FROM rentalcart INNER JOIN customers ON rentalcart.c_code = customers.c_code 
+                $sql = "SELECT * FROM rentalcart INNER JOIN book ON rentalcart.b_code = book.b_code 
                             WHERE rentalcart.c_code = ?";
                 try {
-                    $stmt = $pdo->prepare($sql);
+                    $stmt = $dbh->prepare($sql);
                     $stmt->execute(array($c_code));
                     // 実行結果をまとめて取り出し(カラム名で添字を付けた配列)
                     $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -101,7 +96,7 @@ try {
                 }
             }
             //サムネイルのみ取り出し
-            $sql = "SELECT b_thum FROM book WHERE b_code = ?";
+            /*$sql = "SELECT b_thum FROM book WHERE b_code = ?";
             try {
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute(array($b_code));
@@ -112,47 +107,58 @@ try {
             } catch (PDOException $e) {
                 print "SQL 実行エラー!: " . $e->getMessage();
                 exit();
-            }
-            foreach ($array as $value) {
+            }*/
         ?>
-                <h3>購入内容</h3>
-                <div class="list">
-                    <div class="b_thum">
-                        <img class="thum" src="../image/<?= $value[''] ?>" alt="<?= $value['b_name'] ?>">
-                    </div>
-                    <div class="other">
-                        <div class="b_name">
-                            <a class="title"><?= $value['b_name'] ?></a>
-                        </div>
-                        <div class="b_price">
-                            <a class="price">価格(税込)&yen;<?= $value['c_qty'] ?></a>
-                            <!--変更予定-->
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="sp">
-                    <div class="amount">
-                        <div class="ap">
-                            <a>合計金額</a>
-                        </div>
-                        <div class="a_price">
-                            <a id="price">&yen;<?= $value[''] ?></a>
-                            <!--変更予定-->
-                            <!--処理方法がわからん-->
-                        </div>
-                    </div>
-                </div>
-                <div class="cp">
-                    <form method="post" aciton="Order_completion.php">
-                        <input type="submit" value="購入">
-                    </form>
-                </div>
-
-        <?
-            }
+            <h3>購入内容</h3>
+            <table border="2" align="center" style="border-collapse: collapse">
+                <?php
+                foreach ($array as $value) {
+                ?>
+                    <tr>
+                        <td class="list">
+                            <img class="thum" src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name'] ?>">
+                            <div class="other">
+                                <div class="b_name">
+                                    <p class="title"><?= $value['b_name'] ?></p>
+                                </div>
+                                <div class="b_price">
+                                    <?php if ($cart == 'buycart') { ?>
+                                        <p class="qty">購入個数：<?= $value['bc_qty'] ?></p>
+                                        <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></p>
+                                        <p class="amountprice">合計金額：&yen;<?= $value['bc_totalamount'] ?></p>
+                                    <?php } else if ($cart == 'reservecart') { ?>
+                                        <p class="qty">購入個数:<?= $value['rc_qty'] ?></a>
+                                        <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></a>
+                                        <p class="amountprice">価格(税込)&yen;<?= $value['rc_totalamount'] ?></p>
+                                    <?php } else { ?>
+                                        <p class="price">レンタル金額：<?= $value['b_rentalprice'] ?></p>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+        <?php
         }
         ?>
+        <div class="sp">
+            <div class="amount">
+                <div class="ap">
+                    <a>合計金額</a>
+                </div>
+                <div class="a_price">
+                    <a id="price">&yen;<input type="text" name="totalprice"></a>
+                </div>
+            </div>
+        </div>
+        <div class="cp">
+            <form method="post" aciton="insert_detail.php">
+                <input type="submit" value="購入">
+            </form>
+        </div>
     </main>
 </body>
 
