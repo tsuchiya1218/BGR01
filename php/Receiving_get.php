@@ -96,7 +96,6 @@ $cart = $_SESSION['cart'];
             } else {
                 // 違う場合
             ?>
-
                 <h2>自宅受け取り</h2>
                 <?php
                 // $sql = "SELECT * FROM customers WHERE c_code = ?";

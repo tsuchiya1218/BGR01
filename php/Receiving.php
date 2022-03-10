@@ -28,16 +28,6 @@ try {
 }
     // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
 
-    $sql = "SELECT * FROM store WHERE c_code = ?";
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($c_code));
-        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt = null;
-    } catch (PDOException $e) {
-        print "接続エラー!: " . $e->getMessage();
-        exit();
-    }
 ?>
 
 <!DOCTYPE html>

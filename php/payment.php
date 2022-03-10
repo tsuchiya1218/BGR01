@@ -69,9 +69,6 @@ try {
         <h2>支払選択</h2>
         <form action="Verification.php" method="get">
             <div>
-                <!-- 情報送信 -->
-                <input type="hidden" name="cart" value="<?= $cart?>">
-                <input type="hidden" name="c_code" value="<?= $c_code?>">
                 <!-- 購入方法 -->
                 <input type="radio" name="payment" value="コンビニ支払い" checked>コンビニ支払い
                 <input type="radio" name="payment" value="クレジットカード払い">クレジットカード払い
