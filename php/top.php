@@ -63,7 +63,7 @@ try {
                 <h2>ランキング</h2>
                 <ol>
                 <?php
-                $sql1 = "SELECT b_code,b_name FROM book ORDER BY b_boughtQty DESC";
+                $sql = "SELECT top 5 b_code,b_name FROM book ORDER BY b_boughtQty DESC";
                 try {
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
@@ -89,7 +89,7 @@ try {
                 <h2>新刊本</h2>
                 <ul>
                     <?php
-                        $sql1 = "SELECT b_code,b_name FROM book ORDER BY b_release DESC";
+                        $sql = "SELECT top 5 b_code,b_name FROM book ORDER BY b_release DESC";
                         try {
                             $stmt = $pdo->prepare($sql);
                             $stmt->execute();
