@@ -3,6 +3,7 @@
 session_start();
 $cart = $_SESSION['cart'];
 $c_code = $_SESSION['c_code'];
+
 try {
     $dsn = 'sqlsrv:server=10.42.129.3;database=20grb1';
     $user = '20grb1';
@@ -15,5 +16,7 @@ try {
     die();
 }
 
+$date = date('Y-m-d');
+$get_date = date('Y-m-d')
 
 ?>
