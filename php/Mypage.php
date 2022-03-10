@@ -76,30 +76,29 @@ try {
         </div>
         <table border="2" align="center" style="border-collapse: collapse">
             <?php
+            if (!empty($_GET['mottomiru'])) {
+                $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                        FROM rental
+                        RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                        RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                        WHERE rental.c_code=?
+                        ";
+            } else if (!empty($_GET['rentaldate'])) {
+                $rentaldate = date('Y-m-d',  strtotime($_GET['rentaldate']));
+                $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                        FROM rental
+                        RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                        RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                        WHERE rental.c_code=? AND renral_date='" . $rentaldate . "'";
+            } else {
+                $sql2 = "SELECT top 3 b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
+                        FROM rental
+                        RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
+                        RIGHT JOIN book ON book.b_code=rentalcart.b_code
+                        WHERE rental.c_code=?
+                        ";
+            }
             try {
-
-                if (!empty($_GET['mottomiru'])) {
-                    $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
-                            FROM rental
-                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
-                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
-                            WHERE rental.c_code=?
-                            ";
-                } else if (!empty($_GET['rentaldate'])) {
-                    $rentaldate = date('Y-m-d',  strtotime($_GET['rentaldate']));
-                    $sql2 = "SELECT DISTINCT b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
-                            FROM rental
-                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
-                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
-                            WHERE rental.c_code=? AND renral_date='" . $rentaldate . "'";
-                } else {
-                    $sql2 = "SELECT top 3 b_name,book.b_code,b_author,b_publisher,b_release,b_rentalprice,b_thum,renral_date,r_expiry
-                            FROM rental
-                            RIGHT JOIN rentalcart ON rentalcart.rtc_code=rental.rtc_code
-                            RIGHT JOIN book ON book.b_code=rentalcart.b_code
-                            WHERE rental.c_code=?
-                            ";
-                }
                 $stmt2 = $pdo->prepare($sql2);
                 $stmt2->execute(array($c_code));
                 $array2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
