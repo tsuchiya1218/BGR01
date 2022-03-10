@@ -23,9 +23,9 @@ try {
 }
 
 // お客様情報
-//$c_code = $_GET['c_code'] = 1;
-//サンプル ;
-$c_code = $_GET['c_code'] = 1; //顧客コード
+//サンプル
+$c_code = $_GET['c_code']; //顧客コード
+var_dump($_GET['c_code']);
 $cart = $_SESSION['cart'] = 'buycart'; //カート種別
 // 購入
 $cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
