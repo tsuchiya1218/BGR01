@@ -173,7 +173,7 @@ try {
                                     <form method="GET" action="./addCart.php">
                                         <div class="tab">
                                             <!--b_code=name-->
-                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
+                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>&cart=buycart&price=<?= $value['b_purchaseprice']?>">購入</a>
                                             <input type="hidden" name="cart" value="buycart">
                                             <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
                                             <p class="tax">税込</p>
@@ -189,8 +189,8 @@ try {
                                     <form method="GET" action="./addCart.php">
                                         <div class="tab">
                                             <!--b_code=name-->
-                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                            <input type="hidden" name="cart" value="reservecart">
+                                            <a href="addCart.php?b_code=<?= $value['b_code'] ?>&cart=&cart=reservecart&price=<?= $value['b_purchaseprice']?>&value=<?= $value['b_purchaseprice']?>">予約</a>
+                                            <input type="hidden" name="cart" value="c">
                                             <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
                                             <p class="tax">税込</p>
                                             <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
