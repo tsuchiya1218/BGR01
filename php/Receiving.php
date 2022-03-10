@@ -1,14 +1,5 @@
 <?php
 session_start();
-$c_code = $_SESSION['c_code'];//顧客コード
-$cart = $_SESSION['cart'];//カート種別
-
-if ($cart == 'rentalcart') {
-    // payment.phpに遷移する
-    header("payment.php");
-    exit;
-}
-
 
 //データベースに接続する
 try {
@@ -31,22 +22,28 @@ try {
     exit();
 }
 
-    // お客様情報
-    // 購入
-    $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
-    //サンプル $c_code = '1';
-    // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
-
-    $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
-    try {
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute(array($c_code));
-        $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt = null;
-    } catch (PDOException $e) {
-        print "接続エラー!: " . $e->getMessage();
-        exit();
-    }
+// お客様情報
+//$c_code = $_GET['c_code'] = 1;
+//サンプル ;
+$c_code = $_GET['c_code'] = 1; //顧客コード
+$cart = $_SESSION['cart'] = 'buycart'; //カート種別
+// 購入
+$cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
+if ($cart == 2) {
+    // payment.phpに遷移する
+    header("payment.php");
+    exit;
+}
+$sql = "SELECT * FROM store WHERE c_code = ?";
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array($c_code));
+    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = null;
+} catch (PDOException $e) {
+    print "接続エラー!: " . $e->getMessage();
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -88,8 +85,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="hidden" value="<?= $cart?>">
-                <input type="hidden" value="<?= $c_code?>">
+                <input type="hidden" value="<?= $cart ?>">
+                <input type="hidden" value="<?= $c_code ?>">
                 <input type="radio" name="select" value="store">店舗
                 <input type="radio" name="select" value="delivery" checked>郵送
                 <input type="submit" value="次へ">
