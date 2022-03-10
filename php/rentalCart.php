@@ -145,7 +145,7 @@ try {
                 }
                 ?>
             </table>
-            <form>
+            <form align="center" action="./Receiving.php" method="get">
                 <input type="submit" value="支払い手続きへ">
             </form>
         <?php

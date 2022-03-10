@@ -1,7 +1,13 @@
 <?php
 
 session_start();
+$select = $_GET['select'];
+if ($_SESSION['select'] != null) {
+    $_SESSION['select'] = null;
+}
+$_SESSION['select'] = $select;
 $c_code = $_SESSION['c_code']; //顧客コード
+$cart = $_SESSION['cart'];     //カートの種類
 
 //データベースに接続する
 try {
@@ -24,8 +30,6 @@ try {
     exit();
 }
 
-// カートの種類
-$cart = $_SESSION['cart'];
 
 ?>
 
@@ -56,12 +60,14 @@ $cart = $_SESSION['cart'];
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./Result.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
@@ -71,23 +77,21 @@ $cart = $_SESSION['cart'];
         // データがある場合
         if (isset($_GET['select'])) {
             // 中身が店舗だった場合
-            if ($_GET['select'] == '店舗') {
+            if ($_GET['select'] == 'store') {
         ?>
                 <!-- 自宅と店舗受け取りを前のページの選択で表示を変える -->
                 <h2>店舗受け取り</h2>
                 <p>地域選択</p>
-                <form action="Region.php" name="Acceptance" method="get" value="店舗">
-                    <div class="flbox">
-                        <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
-                        <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
-                        <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
-                        <div class="fl"><a href="Region.php?s_region=関西" class="btn">関西</a></div>
-                        <div class="fl"><a href="Region.php?s_region=中部" class="btn">中部</a></div>
-                        <div class="fl"><a href="Region.php?s_region=四国" class="btn">四国</a></div>
-                        <div class="fl"><a href="Region.php?s_region=中国" class="btn">中国</a></div>
-                        <div class="fl"><a href="Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
-                    </div>
-                </form>
+                <div class="flbox">
+                    <div class="fl"><a href="Region.php?s_region=北海道" class="btn">北海道</a></div>
+                    <div class="fl"><a href="Region.php?s_region=東北" class="btn">東北</a></div>
+                    <div class="fl"><a href="Region.php?s_region=関東" class="btn">関東</a></div>
+                    <div class="fl"><a href="Region.php?s_region=関西" class="btn">関西</a></div>
+                    <div class="fl"><a href="Region.php?s_region=中部" class="btn">中部</a></div>
+                    <div class="fl"><a href="Region.php?s_region=四国" class="btn">四国</a></div>
+                    <div class="fl"><a href="Region.php?s_region=中国" class="btn">中国</a></div>
+                    <div class="fl"><a href="Region.php?s_region=九州/沖縄" class="btn">九州/沖縄</a></div>
+                </div>
             <?php
 
             } else {

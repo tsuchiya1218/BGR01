@@ -78,7 +78,7 @@ try {
                     }
                     foreach ($array as $value) {
                         print "<li>";
-                        print "<a href=insert_detail.php?b_code=\"{$value['b_code']}\">";
+                        print "<a href=Detail.php?b_code=\"{$value['b_code']}\">";
                         print $value['b_name'];
                         print "</a>";
                         print "</li>";
@@ -104,7 +104,7 @@ try {
                     }
                     foreach ($array as $value) {
                         print "<li>";
-                        print "<a href=insert_detail.php?b_code=\"{$value['b_code']}\">";
+                        print "<a href=Detail.php?b_code=\"{$value['b_code']}\">";
                         print $value['b_name'];
                         print "</a>";
                         print "</li>";

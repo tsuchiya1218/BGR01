@@ -127,11 +127,11 @@ try {
                                     <?php if ($cart == 'buycart') { ?>
                                         <p class="qty">購入個数：<?= $value['bc_qty'] ?></p>
                                         <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="amountprice">合計金額：&yen;<?= $value['bc_totalamount'] ?></p>
+                                        <p class="amountprice">小計：&yen;<?= $value['bc_totalamount'] ?></p>
                                     <?php } else if ($cart == 'reservecart') { ?>
                                         <p class="qty">購入個数:<?= $value['rc_qty'] ?></a>
                                         <p class="price">金額：&yen;<?= $value['b_purchaseprice'] ?></a>
-                                        <p class="amountprice">価格(税込)&yen;<?= $value['rc_totalamount'] ?></p>
+                                        <p class="amountprice">小計：&yen;<?= $value['rc_totalamount'] ?></p>
                                     <?php } else { ?>
                                         <p class="price">レンタル金額：<?= $value['b_rentalprice'] ?></p>
                                     <?php } ?>
@@ -157,7 +157,7 @@ try {
             </div>
         </div>
         <div class="cp">
-            <form method="post" aciton="insert_detail.php">
+            <form method="post" aciton="./insert_detail.php">
                 <input type="submit" value="購入">
             </form>
         </div>
