@@ -128,9 +128,9 @@ try {
                                         <a>価格（税込）</a>
                                         <a>&yen;<?= $value['b_rentalprice'] ?></a>
                                     </div>
-                                    <div class="qty">
+                                    <!-- <div class="qty">
                                         <a>数量<input type="number" id="qty" value="1" class="counter"></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="delete">
                                     <form action="deleteCart.php" method="get">

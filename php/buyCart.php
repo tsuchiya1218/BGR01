@@ -83,6 +83,7 @@ try {
             <li><a href="./rentalCart.php">レンタル</a>
             </li>
         </ul>
+        <hr>
         <?php
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
