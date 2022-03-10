@@ -69,7 +69,7 @@ try {
                     <li>dddddddddd</li>
                     <li>eeeee</li>
                     <!--購入数ランキング50位までの本を検索結果として表示する画面に遷移-->
-                    <small><a href="Result.php?" name="rank" class="mottomiru">もっと見る</a></small>
+                    <small><a href="Result.php?rank=rank" name="rank" class="mottomiru">もっと見る</a></small>
                 </ol>
             </div>
             <div class="New">
@@ -81,7 +81,7 @@ try {
                     <li>44</li>
                     <li>55555</li>
                     <!--発行から2週間以内の本を検索結果として表示する画面に遷移-->
-                    <small><a href="Result.php?" name="new" class="mottomiru">もっと見る</a></small>
+                    <small><a href="Result.php?new=new" name="new" class="mottomiru">もっと見る</a></small>
                 </ul>
             </div>
         </div>

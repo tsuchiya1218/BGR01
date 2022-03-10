@@ -137,7 +137,9 @@ try {
             echo "<h3>新刊本<h3>";
         } else {
             echo "<h3>検索結果を表示できません</h3>";
-        }
+        }?>
+        <div class="frame">
+        <?php
         foreach ($array as $value) {
         ?>
             <div class="result">
@@ -240,6 +242,7 @@ try {
         <?php
         }
         ?>
+        </div>
     </main>
     <footer>
 
