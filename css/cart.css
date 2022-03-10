@@ -18,27 +18,7 @@
     margin: 0 5px;
 }
 
-
-/***************一番外の大枠のdiv***************/
-
-.product {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*　↑後で消すかも？　*/
-    overflow: hidden;
-}
-
-
 /***********本の情報の大枠************/
-
-.main {
-    width: 60%;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-direction: column;
-}
 
 td {
     width: 60%;
@@ -46,45 +26,46 @@ td {
 
 .btitle {
     text-align: center;
-    margin: auto;
     font-weight: bolder;
 }
 
-.btitle a,
-.delete a {
+.btitle a{
     text-decoration: none;
 }
 
 .btitle a:link,
 .btitle a:visited,
 .btitle a:hover,
-.btitle a:active,
-.delete a:link,
-.delete a:visited,
-.delete a:hover,
-.delete a:active {
+.btitle a:active {
     color: black;
 }
 
-.main,
-.description,
-.price,
-.qty {
-    padding: 5% 5%;
+.delete{
     margin: auto;
+}
+.info {
+    overflow: hidden;
+    justify-content: space-evenly;
+    text-align: center;
+    display: flex;
+}
+.description {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.info p{
+    justify-content: space-around;
+    display: flex;
+}
+.item {
+    justify-content: center;
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
-    text-align: center;
+    padding: 0% 10%;
 }
-
-.delete {
-    align-items: center;
+.btitle,.info,.qty,.price{
+    margin: auto;
 }
-
-
-/*
-.firstinfo=.description
-.secondinfo=.price
-.thirdinfo=.qty
-*/

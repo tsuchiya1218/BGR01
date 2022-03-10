@@ -55,7 +55,7 @@ try {
     <header>
         <div id="top">
 
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="Top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
@@ -106,36 +106,38 @@ try {
         } else {
         ?>
             <form method="get" action="./Receiving.php">
-                <table class="product">
+                <table border="2" align="center" style="border-collapse: collapse">
                     <?php
                     foreach ($array as $value) {
                     ?>
                         <tr>
-                            <td class="img">
-                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
-                            </td>
-                            <td class="main">
-                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a>
-                                <!--著者-->
-                                <div class="description">
-                                    <a><?= $value['b_author'] ?></a>
-                                    <!--出版社-->
-                                    <a><?= $value['b_publisher'] ?></a>
-                                    <!--発行年月-->
-                                    <a><?= $value['b_release'] ?></a>
+                            <td>
+
+                                <div class="item">
+                                    <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                                    <div class="description">
+                                        <div class="btitle">
+                                            <p><b><a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></b></p>
+                                        </div>
+                                        <div class="info">
+                                            <p>著者<br><?= $value['b_author'] ?></p>
+                                            <p>出版社<br><?= $value['b_publisher'] ?></p>
+                                            <p>発行年月<br><?= $value['b_release'] ?></p>
+                                        </div>
+                                        <div class="price">
+                                            <a>価格（税込）</a>
+                                            <a>&yen;<?= $value['b_purchaseprice'] ?></a>
+                                        </div>
+                                        <div class="qty">
+                                            <a>数量<input type="number" id="qty" value="1" class="counter"></a>
+                                        </div>
+                                    </div>
+                                    <div class="delete">
+                                            <button type="button" onclick="href.location='deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>'">削除</button>
+                                        </div>
                                 </div>
-                                <div class="price">
-                                    <a>価格（税込）</a>
-                                    <a>&yen;<?= $value['b_purchaseprice'] ?></a>
-                                </div>
-                                <div class="qty">
-                                    <a>数量<input type="number" id="qty" value="1" class="counter"></a>
-                                </div>
+
                             </td>
-                            <td class="delete">
-                                <button type="button"><a href="deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>">削除</a></button>
-                            </td>
-                            <hr>
                         </tr>
                     <?php
                     }
