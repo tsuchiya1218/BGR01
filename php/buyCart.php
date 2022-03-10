@@ -54,8 +54,7 @@ try {
 <body>
     <header>
         <div id="top">
-
-            <h1 id="title"><a href="Top.php">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
@@ -133,8 +132,8 @@ try {
                                         </div>
                                     </div>
                                     <div class="delete">
-                                            <button type="button" onclick="href.location='deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>'">削除</button>
-                                        </div>
+                                        <button type="button" onclick="href.location='deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>'">削除</button>
+                                    </div>
                                 </div>
 
                             </td>
