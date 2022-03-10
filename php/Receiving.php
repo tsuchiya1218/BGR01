@@ -14,32 +14,23 @@ if ($cart == 'rentalcart') {
 try {
     $server_name = "10.42.129.3";    // サーバ名
     $db_name = "20grb1";    // データベース名(自分の学籍番号を入力)
-
     $user_name = "20grb1";    // ユーザ名(自分の学籍番号を入力)
     $user_pass = "20grb1";    // パスワード(自分の学籍番号を入力)
-
     // データソース名設定
     $dsn = "sqlsrv:server=$server_name;database=$db_name";
-
     // PDOオブジェクトのインスタンス作成
     $pdo = new PDO($dsn, $user_name, $user_pass);
-
     // PDOオブジェクトの属性の指定
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     print "接続エラー!: " . $e->getMessage();
     exit();
 }
-
-    // お客様情報
-    // 購入
-    $Cart = array('buycart' => 0, 'reservecart' => 1, 'rentalcart' => 2);
-    //サンプル $c_code = '1';
     // $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
 
-    $sql = "SELECT * FROM store where c_code WHERE c_code = ?";
+    $sql = "SELECT * FROM store WHERE c_code = ?";
     try {
-        $stmt = $dbh->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $stmt->execute(array($c_code));
         $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt = null;
@@ -64,7 +55,7 @@ try {
 <body>
     <header>
         <div id="top">
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
