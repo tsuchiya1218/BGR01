@@ -99,7 +99,7 @@ if ($cart == 'buycart') {
         }
         $count[0] += 1;
 
-        $sql = "INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,bc_qty,bc_totalamount)
+        $sql = "INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
                             VALUES(?,?,?,1,?)";
         try {
             $stmt = $pdo->prepare($sql);

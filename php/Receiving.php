@@ -66,8 +66,8 @@ try {
         <div align="center">
             <p>受取方法</p>
             <form action="Receiving_get.php" method="GET">
-                <input type="radio" name="select" value="store">店舗<!--店舗-->
-                <input type="radio" name="select" value="delivery" checked>郵送<!--郵送-->
+                <input type="radio" name="select" value="1">店舗<!--店舗-->
+                <input type="radio" name="select" value="2" checked>郵送<!--郵送-->
                 <input type="submit" value="次へ">
             </form>
         </div>
