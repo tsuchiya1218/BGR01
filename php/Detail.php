@@ -197,7 +197,7 @@ try {
                                 <img src="../image/<?= $value2['b_thum'] ?>" alt="">
                             </div>
                             <div class="divinfo">
-                                <p><a href=""><?= $value2['b_name'] ?></a></p>
+                                <p><a href="Detail.php?b_code=<?=$value2['b_code']?>"><?= $value2['b_name'] ?></a></p>
                                 <p>税込&yen;<?= $value2['b_purchaseprice'] ?></p>
                                 <p>カテゴリー:<a><?= $value2['b_category'] ?></a></p>
                             </div>
