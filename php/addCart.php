@@ -75,7 +75,7 @@ if ($cart == 'buycart') {
         print "SQL 実行エラー!: " . $e->getMessage();
         exit();
     }
-    $count = $arraycount[0]['bc_count'] + 1;
+    $count = $arraycount[0]['rc_count'] + 1;
 
     $sql = "INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
                             VALUES(?,?,?,1,?)";
@@ -104,7 +104,7 @@ if ($cart == 'buycart') {
         print "SQL 実行エラー!: " . $e->getMessage();
         exit();
     }
-    $count = $arraycount[0]['bc_count'] + 1;
+    $count = $arraycount[0]['rtc_count'] + 1;
 
     $sql = "INSERT INTO rentalcart(c_code,rtc_code,b_code,rtc_totalamount)
                             VALUES(?,?,1,?)";
