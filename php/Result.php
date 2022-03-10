@@ -190,7 +190,7 @@ try {
                                         <div class="tab">
                                             <!--b_code=name-->
                                             <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                            <input type="hidden" name="cart" value="reservecart">
+                                            <input type="hidden" name="cart" value="c">
                                             <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
                                             <p class="tax">税込</p>
                                             <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
