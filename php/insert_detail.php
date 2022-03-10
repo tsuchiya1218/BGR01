@@ -1,9 +1,8 @@
 <?php
-
 session_start();
 $cart = $_SESSION['cart']; //カート種別
 $c_code = $_SESSION['c_code']; //顧客コード 
-$select = $_SESSION['select']; //受取方法
+$get_method = $_SESSION['select']; //受取方法
 
 try {
     $server_name = "10.42.129.3";    // サーバ名
@@ -21,48 +20,58 @@ try {
     die();
 }
 
-$sql = 'SELECT count(buy_code) FROM buydetail';
+//buydetailにデータが入ってるかどうか確認
+$sql = 'SELECT count(*) as cnt FROM buydetail';
 
 try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $array = $stmt->fetch(PDO::FETCH_BOTH);
     $stmt = null;
 } catch (PDOException $e) {
-    print "SQL実行エラー！:" . $e->getMessage();
+    //print "SQL実行エラー！:" . $e->getMessage();
+    echo $e;
     exit();
 }
-if($array==null){
-    $array[0] = 1;
-}else{
-    $array[0] +=1;
-}
-if($select == 'store'){//店舗
-    $get_method = 1;
-}else{//郵送
-    $get_method = 2;
-}
+//buydetailにデータが入っていなかったばあい
+//データを1とする
 
-if($cart == 'buycart'){
-    $cartcode = 'bc_buyCartCode';
+$num = $array['cnt'] + 1;
+
+if ($cart == 'buycart') {
     $buy_date = date('Y-m-d');
-    $get_date = date("Y-m-d",strtotime("+1 hour"));
-    $deliverydate = $get_date;
-
-    $sql = 'INSERT INTO buydetail(c_code,buy_code,bd_buydate,bd_deliverydate,get_method,bc_buycartcode)
-                        VALUES(?,?,?,?,?,?)';
+    $get_date = date("Y-m-d", strtotime("+1 hour"));
+    $deliverydate = date('Y-m-d');
+    $sql = 'SELECT * FROM buycart WHERE c_code = ?';
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(array($c_code,$array[0],$buy_date,$deliverydate,$get_method,$cartcode));
+        $stmt->execute(array($c_code));
+        $array = $stmt->fetchAll(PDO::FETCH_BOTH);
     } catch (PDOException $e) {
-        print "SQL実行エラー！:" . $e->getMessage();
+        //print "SQL実行エラー！:" . $e->getMessage();
+        echo $e;
         exit();
     }
-    $sql = "DELETE FROM buycart WHERE c_code = ?";	
+    foreach ($array as $value) {
+        $sql = 'INSERT INTO buydetail(c_code,buy_code,bd_buydate,bd_deliverydate,get_method,bc_buycartcode)
+                            VALUES(?,?,?,?,?,?)';
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(array($c_code, $num, $buy_date, $deliverydate,1,$value['bc_buyCartCode']));
+        } catch (PDOException $e) {
+            //print "SQL実行エラー！:" . $e->getMessage();
+            echo $e;
+            exit();
+        }
+        $num +=1;
+    }
 
-    try{
+
+    $sql = "DELETE FROM buycart WHERE c_code = ?";
+
+    try {
         $stmt = $pdo->prepare($sql);
-        $stmt -> execute(array($cart_code,$c_code));
+        $stmt->execute(array($cart_code, $c_code));
     } catch (PDOException $e) {
         print "接続エラー!: " . $e->getMessage();
         exit();
@@ -71,9 +80,8 @@ if($cart == 'buycart'){
     $stmt = null;
 
     header('location:../html/Order_completion.html');
-
-}else if($cart == 'reservecart'){
+} else if ($cart == 'reservecart') {
     $cartcode = 'rc_reserveCartCode';
-}else{
+} else {
     $cartcode = 'rtc_code';
 }

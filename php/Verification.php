@@ -157,7 +157,7 @@ try {
             </div>
         </div>
         <div class="cp">
-            <form method="post" aciton="./insert_detail.php">
+            <form method="GET" action="./insert_detail.php">
                 <input type="submit" value="購入">
             </form>
         </div>
