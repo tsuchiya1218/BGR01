@@ -159,7 +159,7 @@ $c_code = 1;
                 }
                 ?>
             </table>
-            <form method="get" action="./Receiving.php">
+            <form align="center" method="get" action="./Receiving.php">
                 <input type="submit" value="支払い手続きへ">
             </form>
         <?php
