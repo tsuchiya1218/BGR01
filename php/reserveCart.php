@@ -66,7 +66,7 @@ $c_code = 1;
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
-                <input type="button" value="カートを見る" onclick="location.href='Cart.php'">
+                <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
                 <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
             </div>
         </div>
