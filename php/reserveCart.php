@@ -62,7 +62,6 @@ $c_code = 1;
 <body>
     <header>
         <div id="top">
-
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
@@ -72,12 +71,14 @@ $c_code = 1;
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./Result.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>

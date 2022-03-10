@@ -29,8 +29,8 @@ $url  = $_SESSION['url'];
     //buycart
     if($cart == 'buycart'){
 
-	$cart_code = $_GET['bc_buyCartCode'];
-	$sql = "DELETE FROM buycart WHERE bc_buyCartCode = ? AND c_code = ?";	
+        $cart_code = $_GET['bc_buyCartCode'];
+        $sql = "DELETE FROM buycart WHERE bc_buyCartCode = ? AND c_code = ?";	
 
         try{
 

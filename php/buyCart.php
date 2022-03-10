@@ -7,8 +7,8 @@ if (!empty($_SESSION['cart'])) {
 if (!empty($_SESSION['url'])) {
     $_SESSION['url'] = null;
 }
-$_SESSION['cart'] = 'rentalcart';
-$_SESSION['url'] = 'rental.php';
+$_SESSION['cart'] = 'buycart';
+$_SESSION['url'] = 'buyCart.php';
 $c_code = $_SESSION['c_code'];
 
 //データベースに接続する
@@ -63,12 +63,14 @@ try {
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./Result.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
@@ -85,9 +87,9 @@ try {
         //"SELECT b_name,b_author,b_publisher,b_release
         //      ,b_purchaseprice,b_thum" FROM book WHERE $b_code = b_code
 
-        $sql = "SELECT b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
+        $sql = "SELECT book.b_code,bc_buyCartCode,b_name,b_author,b_publisher,b_release,b_purchaseprice,b_thum
                             FROM book 
-                            RIGHT JOIN buycart
+                            INNER JOIN buycart
                             ON book.b_code = buycart.b_code
                             WHERE c_code = ?";
         try {
@@ -104,46 +106,46 @@ try {
             echo "カートの中に商品がありません。<br>";
         } else {
         ?>
-            <form method="get" action="./Receiving.php">
-                <table border="2" align="center" style="border-collapse: collapse">
-                    <?php
-                    foreach ($array as $value) {
-                    ?>
-                        <tr>
-                            <td>
-
-                                <div class="item">
-                                    <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
-                                    <div class="description">
-                                        <div class="btitle">
-                                            <p><b><a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></b></p>
-                                        </div>
-                                        <div class="info">
-                                            <p>著者<br><?= $value['b_author'] ?></p>
-                                            <p>出版社<br><?= $value['b_publisher'] ?></p>
-                                            <p>発行年月<br><?= $value['b_release'] ?></p>
-                                        </div>
-                                        <div class="price">
-                                            <a>価格（税込）</a>
-                                            <a>&yen;<?= $value['b_purchaseprice'] ?></a>
-                                        </div>
-                                        <div class="qty">
-                                            <a>数量<input type="number" id="qty" value="1" class="counter"></a>
-                                        </div>
+            <table border="2" align="center" style="border-collapse: collapse">
+                <?php
+                foreach ($array as $value) {
+                ?>
+                    <tr>
+                        <td>
+                            <div class="item">
+                                <a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                                <div class="description">
+                                    <div class="btitle">
+                                        <p><a href="./Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></p>
                                     </div>
-                                    <div class="delete">
-                                        <button type="button" onclick="href.location='deleteCart.php?bc_buyCartCode=<?= $value['bc_buyCartCode'] ?>'">削除</button>
+                                    <div class="info">
+                                        <p>著者<br><?= $value['b_author'] ?></p>
+                                        <p>出版社<br><?= $value['b_publisher'] ?></p>
+                                        <p>発行年月<br><?= $value['b_release'] ?></p>
+                                    </div>
+                                    <div class="price">
+                                        <a>価格（税込）</a>
+                                        <a>&yen;<?= $value['b_purchaseprice'] ?></a>
+                                    </div>
+                                    <div class="qty">
+                                        <a>数量<input type="number" id="qty" value="1" class="counter"></a>
                                     </div>
                                 </div>
+                                <div class="delete">
+                                    <form action="deleteCart.php" method="get">
+                                        <input type="submit" value="削除">
+                                        <input type="hidden" name="bc_buyCartCode" value="<?= $value['bc_buyCartCode'] ?>">
+                                    </form>
+                                </div>
+                            </div>
 
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </table>
-                <input type="submit" value="支払い手続きへ">
-            </form>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+            <input type=" submit" value="支払い手続きへ">
         <?php
         }
         ?>

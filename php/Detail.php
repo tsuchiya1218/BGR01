@@ -36,7 +36,7 @@ try {
 </head>
 
 <body>
-<header>
+    <header>
         <div id="top">
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
@@ -47,12 +47,14 @@ try {
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./Result.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
@@ -81,7 +83,7 @@ try {
             <h2>書籍情報</h2>
             <div class="dbox">
                 <div class="image">
-                    <img src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name']?>" align="left" width="300" height="375">
+                    <img src="../image/<?= $value['b_thum'] ?>" alt="<?= $value['b_name'] ?>" align="left" width="300" height="375">
                 </div>
                 <div class="bdata">
                     <div class="tdata">
@@ -103,17 +105,17 @@ try {
                         if ($value['b_stock'] != null) {
                             if ($value['b_stock'] >= 1) {
                         ?>
-                                <form method="GET" action="./addCart.php">
-                                    <div class="tab">
-                                        <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">購入</a>
-                                        <input type="hidden" name="b" value="buy">
-                                        <p class="tax">税込</p>
-                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="cart">カートに入れる</p>
-                                        <!--在庫がある場合購入表示、ない場合予約表示-->
-                                    </div>
-                                </form>
+                                <div class="tab">
+                                    <!--b_code=name-->
+                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>&price=<?= $value['b_purchaseprice'] ?>&cart=buycart">購入</a>
+                                    <input type="hidden" name="cart" value="buycart">
+                                    <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
+                                    <p class="tax">税込</p>
+                                    <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                    <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
+                                    <!--在庫がある場合購入表示、ない場合予約表示-->
+                                </div>
                             <?php
                             } elseif ($value['b_stock'] == 0) {
                             ?>
@@ -121,10 +123,12 @@ try {
                                     <div class="tab">
                                         <!--b_code=name-->
                                         <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                        <input type="hidden" name="b" value="reserve">
+                                        <input type="hidden" name="cart" value="reservecart">
+                                        <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
                                         <p class="tax">税込</p>
                                         <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
                                         <p class="cart">カートに入れる</p>
+                                        <!--php出来たら上のリンク変更-->
                                         <!--在庫がある場合購入表示、ない場合予約表示-->
                                     </div>
                                 </form>
@@ -143,10 +147,12 @@ try {
                                 <div class="tab">
                                     <!--b_code=name-->
                                     <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
-                                    <input type="hidden" name="b" value="rent">
+                                    <input type="hidden" name="cart" value="rentalcart">
+                                    <input type="hidden" name="price" $value="<?= $value['b_rentalprice'] ?>">
                                     <p class="tax">税込</p>
                                     <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
                                     <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
                                     <!--レンタル出来ない場合リンクを消す-->
                                 </div>
                             </form>
@@ -162,15 +168,6 @@ try {
                         <?php
                         }
                         ?>
-                    </div>
-                    <div class="bookd">
-                        <h2>あらすじ</h2>
-                        <!--あらすじデータを表示-->
-                        <p>
-                            <?= $value['b_synopsis1'] ?>
-                            <?= $value['b_synopsis2'] ?>
-                            <?= $value['b_synopsis3'] ?>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -195,7 +192,7 @@ try {
                                 <img src="../image/<?= $value2['b_thum'] ?>" alt="">
                             </div>
                             <div class="divinfo">
-                                <p><a href="Detail.php?b_code=<?=$value2['b_code']?>"><?= $value2['b_name'] ?></a></p>
+                                <p><a href="Detail.php?b_code=<?= $value2['b_code'] ?>"><?= $value2['b_name'] ?></a></p>
                                 <p>税込&yen;<?= $value2['b_purchaseprice'] ?></p>
                                 <p>カテゴリー:<a><?= $value2['b_category'] ?></a></p>
                             </div>

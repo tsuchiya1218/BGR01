@@ -88,7 +88,7 @@ if ($cart == 'buycart') {
         // header("Location: $_SESSION);
     } else {
 
-        $sql = "SELECT MAX(bc_buyCartCode) as bc_count FROM reservecart";
+        $sql = "SELECT MAX(rc_reserveCartCode) as bc_count FROM reservecart";
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
@@ -99,7 +99,7 @@ if ($cart == 'buycart') {
         }
         $count[0] += 1;
 
-        $sql = "INSERT INTO buycart(c_code,bc_buyCartCode,b_code,bc_qty,bc_totalamount)
+        $sql = "INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,bc_qty,bc_totalamount)
                             VALUES(?,?,?,1,?)";
         try {
             $stmt = $pdo->prepare($sql);
@@ -123,26 +123,26 @@ if ($cart == 'buycart') {
         $_SESSION["eMsg"] = "既にカートに入っています。";
         // header("Location: $_SESSION);
     } else {
-        //rentalcart表からbc_codeをカウント
-        $sql = "SELECT COUNT(rtc_code) as bc_count FROM rentalcart";
+        //rentalcart表からrtc_codeをカウント
+        $sql = "SELECT MAX(rtc_code) as bc_count FROM rentalcart";
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
-            $arraycount = $stmt->fetch(PDO::FETCH_BOTH);
+            $count = $stmt->fetch(PDO::FETCH_BOTH);
             $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
             print "SQL 実行エラー!: " . $e->getMessage();
             exit();
         }
-        $count = $arraycount[0]['bc_count'] + 1;
+        $count [0]+=1;
 
-        $sql = "INSERT INTO buycart(c_code,rtc_code,b_code,bc_qty,bc_totalamount)
-                            VALUES(?,?,?,1,?)";
+        $sql = "INSERT INTO rentalcart(c_code,rtc_code,b_code,rtc_totalamount)
+                            VALUES(?,?,?,?)";
         try {
             $stmt = $pdo->prepare($sql);
             //SQL実行
-            $stmt->execute(array($c_code, $count, $b_code, $price));
+            $stmt->execute(array($c_code, $count[0],$b_code,$price));
             $sql = null;
             $stmt = null;
         } catch (PDOException $e) {
