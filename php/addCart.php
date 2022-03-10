@@ -64,7 +64,7 @@ if ($cart == 'buycart') {
 } else if ($cart == 'reservecart') {
 
     //reservecart表からbc_codeをカウント
-    $sql = "SELECT COUNT(rc_reserveCartCode) as bc_count FROM reservecart";
+    $sql = "SELECT COUNT(rc_reserveCartCode) as rc_count FROM reservecart";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -77,7 +77,7 @@ if ($cart == 'buycart') {
     }
     $count = $arraycount[0]['bc_count'] + 1;
 
-    $sql = "INSERT INTO buycart(c_code,rc_reserveCartCode,b_code,bc_qty,bc_totalamount)
+    $sql = "INSERT INTO reservecart(c_code,rc_reserveCartCode,b_code,rc_qty,rc_totalamount)
                             VALUES(?,?,?,1,?)";
     try {
         $stmt = $pdo->prepare($sql);
@@ -93,7 +93,7 @@ if ($cart == 'buycart') {
     //レンタルカート
 } else if ($cart == 'rentalcart') {
     //rentalcart表からbc_codeをカウント
-    $sql = "SELECT COUNT(rtc_code) as bc_count FROM rentalcart";
+    $sql = "SELECT COUNT(rtc_code) as rtc_count FROM rentalcart";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -106,8 +106,8 @@ if ($cart == 'buycart') {
     }
     $count = $arraycount[0]['bc_count'] + 1;
 
-    $sql = "INSERT INTO buycart(c_code,rtc_code,b_code,bc_qty,bc_totalamount)
-                            VALUES(?,?,?,1,?)";
+    $sql = "INSERT INTO rentalcart(c_code,rtc_code,b_code,rtc_totalamount)
+                            VALUES(?,?,1,?)";
     try {
         $stmt = $pdo->prepare($sql);
         //SQL実行
