@@ -8,7 +8,7 @@ if (!empty($_SESSION['url'])) {
     $_SESSION['url'] = null;
 }
 $_SESSION['cart'] = 'rentalcart';
-$_SESSION['url'] = 'rental.php';
+$_SESSION['url'] = 'rentalcart.php';
 $c_code = $_SESSION['c_code'];
 
 //データベースに接続する
@@ -139,13 +139,17 @@ try {
                                 <a>&yen;<?= $value['b_rentalprice'] ?></a>
                             </div>
                             <div class="qty">
-                                <a>数量<input type="number" id="qty" value="1" name="<?= $value['rtc_code'] ?>"></a>
-                                <button type="button"><a href="updateCart.php?rtc_code=<?= $value['rtc_code'] ?>">変更</a></button>
+                                <form method="get" action="./updateCart.php">
+                                    <a>数量<input type="number" id="qty" value="1" name="<?= $value['rtc_code'] ?>"></a>
+                                    <input type="submit" value="変更"><a href="updateCart.php?rtc_code=<?= $value['rtc_code'] ?>">変更</a></button>
+                                </form>
                             </div>
                         </td>
                         <td class="delete">
-                            <input type="hidden" value="<?= $value['rtc_code'] ?>">
-                            <input type="submit" value="削除">
+                            <form method="get" action="./deleteCart.php">
+                                <input type="hidden" name="cart_code" value="<?= $value['rtc_code'] ?>">
+                                <input type="submit" value="削除">
+                            </form>
                         </td>
                     </tr>
                     <hr>

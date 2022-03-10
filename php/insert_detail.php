@@ -17,10 +17,10 @@ $c_code = $_SESSION['c_code'];
 $select = $_SESSION['select'];
 
 if($cart=='buycart'){
-    
+    $buydate = date('Y-m-d');
 }else if($cart=='reservecart'){
-
+    $availabledate = date('Y-m-d');
 }else if($cart=='rentalcart'){
-
+    
 }
 ?>

@@ -27,6 +27,7 @@ try {
 $c_code = $_SESSION['c_code']; //セッション
 $b_code = $_GET['b_code']; //本のコード パラメータ
 $cart = $_GET['cart']; //カート種別　hidden
+echo $cart;
 $price = $_GET['price']; //本の値段 hidden
 
 
