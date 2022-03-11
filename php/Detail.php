@@ -119,19 +119,17 @@ try {
                             <?php
                             } elseif ($value['b_stock'] == 0) {
                             ?>
-                                <form method="GET" action="./addCart.php">
-                                    <div class="tab">
-                                        <!--b_code=name-->
-                                        <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
-                                        <input type="hidden" name="cart" value="reservecart">
-                                        <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
-                                        <p class="tax">税込</p>
-                                        <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
-                                        <p class="cart">カートに入れる</p>
-                                        <!--php出来たら上のリンク変更-->
-                                        <!--在庫がある場合購入表示、ない場合予約表示-->
-                                    </div>
-                                </form>
+                                <div class="tab">
+                                    <!--b_code=name-->
+                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">予約</a>
+                                    <input type="hidden" name="cart" value="reservecart">
+                                    <input type="hidden" name="price" value="<?= $value['b_purchaseprice'] ?>">
+                                    <p class="tax">税込</p>
+                                    <p class="price">&yen;<?= $value['b_purchaseprice'] ?></p>
+                                    <p class="cart">カートに入れる</p>
+                                    <!--php出来たら上のリンク変更-->
+                                    <!--在庫がある場合購入表示、ない場合予約表示-->
+                                </div>
                             <?php
                             }
                         } else {
@@ -143,19 +141,17 @@ try {
                         }
                         if ($value['b_rental'] == 1) {
                         ?>
-                            <form method="GET" action="./addCart.php">
-                                <div class="tab">
-                                    <!--b_code=name-->
-                                    <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
-                                    <input type="hidden" name="cart" value="rentalcart">
-                                    <input type="hidden" name="price" $value="<?= $value['b_rentalprice'] ?>">
-                                    <p class="tax">税込</p>
-                                    <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
-                                    <p class="cart">カートに入れる</p>
-                                    <!--php出来たら上のリンク変更-->
-                                    <!--レンタル出来ない場合リンクを消す-->
-                                </div>
-                            </form>
+                            <div class="tab">
+                                <!--b_code=name-->
+                                <a href="addCart.php?b_code=<?= $value['b_code'] ?>">レンタル</a>
+                                <input type="hidden" name="cart" value="rentalcart">
+                                <input type="hidden" name="price" $value="<?= $value['b_rentalprice'] ?>">
+                                <p class="tax">税込</p>
+                                <p class="price">&yen;<?= $value['b_rentalprice'] ?></p>
+                                <p class="cart">カートに入れる</p>
+                                <!--php出来たら上のリンク変更-->
+                                <!--レンタル出来ない場合リンクを消す-->
+                            </div>
                         <?php
                         } else {
                         ?>
