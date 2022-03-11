@@ -35,12 +35,12 @@ try {
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form method="get" action="./Result.php">
+            <form method="get" action="./search.php">
                 <select name="searchCondition">
                     <option value="b_title">書籍</option>
                     <option value="author">作者</option>
@@ -157,7 +157,7 @@ try {
             </div>
         </div>
         <div class="cp">
-            <form method="GET" action="./order.php">
+            <form method="GET" action="./order_insert.php">
                 <input type="submit" value="購入">
             </form>
         </div>

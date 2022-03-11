@@ -79,7 +79,7 @@ if ($cart == 'buycart') {
     $sql = null;
     $stmt = null;
 
-    header('location:../html/Order_completion.html');
+    header('location:../html/order_completion.html');
 } else if ($cart == 'reservecart') {
     $cartcode = 'rc_reserveCartCode';
 } else {

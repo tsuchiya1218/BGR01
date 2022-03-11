@@ -41,22 +41,23 @@ try {
 <body>
     <header>
         <div id="top">
-
-            <h1 id="title"><a href="Top.html">BOOK ON</a></h1>
+            <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./search.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
@@ -86,7 +87,7 @@ try {
             if (isset($s_region)) {
                 foreach ($array as $value) {
             ?>
-                    <div class="fl"><a href="verification.php" class="btn"><?= $value['s_name']; ?></a></div>
+                    <div class="fl"><a href="order_check.php" class="btn"><?= $value['s_name']; ?></a></div>
             <?php
                 }
             } else {

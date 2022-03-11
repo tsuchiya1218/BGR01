@@ -24,10 +24,9 @@
     
 
     $cart = $_SESSION['cart'];
-    $cuscode = $_SESSION['c_code'];
-    $qty = $_GET[$c_code];
+    $c_code = $_SESSION['c_code'];
+    $url = $_GET['url'];
     
-
     if($cart=='buycart'){
         $cartcode = $_GET['bc_buyCartCode'];
         $qty = $_GET[$c_code];
@@ -61,5 +60,5 @@
             print "SQL実行エラー！:" . $e->getMessage();
             exit();
         }
-        header('Location:Cart.php');
+        header("location:$url");
     }

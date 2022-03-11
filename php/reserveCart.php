@@ -66,12 +66,12 @@ $c_code = 1;
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form method="get" action="./Result.php">
+            <form method="get" action="./search.php">
                 <select name="searchCondition">
                     <option value="b_title">書籍</option>
                     <option value="author">作者</option>
@@ -125,10 +125,10 @@ $c_code = 1;
                             <!--書籍のDB化-->
                             <!--value="500"-->
                             <div class="item">
-                                <a href="Detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
+                                <a href="book_detail.php?b_code=<?= $value['b_code'] ?>"><img src="../image/<?= $value['b_thum'] ?>" alt="<? $value['b_name'] ?>" height="250" width="200"></a>
                                 <div class="description">
                                     <div class="btitle">
-                                        <p><a href="Detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></p>
+                                        <p><a href="book_detail.php?b_code=<?= $value['b_code'] ?>"><?= $value['b_name'] ?></a></p>
                                     </div>
                                     <div class="info">
                                         <p>著者<br><?= $value['b_author'] ?></p>
@@ -141,7 +141,7 @@ $c_code = 1;
                                     </div>
                                     <div class="qty">
                                         <a>数量<input type="number" id="qty" value="1" name="<?= $value['rc_reserveCartCode'] ?>"></a>
-                                       
+
                                     </div>
                                     <div class="delete">
                                         <form action="deleteCart.php" method="GET">

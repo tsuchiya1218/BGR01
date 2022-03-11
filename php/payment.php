@@ -48,24 +48,26 @@ try {
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <select name="searchCondition">
-                <option value="b_title">書籍</option>
-                <option value="author">作者</option>
-            </select>
-            <input type="text" name="searchWord">
-            <input type="submit" value="🔍">
+            <form method="get" action="./search.php">
+                <select name="searchCondition">
+                    <option value="b_title">書籍</option>
+                    <option value="author">作者</option>
+                </select>
+                <input type="text" name="searchWord">
+                <input type="submit" value="🔍">
+            </form>
         </div>
         <hr>
     </header>
     <main>
 
         <h2>支払選択</h2>
-        <form action="Verification.php" method="get">
+        <form action="order_check.php" method="get">
             <div>
                 <!-- 購入方法 -->
                 <input type="radio" name="payment" value="コンビニ支払い" checked>コンビニ支払い

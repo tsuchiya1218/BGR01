@@ -37,12 +37,12 @@ try {
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form method="get" action="./Result.php">
+            <form method="get" action="./search.php">
                 <select name="searchCondition">
                     <option value="b_title">書籍</option>
                     <option value="author">作者</option>
@@ -57,7 +57,7 @@ try {
         <div class="float">
             <h3>レンタルライブラリ</h3>
             <select name="" onchange="location.href=value">
-                <option value="Mypage.php?null=1">フィルタを選択</option>
+                <option value="mypage.php?null=1">フィルタを選択</option>
                 <?php
                 $c_code = 1;
                 $sql1 = "SELECT DISTINCT renral_date FROM rental WHERE c_code=? ORDER BY renral_date DESC";
@@ -113,10 +113,10 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='book_detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
-                print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
+                print "<p><b><a href=\"book_detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
                 print "</div>\n";
                 print "<div class=\"mainInfo\">\n";
                 print "<p>レンタル購入日<br>{$value['renral_date']}</p>\n";
@@ -135,7 +135,7 @@ try {
             ?>
         </table>
         <div class="mottomiru">
-            <p><a href="Mypage.php?mottomiru=1">すべて見る</a></p>
+            <p><a href="mypage.php?mottomiru=1">すべて見る</a></p>
         </div>
         <hr>
         <div class="float">
@@ -154,7 +154,7 @@ try {
                     exit();
                 }
                 foreach ($array3 as $value) {
-                    print "<option value=\"Mypage.php?buydate={$value['bd_buydate']}\">{$value['bd_buydate']}</option>";
+                    print "<option value=\"mypage.php?buydate={$value['bd_buydate']}\">{$value['bd_buydate']}</option>";
                 }
                 ?>
             </select>
@@ -198,7 +198,7 @@ try {
                 print "<tr>\n";
                 print "<td>\n";
                 print "<div class=\"item\">\n";
-                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='Detail.php?b_code={$value['b_code']}'\">\n";
+                print "<img src=\"../image/" . $value['b_thum'] . "\" alt=\"{$value['b_name']}\" width=\"200px\" height=\"250px\" class=\"bookPhoto\" onclick=\"location.href='boook_detail.php?b_code={$value['b_code']}'\">\n";
                 print "<div class=\"description\">\n";
                 print "<div class=\"btitle\">\n";
                 print "<p><b><a href=\"Detail.php?b_code={$value['b_code']}\">{$value['b_name']}</a></b></p>\n";
@@ -218,7 +218,7 @@ try {
             ?>
         </table>
         <div class="mottomiru">
-            <p><a href="Mypage.php?mottomirubuy=1">すべて見る</a></p>
+            <p><a href="mypage.php?mottomirubuy=1">すべて見る</a></p>
         </div>
     </main>
 </body>

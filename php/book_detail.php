@@ -36,18 +36,18 @@ try {
 </head>
 
 <body>
-    <header>
+<header>
         <div id="top">
             <h1 id="title"><a href="top.php">BOOK ON</a></h1>
             <p id="subtitle">It's a book but it's not a book!</p>
             <div id="right">
                 <input type="button" value="カートを見る" onclick="location.href='buycart.php'">
-                <input type="button" value="マイページ" onclick="location.href='Mypage.php' ">
+                <input type="button" value="マイページ" onclick="location.href='mypage.php' ">
             </div>
         </div>
         <hr>
         <div align="center">
-            <form method="get" action="./Result.php">
+            <form method="get" action="./search.php">
                 <select name="searchCondition">
                     <option value="b_title">書籍</option>
                     <option value="author">作者</option>
@@ -188,7 +188,7 @@ try {
                                 <img src="../image/<?= $value2['b_thum'] ?>" alt="">
                             </div>
                             <div class="divinfo">
-                                <p><a href="Detail.php?b_code=<?= $value2['b_code'] ?>"><?= $value2['b_name'] ?></a></p>
+                                <p><a href="search.php?b_code=<?= $value2['b_code'] ?>"><?= $value2['b_name'] ?></a></p>
                                 <p>税込&yen;<?= $value2['b_purchaseprice'] ?></p>
                                 <p>カテゴリー:<a><?= $value2['b_category'] ?></a></p>
                             </div>
